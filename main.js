@@ -167,6 +167,7 @@
         });
         projectModal.style.display = "flex";
         projectModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
         loopActive = false;
       }
       projectCards.forEach((card) =>
@@ -177,6 +178,7 @@
       closeProject.addEventListener("click", () => {
         projectModal.style.display = "none";
         projectModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
         if (
           document.querySelector(".filter-btn.active").dataset.filter === "all"
         )
@@ -186,6 +188,7 @@
         if (e.target === projectModal) {
           projectModal.style.display = "none";
           projectModal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("modal-open");
           if (
             document.querySelector(".filter-btn.active").dataset.filter ===
             "all"
@@ -279,16 +282,19 @@
           b.addEventListener("click", () => {
             modal.style.display = "flex";
             modal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("modal-open");
           })
       );
       closeModal.addEventListener("click", () => {
         modal.style.display = "none";
         modal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
       });
       modal.addEventListener("click", (e) => {
         if (e.target === modal) {
           modal.style.display = "none";
           modal.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("modal-open");
         }
       });
 
