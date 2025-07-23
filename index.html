@@ -1,28 +1,71 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="fr" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Portfolio de développement Python présentant projets et compétences." />
-    <title>PyDevStudio – Solutions Python scalables</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="robots" content="index,follow" />
+    <meta
+      name="description"
+      content="Back‑end Python pour e‑commerce & data : automatisations, APIs, dashboards. +10h libérées / semaine."
+    />
+    <title>PyDevStudio – Back‑end Python & data</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      as="style"
     />
-<link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- JSON-LD breadcrumb minimal -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Accueil",
+            "item": "https://pydevstudio.example/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projets",
+            "item": "https://pydevstudio.example/#projets"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="progress"></div>
+
     <!-- Header -->
     <header>
       <div class="container nav">
-        <div class="brand">
+        <a href="#accueil" class="brand" aria-label="PyDevStudio Accueil">
           <div class="brand-logo">Py</div>
           PyDevStudio
-        </div>
-        <nav>
-          <ul id="desktopMenu">
+        </a>
+
+        <nav aria-label="Navigation principale">
+          <ul id="desktopMenu" class="desktop-menu">
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#competences">Compétences</a></li>
@@ -40,18 +83,20 @@
             </li>
           </ul>
         </nav>
-        <div
+
+        <button
           class="hamburger"
           id="hamburger"
           aria-label="Ouvrir le menu"
           aria-expanded="false"
-          role="button"
-          tabindex="0"
+          aria-controls="mobileMenu"
         >
           <span></span><span></span><span></span>
-        </div>
+        </button>
       </div>
-      <div class="container" id="mobileMenu">
+
+      <!-- Menu mobile -->
+      <div class="container mobile-menu" id="mobileMenu" hidden>
         <a href="#accueil">Accueil</a>
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
@@ -64,30 +109,43 @@
       </div>
     </header>
 
+    <!-- Sticky CTA mobile -->
+    <a
+      href="#"
+      id="ctaSticky"
+      class="btn-primary cta-sticky"
+      aria-label="Réserver un appel 15 min"
+      >Réserver 15 min</a
+    >
+
     <!-- Hero -->
     <main id="accueil" class="container hero">
       <section class="reveal">
-        <h1>Nous construisons<br />des solutions Python<br />scalables</h1>
-        <ul class="checklist">
-          <li>Développement sur mesure</li>
-          <li>Pratiques de codage modernes</li>
-          <li>Applications performantes</li>
-        </ul>
+        <h1>
+          On automatise vos workflows Python :<br />
+          <span class="accent">+10 h libérées chaque semaine.</span>
+        </h1>
+        <p class="hero-sub">
+          APIs, data pipelines, dashboards & scripts d’automatisation. On livre
+          vite, propre, mesurable.
+        </p>
         <div class="hero-cta">
-          <a href="#projets" class="btn btn-primary">Voir nos projets</a>
-          <a id="ctaContactTop" class="btn btn-link">Planifier un call</a>
+          <a href="#projets" class="btn btn-primary">Voir nos cas clients</a>
+          <a id="ctaContactTop" class="btn btn-link"
+            >Diagnostic gratuit 15 min →</a
+          >
         </div>
       </section>
+
       <aside class="profile-card reveal" aria-label="Profil développeur">
-        <img 
+        <img
           class="avatar"
-          src="https://via.placeholder.com/160"
-          alt="Avatar développeur"
+          src="assets/avatar.png"
+          alt="Photo de [Ton prénom nom]"
         />
         <div class="avatar-tag">&lt;/&gt;</div>
-        <div class="code-block">
-          # Etu / Python\nEcran\n@ome = Connecte{seNumpe}:\n for small:\n
-          f=/files.encompabed / f=*flise.comat1)
+        <div class="code-block" aria-hidden="true">
+          def automate(task): return run_pipeline(task, async=True)
         </div>
         <div class="tag-list"><span>Django</span><span>FastAPI</span></div>
       </aside>
@@ -95,133 +153,167 @@
 
     <!-- Process -->
     <section class="container section" id="process">
-      <h2 class="section-title reveal">Notre méthode</h2>
+      <h2 class="section-title reveal">Méthode simple & efficace</h2>
       <div class="process">
         <div class="step reveal">
           <div class="step-number">1</div>
-          <h3>Découverte</h3>
-          <p>
-            Atelier pour comprendre vos objectifs métiers et vos contraintes
-            techniques.
-          </p>
+          <h3>Comprendre</h3>
+          <p>Atelier 60 min pour cadrer vos objectifs et contraintes.</p>
         </div>
         <div class="step reveal">
           <div class="step-number">2</div>
-          <h3>Conception</h3>
-          <p>
-            Architecture, choix technos et maquettes rapides pour valider le
-            périmètre.
-          </p>
+          <h3>Construire</h3>
+          <p>Sprints courts, CI/CD, tests auto, déploiement cloud.</p>
         </div>
         <div class="step reveal">
           <div class="step-number">3</div>
-          <h3>Développement</h3>
-          <p>
-            Itérations courtes, CI/CD, tests automatisés et déploiement cloud.
-          </p>
-        </div>
-        <div class="step reveal">
-          <div class="step-number">4</div>
-          <h3>Suivi & évolutions</h3>
-          <p>
-            Monitoring, support et ajout de fonctionnalités selon vos retours.
-          </p>
+          <h3>Livrer & itérer</h3>
+          <p>Mise en prod rapide, monitoring & évolutions mesurées.</p>
         </div>
       </div>
     </section>
 
     <!-- Projets -->
     <section id="projets" class="container section">
-      <h2 class="section-title reveal">Projets</h2>
-      <div class="projects-controls reveal">
-        <button class="filter-btn active" data-filter="all">Tous</button>
-        <button class="filter-btn" data-filter="web">Web</button>
-        <button class="filter-btn" data-filter="data">Data</button>
-        <button class="filter-btn" data-filter="automation">
+      <h2 class="section-title reveal">Cas clients</h2>
+
+      <div
+        class="projects-controls reveal"
+        role="tablist"
+        aria-label="Filtres projets"
+      >
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          role="tab"
+          aria-selected="true"
+        >
+          Tous
+        </button>
+        <button class="filter-btn" data-filter="web" role="tab">Web</button>
+        <button class="filter-btn" data-filter="data" role="tab">Data</button>
+        <button class="filter-btn" data-filter="automation" role="tab">
           Automatisation
         </button>
       </div>
-      <div class="projects-wrapper reveal">
+
+      <div class="projects-wrapper reveal" id="projectsWrapper">
         <div class="projects-track" id="projectsTrack">
-          <!-- Items duplicated via JS for loop effect -->
-          <div
+          <!-- CARD 1 -->
+          <article
             class="project-card"
+            tabindex="0"
             data-cat="web"
-            data-title="Plateforme de commerce en ligne"
-            data-desc="Site e-commerce complet (catalogue, paiement, admin) avec Django et FastAPI."
-            data-media='[{"type":"img","src":"https://via.placeholder.com/900x500/0c1d2c/ffffff?text=E-commerce+Dashboard"}]'
+            data-title="Plateforme e‑commerce B2B"
+            data-desc="Catalogue 10 k produits, paiement multi-devises, sync ERP."
+            data-media='[{"type":"img","src":"assets/project.png","alt":"Dashboard e-commerce Django – vue admin ventes"}]'
+            data-kpi="-42 % temps traitement commandes"
           >
-            <img loading="lazy"
+            <img
               class="project-img"
-              src="https://via.placeholder.com/600x300/0c1d2c/ffffff?text=Plateforme+e-commerce"
-              alt="Plateforme de commerce en ligne"
+              src="assets/project.png"
+              alt="Aperçu plateforme e‑commerce B2B"
             />
             <div class="project-content">
-              <h3>Plateforme de commerce en ligne</h3>
+              <h3>Plateforme e‑commerce B2B</h3>
+              <p class="proj-short">
+                Catalogue 10 k produits, paiement multi‑devises, ERP sync.
+              </p>
               <div class="project-tags">
                 <span>Django</span><span>FastAPI</span>
               </div>
+              <button
+                class="btn btn-secondary see-more"
+                aria-label="Voir le projet en détails"
+              >
+                Voir le projet
+              </button>
             </div>
-          </div>
-          <div
+          </article>
+
+          <!-- CARD 2 -->
+          <article
             class="project-card"
+            tabindex="0"
             data-cat="data"
             data-title="API de traitement de données"
-            data-desc="Pipeline d'ingestion et d'exposition de données en temps réel (FastAPI + PostgreSQL)."
-            data-media='[{"type":"img","src":"https://via.placeholder.com/900x500/0c1d2c/ffffff?text=Data+API"},{"type":"video","src":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"}]'
+            data-desc="Ingestion temps réel, stockage PostgreSQL, endpoints REST."
+            data-media='[{"type":"img","src":"assets/project.png","alt":"API de données FastAPI – graphiques temps réel"},{"type":"video","src":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"}]'
+            data-kpi="+32 % rapidité d’accès aux métriques"
           >
-            <img loading="lazy"
+            <img
               class="project-img"
-              src="https://via.placeholder.com/600x300/0c1d2c/ffffff?text=API+de+traitement+de+donn%C3%A9es"
-              alt="API de traitement de données"
+              src="assets/project.png"
+              alt="Aperçu API de traitement de données"
             />
             <div class="project-content">
               <h3>API de traitement de données</h3>
+              <p class="proj-short">
+                Ingestion temps réel, stockage PostgreSQL, endpoints REST.
+              </p>
               <div class="project-tags">
-                <span>Django</span><span>FastAPI</span>
+                <span>FastAPI</span><span>PostgreSQL</span>
               </div>
+              <button class="btn btn-secondary see-more">Voir le projet</button>
             </div>
-          </div>
-          <div
+          </article>
+
+          <!-- CARD 3 -->
+          <article
             class="project-card"
+            tabindex="0"
             data-cat="data"
-            data-title="Tableaux de bord interactifs"
-            data-desc="Dashboards analytiques interactifs pour le suivi KPI (Plotly + AWS)."
-            data-media='[{"type":"img","src":"https://via.placeholder.com/900x500/0c1d2c/ffffff?text=Dashboards"}]'
+            data-title="Dashboards interactifs KPI"
+            data-desc="Pilotage KPI, Plotly/React, export PDF auto."
+            data-media='[{"type":"img","src":"assets/project.png","alt":"Tableaux de bord analytiques interactifs"}]'
+            data-kpi="+120 k€ MRR suivis mensuellement"
           >
-            <img loading="lazy"
+            <img
               class="project-img"
-              src="https://via.placeholder.com/600x300/0c1d2c/ffffff?text=Dashboards+interactifs"
-              alt="Tableaux de bord interactifs"
+              src="assets/project.png"
+              alt="Aperçu dashboards interactifs KPI"
             />
             <div class="project-content">
-              <h3>Tableaux de bord interactifs</h3>
+              <h3>Dashboards interactifs KPI</h3>
+              <p class="proj-short">
+                Pilotage KPI, Plotly/React, export PDF auto.
+              </p>
               <div class="project-tags">
                 <span>Data Science</span><span>AWS</span>
               </div>
+              <button class="btn btn-secondary see-more">Voir le projet</button>
             </div>
-          </div>
-          <div
+          </article>
+
+          <!-- CARD 4 -->
+          <article
             class="project-card"
+            tabindex="0"
             data-cat="automation"
-            data-title="Automatisation de processus"
-            data-desc="Scripts & workers pour automatiser les tâches internes (Celery, RabbitMQ)."
-            data-media='[{"type":"img","src":"https://via.placeholder.com/900x500/0c1d2c/ffffff?text=Automation"}]'
+            data-title="Automatisation de processus internes"
+            data-desc="Workers Celery & scripts Python pour tâches récurrentes."
+            data-media='[{"type":"img","src":"assets/project.png","alt":"Automatisation process"}]'
+            data-kpi="-65 % temps manuel équipes support"
           >
-            <img loading="lazy"
+            <img
               class="project-img"
-              src="https://via.placeholder.com/600x300/0c1d2c/ffffff?text=Automatisation+process"
-              alt="Automatisation process"
+              src="assets/project.png"
+              alt="Aperçu automatisation de processus internes"
             />
             <div class="project-content">
               <h3>Automatisation de processus internes</h3>
+              <p class="proj-short">
+                Workers Celery & scripts Python pour tâches récurrentes.
+              </p>
               <div class="project-tags">
                 <span>Python</span><span>Celery</span>
               </div>
+              <button class="btn btn-secondary see-more">Voir le projet</button>
             </div>
-          </div>
+          </article>
         </div>
-        <div class="progress-line">
+
+        <div class="progress-line" aria-hidden="true">
           <div class="progress-fill" id="projProgress"></div>
         </div>
       </div>
@@ -234,21 +326,21 @@
         <div class="skills-grid" id="skillsGrid">
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
                 alt="Python"
-                style="height: 26px"
+                height="26"
               />Python
             </div>
-            <p class="skill-desc">Back-end, scripts, data pipelines</p>
+            <p class="skill-desc">Back‑end, scripts, data pipelines</p>
             <div class="meter"><span style="width: 95%"></span></div>
           </div>
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
                 alt="Django"
-                style="height: 26px"
+                height="26"
               />Django
             </div>
             <p class="skill-desc">API REST, admin, ORM</p>
@@ -256,10 +348,10 @@
           </div>
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
                 alt="FastAPI"
-                style="height: 26px"
+                height="26"
               />FastAPI
             </div>
             <p class="skill-desc">Microservices, async, OpenAPI</p>
@@ -267,10 +359,10 @@
           </div>
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg"
                 alt="Docker"
-                style="height: 26px"
+                height="26"
               />Docker
             </div>
             <p class="skill-desc">Containers, CI/CD</p>
@@ -278,10 +370,10 @@
           </div>
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg"
-                alt="SQL"
-                style="height: 26px"
+                alt="PostgreSQL"
+                height="26"
               />PostgreSQL / SQL
             </div>
             <p class="skill-desc">Modélisation, requêtes optimisées</p>
@@ -289,10 +381,10 @@
           </div>
           <div class="skill-card">
             <div class="skill-header">
-              <img loading="lazy"
+              <img
                 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
                 alt="AWS"
-                style="height: 26px"
+                height="26"
               />AWS
             </div>
             <p class="skill-desc">ECS, Lambda, S3, RDS</p>
@@ -310,65 +402,46 @@
         <div class="stat">100%<span>clients satisfaits</span></div>
         <div class="stat">5★<span>note moyenne</span></div>
       </div>
-      <div class="testimonial-slider reveal" id="tSlider">
-        <div class="testimonial-track" id="tTrack">
-          <div class="testimonial-card">
-            <img loading="lazy"
-              class="testimonial-avatar"
-              src="https://via.placeholder.com/96"
-              alt="Thomas"
-            />
-            <div>
-              <div class="testimonial-name">Thomas</div>
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">
-                Excellente collaboration, très professionnel et réactif.
-              </p>
-            </div>
+      <div class="testimony-grid reveal">
+        <article class="testimony-card">
+          <img
+            src="assets/avatar.png"
+            alt="Photo Thomas"
+            class="testimony-avatar"
+          />
+          <div class="testimony-body">
+            <h3 class="testimony-name">Thomas</h3>
+            <div class="stars" aria-label="5 étoiles">★★★★★</div>
+            <p>Excellente collaboration, très professionnel et réactif.</p>
+            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
-          <div class="testimonial-card">
-            <img loading="lazy"
-              class="testimonial-avatar"
-              src="https://via.placeholder.com/96"
-              alt="Sophie"
-            />
-            <div>
-              <div class="testimonial-name">Sophie</div>
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">
-                Un freelance compétent qui respecte les délais.
-              </p>
-            </div>
+        </article>
+        <article class="testimony-card">
+          <img
+            src="assets/avatar.png"
+            alt="Photo Sophie"
+            class="testimony-avatar"
+          />
+          <div class="testimony-body">
+            <h3 class="testimony-name">Sophie</h3>
+            <div class="stars">★★★★★</div>
+            <p>Un freelance compétent qui respecte les délais.</p>
+            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
-          <div class="testimonial-card">
-            <img loading="lazy"
-              class="testimonial-avatar"
-              src="https://via.placeholder.com/96"
-              alt="Marc"
-            />
-            <div>
-              <div class="testimonial-name">Marc</div>
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">
-                Livraison rapide et code propre. Je recommande fortement.
-              </p>
-            </div>
+        </article>
+        <article class="testimony-card">
+          <img
+            src="assets/avatar.png"
+            alt="Photo Marc"
+            class="testimony-avatar"
+          />
+          <div class="testimony-body">
+            <h3 class="testimony-name">Marc</h3>
+            <div class="stars">★★★★★</div>
+            <p>Livraison rapide et code propre. Je recommande fortement.</p>
+            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
-          <div class="testimonial-card">
-            <img loading="lazy"
-              class="testimonial-avatar"
-              src="https://via.placeholder.com/96"
-              alt="Claire"
-            />
-            <div>
-              <div class="testimonial-name">Claire</div>
-              <div class="stars">★★★★★</div>
-              <p class="testimonial-text">
-                Bonne compréhension du besoin et force de proposition.
-              </p>
-            </div>
-          </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -378,58 +451,40 @@
       <div class="faq-wrapper reveal">
         <div class="faq-grid" id="faqGrid">
           <div class="faq-item">
-            <div class="faq-q">
-              Combien de temps pour livrer un projet ?<span>+</span>
-            </div>
+            <button class="faq-q" aria-expanded="false">
+              <span class="faq-title"
+                >Combien de temps pour livrer un projet&nbsp;?</span
+              >
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
             <div class="faq-a">
               Cela dépend de la complexité. En général, un MVP prend 3 à 6
-              semaines. Nous travaillons en itérations pour vous livrer
-              rapidement de la valeur.
+              semaines. Nous livrons en itérations pour créer de la valeur au
+              plus vite.
             </div>
           </div>
+
           <div class="faq-item">
-            <div class="faq-q">
-              Pouvez-vous reprendre un projet existant ?<span>+</span>
-            </div>
+            <button class="faq-q" aria-expanded="false">
+              <span class="faq-title"
+                >Pouvez-vous reprendre un projet existant&nbsp;?</span
+              >
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
             <div class="faq-a">
-              Oui, nous auditons le code, stabilisons l'existant puis ajoutons
+              Oui. Nous auditons l’existant, stabilisons le code puis ajoutons
               les fonctionnalités nécessaires.
             </div>
           </div>
+
           <div class="faq-item">
-            <div class="faq-q">
-              Quelles sont vos technologies principales ?<span>+</span>
-            </div>
+            <button class="faq-q" aria-expanded="false">
+              <span class="faq-title">Vos technologies principales&nbsp;?</span>
+              <span class="faq-icon" aria-hidden="true"></span>
+            </button>
             <div class="faq-a">
-              Python (Django, FastAPI), Docker, PostgreSQL, AWS, front léger en
+              Python (Django, FastAPI), Docker, PostgreSQL, AWS. Côté front :
               HTMX/Alpine ou React selon le besoin.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Comment se déroule la collaboration ?<span>+</span>
-            </div>
-            <div class="faq-a">
-              Kick-off, sprints hebdos, démos régulières, et un canal
-              Slack/Teams partagé pour communiquer en continu.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Travaillez-vous au forfait ou en régie ?<span>+</span>
-            </div>
-            <div class="faq-a">
-              Les deux. Nous proposons un forfait pour un périmètre défini, ou
-              une régie (TJ) pour un accompagnement long terme.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Proposez-vous de la maintenance ?<span>+</span>
-            </div>
-            <div class="faq-a">
-              Oui, avec des SLA adaptés : monitoring, correctifs, petites
-              évolutions et optimisation de coûts cloud.
             </div>
           </div>
         </div>
@@ -440,46 +495,83 @@
     <section id="cta" class="container section cta-section">
       <div class="cta-box reveal">
         <h2>Un projet en tête&nbsp;?</h2>
-        <p>Discutons de votre projet</p>
-        <a class="btn-cta" id="ctaContact">Contactez-nous</a>
+        <p>Réservez un créneau de 15 min, on en parle.</p>
+        <a class="btn-cta" id="ctaContact">Réserver 15 min</a>
+        <a class="cta-alt" id="ctaWrite">… ou nous écrire →</a>
       </div>
     </section>
 
     <footer>
-        <div class="container footer-info">
-          <span>© <span id="year"></span> PyDevStudio. Tous droits réservés.</span>
-          <a href="#accueil">Retour en haut ↑</a>
-        </div>
-      </footer>
+      <div class="container footer-info">
+        <span
+          >© <span id="year"></span> PyDevStudio. Tous droits réservés.</span
+        >
+        <a href="#accueil">Retour en haut ↑</a>
+      </div>
+    </footer>
 
     <!-- Contact Modal -->
-    <div id="contactModal" aria-hidden="true">
+    <div
+      id="contactModal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contactTitle"
+      aria-describedby="contactIntro"
+    >
       <div class="modal-content small">
         <button class="close-modal" id="closeModal" aria-label="Fermer">
           ✕
         </button>
-        <h2 class="modal-title">
-          Discutons de votre projet
-        </h2>
-        <p class="modal-intro">
-          Réponse sous 24h. Remplissez ce formulaire ou écrivez-nous
+        <h2 class="modal-title" id="contactTitle">Discutons de votre projet</h2>
+        <p class="modal-intro" id="contactIntro">
+          Réponse sous 24 h. Remplissez ce formulaire ou écrivez-nous
           directement.
         </p>
         <form id="contactForm" class="contact-form">
-  <label for="name">Nom</label>
-  <input id="name" name="name" class="contact-field" placeholder="Votre nom" required />
-  <label for="email">Email</label>
-  <input id="email" name="email" type="email" class="contact-field" placeholder="Email" required />
-  <label for="message">Message</label>
-  <textarea id="message" name="message" rows="5" class="contact-field" placeholder="Décrivez votre besoin" required></textarea>
-  <button class="btn btn-primary" type="submit">Envoyer</button>
-  <p id="formMsg" class="form-msg">Merci ! Votre message a été envoyé.</p>
-</form>
+          <label for="name">Nom</label>
+          <input
+            id="name"
+            name="name"
+            class="contact-field"
+            placeholder="Votre nom"
+            required
+          />
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="contact-field"
+            placeholder="Email"
+            required
+          />
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            class="contact-field"
+            placeholder="Décrivez votre besoin"
+            required
+          ></textarea>
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+          <p id="formMsg" class="form-msg">
+            Merci ! Votre message a été envoyé.
+          </p>
+        </form>
       </div>
     </div>
 
     <!-- Project Modal -->
-    <div id="projectModal" aria-hidden="true">
+    <div
+      id="projectModal"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="projTitle"
+      aria-describedby="projDesc"
+    >
       <div class="modal-content" id="projectContent">
         <div class="proj-nav-modal" id="projModalNav">
           <button id="projModalPrev" aria-label="Projet précédent">‹</button>
@@ -490,12 +582,13 @@
         </button>
         <h2 id="projTitle" class="proj-title"></h2>
         <p id="projDesc" class="proj-desc"></p>
+        <p id="projKpi" class="proj-kpi"></p>
         <div class="project-media" id="projMedia"></div>
       </div>
     </div>
 
     <div id="toast">Message envoyé ✔️</div>
-    <script src="main.js" defer></script>
 
+    <script src="main.js" defer></script>
   </body>
 </html>
