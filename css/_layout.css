@@ -2,9 +2,14 @@
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding-inline: clamp(16px, 4vw, 72px);
+  padding-inline: var(--gutter);
 }
+
 section.section {
   padding-block: clamp(6rem,10vh,12rem);
 }
-.section-title{grid-column:2/12;margin-block:8rem}
+
+.section-title {
+  grid-column: 2 / span 10;
+  margin-block: 8rem;
+}

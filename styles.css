@@ -1,9 +1,6 @@
 @import url("css/_variables.css");
 @import url("css/_reset.css");
+@import url("css/grid.css");
 @import url("css/_layout.css");
 @import url("css/_utilities.css");
-@import url("css/_components.css");
-@import url("css/grid.css");
-@import url("partials/atoms.css");
-@import url("partials/molecules.css");
-@import url("partials/organisms.css");
+@import url("css/components.css");
