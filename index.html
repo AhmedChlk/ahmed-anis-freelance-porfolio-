@@ -58,7 +58,7 @@
 
     <!-- Header -->
     <header>
-      <div class="grid navbar col-span-12">
+      <div class="grid navbar">
         <a href="#accueil" class="brand" aria-label="PyDevStudio Accueil">
           <div class="brand-logo">Py</div>
           PyDevStudio
@@ -87,7 +87,7 @@
       </div>
 
       <!-- Menu mobile -->
-      <div class="grid mobile-menu col-span-12" id="mobileMenu" hidden>
+      <div class="grid mobile-menu" id="mobileMenu" hidden>
         <a href="#accueil">Accueil</a>
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
@@ -108,7 +108,7 @@
 
     <!-- Hero -->
     <section id="accueil" class="hero grid">
-      <div class="hero-copy col-span-6 start-2 reveal">
+      <div class="hero-copy col-span-5 start-2 reveal">
         <h1>Automatisez.<br>Gagnez du temps.</h1>
         <p class="hero-sub">Jusqu’à 10 h libérées chaque semaine grâce à nos scripts Python sur‑mesure.</p>
         <div class="hero-cta">
@@ -116,15 +116,15 @@
           <a id="ctaContactTop" class="btn btn-link">Diagnostic gratuit 15 min →</a>
         </div>
       </div>
-      <figure class="hero-img col-span-4 start-9"></figure>
+      <figure class="hero-img col-span-5 start-8"></figure>
     </section>
-    <section class="grid col-span-12 about-duo">
-      <p class="lead">Nous sommes un duo rigoureux et passionné. 5 ans de Python, 3 ans de gestion de projet et une obsession : automatiser pour libérer votre potentiel.</p>
+    <section class="grid about-duo">
+      <p class="lead col-span-6 start-4">Nous sommes un duo rigoureux et passionné. 5 ans de Python, 3 ans de gestion de projet et une obsession : automatiser pour libérer votre potentiel.</p>
     </section>
 
     <!-- Process -->
     <section class="grid section" id="process">
-      <h2 class="section-title col-span-4 start-2 reveal">Méthode simple & efficace</h2>
+      <h2 class="section-title reveal">Méthode simple & efficace</h2>
       <ol class="process steps">
         <li class="step reveal">
           <h3>Comprendre</h3>
@@ -142,7 +142,7 @@
     </section>
 
     <!-- Projets -->
-    <section id="projets" class="grid col-span-12 section section-projects">
+    <section id="projets" class="grid section section-projects">
       <h2 class="section-title reveal">Cas clients</h2>
 
       <div
@@ -288,7 +288,7 @@
     </section>
 
     <!-- Compétences -->
-    <section id="competences" class="grid col-span-12 section section-skills">
+    <section id="competences" class="grid section section-skills">
       <h2 class="section-title reveal">Compétences</h2>
       <div class="skills-wrapper reveal">
         <ul class="skills-grid" id="skillsGrid">
@@ -301,13 +301,16 @@
     </section>
 
     <!-- Preuve sociale -->
-    <section id="preuve-sociale" class="grid col-span-12 section section-testimonials testimonials">
+    <section id="preuve-sociale" class="grid section section-testimonials testimonials">
       <h2 class="section-title reveal">Preuve sociale</h2>
       <div class="stats-row reveal">
         <div class="stat">+30<span>projets livrés</span></div>
         <div class="stat">100%<span>clients satisfaits</span></div>
         <div class="stat">5★<span>note moyenne</span></div>
       </div>
+      <figure class="col-span-4 start-7">
+        <img src="assets/placeholder_stats.svg" alt="">
+      </figure>
       <div class="testimony-grid reveal">
         <article class="testimony-card">
           <img
@@ -352,7 +355,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="grid col-span-12 section section-faq">
+    <section id="faq" class="grid section section-faq">
       <h2 class="section-title reveal">FAQ</h2>
       <div class="faq-wrapper reveal">
         <div class="faq-grid" id="faqGrid">
@@ -483,6 +486,6 @@
 
     <div id="toast">Message envoyé ✔️</div>
 
-    <script src="main.js" defer></script>
+    <script type="module" src="main.js"></script>
   </body>
 </html>
