@@ -158,26 +158,24 @@ nav ul {
 }
 
 .card-project {
-  flex: none;
-  width: 100%;
-  max-width: 320px;
-  height: 460px;
-  scroll-snap-align: start;
-  min-width: 0;
   background: var(--bg-elev);
-  border-radius: var(--radius);
+  border-radius: 28px;
   overflow: hidden;
   box-shadow: var(--shadow-level1);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-  outline: 0;
+  transition: 0.25s;
 }
 
 .card-project:hover {
+  box-shadow: 0 16px 32px rgb(0 0 0 / 15%);
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgb(0 0 0 / 12%);
+}
+
+.card-project img,
+.card-project .card-img {
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  width: 100%;
+  display: block;
 }
 
 .card-project:focus-visible {
@@ -220,25 +218,17 @@ nav ul {
   color: #fff;
 }
 
-.projects-wrapper {
-  position: relative;
-  margin-top: 1rem;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
 }
 
-.projects-track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 320px;
-  gap: 3rem;
-  overflow-x: auto;
-  padding-inline: clamp(16px, 4vw, 72px);
-  padding-block: 1rem 1.4rem;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  margin-inline: 2rem;
+@media (width <= 736px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
 }
-.projects-track::-webkit-scrollbar { display: none; }
 
 .project-img {
   width: 100%;
@@ -288,21 +278,6 @@ nav ul {
   }
 }
 
-.progress-line {
-  width: 100%;
-  height: 1px;
-  background: #d2d2d7;
-  border-radius: 3px;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0;
-  background: #0071e3;
-  transition: width 0.1s;
-}
 
 .section-skills {}
 .skills-wrapper { margin-top: 2rem; }
@@ -318,27 +293,34 @@ nav ul {
 
 .skills-grid li {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.6rem;
 }
 
 .skills-grid img {
-  height: 26px;
+  height: 48px;
 }
-.skill-desc { color: var(--text-light); font-size: 0.9rem; }
+
+.skill-desc {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  text-align: center;
+}
 
 .section-testimonials {}
 .testimonials { margin-top: 3rem; }
 
 .stats-row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-bottom: 3rem;
 }
 
 .stat {
-  font-size: 2.2rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--brand-blue);
 }
@@ -352,7 +334,7 @@ nav ul {
 
 .testimony-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
 }
 
@@ -483,8 +465,8 @@ h1 {
 
 .process {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 3rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   margin-top: 2rem;
   list-style: none;
   padding: 0;
@@ -497,11 +479,12 @@ h1 {
   padding: 2rem 1.6rem;
   border-radius: 16px;
   border: 1px solid rgb(0 0 0 / 8%);
-  grid-column: 2 / span 4;
+  grid-column: span 1;
+  transition: transform .2s;
 }
 
-.process > .step:nth-child(2) {
-  grid-column: 7 / span 4;
+.process > .step:hover {
+  transform: translateY(-6px);
 }
 
 .process > .step::before {
@@ -535,6 +518,13 @@ h1 {
   gap: 1.2rem;
 }
 
+@media (width <= 736px) {
+  .cta-box {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
 .cta-box h2 {
   grid-column: 1 / -1;
   font-size: clamp(3rem, 8vw, 4.5rem);
@@ -550,6 +540,9 @@ h1 {
 .cta-box a {
   justify-self: center;
   max-width: min(260px, 40%);
+  padding: 1.2rem 3rem;
+  font-size: 1.125rem;
+  border-radius: 16px;
 }
 
 #contactModal,
@@ -733,10 +726,6 @@ footer {
   header {
     height: auto;
   }
-
-  .process > .step {
-    grid-column: 1 / span 6;
-  }
 }
 
 @media (width <= 500px) {
@@ -762,7 +751,8 @@ footer {
 }
 
 img.placeholder,
-img[src*="placeholder"] {
+img[src*="placeholder"],
+.placeholder {
   aspect-ratio: 16/9;
   background: #e6e9ee
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='135'%3E%3Crect width='240' height='135' fill='%23dfe3ea'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='%239aa3b3' font-size='16' font-family='Inter'%3Eimage%3C/text%3E%3C/svg%3E")

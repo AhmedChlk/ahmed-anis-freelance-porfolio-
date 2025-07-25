@@ -58,29 +58,17 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-/* Projects progress */
-const track = document.getElementById("projectsTrack");
-const progress = document.getElementById("projProgress");
-track.style.scrollBehavior = "smooth";
-function updateProjProgress() {
-  const max = track.scrollWidth - track.clientWidth;
-  progress.style.width = max <= 0 ? "0%" : (track.scrollLeft / max) * 100 + "%";
-}
-track.addEventListener("scroll", updateProjProgress);
-updateProjProgress();
-
-/* Filter */
+/* Projects */
+const projectsGrid = document.querySelector(".projects-grid");
 const filterBtns = document.querySelectorAll(".filter-btn");
 filterBtns.forEach((btn) =>
   btn.addEventListener("click", () => {
     filterBtns.forEach((b) => b.classList.remove("active"));
     btn.classList.add("active");
     const cat = btn.dataset.filter;
-    track.scrollLeft = 0;
-    requestAnimationFrame(updateProjProgress);
-    [...track.children].forEach((el) => {
+    [...projectsGrid.children].forEach((el) => {
       el.style.display =
-        cat === "all" || el.getAttribute("data-cat") === cat ? "flex" : "none";
+        cat === "all" || el.getAttribute("data-cat") === cat ? "" : "none";
     });
   })
 );
@@ -222,4 +210,15 @@ document.getElementById("contactForm").addEventListener("submit", (e) => {
 
 /* Year */
 document.getElementById("year").textContent = new Date().getFullYear();
+
+/* FAQ exclusive open */
+document.querySelectorAll('.faq-item').forEach(d => {
+  d.addEventListener('toggle', e => {
+    if (d.open) {
+      document.querySelectorAll('.faq-item').forEach(o => {
+        if (o !== d) o.removeAttribute('open');
+      });
+    }
+  });
+});
 

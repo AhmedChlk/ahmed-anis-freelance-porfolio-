@@ -1,7 +1,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: clamp(16px, 2vw, 32px);
+  gap: var(--gutter);
   margin-inline: auto;
   max-width: 1340px;
   padding-inline: 1rem;
