@@ -72,11 +72,13 @@ document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 /* Projects progress */
 const track = document.getElementById("projectsTrack");
 const progress = document.getElementById("projProgress");
+track.style.scrollBehavior = "smooth";
 function updateProjProgress() {
   const max = track.scrollWidth - track.clientWidth;
   progress.style.width = max <= 0 ? "0%" : (track.scrollLeft / max) * 100 + "%";
 }
 track.addEventListener("scroll", updateProjProgress);
+updateProjProgress();
 
 /* Filter */
 const filterBtns = document.querySelectorAll(".filter-btn");
@@ -171,25 +173,6 @@ projNextBtn.addEventListener("click", () => {
   openProject(currentIndex);
 });
 
-/* Skill meters */
-const meters = document.querySelectorAll(".meter span");
-meters.forEach((m) => {
-  const w = m.style.width;
-  m.style.width = "0";
-  m.dataset.to = w;
-});
-const meterObs = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.style.width = e.target.dataset.to;
-        meterObs.unobserve(e.target);
-      }
-    });
-  },
-  { threshold: 0.4 }
-);
-meters.forEach((m) => meterObs.observe(m));
 
 /* FAQ */
 document.querySelectorAll(".faq-item").forEach((item) => {
