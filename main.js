@@ -64,7 +64,7 @@ filterBtns.forEach((btn) =>
     btn.classList.add("active");
     const cat = btn.dataset.filter;
     track.scrollLeft = 0;
-    updateProjProgress();
+    requestAnimationFrame(updateProjProgress);
     [...track.children].forEach((el) => {
       el.style.display =
         cat === "all" || el.getAttribute("data-cat") === cat ? "flex" : "none";
