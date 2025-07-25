@@ -58,7 +58,7 @@
 
     <!-- Header -->
     <header>
-      <div class="container nav">
+      <div class="grid navbar col-12">
         <a href="#accueil" class="brand" aria-label="PyDevStudio Accueil">
           <div class="brand-logo">Py</div>
           PyDevStudio
@@ -87,7 +87,7 @@
       </div>
 
       <!-- Menu mobile -->
-      <div class="container mobile-menu" id="mobileMenu" hidden>
+      <div class="grid mobile-menu col-12" id="mobileMenu" hidden>
         <a href="#accueil">Accueil</a>
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
@@ -107,12 +107,11 @@
     >
 
     <!-- Hero -->
-    <main id="accueil" class="container hero">
-  <div class="hero-bg"></div>
-      <section class="reveal">
+    <main id="accueil" class="grid hero col-12">
+      <section class="reveal hero-copy">
         <h1>
           On automatise vos workflows Python :<br />
-          <span class="accent">+10 h libérées chaque semaine.</span>
+          <span style="color: var(--brand-blue-dark)">+10 h libérées chaque semaine.</span>
         </h1>
         <p class="hero-sub">
           APIs, data pipelines, dashboards & scripts d’automatisation. On livre
@@ -129,7 +128,7 @@
     </main>
 
     <!-- Process -->
-    <section class="container section" id="process">
+    <section class="grid col-12 section" id="process">
       <h2 class="section-title reveal">Méthode simple & efficace</h2>
       <ol class="process steps">
         <li class="step reveal">
@@ -148,7 +147,7 @@
     </section>
 
     <!-- Projets -->
-    <section id="projets" class="container section">
+    <section id="projets" class="grid col-12 section section-projects">
       <h2 class="section-title reveal">Cas clients</h2>
 
       <div
@@ -178,7 +177,7 @@
         <div class="projects-track" id="projectsTrack">
           <!-- CARD 1 -->
           <article
-            class="project-card"
+            class="card-project"
             tabindex="0"
             data-cat="web"
             data-title="Plateforme e‑commerce B2B"
@@ -210,7 +209,7 @@
 
           <!-- CARD 2 -->
           <article
-            class="project-card"
+            class="card-project"
             tabindex="0"
             data-cat="data"
             data-title="API de traitement de données"
@@ -237,7 +236,7 @@
 
           <!-- CARD 3 -->
           <article
-            class="project-card"
+            class="card-project"
             tabindex="0"
             data-cat="data"
             data-title="Dashboards interactifs KPI"
@@ -264,7 +263,7 @@
 
           <!-- CARD 4 -->
           <article
-            class="project-card"
+            class="card-project"
             tabindex="0"
             data-cat="automation"
             data-title="Automatisation de processus internes"
@@ -294,31 +293,31 @@
     </section>
 
     <!-- Compétences -->
-    <section id="competences" class="container section">
+    <section id="competences" class="grid col-12 section section-skills">
       <h2 class="section-title reveal">Compétences</h2>
       <div class="skills-wrapper reveal">
         <ul class="skills-grid" id="skillsGrid">
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="26" />
             <p class="skill-desc">Python – Back‑end, scripts, data pipelines</p>
           </li>
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" height="26" />
             <p class="skill-desc">Django – API REST, admin, ORM</p>
           </li>
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" height="26" />
             <p class="skill-desc">FastAPI – Microservices, async, OpenAPI</p>
           </li>
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker" height="26" />
             <p class="skill-desc">Docker – Containers, CI/CD</p>
           </li>
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg" alt="PostgreSQL" height="26" />
             <p class="skill-desc">PostgreSQL – Modélisation, requêtes optimisées</p>
           </li>
-          <li>
+          <li class="card-skill">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" height="26" />
             <p class="skill-desc">AWS – ECS, Lambda, S3, RDS</p>
           </li>
@@ -327,7 +326,7 @@
     </section>
 
     <!-- Preuve sociale -->
-    <section id="preuve-sociale" class="container section testimonials">
+    <section id="preuve-sociale" class="grid col-12 section section-testimonials testimonials">
       <h2 class="section-title reveal">Preuve sociale</h2>
       <div class="stats-row reveal">
         <div class="stat">+30<span>projets livrés</span></div>
@@ -378,7 +377,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="container section">
+    <section id="faq" class="grid col-12 section section-faq">
       <h2 class="section-title reveal">FAQ</h2>
       <div class="faq-wrapper reveal">
         <div class="faq-grid" id="faqGrid">
