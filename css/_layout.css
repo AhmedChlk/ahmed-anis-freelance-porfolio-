@@ -20,6 +20,6 @@
 
 .section-title {
   grid-column: 2 / span 10;
-  margin-block: var(--space-m);
+  margin-block: 8rem;
   scroll-margin-top: 120px;
 }
