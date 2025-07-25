@@ -5,8 +5,8 @@
   padding-inline: var(--gutter);
 }
 
-section.section {
-  padding-block: clamp(6rem,10vh,12rem);
+.section {
+  padding-block: clamp(4rem, 10vw, 8rem);
 }
 
 .section-title {

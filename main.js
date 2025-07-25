@@ -211,6 +211,11 @@ document.getElementById("contactForm").addEventListener("submit", (e) => {
 /* Year */
 document.getElementById("year").textContent = new Date().getFullYear();
 
+/* To Top button */
+const toTop = document.getElementById("toTop");
+toTop.onclick = () =>
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
 /* FAQ exclusive open */
 document.querySelectorAll('.faq-item').forEach(d => {
   d.addEventListener('toggle', e => {
