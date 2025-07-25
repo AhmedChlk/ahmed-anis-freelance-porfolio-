@@ -68,5 +68,7 @@
 .span-11 { grid-column: span 11; }
 .span-12 { grid-column: span 12; }
 
-@media (width <= 992px){.grid> *{margin-inline:auto}}
+@media (width <= 992px) {
+  /* on laisse la colonne, pas le recentrage auto */
+}
 

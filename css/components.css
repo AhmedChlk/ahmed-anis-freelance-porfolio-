@@ -474,6 +474,12 @@ h1 {
   flex-wrap: wrap;
 }
 
+.about-duo .lead {
+  grid-column: 4 / span 6;
+  max-width: 38ch;
+  line-height: 1.55;
+}
+
 
 .process {
   display: grid;
@@ -715,7 +721,7 @@ footer {
 @media (width <= 940px) {
 }
 
-@media (width <= 720px) {
+@media (width <= 736px) {
   nav ul {
     display: none;
   }
