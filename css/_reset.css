@@ -5,7 +5,7 @@
 html,
 body {
   margin: 0;
-  font-family: Inter, sans-serif;
+  font-family: 'SF Pro Display', Inter, sans-serif;
   background: var(--bg);
   color: var(--text-dark);
   overflow-x: hidden;

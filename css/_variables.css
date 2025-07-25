@@ -3,7 +3,8 @@
   --bg-elev: #fff;
   --brand-blue: #0071e3;
   --brand-blue-dark: #3659d3;
-  --h1: clamp(3rem,7vw,96px);
+  --h1: clamp(3.25rem,9vw,5.5rem);
+  --font-body: 'SF Pro Display', Inter, Arial, sans-serif;
   --muted: #f5f5f7;
   --radius: 28px;
   --container: 80rem;
