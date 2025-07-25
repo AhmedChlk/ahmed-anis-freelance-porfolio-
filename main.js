@@ -1,10 +1,12 @@
-// ======================= main.js =======================
 
 /* Progress bar */
 window.addEventListener("scroll", () => {
   const docHeight = document.body.scrollHeight - window.innerHeight;
   const scrolled = (window.scrollY / docHeight) * 100;
   document.getElementById("progress").style.width = scrolled + "%";
+  const header = document.querySelector("header");
+  if (window.scrollY > 0) header.classList.add("navbar-shadow");
+  else header.classList.remove("navbar-shadow");
 });
 
 /* Theme toggle */
@@ -35,11 +37,10 @@ if (savedTheme) {
 /* Mobile menu */
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
-mobileMenu.hidden = true;
 hamburger.addEventListener("click", () => {
-  const isOpen = !mobileMenu.hidden;
+  const isOpen = mobileMenu.classList.contains("open");
   hamburger.setAttribute("aria-expanded", String(!isOpen));
-  mobileMenu.hidden = isOpen;
+  mobileMenu.classList.toggle("open");
 });
 
 /* Smooth scroll */
@@ -49,8 +50,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     if (id.length > 1) {
       e.preventDefault();
       document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-      mobileMenu.hidden = true;
-      hamburger.setAttribute("aria-expanded", "false");
+      mobileMenu.classList.remove("open");
     }
   });
 });
