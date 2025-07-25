@@ -143,23 +143,20 @@
     <!-- Process -->
     <section class="container section" id="process">
       <h2 class="section-title reveal">Méthode simple & efficace</h2>
-      <div class="process">
-        <div class="step reveal">
-          <div class="step-number">1</div>
+      <ol class="process steps">
+        <li class="step reveal">
           <h3>Comprendre</h3>
           <p>Atelier 60 min pour cadrer vos objectifs et contraintes.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-number">2</div>
+        </li>
+        <li class="step reveal">
           <h3>Construire</h3>
           <p>Sprints courts, CI/CD, tests auto, déploiement cloud.</p>
-        </div>
-        <div class="step reveal">
-          <div class="step-number">3</div>
+        </li>
+        <li class="step reveal">
           <h3>Livrer & itérer</h3>
           <p>Mise en prod rapide, monitoring & évolutions mesurées.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
     </section>
 
     <!-- Projets -->
@@ -187,6 +184,9 @@
       </div>
 
       <div class="projects-wrapper reveal" id="projectsWrapper">
+        <div class="progress-line" aria-hidden="true">
+          <div class="progress-fill" id="projProgress"></div>
+        </div>
         <div class="projects-track" id="projectsTrack">
           <!-- CARD 1 -->
           <article
@@ -302,9 +302,6 @@
           </article>
         </div>
 
-        <div class="progress-line" aria-hidden="true">
-          <div class="progress-fill" id="projProgress"></div>
-        </div>
       </div>
     </section>
 
@@ -312,74 +309,32 @@
     <section id="competences" class="container section">
       <h2 class="section-title reveal">Compétences</h2>
       <div class="skills-wrapper reveal">
-        <div class="skills-grid" id="skillsGrid">
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-                alt="Python"
-                height="26"
-              />Python
-            </div>
-            <p class="skill-desc">Back‑end, scripts, data pipelines</p>
-            <div class="meter"><span style="width: 95%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
-                alt="Django"
-                height="26"
-              />Django
-            </div>
-            <p class="skill-desc">API REST, admin, ORM</p>
-            <div class="meter"><span style="width: 90%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"
-                alt="FastAPI"
-                height="26"
-              />FastAPI
-            </div>
-            <p class="skill-desc">Microservices, async, OpenAPI</p>
-            <div class="meter"><span style="width: 88%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg"
-                alt="Docker"
-                height="26"
-              />Docker
-            </div>
-            <p class="skill-desc">Containers, CI/CD</p>
-            <div class="meter"><span style="width: 85%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg"
-                alt="PostgreSQL"
-                height="26"
-              />PostgreSQL / SQL
-            </div>
-            <p class="skill-desc">Modélisation, requêtes optimisées</p>
-            <div class="meter"><span style="width: 82%"></span></div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-header">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
-                alt="AWS"
-                height="26"
-              />AWS
-            </div>
-            <p class="skill-desc">ECS, Lambda, S3, RDS</p>
-            <div class="meter"><span style="width: 78%"></span></div>
-          </div>
-        </div>
+        <ul class="skills-grid" id="skillsGrid">
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="26" />
+            <p class="skill-desc">Python – Back‑end, scripts, data pipelines</p>
+          </li>
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" height="26" />
+            <p class="skill-desc">Django – API REST, admin, ORM</p>
+          </li>
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" height="26" />
+            <p class="skill-desc">FastAPI – Microservices, async, OpenAPI</p>
+          </li>
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker" height="26" />
+            <p class="skill-desc">Docker – Containers, CI/CD</p>
+          </li>
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg" alt="PostgreSQL" height="26" />
+            <p class="skill-desc">PostgreSQL – Modélisation, requêtes optimisées</p>
+          </li>
+          <li>
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" height="26" />
+            <p class="skill-desc">AWS – ECS, Lambda, S3, RDS</p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -395,40 +350,40 @@
         <article class="testimony-card">
           <img
             src="assets/avatar.png"
-            alt="Photo Thomas"
+            alt="Photo Thomas, CTO"
             class="testimony-avatar"
           />
           <div class="testimony-body">
             <h3 class="testimony-name">Thomas</h3>
+            <p class="testimony-role">CTO, BetaCorp</p>
             <div class="stars" aria-label="5 étoiles">★★★★★</div>
             <p>Excellente collaboration, très professionnel et réactif.</p>
-            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
         </article>
         <article class="testimony-card">
           <img
             src="assets/avatar.png"
-            alt="Photo Sophie"
+            alt="Photo Sophie, Responsable marketing"
             class="testimony-avatar"
           />
           <div class="testimony-body">
             <h3 class="testimony-name">Sophie</h3>
+            <p class="testimony-role">Responsable marketing, WebMarket</p>
             <div class="stars">★★★★★</div>
             <p>Un freelance compétent qui respecte les délais.</p>
-            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
         </article>
         <article class="testimony-card">
           <img
             src="assets/avatar.png"
-            alt="Photo Marc"
+            alt="Photo Marc, CEO"
             class="testimony-avatar"
           />
           <div class="testimony-body">
             <h3 class="testimony-name">Marc</h3>
+            <p class="testimony-role">CEO, Innovatech</p>
             <div class="stars">★★★★★</div>
             <p>Livraison rapide et code propre. Je recommande fortement.</p>
-            <a href="#" class="testimony-link">LinkedIn →</a>
           </div>
         </article>
       </div>
