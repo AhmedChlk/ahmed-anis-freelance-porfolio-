@@ -69,6 +69,7 @@
   align-items: center;
   justify-content: space-between;
   min-height: 72px;
+  padding-block: 0.5rem;
 }
 
 .brand {
@@ -107,7 +108,8 @@ nav ul {
 
 #contactOpen {
   flex-shrink: 0;
-  max-width: 160px;
+  width: clamp(120px, 12vw, 160px);
+  white-space: nowrap;
 }
 
 @media (width <= 1100px) {
@@ -156,16 +158,16 @@ nav ul {
   aspect-ratio: 16/10;
   border-radius: 32px;
   box-shadow: 0 8px 24px rgb(0 0 0 / 8%);
-  background: url("https://source.unsplash.com/random/1600x900?technology")
-    center/cover no-repeat;
+  background: linear-gradient(135deg, #f9f9fb 0%, #e6e9ee 80%);
 }
 
 .card-project {
   border-radius: var(--radius);
-  background: #fff;
+  background: linear-gradient(180deg, #fff 0%, #f6f7f8 100%);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  padding-bottom: var(--space-s);
 }
 
 .card-project:hover {
@@ -289,7 +291,7 @@ nav ul {
 .skills-grid {
   grid-column: 2 / span 10;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 2rem;
   list-style: none;
   padding: 0;
@@ -306,6 +308,11 @@ nav ul {
   height: 48px;
 }
 
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
 .skill-desc {
   color: var(--text-light);
   font-size: 0.9rem;
@@ -317,7 +324,7 @@ nav ul {
 
 .stats-row {
   display: flex;
-  gap: 4rem;
+  gap: var(--space-m);
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 3rem;
@@ -365,7 +372,7 @@ nav ul {
   grid-column: 2 / span 10;
   display: grid;
   gap: 1.2rem;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: 1fr;
 }
 
 .faq-item {
@@ -430,7 +437,8 @@ header {
   grid-template-columns: minmax(1rem, 1fr) repeat(12, 1fr) minmax(1rem, 1fr);
   align-items: center;
   min-height: 88vh;
-  padding-block: clamp(6rem, 14vw, 10rem);
+  padding-bottom: clamp(6rem, 14vw, 10rem);
+  padding-top: clamp(4rem, 10vh, 6rem);
 }
 
 .hero::before {
@@ -467,10 +475,24 @@ h1 {
   flex-wrap: wrap;
 }
 
+.about-duo {
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  gap: var(--space-m);
+  min-height: 60vh;
+}
+
 .about-duo .lead {
-  grid-column: 4 / span 6;
+  grid-column: 2 / 6;
   max-width: 38ch;
   line-height: 1.55;
+}
+
+.about-img {
+  grid-column: 8 / 12;
+  height: 320px;
+  border-radius: 24px;
+  background: #e6e9ee;
 }
 
 
@@ -516,39 +538,34 @@ h1 {
 
 
 
-.cta-box {
-  background: #f5f5f7 url("https://source.unsplash.com/10x10?pattern") top right/
-    160px repeat;
-  color: var(--text-dark);
-  border-radius: 28px;
-  padding: 4rem 2rem;
-  text-align: center;
-  width: 100%;
+.cta-banner {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1.2rem;
+  place-items: center;
+  padding: clamp(3rem, 8vw, 5rem);
+  border-radius: 32px;
+  background: linear-gradient(135deg, #0071e3 0%, #4f89ff 100%);
+  color: #fff;
+  text-align: center;
+  gap: var(--space-s);
 }
 
 @media (width <= 736px) {
-  .cta-box {
+  .cta-banner {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
-
-.cta-box h2 {
+.cta-banner h2 {
   grid-column: 1 / -1;
   font-size: clamp(3rem, 8vw, 4.5rem);
   margin: 0 0 1rem;
 }
-
-.cta-box p {
+.cta-banner p {
   margin: 0 0 2rem;
   font-size: 1.1rem;
   opacity: 0.9;
 }
-
-.cta-box a {
+.cta-banner a {
   justify-self: center;
   max-width: min(260px, 40%);
   padding: 1.2rem 3rem;

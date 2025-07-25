@@ -217,13 +217,11 @@ toTop.onclick = () =>
   window.scrollTo({ top: 0, behavior: "smooth" });
 
 /* FAQ exclusive open */
-document.querySelectorAll('.faq-item').forEach(d => {
+const faqGrid = document.getElementById('faqGrid');
+faqGrid.querySelectorAll('details').forEach(d =>
   d.addEventListener('toggle', e => {
-    if (d.open) {
-      document.querySelectorAll('.faq-item').forEach(o => {
-        if (o !== d) o.removeAttribute('open');
-      });
-    }
-  });
-});
+    if (d.open)
+      faqGrid.querySelectorAll('details').forEach(o => o !== d && o.removeAttribute('open'));
+  })
+);
 

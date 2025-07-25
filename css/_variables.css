@@ -9,6 +9,10 @@
   --radius: 28px;
   --container: 80rem;
   --gutter: clamp(16px, 2vw, 32px);
+  --space-xs: 1.5rem;
+  --space-s: 2.5rem;
+  --space-m: 4rem;
+  --space-l: 6rem;
   --space-section: 10rem;
   --space-section-bottom: 5rem;
   --shadow-level1: 0 1px 1px rgb(0 0 0 / 15%),0 8px 20px rgb(0 0 0 / 8%);
