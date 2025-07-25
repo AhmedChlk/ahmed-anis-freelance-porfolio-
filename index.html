@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -7,482 +6,99 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <meta name="robots" content="index,follow" />
-    <meta
-      name="description"
-      content="Back‑end Python pour e‑commerce & data : automatisations, APIs, dashboards. +10h libérées / semaine."
+    <title>Base Apple-Style – Drawer</title>
+    <!-- Favicon et icônes -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon_io/favicon-32x32.png"
     />
-    <title>PyDevStudio – Back‑end Python & data</title>
-
-    <!-- Fonts -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon_io/favicon-16x16.png"
+    />
+    <link rel="shortcut icon" href="assets/favicon_io/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon_io/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Polices SF Pro Display & Text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      as="style"
-    />
-    <link
+      href="https://fonts.googleapis.com/css2?
+      family=SF+Pro+Display:wght@400;500;600;700;800&
+      family=SF+Pro+Text:wght@400;500;600;700&
+      display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      media="print"
-      onload="this.media='all'"
     />
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display" />
 
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- JSON-LD breadcrumb minimal -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Accueil",
-            "item": "https://pydevstudio.example/"
-          },
-          {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Projets",
-            "item": "https://pydevstudio.example/#projets"
-          }
-        ]
-      }
-    </script>
   </head>
-  <body id="top">
-    <div id="progress"></div>
-
-    <!-- Header -->
-    <header>
-      <div class="grid navbar">
-        <a href="#accueil" class="brand" aria-label="PyDevStudio Accueil">
-          <div class="brand-logo">Py</div>
-          PyDevStudio
+  <body>
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a href="#accueil" class="brand" aria-label="Accueil">
+          <img src="assets/logo.png" alt="Logo" class="brand-logo" />
         </a>
-
-        <nav aria-label="Navigation principale">
-          <ul id="desktopMenu" class="desktop-menu">
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#projets">Projets</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#preuve-sociale">Avis</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a class="btn btn-primary" id="contactOpen">Contact</a></li>
-          </ul>
-        </nav>
-
         <button
           class="hamburger"
-          id="hamburger"
           aria-label="Ouvrir le menu"
-          aria-expanded="false"
           aria-controls="mobileMenu"
+          aria-expanded="false"
         >
           <span></span><span></span><span></span>
         </button>
+        <nav class="desktop-nav" aria-label="Navigation principale">
+          <ul>
+            <!-- À remplir ultérieurement -->
+          </ul>
+        </nav>
       </div>
 
-      <!-- Menu mobile -->
-      <div class="grid mobile-menu" id="mobileMenu" hidden>
-        <a href="#accueil">Accueil</a>
-        <a href="#projets">Projets</a>
-        <a href="#skills">Skills</a>
-        <a href="#preuve-sociale">Avis</a>
-        <a href="#faq">FAQ</a>
-        <a class="btn btn-primary" id="contactOpenMobile">Contact</a>
-      </div>
+      <!-- DRAWER FULLSCREEN -->
+      <aside class="drawer-top" id="mobileMenu" aria-hidden="true">
+        <div class="drawer-header">
+          <button class="drawer-close" aria-label="Fermer le menu">
+            <!-- Croix noire SVG -->
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1d1d1f"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <nav class="drawer-nav" aria-label="Menu mobile">
+          <ul>
+            <!-- À remplir ultérieurement -->
+          </ul>
+        </nav>
+      </aside>
+      <div class="scrim"></div>
     </header>
 
-    <!-- Sticky CTA mobile -->
-    <a
-      href="#"
-      id="ctaSticky"
-      class="btn-primary cta-sticky"
-      aria-label="Contact"
-      >Contact</a
-    >
+    <main>
+      <!-- Votre contenu ici -->
+    </main>
 
-    <!-- Hero -->
-    <section id="accueil" class="hero grid">
-      <div class="hero-copy col-span-6 start-2">
-        <h1>Automatisez.<br>Gagnez du temps.</h1>
-        <p class="hero-sub">Jusqu’à 10 h libérées chaque semaine grâce à nos scripts Python sur‑mesure.</p>
-        <div class="hero-cta">
-          <a href="#projets" class="btn btn-primary">Voir nos cas clients</a>
-          <a id="ctaContactTop" class="btn btn-link">Diagnostic gratuit 15 min →</a>
-        </div>
-      </div>
-      <figure class="hero-img col-span-4 start-8 reveal placeholder"></figure>
-    </section>
-    <section class="grid about-duo">
-      <p class="lead col-span-5 start-2">Nous sommes un duo rigoureux et passionné. 5 ans de Python, 3 ans de gestion de projet et une obsession : automatiser pour libérer votre potentiel.</p>
-      <!-- About : visuel décoratif -->
-      <figure class="placeholder col-span-5 start-8 reveal"></figure>
-    </section>
-
-    <!-- Process -->
-    <section class="grid section" id="process">
-      <h2 class="section-title reveal">Méthode simple & efficace</h2>
-      <ol class="process steps">
-        <li class="step reveal">
-          <h3>Comprendre</h3>
-          <p>Atelier 60 min pour cadrer vos objectifs et contraintes.</p>
-        </li>
-        <li class="step reveal">
-          <h3>Construire</h3>
-          <p>Sprints courts, CI/CD, tests auto, déploiement cloud.</p>
-        </li>
-        <li class="step reveal">
-          <h3>Livrer & itérer</h3>
-          <p>Mise en prod rapide, monitoring & évolutions mesurées.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Projets -->
-    <section id="projets" class="grid section section-projects">
-      <h2 class="section-title reveal">Cas clients</h2>
-
-      <div
-        class="projects-controls reveal"
-        role="tablist"
-        aria-label="Filtres projets"
-      >
-        <button
-          class="filter-btn active"
-          data-filter="all"
-          role="tab"
-          aria-selected="true"
-        >
-          Tous
-        </button>
-        <button class="filter-btn" data-filter="web" role="tab">Web</button>
-        <button class="filter-btn" data-filter="data" role="tab">Data</button>
-        <button class="filter-btn" data-filter="automation" role="tab">
-          Automatisation
-        </button>
-      </div>
-
-      <div class="projects-grid reveal">
-          <!-- CARD 1 -->
-          <article
-            class="card-project"
-            tabindex="0"
-            data-cat="web"
-            data-title="Bot Telegram – Campagnes DM ultra‑ciblées"
-            data-desc="Envoyez 5 000 messages personnalisés/jour, suivis en temps réel."
-            data-media='[{"type":"img","src":"assets/project.png","alt":"Dashboard e-commerce Django – vue admin ventes"}]'
-            data-kpi="-42 % temps traitement commandes"
-          >
-            <figure class="placeholder card-img"></figure>
-            <div class="project-content">
-              <h3>Bot Telegram – Campagnes DM ultra‑ciblées</h3>
-              <p class="proj-short">
-                Envoyez 5 000 messages personnalisés/jour, suivis en temps réel.
-              </p>
-              <div class="project-tags">
-                <span>Django</span><span>FastAPI</span>
-              </div>
-              <button
-                class="btn btn-secondary see-more"
-                aria-label="Voir le projet en détails"
-              >
-                Voir le projet
-              </button>
-            </div>
-          </article>
-
-          <!-- CARD 2 -->
-          <article
-            class="card-project"
-            tabindex="0"
-            data-cat="data"
-            data-title="Scraper Leboncoin piloté par Telegram"
-            data-desc="Recherche, filtre & push des annonces en < 5 s."
-            data-media='[{"type":"img","src":"assets/project.png","alt":"API de données FastAPI – graphiques temps réel"},{"type":"video","src":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"}]'
-            data-kpi="+32 % rapidité d’accès aux métriques"
-          >
-            <figure class="placeholder card-img"></figure>
-            <div class="project-content">
-              <h3>Scraper Leboncoin piloté par Telegram</h3>
-              <p class="proj-short">
-                Recherche, filtre & push des annonces en < 5 s.
-              </p>
-              <div class="project-tags">
-                <span>FastAPI</span><span>PostgreSQL</span>
-              </div>
-              <button class="btn btn-secondary see-more">Voir le projet</button>
-            </div>
-          </article>
-
-          <!-- CARD 3 -->
-          <article
-            class="card-project"
-            tabindex="0"
-            data-cat="data"
-            data-title="Dashboards interactifs KPI"
-            data-desc="Pilotage KPI, Plotly/React, export PDF auto."
-            data-media='[{"type":"img","src":"assets/project.png","alt":"Tableaux de bord analytiques interactifs"}]'
-            data-kpi="+120 k€ MRR suivis mensuellement"
-          >
-            <figure class="placeholder card-img"></figure>
-            <div class="project-content">
-              <h3>Dashboards interactifs KPI</h3>
-              <p class="proj-short">
-                Pilotage KPI, Plotly/React, export PDF auto.
-              </p>
-              <div class="project-tags">
-                <span>Data Science</span><span>AWS</span>
-              </div>
-              <button class="btn btn-secondary see-more">Voir le projet</button>
-            </div>
-          </article>
-
-          <!-- CARD 4 -->
-          <article
-            class="card-project"
-            tabindex="0"
-            data-cat="automation"
-            data-title="Automatisation de processus internes"
-            data-desc="Workers Celery & scripts Python pour tâches récurrentes."
-            data-media='[{"type":"img","src":"assets/project.png","alt":"Automatisation process"}]'
-            data-kpi="-65 % temps manuel équipes support"
-          >
-            <figure class="placeholder card-img"></figure>
-            <div class="project-content">
-              <h3>Automatisation de processus internes</h3>
-              <p class="proj-short">
-                Workers Celery & scripts Python pour tâches récurrentes.
-              </p>
-              <div class="project-tags">
-                <span>Python</span><span>Celery</span>
-              </div>
-              <button class="btn btn-secondary see-more">Voir le projet</button>
-            </div>
-          </article>
-        </div>
-      </section>
-
-    <!-- Skills -->
-    <section id="skills" class="grid section section-skills">
-      <h2 class="section-title reveal">Skills & Expertise</h2>
-      <div class="skills-wrapper reveal">
-        <ul class="skills-grid" id="skillsGrid">
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/python.svg" alt="Python" width="64" /><span class="skill-name">Python</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/docker.svg" alt="Docker" width="64" /><span class="skill-name">Docker</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/fastapi.svg" alt="FastAPI" width="64" /><span class="skill-name">FastAPI</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/zapier.svg" alt="Automation" width="64" /><span class="skill-name">Automation</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Preuve sociale -->
-    <section id="preuve-sociale" class="grid section section-testimonials testimonials">
-      <h2 class="section-title reveal">Preuve sociale</h2>
-      <div class="stats-row reveal">
-        <div class="stat">+30<span>projets livrés</span></div>
-        <div class="stat">100%<span>clients satisfaits</span></div>
-        <div class="stat">5★<span>note moyenne</span></div>
-      </div>
-      <figure class="col-span-4 start-7">
-        <img src="assets/placeholder_stats.svg" alt="">
-      </figure>
-      <div class="testimony-grid reveal">
-        <article class="testimony-card">
-          <img
-            src="assets/avatar.png"
-            alt="Photo Thomas, CTO"
-            class="testimony-avatar"
-          />
-          <div class="testimony-body">
-            <h3 class="testimony-name">Thomas</h3>
-            <p class="testimony-role">CTO, BetaCorp</p>
-            <div class="stars" aria-label="5 étoiles">★★★★★</div>
-            <p>Excellente collaboration, très professionnel et réactif.</p>
-          </div>
-        </article>
-        <article class="testimony-card">
-          <img
-            src="assets/avatar.png"
-            alt="Photo Sophie, Responsable marketing"
-            class="testimony-avatar"
-          />
-          <div class="testimony-body">
-            <h3 class="testimony-name">Sophie</h3>
-            <p class="testimony-role">Responsable marketing, WebMarket</p>
-            <div class="stars">★★★★★</div>
-            <p>Un freelance compétent qui respecte les délais.</p>
-          </div>
-        </article>
-        <article class="testimony-card">
-          <img
-            src="assets/avatar.png"
-            alt="Photo Marc, CEO"
-            class="testimony-avatar"
-          />
-          <div class="testimony-body">
-            <h3 class="testimony-name">Marc</h3>
-            <p class="testimony-role">CEO, Innovatech</p>
-            <div class="stars">★★★★★</div>
-            <p>Livraison rapide et code propre. Je recommande fortement.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="grid section section-faq">
-      <h2 class="section-title reveal">FAQ</h2>
-      <div class="faq-wrapper reveal">
-        <div class="faq-grid" id="faqGrid">
-          <details class="faq-item">
-            <summary>Combien de temps pour livrer un projet&nbsp;?</summary>
-            <p>
-              Cela dépend de la complexité. En général, un MVP prend 3 à 6
-              semaines. Nous livrons en itérations pour créer de la valeur au
-              plus vite.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Pouvez-vous reprendre un projet existant&nbsp;?</summary>
-            <p>
-              Oui. Nous auditons l’existant, stabilisons le code puis ajoutons
-              les fonctionnalités nécessaires.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Vos technologies principales&nbsp;?</summary>
-            <p>
-              Python (Django, FastAPI), Docker, PostgreSQL, AWS. Côté front :
-              HTMX/Alpine ou React selon le besoin.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Processus de garantie&nbsp;?</summary>
-            <p>Réponse à venir.</p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Peut-on scaler après MVP&nbsp;?</summary>
-            <p>Réponse à venir.</p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Comment se déroule la maintenance&nbsp;?</summary>
-            <p>Réponse à venir.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="section cta-section grid">
-      <div class="cta-banner reveal">
-        <h2>Un projet en tête&nbsp;?</h2>
-        <p>Réservez un créneau de 15 min, on en parle.</p>
-        <a class="btn btn-primary" id="ctaContact">Réserver 15 min</a>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-info">
-        <span>© <span id="year"></span> PyDevStudio. Tous droits réservés.</span>
-        <nav class="legal">
-          <a href="#">Mentions</a>
-          <a href="#">CGU</a>
-        </nav>
-        <a href="#top">Retour haut ↑</a>
-      </div>
+    <footer class="site-footer">
+      <!-- Footer vide -->
     </footer>
-    <button id="toTop" aria-label="Haut de page">↑</button>
 
-    <!-- Contact Modal -->
-    <div
-      id="contactModal"
-      aria-hidden="true"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contactTitle"
-      aria-describedby="contactIntro"
-    >
-      <div class="modal-content small">
-        <button class="close-modal" id="closeModal" aria-label="Fermer">
-          ✕
-        </button>
-        <h2 class="modal-title" id="contactTitle">Discutons de votre projet</h2>
-        <p class="modal-intro" id="contactIntro">
-          Réponse sous 24 h. Remplissez ce formulaire ou écrivez-nous
-          directement.
-        </p>
-        <form id="contactForm" class="contact-form">
-          <label for="name">Nom</label>
-          <input
-            id="name"
-            name="name"
-            class="contact-field"
-            placeholder="Votre nom"
-            required
-          />
-          <label for="email">Email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            class="contact-field"
-            placeholder="Email"
-            required
-          />
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            class="contact-field"
-            placeholder="Décrivez votre besoin"
-            required
-          ></textarea>
-          <button class="btn btn-primary" type="submit">Envoyer</button>
-          <p id="formMsg" class="form-msg">
-            Merci ! Votre message a été envoyé.
-          </p>
-        </form>
-      </div>
-    </div>
-
-    <!-- Project Modal -->
-    <div
-      id="projectModal"
-      aria-hidden="true"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="projTitle"
-      aria-describedby="projDesc"
-    >
-      <div class="modal-content" id="projectContent">
-        <div class="proj-nav-modal" id="projModalNav">
-          <button id="projModalPrev" aria-label="Projet précédent">‹</button>
-          <button id="projModalNext" aria-label="Projet suivant">›</button>
-        </div>
-        <button class="close-modal" id="closeProject" aria-label="Fermer">
-          ✕
-        </button>
-        <h2 id="projTitle" class="proj-title"></h2>
-        <p id="projDesc" class="proj-desc"></p>
-        <p id="projKpi" class="proj-kpi"></p>
-        <div class="project-media" id="projMedia"></div>
-      </div>
-    </div>
-
-    <div id="toast">Message envoyé ✔️</div>
-
-    <script type="module" src="main.js"></script>
+    <script src="main.js" defer></script>
   </body>
 </html>
