@@ -45,7 +45,7 @@ ul {
 
 :focus-visible {
   outline: 2px solid var(--brand-blue);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
 section[id] {
