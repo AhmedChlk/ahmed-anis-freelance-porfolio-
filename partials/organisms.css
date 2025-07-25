@@ -23,15 +23,7 @@
   position: relative;
   margin-top: 1rem;
 }
-.projects-track {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  padding: 1rem 0 1.4rem;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
+.projects-track{display:grid;grid-auto-flow:column;gap:3rem;overflow-x:auto;padding:1rem 0 1.4rem;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none}
 .projects-track::-webkit-scrollbar { display: none; }
 .project-img {
   width: 100%;
@@ -122,7 +114,7 @@
   align-items: flex-start;
 }
 .testimony-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.09); }
-.testimony-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: 0 0 56px; }
+.testimony-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex: 0 0 56px;  mask-image:radial-gradient(#000,transparent);opacity:.75;}
 .testimony-name { margin: 0 0 0.2rem; font-size: 1.1rem; }
 .testimony-role { margin: -0.2rem 0 0.5rem; color: var(--text-light); font-size: 0.85rem; }
 .stars { color: var(--star); font-size: 1rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
@@ -130,7 +122,7 @@
 
 .section-faq {}
 .faq-wrapper { max-width: 760px; }
-.faq-grid { display: flex; flex-direction: column; gap: 1.2rem; }
+.faq-grid{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
 .faq-item {
   background: var(--bg-elev);
   border-radius: 14px;
