@@ -1,4 +1,6 @@
 
+import trapFocus from 'https://unpkg.com/focus-trap@7';
+
 /* Progress bar */
 window.addEventListener("scroll", () => {
   const docHeight = document.body.scrollHeight - window.innerHeight;
@@ -17,6 +19,7 @@ hamburger.addEventListener("click", () => {
   const isOpen = mobileMenu.classList.contains("open");
   hamburger.setAttribute("aria-expanded", String(!isOpen));
   mobileMenu.classList.toggle("open");
+  document.body.classList.toggle("modal-open", !isOpen);
 });
 
 /* Smooth scroll */
@@ -27,6 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
       e.preventDefault();
       document.querySelector(id).scrollIntoView({ behavior: "smooth" });
       mobileMenu.classList.remove("open");
+      document.body.classList.remove("modal-open");
     }
   });
 });
@@ -73,7 +77,7 @@ filterBtns.forEach((btn) =>
 );
 
 /* Project modal */
-const projectCards = [...document.querySelectorAll(".project-card")];
+const projectCards = [...document.querySelectorAll(".card-project")];
 const projectModal = document.getElementById("projectModal");
 const projTitle = document.getElementById("projTitle");
 const projDesc = document.getElementById("projDesc");
@@ -83,6 +87,7 @@ const closeProject = document.getElementById("closeProject");
 const projPrevBtn = document.getElementById("projModalPrev");
 const projNextBtn = document.getElementById("projModalNext");
 let currentIndex = 0;
+trapFocus(projectModal);
 
 function visibleCards() {
   return projectCards.filter((c) => c.style.display !== "none");
@@ -118,6 +123,7 @@ function openProject(i) {
 projectCards.forEach((card) => {
   const btn = card.querySelector(".see-more");
   btn.addEventListener("click", (e) => {
+    e.preventDefault();
     e.stopPropagation();
     openProject(visibleCards().indexOf(card));
   });

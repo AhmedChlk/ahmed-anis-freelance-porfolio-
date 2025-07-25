@@ -7,6 +7,10 @@
   padding-inline: 1rem;
 }
 
+.grid > * {
+  grid-column: 2 / span 10;
+}
+
 @media (width <= 1340px) {
   .grid { max-width: 1068px; }
 }
