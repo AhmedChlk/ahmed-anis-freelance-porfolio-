@@ -22,3 +22,11 @@
   --text-dark: #1d1d1f;
   --text-light: #3c4654;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1e;
+    --bg-elev: #2c2c2e;
+    --text-dark: #e5e5e7;
+  }
+}

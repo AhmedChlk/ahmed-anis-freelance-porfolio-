@@ -6,16 +6,11 @@
 }
 
 .section {
-  padding-block: clamp(4rem, 10vw, 8rem);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
 }
 
-.section:after {
-  content: '';
-  display: block;
-  height: 1px;
-  width: 90%;
-  margin: var(--space-l) auto;
-  background: rgba(0, 0, 0, 0.05);
+.section + .section {
+  margin-top: var(--space-m);
 }
 
 .section-title {

@@ -13,23 +13,22 @@
       content="Back‑end Python pour e‑commerce & data : automatisations, APIs, dashboards. +10h libérées / semaine."
     />
     <title>PyDevStudio – Back‑end Python & data</title>
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1c1e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
+    <style>
+      @font-face {
+        font-family: 'Inter';
+        src: local('Inter'), local('system-ui');
+        font-display: swap;
+      }
+    </style>
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display" />
 
     <!-- Styles -->
+    <link rel="preload" href="styles.css" as="style" />
     <link rel="stylesheet" href="styles.css" />
 
     <!-- JSON-LD breadcrumb minimal -->
@@ -122,7 +121,7 @@
     <section class="grid about-duo">
       <p class="lead col-span-5 start-2">Nous sommes un duo rigoureux et passionné. 5 ans de Python, 3 ans de gestion de projet et une obsession : automatiser pour libérer votre potentiel.</p>
       <!-- About : visuel décoratif -->
-      <figure class="placeholder col-span-5 start-8 reveal"></figure>
+      <figure class="about-img placeholder col-span-5 start-8 reveal" aria-label="Photo équipe"></figure>
     </section>
 
     <!-- Process -->
@@ -130,14 +129,17 @@
       <h2 class="section-title reveal">Méthode simple & efficace</h2>
       <ol class="process steps">
         <li class="step reveal">
+          <span class="step-icon placeholder" aria-hidden="true"></span>
           <h3>Comprendre</h3>
           <p>Atelier 60 min pour cadrer vos objectifs et contraintes.</p>
         </li>
         <li class="step reveal">
+          <span class="step-icon placeholder" aria-hidden="true"></span>
           <h3>Construire</h3>
           <p>Sprints courts, CI/CD, tests auto, déploiement cloud.</p>
         </li>
         <li class="step reveal">
+          <span class="step-icon placeholder" aria-hidden="true"></span>
           <h3>Livrer & itérer</h3>
           <p>Mise en prod rapide, monitoring & évolutions mesurées.</p>
         </li>
@@ -273,10 +275,10 @@
       <h2 class="section-title reveal">Skills & Expertise</h2>
       <div class="skills-wrapper reveal">
         <ul class="skills-grid" id="skillsGrid">
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/python.svg" alt="Python" width="64" /><span class="skill-name">Python</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/docker.svg" alt="Docker" width="64" /><span class="skill-name">Docker</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/fastapi.svg" alt="FastAPI" width="64" /><span class="skill-name">FastAPI</span></li>
-          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/zapier.svg" alt="Automation" width="64" /><span class="skill-name">Automation</span></li>
+          <li class="skill-plate"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/python.svg" alt="Python" width="64" /><span class="skill-name">Python</span></li>
+          <li class="skill-plate"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/docker.svg" alt="Docker" width="64" /><span class="skill-name">Docker</span></li>
+          <li class="skill-plate"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/fastapi.svg" alt="FastAPI" width="64" /><span class="skill-name">FastAPI</span></li>
+          <li class="skill-plate"><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/zapier.svg" alt="Automation" width="64" /><span class="skill-name">Automation</span></li>
         </ul>
       </div>
     </section>
