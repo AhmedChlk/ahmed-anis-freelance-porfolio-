@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 72px);
+}
+section.section {
+  padding-block: clamp(3rem, 8vw, 5rem);
+}
+h2.section-title {
+  font-size: 2.4rem;
+  margin: 0 0 2.6rem;
+}
