@@ -9,13 +9,13 @@
   padding-block: clamp(4rem, 10vw, 8rem);
 }
 
-.section:after {
+.section::after {
   content: '';
   display: block;
   height: 1px;
   width: 90%;
   margin: var(--space-l) auto;
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 .section-title {
