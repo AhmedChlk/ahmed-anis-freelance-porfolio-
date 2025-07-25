@@ -9,30 +9,6 @@ window.addEventListener("scroll", () => {
   else header.classList.remove("navbar-shadow");
 });
 
-/* Theme toggle */
-const toggleButtons = [
-  document.getElementById("themeToggle"),
-  document.getElementById("themeToggleMobile"),
-];
-function setTheme(next) {
-  document.documentElement.setAttribute("data-theme", next);
-  toggleButtons.forEach(
-    (b) => b && (b.textContent = next === "dark" ? "☀️" : "🌙")
-  );
-  localStorage.setItem("theme", next);
-}
-toggleButtons.forEach(
-  (btn) =>
-    btn &&
-    btn.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      setTheme(current === "dark" ? "light" : "dark");
-    })
-);
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme) {
-  setTheme(savedTheme);
-}
 
 /* Mobile menu */
 const hamburger = document.getElementById("hamburger");
@@ -174,24 +150,6 @@ projNextBtn.addEventListener("click", () => {
 });
 
 
-/* FAQ */
-document.querySelectorAll(".faq-item").forEach((item) => {
-  const q = item.querySelector(".faq-q");
-  const a = item.querySelector(".faq-a");
-  q.addEventListener("click", () => {
-    const isOpen = item.classList.contains("open");
-    document.querySelectorAll(".faq-item").forEach((it) => {
-      it.classList.remove("open");
-      it.querySelector(".faq-a").style.maxHeight = null;
-      it.querySelector(".faq-q").setAttribute("aria-expanded", "false");
-    });
-    if (!isOpen) {
-      item.classList.add("open");
-      a.style.maxHeight = a.scrollHeight + "px";
-      q.setAttribute("aria-expanded", "true");
-    }
-  });
-});
 
 /* Contact modal */
 const modal = document.getElementById("contactModal");
@@ -201,7 +159,6 @@ const openBtns = [
   document.getElementById("ctaContact"),
   document.getElementById("ctaContactTop"),
   document.getElementById("ctaSticky"),
-  document.getElementById("ctaWrite"),
 ];
 const closeModal = document.getElementById("closeModal");
 function openContact() {
@@ -243,8 +200,3 @@ document.getElementById("contactForm").addEventListener("submit", (e) => {
 /* Year */
 document.getElementById("year").textContent = new Date().getFullYear();
 
-/* Error log */
-window.addEventListener("error", (e) => console.warn("[JS Error]", e.message));
-window.addEventListener("unhandledrejection", (e) =>
-  console.warn("[Promise]", e.reason)
-);
