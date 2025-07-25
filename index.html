@@ -58,7 +58,7 @@
 
     <!-- Header -->
     <header>
-      <div class="grid navbar col-12">
+      <div class="grid navbar col-span-12">
         <a href="#accueil" class="brand" aria-label="PyDevStudio Accueil">
           <div class="brand-logo">Py</div>
           PyDevStudio
@@ -87,7 +87,7 @@
       </div>
 
       <!-- Menu mobile -->
-      <div class="grid mobile-menu col-12" id="mobileMenu" hidden>
+      <div class="grid mobile-menu col-span-12" id="mobileMenu" hidden>
         <a href="#accueil">Accueil</a>
         <a href="#projets">Projets</a>
         <a href="#competences">Compétences</a>
@@ -102,33 +102,28 @@
       href="#"
       id="ctaSticky"
       class="btn-primary cta-sticky"
-      aria-label="Réserver un appel 15 min"
-      >Réserver 15 min</a
+      aria-label="Contact"
+      >Contact</a
     >
 
     <!-- Hero -->
-    <main id="accueil" class="grid hero col-12">
-      <section class="reveal hero-copy">
-        <h1>
-          On automatise vos workflows Python :<br />
-          <span style="color: var(--brand-blue-dark)">+10 h libérées chaque semaine.</span>
-        </h1>
-        <p class="hero-sub">
-          APIs, data pipelines, dashboards & scripts d’automatisation. On livre
-          vite, propre, mesurable.
-        </p>
+        <main id="accueil" class="grid hero col-span-12">
+      <section class="reveal hero-copy col-span-5">
+        <h1>Automatisez. Gagnez du temps.</h1>
+        <p class="hero-sub">Jusqu’à 10 h libérées chaque semaine grâce à nos scripts Python sur‑mesure.</p>
         <div class="hero-cta">
           <a href="#projets" class="btn btn-primary">Voir nos cas clients</a>
-          <a id="ctaContactTop" class="btn btn-link"
-            >Diagnostic gratuit 15 min →</a
-          >
+          <a id="ctaContactTop" class="btn btn-link">Diagnostic gratuit 15 min →</a>
         </div>
       </section>
-
+      <figure class="hero-img col-span-7"></figure>
     </main>
+    <section class="grid col-span-12 about-duo">
+      <p class="lead">Nous sommes un duo rigoureux et passionné. 5 ans de Python, 3 ans de gestion de projet et une obsession : automatiser pour libérer votre potentiel.</p>
+    </section>
 
     <!-- Process -->
-    <section class="grid col-12 section" id="process">
+    <section class="grid col-span-12 section" id="process">
       <h2 class="section-title reveal">Méthode simple & efficace</h2>
       <ol class="process steps">
         <li class="step reveal">
@@ -147,7 +142,7 @@
     </section>
 
     <!-- Projets -->
-    <section id="projets" class="grid col-12 section section-projects">
+    <section id="projets" class="grid col-span-12 section section-projects">
       <h2 class="section-title reveal">Cas clients</h2>
 
       <div
@@ -180,20 +175,20 @@
             class="card-project"
             tabindex="0"
             data-cat="web"
-            data-title="Plateforme e‑commerce B2B"
-            data-desc="Catalogue 10 k produits, paiement multi-devises, sync ERP."
+            data-title="Bot Telegram – Campagnes DM ultra‑ciblées"
+            data-desc="Envoyez 5 000 messages personnalisés/jour, suivis en temps réel."
             data-media='[{"type":"img","src":"assets/project.png","alt":"Dashboard e-commerce Django – vue admin ventes"}]'
             data-kpi="-42 % temps traitement commandes"
           >
             <img
-              class="project-img"
+              class="card-img" loading="lazy"
               src="assets/project.png"
               alt="Aperçu plateforme e‑commerce B2B"
             />
             <div class="project-content">
-              <h3>Plateforme e‑commerce B2B</h3>
+              <h3>Bot Telegram – Campagnes DM ultra‑ciblées</h3>
               <p class="proj-short">
-                Catalogue 10 k produits, paiement multi‑devises, ERP sync.
+                Envoyez 5 000 messages personnalisés/jour, suivis en temps réel.
               </p>
               <div class="project-tags">
                 <span>Django</span><span>FastAPI</span>
@@ -212,20 +207,20 @@
             class="card-project"
             tabindex="0"
             data-cat="data"
-            data-title="API de traitement de données"
-            data-desc="Ingestion temps réel, stockage PostgreSQL, endpoints REST."
+            data-title="Scraper Leboncoin piloté par Telegram"
+            data-desc="Recherche, filtre & push des annonces en < 5 s."
             data-media='[{"type":"img","src":"assets/project.png","alt":"API de données FastAPI – graphiques temps réel"},{"type":"video","src":"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"}]'
             data-kpi="+32 % rapidité d’accès aux métriques"
           >
             <img
-              class="project-img"
+              class="card-img" loading="lazy"
               src="assets/project.png"
-              alt="Aperçu API de traitement de données"
+              alt="Aperçu Scraper Leboncoin piloté par Telegram"
             />
             <div class="project-content">
-              <h3>API de traitement de données</h3>
+              <h3>Scraper Leboncoin piloté par Telegram</h3>
               <p class="proj-short">
-                Ingestion temps réel, stockage PostgreSQL, endpoints REST.
+                Recherche, filtre & push des annonces en < 5 s.
               </p>
               <div class="project-tags">
                 <span>FastAPI</span><span>PostgreSQL</span>
@@ -245,7 +240,7 @@
             data-kpi="+120 k€ MRR suivis mensuellement"
           >
             <img
-              class="project-img"
+              class="card-img" loading="lazy"
               src="assets/project.png"
               alt="Aperçu dashboards interactifs KPI"
             />
@@ -272,7 +267,7 @@
             data-kpi="-65 % temps manuel équipes support"
           >
             <img
-              class="project-img"
+              class="card-img" loading="lazy"
               src="assets/project.png"
               alt="Aperçu automatisation de processus internes"
             />
@@ -293,40 +288,20 @@
     </section>
 
     <!-- Compétences -->
-    <section id="competences" class="grid col-12 section section-skills">
+    <section id="competences" class="grid col-span-12 section section-skills">
       <h2 class="section-title reveal">Compétences</h2>
       <div class="skills-wrapper reveal">
         <ul class="skills-grid" id="skillsGrid">
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" height="26" />
-            <p class="skill-desc">Python – Back‑end, scripts, data pipelines</p>
-          </li>
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" height="26" />
-            <p class="skill-desc">Django – API REST, admin, ORM</p>
-          </li>
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" height="26" />
-            <p class="skill-desc">FastAPI – Microservices, async, OpenAPI</p>
-          </li>
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker" height="26" />
-            <p class="skill-desc">Docker – Containers, CI/CD</p>
-          </li>
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg" alt="PostgreSQL" height="26" />
-            <p class="skill-desc">PostgreSQL – Modélisation, requêtes optimisées</p>
-          </li>
-          <li class="card-skill">
-            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS" height="26" />
-            <p class="skill-desc">AWS – ECS, Lambda, S3, RDS</p>
-          </li>
+          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/python.svg" alt="Python" width="64" /></li>
+          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/docker.svg" alt="Docker" width="64" /></li>
+          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/fastapi.svg" alt="FastAPI" width="64" /></li>
+          <li><img src="https://cdn.jsdelivr.net/npm/simple-icons/icons/zapier.svg" alt="Automation" width="64" /></li>
         </ul>
       </div>
     </section>
 
     <!-- Preuve sociale -->
-    <section id="preuve-sociale" class="grid col-12 section section-testimonials testimonials">
+    <section id="preuve-sociale" class="grid col-span-12 section section-testimonials testimonials">
       <h2 class="section-title reveal">Preuve sociale</h2>
       <div class="stats-row reveal">
         <div class="stat">+30<span>projets livrés</span></div>
@@ -377,7 +352,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="grid col-12 section section-faq">
+    <section id="faq" class="grid col-span-12 section section-faq">
       <h2 class="section-title reveal">FAQ</h2>
       <div class="faq-wrapper reveal">
         <div class="faq-grid" id="faqGrid">

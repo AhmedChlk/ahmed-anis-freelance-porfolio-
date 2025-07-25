@@ -66,6 +66,7 @@
 .mobile-menu.open { transform: translateX(0); opacity: 1; }
 
 .hero-copy { }
+.hero-img{background:url("https://source.unsplash.com/collection/404339/1600x900") center/cover no-repeat;border-radius:32px}
 
 .card-project {
   flex: 0 0 380px;
