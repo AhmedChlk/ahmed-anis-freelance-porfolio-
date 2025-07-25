@@ -11,8 +11,11 @@
   letter-spacing: 0.02em;
 }
 .btn-primary {
-  background: var(--brand-blue);
+  background: #0071e3;
   color: #fff;
+  border-radius: 12px;
+  padding: 1rem 2.2rem;
+  font-weight: 600;
 }
 .btn-primary:hover {
   background: var(--brand-blue-dark);
