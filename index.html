@@ -1,6 +1,6 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -53,7 +53,7 @@
       }
     </script>
   </head>
-  <body>
+  <body id="top">
     <div id="progress"></div>
 
     <!-- Header -->
@@ -72,15 +72,6 @@
             <li><a href="#preuve-sociale">Avis</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a class="btn btn-primary" id="contactOpen">Contact</a></li>
-            <li>
-              <button
-                class="theme-toggle"
-                id="themeToggle"
-                aria-label="Changer de thème"
-              >
-                🌙
-              </button>
-            </li>
           </ul>
         </nav>
 
@@ -103,9 +94,6 @@
         <a href="#preuve-sociale">Avis</a>
         <a href="#faq">FAQ</a>
         <a class="btn btn-primary" id="contactOpenMobile">Contact</a>
-        <button class="theme-toggle" id="themeToggleMobile">
-          🌙 Mode sombre
-        </button>
       </div>
     </header>
 
@@ -394,63 +382,51 @@
       <h2 class="section-title reveal">FAQ</h2>
       <div class="faq-wrapper reveal">
         <div class="faq-grid" id="faqGrid">
-          <div class="faq-item">
-            <button class="faq-q" aria-expanded="false">
-              <span class="faq-title"
-                >Combien de temps pour livrer un projet&nbsp;?</span
-              >
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
+          <details class="faq-item">
+            <summary>Combien de temps pour livrer un projet&nbsp;?</summary>
+            <p>
               Cela dépend de la complexité. En général, un MVP prend 3 à 6
               semaines. Nous livrons en itérations pour créer de la valeur au
               plus vite.
-            </div>
-          </div>
+            </p>
+          </details>
 
-          <div class="faq-item">
-            <button class="faq-q" aria-expanded="false">
-              <span class="faq-title"
-                >Pouvez-vous reprendre un projet existant&nbsp;?</span
-              >
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
+          <details class="faq-item">
+            <summary>Pouvez-vous reprendre un projet existant&nbsp;?</summary>
+            <p>
               Oui. Nous auditons l’existant, stabilisons le code puis ajoutons
               les fonctionnalités nécessaires.
-            </div>
-          </div>
+            </p>
+          </details>
 
-          <div class="faq-item">
-            <button class="faq-q" aria-expanded="false">
-              <span class="faq-title">Vos technologies principales&nbsp;?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a">
+          <details class="faq-item">
+            <summary>Vos technologies principales&nbsp;?</summary>
+            <p>
               Python (Django, FastAPI), Docker, PostgreSQL, AWS. Côté front :
               HTMX/Alpine ou React selon le besoin.
-            </div>
-          </div>
+            </p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section id="cta" class="container section cta-section">
+    <section id="cta" class="section cta-section">
       <div class="cta-box reveal">
         <h2>Un projet en tête&nbsp;?</h2>
         <p>Réservez un créneau de 15 min, on en parle.</p>
-        <a class="btn-cta" id="ctaContact">Réserver 15 min</a>
-        <a class="cta-alt" id="ctaWrite">… ou nous écrire →</a>
+        <a class="btn btn-primary" id="ctaContact">Réserver 15 min</a>
       </div>
     </section>
 
     <footer>
-      <div class="container footer-info">
-        <span
-          >© <span id="year"></span> PyDevStudio. Tous droits réservés.</span
-        >
-        <a href="#accueil">Retour en haut ↑</a>
+      <div class="footer-info">
+        <span>© <span id="year"></span> PyDevStudio. Tous droits réservés.</span>
+        <nav class="legal">
+          <a href="#">Mentions</a>
+          <a href="#">CGU</a>
+        </nav>
+        <a href="#top">Retour haut ↑</a>
       </div>
     </footer>
 

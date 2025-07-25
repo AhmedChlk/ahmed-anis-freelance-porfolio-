@@ -17,13 +17,16 @@
   --text-dark: #1d1d1f;
   --text-light: #3c4654;
 }
-[data-theme="dark"] {
-  --bg: #111418;
-  --bg-elev: #1a1f26;
-  --muted: #1f242c;
-  --text-dark: #f2f4f8;
-  --text-light: #9ba5b5;
-  --brand-blue: #5b7ffd;
-  --brand-blue-dark: #4a64e0;
-  --star: #f8b84e;
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111418;
+    --bg-elev: #1a1f26;
+    --muted: #1f242c;
+    --text-dark: #f2f4f8;
+    --text-light: #9ba5b5;
+    --brand-blue: #5b7ffd;
+    --brand-blue-dark: #4a64e0;
+    --star: #f8b84e;
+  }
 }
