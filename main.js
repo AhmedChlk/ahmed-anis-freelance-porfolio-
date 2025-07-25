@@ -1,5 +1,14 @@
 
-import trapFocus from 'https://unpkg.com/focus-trap@7';
+// Charge focus‑trap en UMD, sinon ignore (le site reste fonctionnel)
+let trapFocus = () => ({ deactivate: () => {} });
+try {
+  const mod = await import(
+    'https://cdn.jsdelivr.net/npm/focus-trap@7/dist/focus-trap.esm.js'
+  );
+  trapFocus = mod.default || mod.trapFocus;
+} catch (e) {
+  console.warn('focus‑trap non chargé, fallback noop', e);
+}
 
 /* Progress bar */
 window.addEventListener("scroll", () => {
@@ -87,7 +96,7 @@ const closeProject = document.getElementById("closeProject");
 const projPrevBtn = document.getElementById("projModalPrev");
 const projNextBtn = document.getElementById("projModalNext");
 let currentIndex = 0;
-trapFocus(projectModal);
+let modalTrap = null;
 
 function visibleCards() {
   return projectCards.filter((c) => c.style.display !== "none");
@@ -119,6 +128,8 @@ function openProject(i) {
   projectModal.style.display = "flex";
   projectModal.setAttribute("aria-hidden", "false");
   document.body.classList.add("modal-open");
+  modalTrap && modalTrap.deactivate();
+  modalTrap = trapFocus(projectModal, { escapeDeactivates: true });
 }
 projectCards.forEach((card) => {
   const btn = card.querySelector(".see-more");
@@ -135,12 +146,18 @@ projectCards.forEach((card) => {
   );
 });
 function closeProjModal() {
+  modalTrap && modalTrap.deactivate();
+  modalTrap = null;
   projectModal.style.display = "none";
   projectModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("modal-open");
   document.title = "PyDevStudio – Back‑end Python & data";
 }
-closeProject.addEventListener("click", closeProjModal);
+closeProject.addEventListener('click', () => {
+  modalTrap && modalTrap.deactivate();
+  modalTrap = null;
+  closeProjModal();
+});
 projectModal.addEventListener("click", (e) => {
   if (e.target === projectModal) closeProjModal();
 });
