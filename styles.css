@@ -85,7 +85,9 @@ button {
   padding: 0 var(--space-4);
 }
 .brand-logo {
-  height: 24px;
+  /* Entre 32px et 48px, selon la viewport */
+  height: clamp(32px, 5vw, 48px);
+  width: auto;
 }
 
 /* Desktop nav */
@@ -325,9 +327,6 @@ button {
   justify-content: space-between;
   height: 100%;
   padding: 0 var(--space-4);
-}
-.brand-logo {
-  height: 24px;
 }
 
 /* Desktop links */
