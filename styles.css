@@ -456,6 +456,141 @@ button {
   background: rgba(0, 0, 0, 0.05);
 }
 
+/* === Carrousel de projets (wrapper) === */
+.projects-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: calc(var(--gap) * 2) 0;
+}
+.projects-slider {
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4) 0;
+}
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* === Flèches de navigation === */
+.slider-nav {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+  z-index: 10;
+}
+.slider-nav:hover {
+  background: rgba(255, 255, 255, 1);
+}
+.prev {
+  margin-right: var(--space-4);
+}
+.next {
+  margin-left: var(--space-4);
+}
+
+/* === Project Cards === */
+.project-card {
+  position: relative;
+  flex: 0 0 328px; /* largeur fixe Apple-style */
+  aspect-ratio: 328 / 408; /* même ratio que l’Apple Store */
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center; /* centrer l’image */
+  scroll-snap-align: start;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Images de fond */
+.project-card.bg-1 {
+  background-image: url("assets/project_leboncoin.png");
+}
+.project-card.bg-2 {
+  background-image: url("assets/project2_placeholder.png");
+}
+
+/* === Overlay Texte sans fond opaque === */
+.project-info {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  /* on limite la largeur pour éviter que le texte ne déborde */
+  width: calc(100% - (var(--space-4) * 2));
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background: none; /* texte seul, sans fond blanc */
+}
+
+/* Titre Apple‑style, un peu plus petit */
+.project-info h3 {
+  font-family: var(--font-display);
+  /* on réduit la taille min et max */
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-text);
+  /* wrapping garanti */
+  word-break: break-word;
+}
+
+/* Paragraphe responsive */
+.project-info p {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  line-height: 1.4;
+  color: rgba(29, 29, 31, 0.8);
+  margin: 0;
+  /* éviter l’overflow du bouton en bas */
+  max-width: 100%;
+}
+
+/* Bouton secondaire compact */
+.btn-secondary {
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid rgba(29, 29, 31, 0.2);
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-3);
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+  white-space: nowrap;
+}
+.btn-secondary:hover {
+  background: rgba(29, 29, 31, 0.05);
+  border-color: rgba(29, 29, 31, 0.4);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .slider-nav {
+    display: none;
+  }
+  .project-card {
+    flex: 0 0 80%;
+  }
+}
+
 /* Responsive mobile-first */
 @media (max-width: 768px) {
   .desktop-nav {
