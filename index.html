@@ -4,10 +4,11 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+      content="width=device-width,initial-scale=1.0,viewport-fit=cover"
     />
-    <title>Base Apple-Style – Drawer</title>
-    <!-- Favicon et icônes -->
+    <title>Base Apple‑Style – Automation &amp; Workflow</title>
+
+    <!-- Favicons -->
     <link
       rel="icon"
       type="image/png"
@@ -28,22 +29,21 @@
     />
     <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
     <meta name="theme-color" content="#ffffff" />
-    <!-- Polices SF Pro Display & Text -->
+
+    <!-- Polices SF Pro -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?
-      family=SF+Pro+Display:wght@400;500;600;700;800&
-      family=SF+Pro+Text:wght@400;500;600;700&
-      display=swap"
+      href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700;800&family=SF+Pro+Text:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!-- HEADER -->
-    <header class="site-header">
+    <header class="site-header glass">
       <div class="container nav-bar">
         <a href="#accueil" class="brand" aria-label="Accueil">
           <img src="assets/logo.png" alt="Logo" class="brand-logo" />
@@ -58,47 +58,77 @@
         </button>
         <nav class="desktop-nav" aria-label="Navigation principale">
           <ul>
-            <!-- À remplir ultérieurement -->
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
       </div>
-
-      <!-- DRAWER FULLSCREEN -->
-      <aside class="drawer-top" id="mobileMenu" aria-hidden="true">
-        <div class="drawer-header">
-          <button class="drawer-close" aria-label="Fermer le menu">
-            <!-- Croix noire SVG -->
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#1d1d1f"
-              stroke-width="2"
-              stroke-linecap="round"
-            >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
-          </button>
-        </div>
-        <nav class="drawer-nav" aria-label="Menu mobile">
-          <ul>
-            <!-- À remplir ultérieurement -->
-          </ul>
-        </nav>
-      </aside>
-      <div class="scrim"></div>
     </header>
 
+    <!-- SCRIM & DRAWER (hors header pour ordre de stacking clair) -->
+    <div class="scrim"></div>
+    <aside
+      class="drawer-top"
+      id="mobileMenu"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+    >
+      <div class="drawer-header">
+        <button class="drawer-close" aria-label="Fermer le menu">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#1d1d1f"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <nav class="drawer-nav" aria-label="Navigation mobile">
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
     <main>
-      <!-- Votre contenu ici -->
+      <!-- Hero Section -->
+      <section id="accueil" class="hero">
+        <div class="container">
+          <!-- Carte Texte -->
+          <div class="hero-card">
+            <h1>Automation made invisible.</h1>
+            <p>
+              Python & AI workflows that spare your time and scale your vision.
+            </p>
+            <a href="#contact" class="btn-primary">Let’s automate →</a>
+          </div>
+          <!-- Carte Visuel -->
+          <div class="hero-card visual">
+            <img
+              src="assets/hero_placeholder.png"
+              alt="Visuel Automation en verre liquide"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
-      <!-- Footer vide -->
+      <!-- Section Contact à venir -->
     </footer>
 
+    <!-- Script principal -->
     <script src="main.js" defer></script>
   </body>
 </html>
