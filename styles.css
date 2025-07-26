@@ -165,7 +165,7 @@ button {
 
 /* Hero Section (cards + fluid typography) */
 .hero {
-  padding: clamp(64px, 8vw, 128px) 0;
+  padding: clamp(32px, 8vw, 64px) 0;
   background: url("assets/bg_hero.png") center/cover no-repeat;
 }
 .hero-card {
@@ -407,11 +407,6 @@ button {
   transform: translateY(0);
 }
 
-/* Hero Section */
-.hero {
-  padding: clamp(64px, 8vw, 128px) 0;
-  background: url("assets/bg_hero.png") center/cover no-repeat;
-}
 .hero-card {
   background: var(--surface-bg);
   border-radius: var(--radius);
