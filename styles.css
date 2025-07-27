@@ -1,22 +1,21 @@
-/*================================================================================
-1. Variables globales
-================================================================================*/
+/*===================================================
+1. Variables globales & Reset
+===================================================*/
 :root {
-  --font-display: "SF Pro Display", -apple-system, system-ui, sans-serif;
-  --font-text: "SF Pro Text", -apple-system, system-ui, sans-serif;
+  --font-display: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-text: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   --color-text: #1d1d1f;
   --surface-bg: #ffffff;
-
   --space-1: 4px;
   --space-2: 8px;
   --space-4: 16px;
   --space-6: 24px;
   --space-8: 32px;
   --gap: clamp(var(--space-2), 4vw, var(--space-8));
-
   --radius: 1.5rem;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-
+  --ease: cubic‑bezier(0.4, 0, 0.2, 1);
   --glass-bg: rgba(255, 255, 255, 0.15);
   --glass-border: rgba(255, 255, 255, 0.8);
   --glass-blur: 12px;
@@ -25,9 +24,6 @@
   --shadow-in: inset 0 4px 20px rgba(255, 255, 255, 0.3);
 }
 
-/*================================================================================
-2. Reset & Base
-================================================================================*/
 *,
 *::before,
 *::after {
@@ -55,9 +51,24 @@ button {
   cursor: pointer;
 }
 
-/*================================================================================
-3. Utilities (container & glass)
-================================================================================*/
+/* Skip-link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: var(--space-2);
+  z-index: 1001;
+  transition: top 0.3s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/*===================================================
+2. Container & Glassmorphism
+===================================================*/
 .container {
   width: 100%;
   max-width: 1200px;
@@ -73,9 +84,9 @@ button {
   box-shadow: var(--shadow-ext), var(--shadow-in);
 }
 
-/*================================================================================
-4. Header & Navigation
-================================================================================*/
+/*===================================================
+3. Header & Navigation
+===================================================*/
 .site-header {
   position: sticky;
   top: 0;
@@ -159,10 +170,15 @@ html.drawer-open .scrim {
 html.drawer-open .drawer-top {
   transform: translateY(0);
 }
+html.drawer-open main,
+html.drawer-open .site-footer {
+  visibility: hidden;
+  pointer-events: none;
+}
 
-/*================================================================================
-5. Hero Section
-================================================================================*/
+/*===================================================
+4. Hero Section
+===================================================*/
 .hero {
   padding: clamp(32px, 8vw, 64px) 0;
   background: url("assets/bg_hero.png") center/cover no-repeat;
@@ -220,9 +236,9 @@ html.drawer-open .drawer-top {
   background: rgba(0, 0, 0, 0.05);
 }
 
-/*================================================================================
-6. Projects Carousel (mobile‑first)
-================================================================================*/
+/*===================================================
+5. Projects Carousel – VERSION MOBILE & TABLET
+===================================================*/
 .projects {
   padding: clamp(64px, 10vw, 96px) 0;
   background: var(--surface-bg);
@@ -232,12 +248,10 @@ html.drawer-open .drawer-top {
   margin: 0 auto;
   max-width: 1400px;
   padding: 0 var(--gap);
-  /* → on enlève le display:flex ici pour mobile */
 }
 
-/* carousel mobile : flex-scrollable plein écran */
+/* Slider scrollable pour mobile (<1024px) */
 .projects-slider {
-  width: 100%; /* impératif pour que les cards fassent 90% de ce conteneur */
   display: flex;
   gap: var(--space-4);
   overflow-x: auto;
@@ -248,12 +262,11 @@ html.drawer-open .drawer-top {
 .projects-slider::-webkit-scrollbar {
   display: none;
 }
-
-/* cards toujours avec ratio même en mobile */
 .project-card {
   position: relative;
-  flex: 0 0 90%; /* 90% de .projects-slider */
-  aspect-ratio: 328 / 408; /* jamais écrasé en mobile */
+  flex: 0 0 80%; /* deux cartes partiellement visibles sur mobile */
+  max-width: 80%;
+  aspect-ratio: 328 / 408;
   background-size: cover;
   background-position: center;
   border-radius: var(--radius);
@@ -266,7 +279,6 @@ html.drawer-open .drawer-top {
   transform: translateY(-8px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1), 0 20px 64px rgba(0, 0, 0, 0.08);
 }
-
 .project-info {
   position: absolute;
   bottom: 0;
@@ -283,15 +295,12 @@ html.drawer-open .drawer-top {
   font-size: clamp(1.25rem, 3.5vw, 2rem);
   line-height: 1.2;
   color: #fff;
-  margin-bottom: var(--space-4);
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  overflow-wrap: break-word;
 }
 .project-info p {
   font-size: clamp(1rem, 2.5vw, 1.125rem);
   color: rgba(255, 255, 255, 0.9);
   flex: 1;
-  overflow-wrap: break-word;
 }
 .btn-secondary {
   align-self: flex-start;
@@ -300,7 +309,6 @@ html.drawer-open .drawer-top {
   font-size: 1rem;
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
-  border: none;
   border-radius: var(--radius);
   padding: 0.5em 1.5em;
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
@@ -310,18 +318,61 @@ html.drawer-open .drawer-top {
   transform: translateY(-2px);
 }
 
-/*================================================================================
-7. Footer
-================================================================================*/
+/*===================================================
+6. Projects Carousel – VERSION DESKTOP (≥1024px)
+===================================================*/
+@media (min-width: 1024px) {
+  .projects-slider {
+    /* Grid à 3 colonnes égales, cartes responsives */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: var(--space-4);
+    padding: var(--space-4) 0;
+    overflow: visible; /* plus de scroll horizontal */
+    scroll-snap-type: none;
+  }
+  .project-card {
+    /* plus de flex-basis, s'ajuste au grid */
+    flex: none;
+    max-width: none;
+  }
+  .slider-nav {
+    display: flex; /* si vous gardez les flèches */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .slider-nav.prev {
+    left: 0;
+  }
+  .slider-nav.next {
+    right: 0;
+  }
+}
+
+/*===================================================
+7. Footer & Responsive général
+===================================================*/
 .site-footer {
   padding: var(--space-8) var(--gap);
   background: var(--surface-bg);
   text-align: center;
 }
 
-/*================================================================================
-8. Responsive Breakpoints
-================================================================================*/
+/* Tablette (768–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .desktop-nav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .projects-slider {
+    /* Affiche 2 cartes côte à côte */
+    flex: 0 0 auto;
+  }
+}
+
 /* Mobile (<768px) */
 @media (max-width: 767px) {
   .desktop-nav {
@@ -330,13 +381,6 @@ html.drawer-open .drawer-top {
   .hamburger {
     display: flex;
   }
-  html.drawer-open main,
-  html.drawer-open .site-footer {
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  /* Hero */
   .hero .container {
     display: block;
   }
@@ -351,57 +395,7 @@ html.drawer-open .drawer-top {
   .hero-card p {
     font-size: 1rem;
   }
-
-  /* Pas de flèches en mobile */
   .slider-nav {
     display: none;
-  }
-}
-
-/* Tablet (768–1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .projects-slider {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(45%, 1fr);
-  }
-  .slider-nav {
-    display: none;
-  }
-}
-
-/* Desktop (≥1024px) */
-@media (min-width: 1024px) {
-  /* On repasse le container en flex pour aligner les flèches */
-  .projects-container {
-    display: flex;
-    align-items: center;
-  }
-  /* On laisse .projects-slider occuper tout l’espace restant */
-  .projects-slider {
-    flex: 1;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(300px, 1fr);
-  }
-  .slider-nav {
-    display: flex;
-  }
-}
-
-/* Adaptative container widths */
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 1024px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1200px;
   }
 }
