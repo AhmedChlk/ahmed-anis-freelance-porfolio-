@@ -4,28 +4,17 @@
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width,initial-scale=1.0,viewport-fit=cover"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     />
-    <title>Base Apple‑Style – Automation &amp; Workflow</title>
+    <title>Base Apple‑Style – Automation & Workflow</title>
 
     <!-- Favicons -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="assets/favicon_io/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="assets/favicon_io/favicon-16x16.png"
-    />
-    <link rel="shortcut icon" href="assets/favicon_io/favicon.ico" />
+    <link rel="icon" href="assets/favicon_io/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" href="assets/favicon_io/favicon-16x16.png" sizes="16x16" />
     <link
       rel="apple-touch-icon"
-      sizes="180x180"
       href="assets/favicon_io/apple-touch-icon.png"
+      sizes="180x180"
     />
     <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
     <meta name="theme-color" content="#ffffff" />
@@ -48,6 +37,13 @@
         <a href="#accueil" class="brand" aria-label="Accueil">
           <img src="assets/logo.png" alt="Logo" class="brand-logo" />
         </a>
+        <nav class="desktop-nav" aria-label="Navigation principale">
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
         <button
           class="hamburger"
           aria-label="Ouvrir le menu"
@@ -56,16 +52,10 @@
         >
           <span></span><span></span><span></span>
         </button>
-        <nav class="desktop-nav" aria-label="Navigation principale">
-          <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
       </div>
     </header>
 
-    <!-- SCRIM & DRAWER (hors header pour ordre de stacking clair) -->
+    <!-- SCRIM & DRAWER -->
     <div class="scrim"></div>
     <aside
       class="drawer-top"
@@ -93,63 +83,78 @@
       <nav class="drawer-nav" aria-label="Navigation mobile">
         <ul>
           <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#projets">Projets</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </aside>
 
-    <!-- MAIN -->
+    <!-- MAIN CONTENT -->
     <main>
       <!-- Hero Section -->
       <section id="accueil" class="hero">
         <div class="container">
-          <!-- Carte Texte -->
           <div class="hero-card">
             <h1>Automation made invisible.</h1>
             <p>
-              Python & AI workflows that spare your time and scale your vision.
+              Python & AI workflows that spare your time and scale your vision.
             </p>
-            <a href="#contact" class="btn-primary">Let’s automate →</a>
+            <a href="#projets" class="btn-primary">Let’s automate →</a>
           </div>
-          <!-- Carte Visuel -->
           <div class="hero-card visual">
             <img
               src="assets/hero_placeholder.png"
-              alt="Visuel Automation en verre liquide"
+              alt="Visuel Automation Liquid Glass"
               loading="lazy"
             />
           </div>
         </div>
       </section>
-      <section id="projects" class="projects">
-        <div class="projects-container container">
-          <button class="slider-nav prev" aria-label="Précédent">←</button>
-          <div class="projects-slider">
-            <!-- Card 1 -->
-            <article class="project-card bg-1">
-              <div class="project-info glass">
-                <h3>Surveillez LeBonCoin sans effort</h3>
-                <a href="#" class="btn-secondary">Voir le projet →</a>
-              </div>
-            </article>
-            <!-- Card 2 -->
-            <article class="project-card bg-2">
-              <div class="project-info glass">
-                <h3>Promotions ciblées en message privé</h3>
 
-                <a href="#" class="btn-secondary">Voir le projet →</a>
+      <section id="projets" class="projects">
+        <div class="projects-container">
+          <button class="slider-nav prev" aria-label="Précédent">‹</button>
+          <div class="projects-slider">
+            <!-- Répétez ces .project-card autant que nécessaire -->
+            <div
+              class="project-card"
+              style="background-image: url(assets/project_leboncoin.png)"
+            >
+              <div class="project-info">
+                <h3>Surveillez&nbsp;LeBonCoin sans&nbsp;effort</h3>
+                <p>
+                  Scraper ultra‑réactif + Bot Telegram : recevez instantanément
+                  les annonces ciblées.
+                </p>
+                <a href="#" class="btn-secondary">Voir le projet →</a>
               </div>
-            </article>
-            <!-- Ajoutez d’autres cards ici -->
+            </div>
+            <div
+              class="project-card"
+              style="background-image: url(assets/porject_telegram.png)"
+            >
+              <div class="project-info">
+                <h3>Promotions ciblées en message privé</h3>
+                <p>
+                  Userbot Telegram intelligent : envoi de liens personnalisés en
+                  DM, sans spam.
+                </p>
+                <a href="#" class="btn-secondary">Voir le projet →</a>
+              </div>
+            </div>
+            <!-- … autres cartes … -->
           </div>
-          <button class="slider-nav next" aria-label="Suivant">→</button>
+          <button class="slider-nav next" aria-label="Suivant">›</button>
         </div>
       </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="site-footer">
-      <!-- Section Contact à venir -->
+    <footer id="contact" class="site-footer glass">
+      <div class="container">
+        <!-- Formulaire ou coordonnées à venir -->
+        <p>Contactez‑nous pour automatiser votre projet !</p>
+      </div>
     </footer>
 
     <!-- Script principal -->

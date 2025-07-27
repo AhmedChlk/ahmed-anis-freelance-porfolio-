@@ -1,25 +1,36 @@
+/*================================================================================
+1. Variables globales
+================================================================================*/
 :root {
-  /* Polices & Couleurs */
   --font-display: "SF Pro Display", -apple-system, system-ui, sans-serif;
   --font-text: "SF Pro Text", -apple-system, system-ui, sans-serif;
   --color-text: #1d1d1f;
   --surface-bg: #ffffff;
-  --radius: 14px;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Grille chirurgicale (4 px step, soit 8 pt pour iOS) */
   --space-1: 4px;
-  --space-2: 8px; /* 8 pt min iOS margin :contentReference[oaicite:5]{index=5} */
+  --space-2: 8px;
   --space-4: 16px;
   --space-6: 24px;
   --space-8: 32px;
-
-  /* Espacement fluide entre 16px et 32px :contentReference[oaicite:6]{index=6} */
   --gap: clamp(var(--space-2), 4vw, var(--space-8));
+
+  --radius: 1.5rem;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-blur: 12px;
+  --glass-sat: 120%;
+  --shadow-ext: 0 8px 32px rgba(31, 38, 135, 0.1);
+  --shadow-in: inset 0 4px 20px rgba(255, 255, 255, 0.3);
 }
 
-/* Reset & Base */
-* {
+/*================================================================================
+2. Reset & Base
+================================================================================*/
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -44,60 +55,52 @@ button {
   cursor: pointer;
 }
 
-/* Container centré & Grid :contentReference[oaicite:7]{index=7} */
+/*================================================================================
+3. Utilities (container & glass)
+================================================================================*/
 .container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--gap);
-  display: grid;
-  gap: var(--gap);
 }
-@media (min-width: 768px) {
-  .container {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-}
-
-/* Glass effect (Apple-like) :contentReference[oaicite:8]{index=8} */
 .glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(24px) saturate(1.3);
-  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-ext), var(--shadow-in);
 }
 
-/* Header & Nav */
+/*================================================================================
+4. Header & Navigation
+================================================================================*/
 .site-header {
   position: sticky;
   top: 0;
+  width: 100%;
   background: var(--surface-bg);
   height: var(--space-8);
+  padding-top: env(safe-area-inset-top);
   z-index: 1000;
 }
 .nav-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
   padding: 0 var(--space-4);
+  height: 100%;
 }
 .brand-logo {
-  /* Entre 32px et 48px, selon la viewport */
-  height: clamp(32px, 5vw, 48px);
+  height: clamp(24px, 5vw, 32px);
   width: auto;
 }
-
-/* Desktop nav */
 .desktop-nav ul {
   display: flex;
   gap: var(--gap);
   list-style: none;
 }
-
-/* Hamburger (mobile) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -111,8 +114,6 @@ button {
   background: var(--color-text);
   border-radius: 1px;
 }
-
-/* Scrim (fond semi‑opaque derrière drawer) */
 .scrim {
   position: fixed;
   inset: 0;
@@ -122,8 +123,6 @@ button {
   transition: opacity 0.3s var(--ease);
   z-index: 1000;
 }
-
-/* Drawer mobile fullscreen (modal overlay) :contentReference[oaicite:9]{index=9} */
 .drawer-top {
   position: fixed;
   inset: 0;
@@ -153,261 +152,33 @@ button {
   gap: var(--space-6);
   text-align: center;
 }
-
-/* État ouvert (on applique sur <html>) */
-.drawer-open .scrim {
+html.drawer-open .scrim {
   opacity: 1;
   visibility: visible;
 }
-.drawer-open .drawer-top {
+html.drawer-open .drawer-top {
   transform: translateY(0);
 }
 
-/* Hero Section (cards + fluid typography) */
+/*================================================================================
+5. Hero Section
+================================================================================*/
 .hero {
   padding: clamp(32px, 8vw, 64px) 0;
   background: url("assets/bg_hero.png") center/cover no-repeat;
 }
-.hero-card {
-  background: var(--surface-bg);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  padding: var(--space-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.hero-card.visual {
-  padding: 0;
-}
-.hero-card.visual img {
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-  display: block;
-}
-
-/* Titres & textes fluides :contentReference[oaicite:10]{index=10} */
-.hero-card h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.1;
-}
-.hero-card p {
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
-  line-height: 1.5;
-}
-
-/* Bouton primaire visible & vendeur */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-2) var(--space-4);
-  font-family: var(--font-display);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  color: var(--color-text);
-  background: var(--surface-bg);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: var(--radius);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background 0.2s ease;
-}
-.btn-primary:hover {
-  background: rgba(0, 0, 0, 0.05);
-}
-
-/* Responsive mobile‑first */
-@media (max-width: 768px) {
-  .desktop-nav {
-    display: none;
-  }
-  .hamburger {
-    display: flex;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 1024px) {
-  .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1200px;
-  }
-}
-a:root {
-  /* Polices & Couleurs */
-  --font-display: "SF Pro Display", -apple-system, system-ui, sans-serif;
-  --font-text: "SF Pro Text", -apple-system, system-ui, sans-serif;
-  --color-text: #1d1d1f;
-  --surface-bg: #ffffff;
-  --radius: 14px;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Grille chirurgicale (4px step = 8pt iOS) */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-4: 16px;
-  --space-6: 24px;
-  --space-8: 32px;
-
-  /* Espacement fluide entre 8px et 32px */
-  --gap: clamp(var(--space-2), 4vw, var(--space-8));
-}
-
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-  color-scheme: light dark;
-}
-body {
-  font-family: var(--font-text);
-  background: #f5f5f7;
-  color: var(--color-text);
-  overflow-x: hidden;
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Container centré + grid layout */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--gap);
+.hero .container {
   display: grid;
   gap: var(--gap);
 }
 @media (min-width: 768px) {
-  .container {
+  .hero .container {
     grid-template-columns: 1fr 1fr;
     align-items: center;
   }
 }
-
-/* Effet Glass */
-.glass {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(24px) saturate(1.3);
-  -webkit-backdrop-filter: blur(24px) saturate(1.3);
-  border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-/* Header & Desktop Nav */
-.site-header {
-  position: sticky;
-  top: 0;
-  background: var(--surface-bg);
-  height: var(--space-8);
-  z-index: 1000;
-  padding-top: env(safe-area-inset-top);
-}
-.nav-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 0 var(--space-4);
-}
-
-/* Desktop links */
-.desktop-nav ul {
-  display: flex;
-  gap: var(--gap);
-  list-style: none;
-}
-
-/* Hamburger (mobile) */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: var(--space-6);
-  height: var(--space-4);
-}
-.hamburger span {
-  display: block;
-  height: 2px;
-  background: var(--color-text);
-  border-radius: 1px;
-}
-
-/* Scrim */
-.scrim {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s var(--ease);
-  z-index: 1000;
-}
-
-/* Drawer mobile fullscreen */
-.drawer-top {
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  transform: translateY(-100%);
-  transition: transform 0.3s var(--ease);
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-}
-.drawer-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: var(--space-4);
-  padding-top: calc(var(--space-4) + env(safe-area-inset-top));
-}
-.drawer-nav {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-.drawer-nav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  text-align: center;
-}
-.drawer-nav a {
-  font-size: 1rem;
-  padding: var(--space-2) 0;
-}
-
-/* État ouvert */
-.drawer-open .scrim {
-  opacity: 1;
-  visibility: visible;
-}
-.drawer-open .drawer-top {
-  transform: translateY(0);
-}
-
-.hero-card {
+.hero-card,
+.hero-card.visual {
   background: var(--surface-bg);
   border-radius: var(--radius);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -421,23 +192,16 @@ button {
 }
 .hero-card.visual img {
   width: 100%;
-  height: auto;
-  border-radius: var(--radius);
   display: block;
+  border-radius: var(--radius);
 }
-
-/* Typographie fluide */
 .hero-card h1 {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.1;
 }
 .hero-card p {
   font-size: clamp(1rem, 2.5vw, 1.125rem);
-  line-height: 1.5;
 }
-
-/* Bouton primaire bien visible */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -450,22 +214,32 @@ button {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background 0.2s ease;
+  transition: background 0.2s var(--ease);
 }
 .btn-primary:hover {
   background: rgba(0, 0, 0, 0.05);
 }
 
-/* === Carrousel de projets (wrapper) === */
+/*================================================================================
+6. Projects Carousel (mobile‑first)
+================================================================================*/
+.projects {
+  padding: clamp(64px, 10vw, 96px) 0;
+  background: var(--surface-bg);
+}
 .projects-container {
   position: relative;
-  display: flex;
-  align-items: center;
-  margin: calc(var(--gap) * 2) 0;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 0 var(--gap);
+  /* → on enlève le display:flex ici pour mobile */
 }
+
+/* carousel mobile : flex-scrollable plein écran */
 .projects-slider {
+  width: 100%; /* impératif pour que les cards fassent 90% de ce conteneur */
   display: flex;
-  gap: var(--gap);
+  gap: var(--space-4);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -475,131 +249,147 @@ button {
   display: none;
 }
 
-/* === Flèches de navigation === */
-.slider-nav {
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  border-radius: var(--radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-size: 1.5rem;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s var(--ease);
-  z-index: 10;
-}
-.slider-nav:hover {
-  background: rgba(255, 255, 255, 1);
-}
-.prev {
-  margin-right: var(--space-4);
-}
-.next {
-  margin-left: var(--space-4);
-}
-
-/* === Project Cards === */
+/* cards toujours avec ratio même en mobile */
 .project-card {
   position: relative;
-  flex: 0 0 328px; /* largeur fixe Apple-style */
-  aspect-ratio: 328 / 408; /* même ratio que l’Apple Store */
+  flex: 0 0 90%; /* 90% de .projects-slider */
+  aspect-ratio: 328 / 408; /* jamais écrasé en mobile */
+  background-size: cover;
+  background-position: center;
   border-radius: var(--radius);
   overflow: hidden;
-  background-size: cover;
-  background-position: center; /* centrer l’image */
   scroll-snap-align: start;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06), 0 16px 48px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1), 0 20px 64px rgba(0, 0, 0, 0.08);
 }
 
-/* Images de fond */
-.project-card.bg-1 {
-  background-image: url("assets/project_leboncoin.png");
-}
-.project-card.bg-2 {
-  background-image: url("assets/project2_placeholder.png");
-}
-
-/* === Overlay Texte sans fond opaque === */
 .project-info {
   position: absolute;
-  top: var(--space-4);
-  left: var(--space-4);
-  /* on limite la largeur pour éviter que le texte ne déborde */
-  width: calc(100% - (var(--space-4) * 2));
-  padding: var(--space-4);
+  bottom: 0;
+  left: var(--space-6);
+  right: var(--space-6);
+  padding: var(--space-6);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent 60%);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
-  background: none; /* texte seul, sans fond blanc */
+  gap: var(--space-4);
 }
-
-/* Titre Apple‑style, un peu plus petit */
 .project-info h3 {
   font-family: var(--font-display);
-  /* on réduit la taille min et max */
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.25rem, 3.5vw, 2rem);
   line-height: 1.2;
-  margin: 0;
-  color: var(--color-text);
-  /* wrapping garanti */
-  word-break: break-word;
+  color: #fff;
+  margin-bottom: var(--space-4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  overflow-wrap: break-word;
 }
-
-/* Paragraphe responsive */
 .project-info p {
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  line-height: 1.4;
-  color: rgba(29, 29, 31, 0.8);
-  margin: 0;
-  /* éviter l’overflow du bouton en bas */
-  max-width: 100%;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: rgba(255, 255, 255, 0.9);
+  flex: 1;
+  overflow-wrap: break-word;
 }
-
-/* Bouton secondaire compact */
 .btn-secondary {
   align-self: flex-start;
   font-family: var(--font-display);
-  font-size: 0.9rem;
-  color: var(--color-text);
-  background: transparent;
-  border: 1px solid rgba(29, 29, 31, 0.2);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: var(--radius);
-  padding: var(--space-1) var(--space-3);
-  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
-  white-space: nowrap;
+  padding: 0.5em 1.5em;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .btn-secondary:hover {
-  background: rgba(29, 29, 31, 0.05);
-  border-color: rgba(29, 29, 31, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
-/* === Responsive === */
-@media (max-width: 768px) {
-  .slider-nav {
-    display: none;
-  }
-  .project-card {
-    flex: 0 0 80%;
-  }
+/*================================================================================
+7. Footer
+================================================================================*/
+.site-footer {
+  padding: var(--space-8) var(--gap);
+  background: var(--surface-bg);
+  text-align: center;
 }
 
-/* Responsive mobile-first */
-@media (max-width: 768px) {
+/*================================================================================
+8. Responsive Breakpoints
+================================================================================*/
+/* Mobile (<768px) */
+@media (max-width: 767px) {
   .desktop-nav {
     display: none;
   }
   .hamburger {
     display: flex;
   }
+  html.drawer-open main,
+  html.drawer-open .site-footer {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Hero */
+  .hero .container {
+    display: block;
+  }
+  .hero-card,
+  .hero-card.visual {
+    width: 100%;
+    margin: var(--space-4) auto;
+  }
+  .hero-card h1 {
+    font-size: 2.5rem;
+  }
+  .hero-card p {
+    font-size: 1rem;
+  }
+
+  /* Pas de flèches en mobile */
+  .slider-nav {
+    display: none;
+  }
 }
+
+/* Tablet (768–1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .projects-slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(45%, 1fr);
+  }
+  .slider-nav {
+    display: none;
+  }
+}
+
+/* Desktop (≥1024px) */
+@media (min-width: 1024px) {
+  /* On repasse le container en flex pour aligner les flèches */
+  .projects-container {
+    display: flex;
+    align-items: center;
+  }
+  /* On laisse .projects-slider occuper tout l’espace restant */
+  .projects-slider {
+    flex: 1;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(300px, 1fr);
+  }
+  .slider-nav {
+    display: flex;
+  }
+}
+
+/* Adaptative container widths */
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
