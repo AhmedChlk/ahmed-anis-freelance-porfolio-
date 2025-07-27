@@ -318,6 +318,24 @@ html.drawer-open .site-footer {
   transform: translateY(-2px);
 }
 
+/* Titre avant les projets, style “Apple” */
+.projects-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.projects-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.projects-header p {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: rgba(0, 0, 0, 0.7);
+}
+
 /*===================================================
 6. Projects Carousel – VERSION DESKTOP (≥1024px)
 ===================================================*/
