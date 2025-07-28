@@ -15,6 +15,12 @@
 
     <!-- ————————————————————— STYLES ————————————————————— -->
     <style>
+      /* =========================================================
+   AUTOMATION & WORKFLOW – Feuille de styles complète
+   Version : Responsive corrigée (juin 2025)
+   Auteur : @ChatGPT
+   ========================================================= */
+
       /* ===== 0 • VARIABLES & RESET ====================================== */
       :root {
         --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
@@ -36,8 +42,8 @@
         --e-snappy: cubic-bezier(0.25, 0.8, 0.25, 1);
       }
       *,
-      :before,
-      :after {
+      *:before,
+      *:after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -51,7 +57,6 @@
         color: var(--text-dark);
         overflow-x: hidden;
       }
-      /* utile accessibilité */
       a {
         color: inherit;
         text-decoration: none;
@@ -221,7 +226,8 @@
 
       /* ===== 3 • HERO =================================================== */
       .hero {
-        height: 100vh;
+        height: auto; /* responsive : libère la contrainte fixe */
+        min-height: 100vh; /* fallback */
         position: relative;
         isolation: isolate;
       }
@@ -320,7 +326,7 @@
       }
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
         gap: var(--gap);
         max-width: 1200px;
         margin-inline: auto;
@@ -411,7 +417,7 @@
         color: rgba(255, 255, 255, 0.65);
       }
 
-      /* ===== 6 • EXPERTISE (ex-logos) =================================== */
+      /* ===== 6 • EXPERTISE ============================================== */
       .expertise {
         padding: 96px var(--gap);
         background: var(--bg-light);
@@ -568,7 +574,7 @@
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
 
-      /* Dark-mode correctif FAQ */
+      /* Dark‑mode correctif FAQ */
       @media (prefers-color-scheme: dark) {
         .faq {
           background: #111;
@@ -585,7 +591,7 @@
         }
       }
 
-      /* ===== 10 • RÉSERVATION (multi-étapes) ============================ */
+      /* ===== 10 • RÉSERVATION (multi‑étapes) ============================ */
       .reservation {
         padding: 96px var(--gap);
         background: #000;
@@ -753,7 +759,7 @@
         );
         opacity: 0;
         transform: scale(0);
-        transition: transform 0.6s, var(--e), opacity 0.6s var(--e);
+        transition: transform 0.6s var(--e), opacity 0.6s var(--e);
       }
       .btn-float:active::after {
         opacity: 1;
@@ -767,8 +773,73 @@
         text-align: center;
       }
 
-      /* ===== 13 • RESPONSIVE =========================================== */
-      @media (max-width: 767px) {
+      /* ===== 13 • RESPONSIVE BREAKPOINTS ================================ */
+      /* --- Mobile ≤ 575.98 px ------------------------------------------ */
+      @media (max-width: 575.98px) {
+        :root {
+          --gap: 1rem; /* gap plus compact */
+          --r: 1rem;
+        }
+
+        /* Header à l’abri de la Dynamic Island / notch */
+        .site-header {
+          padding-top: env(safe-area-inset-top);
+          height: calc(64px + env(safe-area-inset-top));
+        }
+        .nav-container {
+          height: auto;
+        }
+
+        /* Hero : empilement naturel + ratio vidéo */
+        .hero {
+          padding-top: 96px;
+        }
+        .hero-video {
+          position: static;
+          width: 100%;
+          height: 60vh;
+          transform: none;
+        }
+        .hero-content {
+          position: static;
+          transform: none;
+          padding: 2rem 1rem 3rem;
+        }
+        .hero-content h1 {
+          font-size: clamp(1.75rem, 7vw, 2.5rem);
+        }
+
+        /* Grilles en 1 colonne */
+        .projects-grid,
+        .exp-grid,
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+
+        /* Process verticale */
+        .process ol {
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        /* Barre de progression plus petite */
+        .form-progress {
+          top: 16px;
+          right: 16px;
+          width: 48px;
+          height: 48px;
+        }
+
+        /* CTA flottant plus discret */
+        .btn-float {
+          bottom: 24px;
+          right: 24px;
+          padding: 12px 28px;
+        }
+      }
+
+      /* --- Petit tablet/landscape (576 – 767.98 px) ---------------------- */
+      @media (max-width: 767.98px) {
         .nav-links {
           display: none;
         }
@@ -778,13 +849,15 @@
         .process ol {
           flex-direction: column;
         }
-        .hero-content h1 {
-          font-size: clamp(2.2rem, 10vw, 3rem);
-        }
         .testimonials-track {
           scroll-padding-inline: var(--gap);
         }
+        .hero-content h1 {
+          font-size: clamp(2.2rem, 10vw, 3rem);
+        }
       }
+
+      /* --- ≥ 768 px ------------------------------------------------------ */
       @media (min-width: 768px) {
         .scrim,
         .mobile-drawer {
@@ -815,6 +888,27 @@
           background: #1a1a1a;
         }
       }
+
+      /* ===== 15 • DIVERS ACCESSOIRES ==================================== */
+      /* Pas de tilt sur les devices sans hover pour éviter le scroll latéral */
+      @media (hover: none) {
+        .card:hover {
+          transform: none;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      /* Hauteur “vraie” sur iOS/Android (barre URL dynamique) */
+      html,
+      body {
+        height: 100%;
+      }
+      @supports (height: 100dvh) {
+        .hero {
+          min-height: 100dvh;
+          height: auto;
+        }
+      }
     </style>
   </head>
 
@@ -825,7 +919,7 @@
     <header class="site-header glass">
       <div class="nav-container">
         <a href="#accueil" class="brand">
-          <img src="assets/logo2.png" alt="Logo de la marque" />
+          <img src="assets/logo.png" alt="Logo de la marque" />
         </a>
 
         <nav class="nav-links" aria-label="Navigation principale">
