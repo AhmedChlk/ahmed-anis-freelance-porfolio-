@@ -10,55 +10,81 @@
       name="description"
       content="Automatisation invisible : workflows Python & IA qui vous font gagner du temps. Portfolio de projets."
     />
-    <meta property="og:title" content="Automation & Workflow – Portfolio" />
-    <meta
-      property="og:description"
-      content="Automatisation invisible : workflows Python & IA qui vous font gagner du temps."
-    />
-    <meta property="og:image" content="assets/og_image.png" />
     <title>Automation & Workflow – Portfolio</title>
 
-    <!-- Favicons -->
-    <link rel="icon" href="assets/favicon_io/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="assets/favicon_io/favicon-16x16.png" sizes="16x16" />
-    <link
-      rel="apple-touch-icon"
-      href="assets/favicon_io/apple-touch-icon.png"
-      sizes="180x180"
-    />
-    <link rel="manifest" href="assets/favicon_io/site.webmanifest" />
-    <meta name="theme-color" content="#ffffff" />
-
-    <!-- Polices système Apple / UI -->
+    <!-- Reset global & variables CSS -->
     <style>
       :root {
-        --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        --font-text: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+        --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        --color-text: #1d1d1f;
+        --surface-bg: #ffffff;
+        --space-2: 8px;
+        --space-4: 16px;
+        --space-6: 24px;
+        --space-8: 32px;
+        --gap: clamp(var(--space-4), 5vw, var(--space-8));
+        --radius: 1.5rem;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        color-scheme: light dark;
+      }
+      body {
+        font-family: var(--font-text);
+        background: #f5f5f7;
+        color: var(--color-text);
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #000;
+        color: #fff;
+        padding: var(--space-2);
+        z-index: 1001;
+        transition: top 0.3s;
+      }
+      .skip-link:focus {
+        top: 0;
       }
     </style>
 
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
-    <!-- Skip to content -->
     <a class="skip-link" href="#main-content">Aller au contenu principal</a>
 
     <!-- HEADER -->
     <header class="site-header glass">
-      <div class="container nav-bar">
-        <a href="#main-content" class="brand" aria-label="Accueil du site">
-          <img
-            src="assets/logo.png"
-            alt="Logo de la marque"
-            class="brand-logo"
-          />
+      <div class="nav-container">
+        <a href="#accueil" class="brand" aria-label="Accueil">
+          <img src="assets/logo.png" alt="" class="brand-logo" />
         </a>
-        <nav class="desktop-nav" aria-label="Navigation principale">
+        <nav class="nav-links" aria-label="Navigation principale">
           <ul>
-            <li><a href="#main-content">Accueil</a></li>
+            <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -66,68 +92,54 @@
         <button
           class="hamburger"
           aria-label="Ouvrir le menu"
-          aria-controls="mobileMenu"
           aria-expanded="false"
+          aria-controls="mobileMenu"
         >
           <span></span><span></span><span></span>
         </button>
       </div>
-    </header>
 
-    <!-- SCRIM & DRAWER -->
-    <div class="scrim"></div>
-    <aside
-      class="drawer-top"
-      id="mobileMenu"
-      role="dialog"
-      aria-modal="true"
-      aria-hidden="true"
-    >
-      <div class="drawer-header">
+      <div class="scrim" tabindex="-1"></div>
+      <aside
+        id="mobileMenu"
+        class="mobile-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+      >
         <button class="drawer-close" aria-label="Fermer le menu">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#1d1d1f"
-            stroke-width="2"
-            stroke-linecap="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          &times;
         </button>
-      </div>
-      <nav class="drawer-nav" aria-label="Navigation mobile">
-        <ul>
-          <li><a href="#main-content">Accueil</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </aside>
+        <nav class="drawer-nav" aria-label="Navigation mobile">
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </aside>
+    </header>
 
     <!-- MAIN CONTENT -->
     <main id="main-content">
       <!-- Hero Section -->
       <section id="accueil" class="hero">
-        <div class="container">
-          <div class="hero-card">
-            <h1>L’automatisation rendue invisible.</h1>
-            <p>
-              Des workflows Python & IA qui vous font gagner du temps et
-              étendent votre vision.
+        <div class="hero-container">
+          <div class="hero-text">
+            <h1 class="hero-title">Automatisez vos routines.</h1>
+            <p class="hero-subtitle">
+              Gagnez du temps et concentrez‑vous sur l’essentiel.
             </p>
-            <a href="#projets" class="btn-primary"
-              >Automatisez dès maintenant →</a
-            >
+            <a href="#projets" class="btn-primary">
+              Commencez l’automatisation →
+            </a>
           </div>
-          <div class="hero-card visual">
+          <div class="hero-visual">
+            <div class="visual-halo"></div>
             <img
               src="assets/hero_placeholder.png"
-              alt="Illustration de l’automatisation invisible"
-              loading="lazy"
+              alt="Icône Python stylisée volant devant un MacBook Air"
+              class="hero-image"
             />
           </div>
         </div>
@@ -139,40 +151,36 @@
           <h2>Les dernières réalisations.</h2>
           <p>Jetez un œil à ce qui est nouveau, dès maintenant.</p>
         </div>
-        <div class="projects-container">
-          <button class="slider-nav prev" aria-label="Projet précédent">
-            ‹
-          </button>
-          <div class="projects-slider">
-            <article
-              class="project-card"
-              style="background-image: url('assets/project_leboncoin.png')"
-            >
-              <div class="project-info">
-                <h3>Surveillez LeBonCoin sans effort</h3>
-                <p>
-                  Scraper ultra‑réactif + Bot Telegram : recevez instantanément
-                  les annonces ciblées.
-                </p>
-                <a href="#" class="btn-secondary">Voir le projet →</a>
-              </div>
-            </article>
-            <article
-              class="project-card"
-              style="background-image: url('assets/project_telegram.png')"
-            >
-              <div class="project-info">
-                <h3>Promotions ciblées en message privé</h3>
-                <p>
-                  Userbot Telegram intelligent : envoi de liens personnalisés en
-                  DM, sans spam.
-                </p>
-                <a href="#" class="btn-secondary">Voir le projet →</a>
-              </div>
-            </article>
-            <!-- … autres cartes … -->
-          </div>
-          <button class="slider-nav next" aria-label="Projet suivant">›</button>
+        <div class="projects-grid">
+          <!-- Carte 1 -->
+          <article
+            class="card"
+            role="group"
+            aria-labelledby="proj1-title"
+            style="background-image: url('assets/project_leboncoin.png')"
+          >
+            <div class="card-content glass">
+              <h3 id="proj1-title">Surveillez LeBonCoin en temps réel</h3>
+              <p>Recevez les annonces ciblées dès leur parution.</p>
+              <a href="#" class="card-btn">Voir le projet →</a>
+            </div>
+          </article>
+
+          <!-- Carte 2 -->
+          <article
+            class="card"
+            role="group"
+            aria-labelledby="proj2-title"
+            style="background-image: url('assets/project_telegram.png')"
+          >
+            <div class="card-content glass">
+              <h3 id="proj2-title">Promotions en message privé</h3>
+              <p>Userbot Telegram : liens personnalisés sans spam.</p>
+              <a href="#" class="card-btn">Voir le projet →</a>
+            </div>
+          </article>
+
+          <!-- … autres cartes … -->
         </div>
       </section>
     </main>
@@ -184,7 +192,6 @@
       </div>
     </footer>
 
-    <!-- Script principal -->
     <script src="main.js" defer></script>
   </body>
 </html>
