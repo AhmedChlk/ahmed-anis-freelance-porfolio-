@@ -8,188 +8,214 @@
     />
     <meta
       name="description"
-      content="Automatisation invisible : workflows Python & IA qui vous font gagner du temps. Portfolio de projets."
+      content="Automatisation invisible : workflows Python & IA qui libèrent votre temps. Réservez votre démo personnalisée !"
     />
-    <title>Automation & Workflow – Portfolio</title>
-
-    <!-- Reset global & variables CSS -->
-    <style>
-      :root {
-        --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        --font-text: "SF Pro Text", -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        --color-text: #1d1d1f;
-        --surface-bg: #ffffff;
-        --space-2: 8px;
-        --space-4: 16px;
-        --space-6: 24px;
-        --space-8: 32px;
-        --gap: clamp(var(--space-4), 5vw, var(--space-8));
-        --radius: 1.5rem;
-        --ease: cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      *,
-      *::before,
-      *::after {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html {
-        scroll-behavior: smooth;
-        color-scheme: light dark;
-      }
-      body {
-        font-family: var(--font-text);
-        background: #f5f5f7;
-        color: var(--color-text);
-        overflow-x: hidden;
-      }
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-      .skip-link {
-        position: absolute;
-        top: -40px;
-        left: 0;
-        background: #000;
-        color: #fff;
-        padding: var(--space-2);
-        z-index: 1001;
-        transition: top 0.3s;
-      }
-      .skip-link:focus {
-        top: 0;
-      }
-    </style>
-
+    <meta name="theme-color" content="#0A84FF" />
+    <link rel="preload" href="styles.css" as="style" />
     <link rel="stylesheet" href="styles.css" />
+    <title>Automation & Workflow</title>
   </head>
 
   <body>
-    <a class="skip-link" href="#main-content">Aller au contenu principal</a>
+    <a class="skip-link" href="#main">Aller au contenu principal</a>
 
     <!-- HEADER -->
     <header class="site-header glass">
       <div class="nav-container">
-        <a href="#accueil" class="brand" aria-label="Accueil">
-          <img src="assets/logo.png" alt="" class="brand-logo" />
+        <a href="#accueil" class="brand">
+          <img
+            src="https://via.placeholder.com/120x32/FFFFFF/000000?text=Logo"
+            alt="Logo de la marque"
+          />
         </a>
+
         <nav class="nav-links" aria-label="Navigation principale">
           <ul>
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
+            <li><a href="#reservation">Réserver</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <span class="nav-underline"></span>
         </nav>
-        <button
-          class="hamburger"
-          aria-label="Ouvrir le menu"
-          aria-expanded="false"
-          aria-controls="mobileMenu"
-        >
+
+        <button class="hamburger" aria-label="Ouvrir le menu">
           <span></span><span></span><span></span>
         </button>
       </div>
 
-      <div class="scrim" tabindex="-1"></div>
-      <aside
-        id="mobileMenu"
-        class="mobile-drawer"
-        role="dialog"
-        aria-modal="true"
-        aria-hidden="true"
-      >
-        <button class="drawer-close" aria-label="Fermer le menu">
-          &times;
-        </button>
+      <!-- Drawer mobile -->
+      <div class="scrim"></div>
+      <aside class="mobile-drawer" aria-hidden="true">
+        <button class="drawer-close" aria-label="Fermer le menu">×</button>
         <nav class="drawer-nav" aria-label="Navigation mobile">
           <ul>
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
+            <li><a href="#reservation">Réserver</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
       </aside>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main id="main-content">
-      <!-- Hero Section -->
+    <!-- MAIN -->
+    <main id="main">
+      <!-- HERO -->
       <section id="accueil" class="hero">
-        <div class="hero-container">
-          <div class="hero-text">
-            <h1 class="hero-title">Automatisez vos routines.</h1>
-            <p class="hero-subtitle">
-              Gagnez du temps et concentrez‑vous sur l’essentiel.
-            </p>
-            <a href="#projets" class="btn-primary">
-              Commencez l’automatisation →
-            </a>
-          </div>
-          <div class="hero-visual">
-            <div class="visual-halo"></div>
-            <img
-              src="assets/hero_placeholder.png"
-              alt="Icône Python stylisée volant devant un MacBook Air"
-              class="hero-image"
-            />
-          </div>
+        <video
+          class="hero-video"
+          autoplay
+          muted
+          loop
+          playsinline
+          poster="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&h=1080"
+        >
+          <source
+            src="https://player.vimeo.com/external/208171217.hd.mp4?s=a3f7b5e29c4ab5b478b60effa4a4cd45ad25f12e&profile_id=174"
+            type="video/mp4"
+          />
+        </video>
+        <div class="hero-deco"></div>
+        <div class="hero-content">
+          <h1>Automatisez vos routines.</h1>
+          <p>Libérez votre énergie pour ce qui compte vraiment.</p>
+          <a href="#reservation" class="btn-primary">Demandez votre démo</a>
         </div>
       </section>
 
-      <!-- Projects Section -->
+      <!-- PROJETS -->
       <section id="projets" class="projects">
-        <div class="projects-header">
-          <h2>Les dernières réalisations.</h2>
-          <p>Jetez un œil à ce qui est nouveau, dès maintenant.</p>
-        </div>
+        <header>
+          <h2>Nos dernières réalisations</h2>
+          <p>Découvrez comment nous transformons les workflows.</p>
+        </header>
+
         <div class="projects-grid">
-          <!-- Carte 1 -->
           <article
             class="card"
-            role="group"
-            aria-labelledby="proj1-title"
-            style="background-image: url('assets/project_leboncoin.png')"
+            style="--img: url(https://picsum.photos/id/1015/800/600)"
           >
-            <div class="card-content glass">
-              <h3 id="proj1-title">Surveillez LeBonCoin en temps réel</h3>
-              <p>Recevez les annonces ciblées dès leur parution.</p>
+            <div class="card-content">
+              <h3>Surveillez LeBonCoin en temps réel</h3>
+              <p>Recevez instantanément les annonces ciblées.</p>
               <a href="#" class="card-btn">Voir le projet →</a>
             </div>
           </article>
 
-          <!-- Carte 2 -->
           <article
             class="card"
-            role="group"
-            aria-labelledby="proj2-title"
-            style="background-image: url('assets/project_telegram.png')"
+            style="--img: url(https://picsum.photos/id/1035/800/600)"
           >
-            <div class="card-content glass">
-              <h3 id="proj2-title">Promotions en message privé</h3>
-              <p>Userbot Telegram : liens personnalisés sans spam.</p>
+            <div class="card-content">
+              <h3>Promotions en message privé</h3>
+              <p>Userbot Telegram sans spam, toujours pertinent.</p>
               <a href="#" class="card-btn">Voir le projet →</a>
             </div>
           </article>
 
-          <!-- … autres cartes … -->
+          <article
+            class="card"
+            style="--img: url(https://picsum.photos/id/1025/800/600)"
+          >
+            <div class="card-content">
+              <h3>Rapports PDF instantanés</h3>
+              <p>Reporting premium en un clic, format Apple Style.</p>
+              <a href="#" class="card-btn">Voir le projet →</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section class="why">
+        <h2>Pourquoi nous choisir ?</h2>
+        <ul class="why-grid">
+          <li>
+            <h3>Gain de temps <span>×4</span></h3>
+            <p>Scripts qui réduisent vos routines de 75 %.</p>
+          </li>
+          <li>
+            <h3>ROI mesurable</h3>
+            <p>Dashboards live pour suivre l’impact.</p>
+          </li>
+          <li>
+            <h3>Intégration invisible</h3>
+            <p>Aucune courbe d’apprentissage.</p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- FORMULAIRE -->
+      <section id="reservation" class="reservation">
+        <h2>Réservez votre démonstration</h2>
+
+        <form id="demoForm" novalidate>
+          <div class="form-step form-step--current" data-step="1">
+            <label
+              >Votre nom
+              <input type="text" name="name" required />
+            </label>
+            <label
+              >Votre e‑mail
+              <input type="email" name="email" required />
+            </label>
+            <button type="button" class="btn-next">Étape suivante →</button>
+          </div>
+
+          <div class="form-step" data-step="2">
+            <label
+              >Sujet principal
+              <select name="subject" required>
+                <option value="">Choisissez…</option>
+                <option>Automatisation e‑commerce</option>
+                <option>Reporting automatique</option>
+                <option>Scraping & alertes</option>
+              </select>
+            </label>
+            <label
+              >Budget estimé
+              <input type="number" name="budget" placeholder="€" required />
+            </label>
+            <button type="button" class="btn-prev">← Retour</button>
+            <button type="button" class="btn-next">Étape suivante →</button>
+          </div>
+
+          <div class="form-step" data-step="3">
+            <label
+              >Message
+              <textarea name="message" rows="4" required></textarea>
+            </label>
+            <button type="button" class="btn-prev">← Retour</button>
+            <button type="submit" class="btn-submit">Envoyer la demande</button>
+          </div>
+
+          <div class="form-progress" aria-live="polite">
+            <svg viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="54" />
+              <circle class="progress" cx="60" cy="60" r="54" />
+            </svg>
+            <span class="form-progress__label">1 / 3</span>
+          </div>
+        </form>
+
+        <div class="form-success">
+          <h3>Merci !</h3>
+          <p>
+            Nous vous contacterons sous 24 h pour planifier votre démonstration.
+          </p>
         </div>
       </section>
     </main>
 
+    <!-- CTA FLOTTA NT -->
+    <a href="#reservation" class="btn-float" aria-label="Demandez votre démo"
+      >Demandez votre démo</a
+    >
+
     <!-- FOOTER -->
     <footer id="contact" class="site-footer glass">
-      <div class="container">
-        <p>Contactez‑nous pour automatiser votre projet !</p>
-      </div>
+      <p>Contactez‑nous pour libérer votre temps !</p>
     </footer>
 
     <script src="main.js" defer></script>
