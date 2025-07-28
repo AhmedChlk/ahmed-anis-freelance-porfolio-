@@ -15,12 +15,6 @@
 
     <!-- ————————————————————— STYLES ————————————————————— -->
     <style>
-      /* =========================================================
-   AUTOMATION & WORKFLOW – Feuille de styles complète
-   Version : Responsive corrigée (juin 2025)
-   Auteur : @ChatGPT
-   ========================================================= */
-
       /* ===== 0 • VARIABLES & RESET ====================================== */
       :root {
         --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
@@ -42,8 +36,8 @@
         --e-snappy: cubic-bezier(0.25, 0.8, 0.25, 1);
       }
       *,
-      *:before,
-      *:after {
+      :before,
+      :after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -57,6 +51,7 @@
         color: var(--text-dark);
         overflow-x: hidden;
       }
+      /* utile accessibilité */
       a {
         color: inherit;
         text-decoration: none;
@@ -226,8 +221,7 @@
 
       /* ===== 3 • HERO =================================================== */
       .hero {
-        height: auto; /* responsive : libère la contrainte fixe */
-        min-height: 100vh; /* fallback */
+        height: 100vh;
         position: relative;
         isolation: isolate;
       }
@@ -326,7 +320,7 @@
       }
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: var(--gap);
         max-width: 1200px;
         margin-inline: auto;
@@ -417,7 +411,7 @@
         color: rgba(255, 255, 255, 0.65);
       }
 
-      /* ===== 6 • EXPERTISE ============================================== */
+      /* ===== 6 • EXPERTISE (ex-logos) =================================== */
       .expertise {
         padding: 96px var(--gap);
         background: var(--bg-light);
@@ -574,7 +568,7 @@
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
 
-      /* Dark‑mode correctif FAQ */
+      /* Dark-mode correctif FAQ */
       @media (prefers-color-scheme: dark) {
         .faq {
           background: #111;
@@ -591,7 +585,7 @@
         }
       }
 
-      /* ===== 10 • RÉSERVATION (multi‑étapes) ============================ */
+      /* ===== 10 • RÉSERVATION (multi-étapes) ============================ */
       .reservation {
         padding: 96px var(--gap);
         background: #000;
@@ -759,7 +753,7 @@
         );
         opacity: 0;
         transform: scale(0);
-        transition: transform 0.6s var(--e), opacity 0.6s var(--e);
+        transition: transform 0.6s, var(--e), opacity 0.6s var(--e);
       }
       .btn-float:active::after {
         opacity: 1;
@@ -773,73 +767,8 @@
         text-align: center;
       }
 
-      /* ===== 13 • RESPONSIVE BREAKPOINTS ================================ */
-      /* --- Mobile ≤ 575.98 px ------------------------------------------ */
-      @media (max-width: 575.98px) {
-        :root {
-          --gap: 1rem; /* gap plus compact */
-          --r: 1rem;
-        }
-
-        /* Header à l’abri de la Dynamic Island / notch */
-        .site-header {
-          padding-top: env(safe-area-inset-top);
-          height: calc(64px + env(safe-area-inset-top));
-        }
-        .nav-container {
-          height: auto;
-        }
-
-        /* Hero : empilement naturel + ratio vidéo */
-        .hero {
-          padding-top: 96px;
-        }
-        .hero-video {
-          position: static;
-          width: 100%;
-          height: 60vh;
-          transform: none;
-        }
-        .hero-content {
-          position: static;
-          transform: none;
-          padding: 2rem 1rem 3rem;
-        }
-        .hero-content h1 {
-          font-size: clamp(1.75rem, 7vw, 2.5rem);
-        }
-
-        /* Grilles en 1 colonne */
-        .projects-grid,
-        .exp-grid,
-        .why-grid {
-          grid-template-columns: 1fr;
-        }
-
-        /* Process verticale */
-        .process ol {
-          flex-direction: column;
-          gap: 2rem;
-        }
-
-        /* Barre de progression plus petite */
-        .form-progress {
-          top: 16px;
-          right: 16px;
-          width: 48px;
-          height: 48px;
-        }
-
-        /* CTA flottant plus discret */
-        .btn-float {
-          bottom: 24px;
-          right: 24px;
-          padding: 12px 28px;
-        }
-      }
-
-      /* --- Petit tablet/landscape (576 – 767.98 px) ---------------------- */
-      @media (max-width: 767.98px) {
+      /* ===== 13 • RESPONSIVE =========================================== */
+      @media (max-width: 767px) {
         .nav-links {
           display: none;
         }
@@ -849,15 +778,13 @@
         .process ol {
           flex-direction: column;
         }
-        .testimonials-track {
-          scroll-padding-inline: var(--gap);
-        }
         .hero-content h1 {
           font-size: clamp(2.2rem, 10vw, 3rem);
         }
+        .testimonials-track {
+          scroll-padding-inline: var(--gap);
+        }
       }
-
-      /* --- ≥ 768 px ------------------------------------------------------ */
       @media (min-width: 768px) {
         .scrim,
         .mobile-drawer {
@@ -889,24 +816,198 @@
         }
       }
 
-      /* ===== 15 • DIVERS ACCESSOIRES ==================================== */
-      /* Pas de tilt sur les devices sans hover pour éviter le scroll latéral */
-      @media (hover: none) {
-        .card:hover {
-          transform: none;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      /* 1.  Conteneur unique centré -------------------------- */
+      section > * {
+        max-width: 600px; /* valeur safe pour mobile, ajuste si besoin  */
+        margin-inline: auto; /* centre horizontalement */
+      }
+
+      /* 2.  Mobile : pile verticale pour la méthode ----------- */
+      @media (max-width: 767px) {
+        .process ol {
+          flex-direction: column;
+          align-items: center;
+        }
+        .process li {
+          text-align: center;
+        }
+        /* grilles : 1 colonne extra‑small */
+        .projects-grid,
+        .exp-grid,
+        .why-grid {
+          grid-template-columns: 1fr;
         }
       }
 
-      /* Hauteur “vraie” sur iOS/Android (barre URL dynamique) */
-      html,
-      body {
-        height: 100%;
+      /* 3.  Masquer le progress‑ring hors de la zone formulaire */
+      .reservation:not(.in-view) .form-progress {
+        display: none;
       }
-      @supports (height: 100dvh) {
+      /* --- 2. Tiroir mobile plus lisible & accessible --------------- */
+      .mobile-drawer {
+        background: #000; /* fond sombre */
+        color: #fff;
+        height: 100dvh; /* plein écran + scroll éventuel */
+        overflow-y: auto;
+        padding-top: calc(env(safe-area-inset-top, 0) + 24px);
+      }
+      .drawer-nav a {
+        color: #fff; /* texte blanc sur fond noir */
+      }
+      .drawer-close {
+        font-size: 2rem;
+        color: #fff;
+        position: absolute;
+        top: 16px;
+        right: 24px;
+        line-height: 1;
+      }
+
+      /* --- 3. Header + hamburger : contraste clair / sombre ---------- */
+      @media (prefers-color-scheme: dark) {
+        .hamburger span {
+          background: #fff;
+        }
+      }
+      /* ----------  A.  Wrapper explicite  --------- */
+      .container {
+        max-width: 600px;
+        margin-inline: auto;
+        padding-inline: var(--gap);
+      }
+
+      /* ----------  B.  Retire la règle “section > *” (ou mets-la en commentaire) --------
+   section > *{ max-width:600px; margin-inline:auto; }   <-- supprime / commente !
+*/
+
+      /* ----------  C.  Plein écran garanti --------- */
+      .site-header,
+      .hero,
+      .hero-video,
+      .site-footer {
+        max-width: none !important;
+        width: 100% !important;
+      }
+
+      /* la vidéo doit couvrir l’écran même après refactor */
+      .hero-video {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ----------  D.  Sections : on centre le contenu en appliquant .container -------- */
+      .projects > header,
+      .projects-grid,
+      .testimonials > h2,
+      .testimonials-track,
+      .expertise > h2,
+      .exp-grid,
+      .process > h2,
+      .process > ol,
+      .why > h2,
+      .why-grid,
+      .faq > h2,
+      .reservation > h2,
+      #demoForm,
+      .form-success {
+        /* tous ces blocs deviennent “conteneur” */
+        composes: container;
+      }
+
+      /* 2 ▸ Hero desktop plein écran  (au‑dessus du breakpoint) */
+      @media (min-width: 992px) {
+        .hero > * {
+          /* vidéo + contenu */
+          max-width: none;
+          margin-inline: 0;
+        }
+        .hero-content {
+          /* limite quand même la largeur du texte */
+          max-width: 900px;
+          margin-inline: auto;
+        }
+      }
+      /* -----------------------------------------------------------------
+   C ▸ Sécurité : on s’assure que la vidéo couvre toujours
+------------------------------------------------------------------*/
+      .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* -----------------------------------------------------------------
+   1 ▸ Grille de mise en page
+------------------------------------------------------------------*/
+      .wrapper {
+        /* conteneur réutilisable */
+        max-width: 60rem; /* 960 px */
+        margin-inline: auto;
+        padding-inline: var(--gap);
+      }
+
+      /* On applique .wrapper aux sections classiques avec :has() (CSS‑4) */
+      section:has(> header),
+      section:has(> ol),
+      section:has(> ul),
+      section:has(#demoForm) {
+        /* évite le Hero, car lui ne possède pas header+video */
+        container-type: normal; /* pour Safari <17 */
+      }
+      @supports (selector(:has(*))) {
+        section:has(> header),
+        section:has(> ol),
+        section:has(> ul),
+        section:has(#demoForm) {
+          padding-inline: 0; /* wrapper gère le padding */
+        }
+        section:has(> header) > header,
+        .projects-grid,
+        .testimonials-track,
+        .exp-grid,
+        .process > ol,
+        .why-grid,
+        #demoForm,
+        .form-success {
+          @apply .wrapper;
+        } /* si tu utilises Tailwind */
+      }
+
+      /* -----------------------------------------------------------------
+   2 ▸ Hero responsive
+------------------------------------------------------------------*/
+      /* mobile – tablette (< 992 px) */
+      .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(90%, 32rem); /* jamais plus large que l’écran */
+        padding-inline: var(--gap);
+      }
+
+      /* desktop (≥ 992 px) */
+      @media (min-width: 992px) {
         .hero {
-          min-height: 100dvh;
-          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .hero-content {
+          position: static;
+          transform: none;
+          max-width: 56rem; /* ~900 px */
+          width: 100%;
+        }
+      }
+
+      /* -----------------------------------------------------------------
+   3 ▸ Limite wrapper aux SEULEMENT < 992 px
+------------------------------------------------------------------*/
+      @media (max-width: 991px) {
+        section:not(.hero) > * {
+          max-width: 36rem; /* 576 px */
+          margin-inline: auto;
         }
       }
     </style>
@@ -1354,9 +1455,39 @@
           }
         }
       }
+      /* Affiche le progress‑ring seulement quand la section #reservation est visible */
+      const res = document.querySelector(".reservation");
+      if (res) {
+        new IntersectionObserver(
+          (e) => res.classList.toggle("in-view", e[0].isIntersecting),
+          { threshold: 0 }
+        ).observe(res);
+      }
 
       /* -------- Hero button pulse (applied via CSS) -------- */
       document.querySelector(".hero .btn-primary")?.classList.add("pulse");
+      /* -------- Navigation drawer -------- */
+      close = document.querySelector(".drawer-close"); // ← NEW
+
+      ham?.addEventListener("click", toggleDrawer);
+      scrim?.addEventListener("click", toggleDrawer);
+      close?.addEventListener("click", toggleDrawer); // ← NEW
+      document.addEventListener(
+        "keydown",
+        (e) => e.key === "Escape" && drawerOpen(false)
+      );
+
+      function toggleDrawer() {
+        drawerOpen(!drawer.classList.contains("drawer--open"));
+      }
+      function drawerOpen(open) {
+        drawer.classList.toggle("drawer--open", open);
+        scrim.toggleAttribute("hidden", !open);
+        scrim.classList.toggle("scrim--show", open);
+        html.style.overflow = open ? "hidden" : "";
+        ham.setAttribute("aria-expanded", open); // ← accessibilité
+        if (open) drawer.querySelector("a")?.focus();
+      }
     </script>
   </body>
 </html>
