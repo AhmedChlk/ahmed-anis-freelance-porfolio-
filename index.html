@@ -327,6 +327,7 @@
         padding-inline: var(--gap);
       }
       .card {
+        background-image: var(--img);
         position: relative;
         border-radius: var(--r);
         overflow: hidden;
@@ -1001,6 +1002,83 @@
         }
       }
 
+      .card {
+        transition: transform 0.5s var(--e), box-shadow 0.5s,
+          background-size 0.5s;
+        background-size: 110%;
+      }
+      .card:hover {
+        background-size: 115%;
+      }
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0.1)
+        );
+        z-index: 0;
+      }
+      .card-content {
+        position: relative;
+        z-index: 1;
+      }
+      @media (min-width: 768px) {
+        .projects-track {
+          flex-wrap: wrap;
+          overflow: visible;
+          scroll-snap-type: none;
+        }
+        .projects-track .card {
+          flex: 1 1 calc(33.333% - var(--gap));
+          max-width: none;
+          scroll-snap-align: unset;
+        }
+      }
+      .projects-track {
+        display: flex;
+        gap: var(--gap);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-inline: var(--gap);
+        scroll-padding-inline: var(--gap);
+        scrollbar-width: none;
+      }
+      .projects-track::-webkit-scrollbar {
+        display: none;
+      }
+      .projects-track .card {
+        flex: 0 0 90%;
+        max-width: 400px;
+        scroll-snap-align: center;
+        background-image: var(--img);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        border-radius: var(--r);
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        transition: transform 0.5s var(--e), box-shadow 0.5s,
+          background-size 0.5s;
+      }
+      .projects-track .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.35);
+        background-size: 115%;
+      }
+      .card-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 24px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+      }
+
       /* -----------------------------------------------------------------
    3 ▸ Limite wrapper aux SEULEMENT < 992 px
 ------------------------------------------------------------------*/
@@ -1085,17 +1163,16 @@
         </div>
       </section>
 
-      <!-- PROJETS -->
       <section id="projets" class="projects">
         <header>
           <h2>Nos dernières réalisations</h2>
           <p>Découvrez comment nous transformons les workflows.</p>
         </header>
 
-        <div class="projects-grid">
+        <div class="projects-track">
           <article
             class="card"
-            style="--img: url(https://picsum.photos/id/1015/800/600)"
+            style="--img: url('assets/projet_leboncoin.png')"
           >
             <div class="card-content">
               <h3>Surveillez LeBonCoin en temps réel</h3>
@@ -1103,23 +1180,14 @@
               <a href="#" class="card-btn">Voir le projet →</a>
             </div>
           </article>
+
           <article
             class="card"
-            style="--img: url(https://picsum.photos/id/1035/800/600)"
+            style="--img: url('assets/project_telegram.png')"
           >
             <div class="card-content">
               <h3>Promotions en message privé</h3>
               <p>Userbot Telegram sans spam, toujours pertinent.</p>
-              <a href="#" class="card-btn">Voir le projet →</a>
-            </div>
-          </article>
-          <article
-            class="card"
-            style="--img: url(https://picsum.photos/id/1025/800/600)"
-          >
-            <div class="card-content">
-              <h3>Rapports PDF instantanés</h3>
-              <p>Reporting premium en un clic, format Apple Style.</p>
               <a href="#" class="card-btn">Voir le projet →</a>
             </div>
           </article>
