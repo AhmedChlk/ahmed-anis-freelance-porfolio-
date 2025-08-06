@@ -13,9 +13,8 @@
     <meta name="theme-color" content="#0A84FF" />
     <title>Automation & Workflow — Edition Premium</title>
 
-    <!-- ————————————————————— STYLES ————————————————————— -->
     <style>
-      /* ===== 0 • VARIABLES & RESET ====================================== */
+      /* ======================= 0 • VARIABLES & RESET ======================= */
       :root {
         --font-display: "SF Pro Display", -apple-system, BlinkMacSystemFont,
           "Segoe UI", Roboto, sans-serif;
@@ -36,8 +35,8 @@
         --e-snappy: cubic-bezier(0.25, 0.8, 0.25, 1);
       }
       *,
-      :before,
-      :after {
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -51,13 +50,12 @@
         color: var(--text-dark);
         overflow-x: hidden;
       }
-      /* utile accessibilité */
       a {
         color: inherit;
         text-decoration: none;
       }
       button {
-        border: 0;
+        border: none;
         background: none;
         cursor: pointer;
       }
@@ -78,7 +76,7 @@
         top: 0.5rem;
       }
 
-      /* ===== 1 • COMPOSANT GLASS ======================================= */
+      /* ======================= 1 • GLASS ======================= */
       .glass {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(16px) saturate(130%);
@@ -86,31 +84,25 @@
         border-radius: var(--r);
       }
 
-      /* ===== 2 • HEADER ================================================ */
+      /* ======================= 2 • HEADER ======================= */
       .site-header {
         position: sticky;
-        border-radius: 0;
         top: 0;
-        z-index: 1000;
+        z-index: 10;
         width: 100%;
+        background: rgba(0, 0, 0, 0.5);
       }
       .nav-container {
-        height: 64px;
         max-width: 1200px;
-        margin-inline: auto;
+        margin: auto;
         padding: 0 var(--gap);
+        height: 64px;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
       .brand img {
         height: 48px;
-        width: auto;
-      }
-
-      /* navigation desktop */
-      .nav-links {
-        position: relative;
       }
       .nav-links ul {
         display: flex;
@@ -120,11 +112,10 @@
       .nav-links a {
         font-family: var(--font-display);
         font-weight: 500;
-        padding-block: 8px;
+        padding: 8px;
         transition: color 0.25s var(--e), transform 0.25s var(--e);
       }
-      .nav-links a:hover,
-      .nav-links a:focus {
+      .nav-links a:hover {
         color: var(--accent);
         transform: translateY(-2px);
       }
@@ -132,13 +123,11 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        height: 2px;
         width: 0;
+        height: 2px;
         background: var(--accent);
         transition: left 0.3s var(--e), width 0.3s var(--e);
       }
-
-      /* CTA fantôme dans la nav */
       .btn-nav {
         position: relative;
         padding: 6px 18px;
@@ -150,7 +139,6 @@
         content: "";
         position: absolute;
         inset: 0;
-        border-radius: inherit;
         background: var(--accent-grad);
         opacity: 0;
         transition: opacity 0.35s var(--e);
@@ -162,12 +150,6 @@
         color: #fff;
         transform: translateY(-2px);
       }
-      .ghost-cta {
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        backdrop-filter: blur(16px) saturate(130%);
-      }
-
-      /* hamburger */
       .hamburger {
         display: none;
         flex-direction: column;
@@ -179,8 +161,6 @@
         background: var(--text-dark);
         border-radius: 1px;
       }
-
-      /* drawer mobile */
       .scrim {
         position: fixed;
         inset: 0;
@@ -201,16 +181,10 @@
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
       }
       .drawer-nav ul {
-        list-style: none;
         display: flex;
         flex-direction: column;
         gap: 20px;
-        margin-top: 24px;
-      }
-      .drawer-nav a {
-        font-family: var(--font-display);
-        font-size: 1.25rem;
-        font-weight: 600;
+        list-style: none;
       }
       .drawer--open {
         transform: translateY(0);
@@ -220,20 +194,18 @@
         visibility: visible;
       }
 
-      /* ===== 3 • HERO =================================================== */
+      /* ======================= 3 • HERO ======================= */
       .hero {
-        height: 100vh;
         position: relative;
-        isolation: isolate;
+        height: 100vh;
+        overflow: hidden;
       }
       .hero-video {
         position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
+        inset: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        transform: translate(-50%, -50%);
       }
       .hero::after {
         content: "";
@@ -248,7 +220,7 @@
       }
       .hero-content {
         position: relative;
-        z-index: 1;
+        z-index: 2;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -268,7 +240,6 @@
         margin-bottom: 24px;
       }
       .btn-primary {
-        display: inline-block;
         background: var(--accent-grad);
         color: #fff;
         padding: 14px 48px;
@@ -281,8 +252,6 @@
         transform: scale(1.05);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
       }
-
-      /* pulsation unique */
       @keyframes heroPulse {
         0% {
           transform: scale(1);
@@ -301,119 +270,176 @@
         animation: heroPulse 0.9s 2s backwards;
       }
 
-      /* ===== 4 • PROJETS ================================================= */
-      .projects {
-        padding: 96px 0;
-        background: #111;
-        color: #fff;
-        text-align: center;
-      }
-      .projects header {
-        margin-bottom: 48px;
-      }
-      .projects h2 {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 8px;
-      }
-      .projects p {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: var(--gap);
-        max-width: 1200px;
-        margin-inline: auto;
-        padding-inline: var(--gap);
-      }
-      .card {
-        background-image: var(--img);
-        position: relative;
-        border-radius: var(--r);
-        overflow: hidden;
-        background-size: cover;
-        background-position: center;
-        transition: transform 0.5s var(--e), box-shadow 0.5s;
-        transform-style: preserve-3d;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-      }
-      .card:hover {
-        transform: perspective(600px) rotateY(calc(var(--mx) * 6deg))
-          rotateX(calc(var(--my) * -6deg)) translateY(-8px);
-        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.35);
-      }
-      .card-content {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 24px;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(8px);
-      }
-      .card-content h3 {
-        font-family: var(--font-display);
-        font-size: 1.5rem;
-        margin-bottom: 8px;
-        text-align: left;
-      }
-      .card-btn {
-        align-self: flex-start;
-        background: rgba(255, 255, 255, 0.25);
-        padding: 8px 24px;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: background 0.3s var(--e), transform 0.3s var(--e);
-      }
-      .card-btn:hover {
-        background: rgba(255, 255, 255, 0.35);
-        transform: translateY(-2px);
-      }
+     /* ======================= 4 • PROJETS (portrait) ======================= */
+.projects {
+  padding: 96px var(--gap);
+  background: #111;
+  position: relative;
+}
 
-      /* ===== 5 • TÉMOIGNAGES ============================================ */
-      .testimonials {
-        padding: 96px var(--gap);
-        background: #000;
-        color: #fff;
-        text-align: center;
-      }
-      .testimonials h2 {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 40px;
-      }
-      .testimonials-track {
-        display: flex;
-        gap: var(--gap);
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 8px;
-        scrollbar-width: none;
-      }
-      .testimonials-track::-webkit-scrollbar {
-        display: none;
-      }
-      .testimonials-track figure {
-        flex: 0 0 280px;
-        scroll-snap-align: center;
-        padding: 32px;
-        border-radius: var(--r);
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(10px);
-      }
-      .testimonials blockquote {
-        font-size: 1.125rem;
-        font-weight: 500;
-        margin-bottom: 16px;
-      }
-      .testimonials figcaption {
-        font-size: 0.875rem;
-        color: rgba(255, 255, 255, 0.65);
-      }
+.projects header {
+  z-index: 2;
+  position: relative;
+  margin-bottom: 48px;
+  text-align: center;
+  max-width: 1000px;
+  margin-inline: auto;
+}
 
-      /* ===== 6 • EXPERTISE (ex-logos) =================================== */
+.projects header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff;
+}
+
+.projects header p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+}
+
+/* rail des cartes : même max-width que la grille d’expertise */
+.projects-track {
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-inline: 0;
+  z-index: 1;
+}
+
+.projects-track::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-track .card {
+  --card-width: 260px;
+  flex: 0 0 var(--card-width);
+  aspect-ratio: 3/4;
+  position: relative;
+  border-radius: var(--r);
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  scroll-snap-align: center;
+  transition: transform 0.3s var(--e), box-shadow 0.3s var(--e);
+}
+
+.projects-track .card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+}
+
+.projects-track .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.projects-track .card-content {
+  position: absolute;
+  bottom: var(--gap);
+  left: var(--gap);
+  right: var(--gap);
+  z-index: 1;
+  color: #fff;
+}
+
+.projects-track .card-content h3 {
+  margin-bottom: 0.5em;
+}
+
+.projects-track .card-content p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* positionnement du bouton “+” */
+.projects-track .card-expand {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  z-index: 2;
+  transition: background 0.2s;
+}
+
+.projects-track .card-expand:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+/* ======================= 5 • TÉMOIGNAGES ======================= */
+.testimonials {
+  padding: 96px var(--gap);
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 40px;
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+/* rail des témoignages : même max-width que la grille d’expertise */
+.testimonials-track {
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-inline: 0;     /* on gère le padding sur la section */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+}
+
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-track figure {
+  flex: 0 0 280px;
+  scroll-snap-align: center;
+  padding: 32px;
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.testimonials blockquote {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.testimonials figcaption {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+      /* ===== 6 • EXPERTISE ============================================== */
       .expertise {
         padding: 96px var(--gap);
         background: var(--bg-light);
@@ -569,8 +595,6 @@
         transform: translateY(-4px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
-
-      /* Dark-mode correctif FAQ */
       @media (prefers-color-scheme: dark) {
         .faq {
           background: #111;
@@ -669,8 +693,6 @@
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
-
-      /* Progress circle */
       .form-progress {
         position: fixed;
         top: 24px;
@@ -710,8 +732,6 @@
         font-size: 0.875rem;
         font-weight: 600;
       }
-
-      /* Success */
       .form-success {
         display: none;
         padding: 64px 0;
@@ -794,7 +814,7 @@
         }
       }
 
-      /* ===== 14 • DARK MODE BASE ======================================= */
+      /* ===== 14 • DARK MODE ============================================ */
       @media (prefers-color-scheme: dark) {
         body {
           background: #000;
@@ -816,292 +836,22 @@
         .exp-grid li {
           background: #1a1a1a;
         }
-      }
-
-      /* 1.  Conteneur unique centré -------------------------- */
-      section > * {
-        max-width: 600px; /* valeur safe pour mobile, ajuste si besoin  */
-        margin-inline: auto; /* centre horizontalement */
-      }
-
-      /* 2.  Mobile : pile verticale pour la méthode ----------- */
-      @media (max-width: 767px) {
-        .process ol {
-          flex-direction: column;
-          align-items: center;
-        }
-        .process li {
-          text-align: center;
-        }
-        /* grilles : 1 colonne extra‑small */
-        .projects-grid,
-        .exp-grid,
-        .why-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* 3.  Masquer le progress‑ring hors de la zone formulaire */
-      .reservation:not(.in-view) .form-progress {
-        display: none;
-      }
-      /* --- 2. Tiroir mobile plus lisible & accessible --------------- */
-      .mobile-drawer {
-        background: #000; /* fond sombre */
-        color: #fff;
-        height: 100dvh; /* plein écran + scroll éventuel */
-        overflow-y: auto;
-        padding-top: calc(env(safe-area-inset-top, 0) + 24px);
-      }
-      .drawer-nav a {
-        color: #fff; /* texte blanc sur fond noir */
-      }
-      .drawer-close {
-        font-size: 2rem;
-        color: #fff;
-        position: absolute;
-        top: 16px;
-        right: 24px;
-        line-height: 1;
-      }
-
-      /* --- 3. Header + hamburger : contraste clair / sombre ---------- */
-      @media (prefers-color-scheme: dark) {
         .hamburger span {
           background: #fff;
-        }
-      }
-      /* ----------  A.  Wrapper explicite  --------- */
-      .container {
-        max-width: 600px;
-        margin-inline: auto;
-        padding-inline: var(--gap);
-      }
-
-      /* ----------  B.  Retire la règle “section > *” (ou mets-la en commentaire) --------
-   section > *{ max-width:600px; margin-inline:auto; }   <-- supprime / commente !
-*/
-
-      /* ----------  C.  Plein écran garanti --------- */
-      .site-header,
-      .hero,
-      .hero-video,
-      .site-footer {
-        max-width: none !important;
-        width: 100% !important;
-      }
-
-      /* la vidéo doit couvrir l’écran même après refactor */
-      .hero-video {
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* ----------  D.  Sections : on centre le contenu en appliquant .container -------- */
-      .projects > header,
-      .projects-grid,
-      .testimonials > h2,
-      .testimonials-track,
-      .expertise > h2,
-      .exp-grid,
-      .process > h2,
-      .process > ol,
-      .why > h2,
-      .why-grid,
-      .faq > h2,
-      .reservation > h2,
-      #demoForm,
-      .form-success {
-        /* tous ces blocs deviennent “conteneur” */
-        composes: container;
-      }
-
-      /* 2 ▸ Hero desktop plein écran  (au‑dessus du breakpoint) */
-      @media (min-width: 992px) {
-        .hero > * {
-          /* vidéo + contenu */
-          max-width: none;
-          margin-inline: 0;
-        }
-        .hero-content {
-          /* limite quand même la largeur du texte */
-          max-width: 900px;
-          margin-inline: auto;
-        }
-      }
-      /* -----------------------------------------------------------------
-   C ▸ Sécurité : on s’assure que la vidéo couvre toujours
-------------------------------------------------------------------*/
-      .hero-video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      /* -----------------------------------------------------------------
-   1 ▸ Grille de mise en page
-------------------------------------------------------------------*/
-      .wrapper {
-        /* conteneur réutilisable */
-        max-width: 60rem; /* 960 px */
-        margin-inline: auto;
-        padding-inline: var(--gap);
-      }
-
-      /* On applique .wrapper aux sections classiques avec :has() (CSS‑4) */
-      section:has(> header),
-      section:has(> ol),
-      section:has(> ul),
-      section:has(#demoForm) {
-        /* évite le Hero, car lui ne possède pas header+video */
-        container-type: normal; /* pour Safari <17 */
-      }
-      @supports (selector(:has(*))) {
-        section:has(> header),
-        section:has(> ol),
-        section:has(> ul),
-        section:has(#demoForm) {
-          padding-inline: 0; /* wrapper gère le padding */
-        }
-        section:has(> header) > header,
-        .projects-grid,
-        .testimonials-track,
-        .exp-grid,
-        .process > ol,
-        .why-grid,
-        #demoForm,
-        .form-success {
-          @apply .wrapper;
-        } /* si tu utilises Tailwind */
-      }
-
-      /* -----------------------------------------------------------------
-   2 ▸ Hero responsive
-------------------------------------------------------------------*/
-      /* mobile – tablette (< 992 px) */
-      .hero-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: min(90%, 32rem); /* jamais plus large que l’écran */
-        padding-inline: var(--gap);
-      }
-
-      /* desktop (≥ 992 px) */
-      @media (min-width: 992px) {
-        .hero {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .hero-content {
-          position: static;
-          transform: none;
-          max-width: 56rem; /* ~900 px */
-          width: 100%;
-        }
-      }
-
-      .card {
-        transition: transform 0.5s var(--e), box-shadow 0.5s,
-          background-size 0.5s;
-        background-size: 110%;
-      }
-      .card:hover {
-        background-size: 115%;
-      }
-      .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.4),
-          rgba(0, 0, 0, 0.1)
-        );
-        z-index: 0;
-      }
-      .card-content {
-        position: relative;
-        z-index: 1;
-      }
-      @media (min-width: 768px) {
-        .projects-track {
-          flex-wrap: wrap;
-          overflow: visible;
-          scroll-snap-type: none;
-        }
-        .projects-track .card {
-          flex: 1 1 calc(33.333% - var(--gap));
-          max-width: none;
-          scroll-snap-align: unset;
-        }
-      }
-      .projects-track {
-        display: flex;
-        gap: var(--gap);
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding-inline: var(--gap);
-        scroll-padding-inline: var(--gap);
-        scrollbar-width: none;
-      }
-      .projects-track::-webkit-scrollbar {
-        display: none;
-      }
-      .projects-track .card {
-        flex: 0 0 90%;
-        max-width: 400px;
-        scroll-snap-align: center;
-        background-image: var(--img);
-        background-size: cover;
-        background-position: center;
-        position: relative;
-        border-radius: var(--r);
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        transition: transform 0.5s var(--e), box-shadow 0.5s,
-          background-size 0.5s;
-      }
-      .projects-track .card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.35);
-        background-size: 115%;
-      }
-      .card-content {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 24px;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(8px);
-      }
-
-      /* -----------------------------------------------------------------
-   3 ▸ Limite wrapper aux SEULEMENT < 992 px
-------------------------------------------------------------------*/
-      @media (max-width: 991px) {
-        section:not(.hero) > * {
-          max-width: 36rem; /* 576 px */
-          margin-inline: auto;
         }
       }
     </style>
   </head>
 
-  <body>
+<body>
     <a class="skip-link" href="#main">Aller au contenu principal</a>
 
-    <!-- ————————————————————— HEADER ————————————————————— -->
+    <!-- HEADER -->
     <header class="site-header glass">
       <div class="nav-container">
         <a href="#accueil" class="brand">
           <img src="assets/logo.png" alt="Logo de la marque" />
         </a>
-
         <nav class="nav-links" aria-label="Navigation principale">
           <ul>
             <li><a href="#accueil">Accueil</a></li>
@@ -1116,13 +866,10 @@
           </ul>
           <span class="nav-underline"></span>
         </nav>
-
-        <button class="hamburger" aria-label="Ouvrir le menu">
+        <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
-
-      <!-- Drawer mobile -->
       <div class="scrim" hidden></div>
       <aside class="mobile-drawer" aria-hidden="true">
         <button class="drawer-close" aria-label="Fermer le menu">×</button>
@@ -1137,7 +884,7 @@
       </aside>
     </header>
 
-    <!-- ————————————————————— MAIN ————————————————————— -->
+    <!-- MAIN -->
     <main id="main">
       <!-- HERO -->
       <section id="accueil" class="hero">
@@ -1164,33 +911,27 @@
         </div>
       </section>
 
+      <!-- PROJETS -->
       <section id="projets" class="projects">
         <header>
           <h2>Nos dernières réalisations</h2>
           <p>Découvrez comment nous transformons les workflows.</p>
         </header>
-
         <div class="projects-track">
-          <article
-            class="card"
-            style="--img: url('assets/projet_leboncoin.png')"
-          >
+          <article class="card" style="--img: url('assets/project_leboncoin.png')">
             <div class="card-content">
               <h3>Surveillez LeBonCoin en temps réel</h3>
               <p>Recevez instantanément les annonces ciblées.</p>
-              <a href="#" class="card-btn">Voir le projet →</a>
             </div>
+            <a href="#" class="card-expand" aria-label="Voir le projet">+</a>
           </article>
 
-          <article
-            class="card"
-            style="--img: url('assets/project_telegram.png')"
-          >
+          <article class="card" style="--img: url('assets/project_telegram.png')">
             <div class="card-content">
               <h3>Promotions en message privé</h3>
               <p>Userbot Telegram sans spam, toujours pertinent.</p>
-              <a href="#" class="card-btn">Voir le projet →</a>
             </div>
+            <a href="#" class="card-expand" aria-label="Voir le projet">+</a>
           </article>
         </div>
       </section>
@@ -1370,8 +1111,7 @@
         </div>
       </section>
     </main>
-
-    <!-- CTA FLOTTA NT -->
+ <!-- CTA FLOTTANT -->
     <a href="#reservation" class="btn-float" aria-label="Planifier mon appel"
       >Planifier mon appel ↗︎</a
     >
@@ -1381,182 +1121,147 @@
       <p>Contactez-nous pour libérer votre temps !</p>
     </footer>
 
-    <!-- ————————————————————— SCRIPTS ————————————————————— -->
     <script>
-      /* -------- Navigation drawer -------- */
-      const html = document.documentElement,
-        ham = document.querySelector(".hamburger"),
-        scrim = document.querySelector(".scrim"),
-        drawer = document.querySelector(".mobile-drawer");
+  /* -------- Navigation drawer -------- */
+  const html = document.documentElement,
+    ham = document.querySelector(".hamburger"),
+    scrim = document.querySelector(".scrim"),
+    drawer = document.querySelector(".mobile-drawer");
 
-      ham?.addEventListener("click", toggleDrawer);
-      scrim?.addEventListener("click", toggleDrawer);
-      document.addEventListener(
-        "keydown",
-        (e) => e.key === "Escape" && drawerOpen(false)
-      );
+  function drawerOpen(open) {
+    drawer.classList.toggle("drawer--open", open);
+    scrim.toggleAttribute("hidden", !open);
+    scrim.classList.toggle("scrim--show", open);
+    html.style.overflow = open ? "hidden" : "";
+    ham.setAttribute("aria-expanded", open);
+    if (open) drawer.querySelector("a")?.focus();
+  }
+  function toggleDrawer() {
+    drawerOpen(!drawer.classList.contains("drawer--open"));
+  }
 
-      function toggleDrawer() {
-        drawerOpen(!drawer.classList.contains("drawer--open"));
-      }
-      function drawerOpen(open) {
-        drawer.classList.toggle("drawer--open", open);
-        scrim.toggleAttribute("hidden", !open);
-        scrim.classList.toggle("scrim--show", open);
-        html.style.overflow = open ? "hidden" : "";
-        if (open) drawer.querySelector("a")?.focus();
-      }
+  ham?.addEventListener("click", toggleDrawer);
+  scrim?.addEventListener("click", toggleDrawer);
+  document.querySelector(".drawer-close")?.addEventListener("click", toggleDrawer);
+  document.addEventListener("keydown", (e) => e.key === "Escape" && drawerOpen(false));
 
-      /* -------- Nav underline + scroll spy -------- */
-      const underline = document.querySelector(".nav-underline"),
-        links = [...document.querySelectorAll(".nav-links a")],
-        targets = links.map((a) =>
-          document.querySelector(a.getAttribute("href"))
-        );
-      links.forEach((a) =>
-        a.addEventListener("mouseenter", (e) => {
-          underline.style.left = e.target.offsetLeft + "px";
-          underline.style.width = e.target.offsetWidth + "px";
-        })
-      );
-      document
-        .querySelector(".nav-links ul")
-        ?.addEventListener("mouseleave", () => (underline.style.width = 0));
-
-      new IntersectionObserver(
-        (entries) => {
-          entries.forEach((en) => {
-            if (en.isIntersecting) {
-              const link = links.find(
-                (l) => l.getAttribute("href") === "#" + en.target.id
-              );
-              if (link) {
-                underline.style.left = link.offsetLeft + "px";
-                underline.style.width = link.offsetWidth + "px";
-              }
-            }
-          });
-        },
-        { threshold: 0.6, rootMargin: "-64px 0px -40% 0px" }
-      ).observe(...targets);
-
-      /* -------- Card depth-tilt -------- */
-      document.querySelectorAll(".card").forEach((card) => {
-        card.addEventListener("mousemove", (e) => {
-          const r = card.getBoundingClientRect(),
-            mx = (e.clientX - r.left) / r.width - 0.5,
-            my = (e.clientY - r.top) / r.height - 0.5;
-          card.style.setProperty("--mx", mx);
-          card.style.setProperty("--my", my);
-        });
-        card.addEventListener("mouseleave", () => (card.style.cssText = ""));
-      });
-
-      /* -------- Testimonials auto-slider -------- */
-      const track = document.querySelector(".testimonials-track");
-      if (track && track.children.length > 1) {
-        let i = 0;
-        setInterval(() => {
-          i = (i + 1) % track.children.length;
-          track.scrollTo({
-            left: i * (track.firstElementChild.offsetWidth + 24),
-            behavior: "smooth",
-          });
-        }, 5000);
-      }
-
-      /* -------- Floating CTA visibility -------- */
-      const floatBtn = document.querySelector(".btn-float"),
-        formSection = document.querySelector("#reservation");
-      new IntersectionObserver(
-        (entries) => {
-          floatBtn.style.display = entries[0].isIntersecting
-            ? "none"
-            : "inline-flex";
-        },
-        { threshold: 0.4 }
-      ).observe(formSection);
-
-      /* -------- Multi-step form -------- */
-      const form = document.getElementById("demoForm");
-      if (form) {
-        const steps = [...form.querySelectorAll(".form-step")],
-          progress = form.querySelector(".progress"),
-          label = form.querySelector(".form-progress__label");
-        let idx = 0;
-
-        form.addEventListener("click", (e) => {
-          if (e.target.matches(".btn-next")) changeStep(1);
-          if (e.target.matches(".btn-prev")) changeStep(-1);
-        });
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          completeForm();
-        });
-
-        function changeStep(dir) {
-          if (
-            ![...steps[idx].querySelectorAll("input,select,textarea")].every(
-              (f) => f.reportValidity()
-            )
-          )
-            return;
-          steps[idx].classList.remove("form-step--current");
-          idx += dir;
-          steps[idx].classList.add("form-step--current");
-          updateProgress();
-        }
-        function updateProgress() {
-          const total = steps.length,
-            pct = ((idx + 1) / total) * 100;
-          progress.style.strokeDashoffset = 339 - 339 * (pct / 100);
-          label.textContent = `${idx + 1} / ${total}`;
-        }
-        function completeForm() {
-          form.classList.add("form--complete");
-          form.querySelector(".form-success").hidden = false;
-          if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-            import(
-              "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
-            ).then((m) =>
-              m.default({ particleCount: 120, spread: 90, origin: { y: 0.7 } })
-            );
+  /* -------- Nav underline + scroll spy -------- */
+  const underline = document.querySelector(".nav-underline"),
+    links = [...document.querySelectorAll(".nav-links a")],
+    targets = links.map((a) => document.querySelector(a.getAttribute("href")));
+  links.forEach((a) =>
+    a.addEventListener("mouseenter", (e) => {
+      underline.style.left = e.target.offsetLeft + "px";
+      underline.style.width = e.target.offsetWidth + "px";
+    })
+  );
+  document.querySelector(".nav-links ul")?.addEventListener("mouseleave", () => (underline.style.width = 0));
+  new IntersectionObserver(
+    (entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const link = links.find((l) => l.getAttribute("href") === "#" + en.target.id);
+          if (link) {
+            underline.style.left = link.offsetLeft + "px";
+            underline.style.width = link.offsetWidth + "px";
           }
         }
-      }
-      /* Affiche le progress‑ring seulement quand la section #reservation est visible */
-      const res = document.querySelector(".reservation");
-      if (res) {
-        new IntersectionObserver(
-          (e) => res.classList.toggle("in-view", e[0].isIntersecting),
-          { threshold: 0 }
-        ).observe(res);
-      }
+      });
+    },
+    { threshold: 0.6, rootMargin: "-64px 0px -40% 0px" }
+  ).observe(...targets);
 
-      /* -------- Hero button pulse (applied via CSS) -------- */
-      document.querySelector(".hero .btn-primary")?.classList.add("pulse");
-      /* -------- Navigation drawer -------- */
-      close = document.querySelector(".drawer-close"); // ← NEW
+  /* -------- Card depth-tilt -------- */
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect(),
+        mx = (e.clientX - r.left) / r.width - 0.5,
+        my = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty("--mx", mx);
+      card.style.setProperty("--my", my);
+    });
+    card.addEventListener("mouseleave", () => {
+      // On supprime uniquement nos variables de tilt
+      card.style.removeProperty("--mx");
+      card.style.removeProperty("--my");
+    });
+  });
 
-      ham?.addEventListener("click", toggleDrawer);
-      scrim?.addEventListener("click", toggleDrawer);
-      close?.addEventListener("click", toggleDrawer); // ← NEW
-      document.addEventListener(
-        "keydown",
-        (e) => e.key === "Escape" && drawerOpen(false)
-      );
+  /* -------- Testimonials auto-slider -------- */
+  const track = document.querySelector(".testimonials-track");
+  if (track && track.children.length > 1) {
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % track.children.length;
+      track.scrollTo({
+        left: i * (track.firstElementChild.offsetWidth + 24),
+        behavior: "smooth",
+      });
+    }, 5000);
+  }
 
-      function toggleDrawer() {
-        drawerOpen(!drawer.classList.contains("drawer--open"));
+  /* -------- Floating CTA visibility -------- */
+  const floatBtn = document.querySelector(".btn-float"),
+    formSection = document.querySelector("#reservation");
+  new IntersectionObserver(
+    (entries) => {
+      floatBtn.style.display = entries[0].isIntersecting ? "none" : "inline-flex";
+    },
+    { threshold: 0.4 }
+  ).observe(formSection);
+
+  /* -------- Multi-step form -------- */
+  const form = document.getElementById("demoForm");
+  if (form) {
+    const steps = [...form.querySelectorAll(".form-step")],
+      progress = form.querySelector(".progress"),
+      label = form.querySelector(".form-progress__label");
+    let idx = 0;
+    form.addEventListener("click", (e) => {
+      if (e.target.matches(".btn-next")) changeStep(1);
+      if (e.target.matches(".btn-prev")) changeStep(-1);
+    });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      completeForm();
+    });
+    function changeStep(dir) {
+      if (![...steps[idx].querySelectorAll("input,select,textarea")].every((f) => f.reportValidity()))
+        return;
+      steps[idx].classList.remove("form-step--current");
+      idx += dir;
+      steps[idx].classList.add("form-step--current");
+      updateProgress();
+    }
+    function updateProgress() {
+      const total = steps.length,
+        pct = ((idx + 1) / total) * 100;
+      progress.style.strokeDashoffset = 339 - 339 * (pct / 100);
+      label.textContent = `${idx + 1} / ${total}`;
+    }
+    function completeForm() {
+      form.classList.add("form--complete");
+      form.querySelector(".form-success").hidden = false;
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        import(
+          "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+        ).then((m) =>
+          m.default({ particleCount: 120, spread: 90, origin: { y: 0.7 } })
+        );
       }
-      function drawerOpen(open) {
-        drawer.classList.toggle("drawer--open", open);
-        scrim.toggleAttribute("hidden", !open);
-        scrim.classList.toggle("scrim--show", open);
-        html.style.overflow = open ? "hidden" : "";
-        ham.setAttribute("aria-expanded", open); // ← accessibilité
-        if (open) drawer.querySelector("a")?.focus();
-      }
-    </script>
+    }
+  }
+
+  /* Affiche le progress-ring seulement si #reservation visible */
+  document.querySelector(".reservation") &&
+    new IntersectionObserver(
+      (e) => document.querySelector(".reservation").classList.toggle("in-view", e[0].isIntersecting),
+      { threshold: 0 }
+    ).observe(document.querySelector(".reservation"));
+
+  /* Hero pulse */
+  document.querySelector(".hero .btn-primary")?.classList.add("pulse");
+</script>
+
   </body>
 </html>
