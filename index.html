@@ -367,16 +367,19 @@
 /* positionnement du bouton “+” */
 .projects-track .card-expand {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 0.75rem;
+  right: 1rem;
   width: 32px;
   height: 32px;
   border: 2px solid #fff;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 0;     
   font-size: 1.25rem;
+  border: 2px solid #fff;
   color: #fff;
   background: rgba(0, 0, 0, 0.4);
   text-decoration: none;
@@ -840,6 +843,164 @@
           background: #fff;
         }
       }
+    /* ===================== Modal Overlay ===================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+.hidden {
+  display: none;
+}
+
+/* ===================== Fenêtre non-scrollable ===================== */
+.modal-window {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  background: #111;
+  border-radius: var(--r);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  overflow: hidden; /* on cache tout hors de la fenêtre */
+}
+
+/* ===================== Contenu déroulant ===================== */
+.modal-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+/* — Overlay — */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 100;
+}
+.hidden {
+  display: none;
+}
+
+/* — Fenêtre non-scrollable — */
+.modal-window {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  background: #111;
+  border-radius: var(--r);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+/* — Contenu déroulant — */
+.modal-content {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+/* — Slides — */
+.modal-slide {
+  display: none;
+}
+.modal-slide.active {
+  display: block;
+}
+
+/* — Image avec hauteur max pour laisser place à la description — */
+.modal-slide__img {
+  width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  border-radius: var(--r);
+  margin: 1rem auto;
+}
+
+/* — Description sous l’image — */
+.modal-slide__desc {
+  margin: 0.5rem 0 1.5rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* — Titres / sous-titres / listes — */
+.modal-slide h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.modal-slide h4 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.125rem;
+  color: var(--accent);
+}
+.modal-slide ul {
+  margin: 0.5rem 0;
+  padding-left: 1.2rem;
+  color: #ddd;
+}
+.modal-slide p + h4 {
+  margin-top: 1rem;
+}
+
+/* — Boutons Close / Prev / Next — */
+.modal-close,
+.modal-prev,
+.modal-next {
+  position: absolute;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+}
+.modal-close:hover,
+.modal-prev:hover,
+.modal-next:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Close en haut à droite */
+.modal-close {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+/* Prev à mi-hauteur, à gauche */
+.modal-prev {
+  top: 50%;
+  left: 0.5rem;
+  transform: translateY(-50%);
+}
+
+/* Next à mi-hauteur, à droite */
+.modal-next {
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+}
+
+
     </style>
   </head>
 
@@ -923,7 +1084,7 @@
               <h3>Surveillez LeBonCoin en temps réel</h3>
               <p>Recevez instantanément les annonces ciblées.</p>
             </div>
-            <a href="#" class="card-expand" aria-label="Voir le projet">+</a>
+            <button class="card-expand" aria-label="Voir le projet">+</button>
           </article>
 
           <article class="card" style="--img: url('assets/project_telegram.png')">
@@ -931,7 +1092,7 @@
               <h3>Promotions en message privé</h3>
               <p>Userbot Telegram sans spam, toujours pertinent.</p>
             </div>
-            <a href="#" class="card-expand" aria-label="Voir le projet">+</a>
+            <button class="card-expand" aria-label="Voir le projet">+</button>
           </article>
         </div>
       </section>
@@ -1120,6 +1281,82 @@
     <footer id="contact" class="site-footer glass">
       <p>Contactez-nous pour libérer votre temps !</p>
     </footer>
+<!-- =====================================
+     MODAL DÉTAIL PROJETS
+     ===================================== -->
+<div id="projectModal" class="modal hidden">
+  <div class="modal-window">
+    <!-- Bouton Fermer -->
+    <button class="modal-close" aria-label="Fermer">×</button>
+    <!-- Flèches Prev/Next -->
+    <button class="modal-prev" aria-label="Précédent">‹</button>
+    <button class="modal-next" aria-label="Suivant">›</button>
+
+    <!-- Contenu déroulant -->
+    <div class="modal-content">
+      <!-- Slide 0 : LeBonCoin -->
+      <article class="modal-slide" data-index="0">
+        <!-- 1. TITRE -->
+        <h3>Surveillez LeBonCoin en temps réel</h3>
+        <!-- 2. IMAGE (hauteur limitée) -->
+        <img
+          src="assets/project_leboncoin.png"
+          alt="Dashboard LeBonCoin"
+          class="modal-slide__img"
+        />
+        <!-- 3. DESCRIPTION -->
+        <p class="modal-slide__desc">
+          Finis les refresh manuels ! Vous recevez directement dans Telegram
+          toutes les nouvelles annonces correspondant à vos filtres (prix,
+          catégorie, zone géographique).
+        </p>
+        <!-- 4A. FONCTIONNALITÉS -->
+        <h4>Fonctionnalités clés :</h4>
+        <ul>
+          <li>Alertes instantanées sur chaque nouvelle annonce</li>
+          <li>Filtres avancés par mot-clé et localisation</li>
+          <li>Tableau de bord web pour historiser et trier</li>
+        </ul>
+        <!-- 4B. TECH STACK -->
+        <h4>Tech stack :</h4>
+        <p>Python (BeautifulSoup, Requests), Flask, Telegram Bot API, MongoDB</p>
+      </article>
+
+      <!-- Slide 1 : Telegram Promotions -->
+      <article class="modal-slide" data-index="1">
+        <!-- 1. TITRE -->
+        <h3>Promotions en message privé</h3>
+        <!-- 2. IMAGE (hauteur limitée) -->
+        <img
+          src="assets/project_telegram.png"
+          alt="Bot Telegram promotions"
+          class="modal-slide__img"
+        />
+        <!-- 3. DESCRIPTION -->
+        <p class="modal-slide__desc">
+          Un userbot Telegram 100 % sur mesure qui récupère tous vos flux
+          promo (RSS, API e-commerce) et vous envoie les meilleures offres
+          en DM, sans spam.
+        </p>
+        <!-- 4A. FONCTIONNALITÉS -->
+        <h4>Fonctionnalités clés :</h4>
+        <ul>
+          <li>Envoi programmé selon vos plages horaires</li>
+          <li>Ségrégation par catégorie de vente</li>
+          <li>Commandes “/pause” et “/reprendre” intégrées</li>
+        </ul>
+        <!-- 4B. TECH STACK -->
+        <h4>Tech stack :</h4>
+        <p>Python (Aiogram), PostgreSQL, cron, React pour interface</p>
+      </article>
+
+      <!-- … ajoute d’autres <article> pour chaque projet … -->
+    </div>
+  </div>
+</div>
+
+
+
 
     <script>
   /* -------- Navigation drawer -------- */
@@ -1261,7 +1498,54 @@
 
   /* Hero pulse */
   document.querySelector(".hero .btn-primary")?.classList.add("pulse");
+  const modal     = document.getElementById('projectModal');
+  const slides    = [...modal.querySelectorAll('.modal-slide')];
+  const btnClose  = modal.querySelector('.modal-close');
+  const btnPrev   = modal.querySelector('.modal-prev');
+  const btnNext   = modal.querySelector('.modal-next');
+  let currentIdx  = 0;
+
+  // Ouvre le modal au clic sur chaque “+”
+  document.querySelectorAll('.card-expand').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      currentIdx = i;
+      showSlide(currentIdx);
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function showSlide(idx) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[idx].classList.add('active');
+    // remet le scroll en haut à chaque slide
+    modal.querySelector('.modal-content').scrollTop = 0;
+  }
+
+  // Navigation circulaire
+  btnPrev.addEventListener('click', () => {
+    currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+    showSlide(currentIdx);
+  });
+  btnNext.addEventListener('click', () => {
+    currentIdx = (currentIdx + 1) % slides.length;
+    showSlide(currentIdx);
+  });
+
+  // Fermeture
+  btnClose.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+  function closeModal() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
 </script>
+
 
   </body>
 </html>
