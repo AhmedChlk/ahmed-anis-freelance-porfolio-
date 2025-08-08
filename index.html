@@ -635,66 +635,7 @@
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
 
-      /* ======================= 10 • CONTACT ======================= */
-      .contact {
-        padding: 96px var(--gap);
-        background: #000;
-        color: #fff;
-        text-align: center;
-      }
-      .contact h2 {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 32px;
-      }
-      .contact form {
-        display: flex;
-        flex-direction: column;
-        gap: var(--gap);
-        max-width: 500px;
-        margin: auto;
-      }
-      .contact label {
-        color: #fff;
-        font-weight: 600;
-        text-align: left;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .contact input,
-      .contact textarea {
-        background: rgba(0, 0, 0, 0.7);
-        color: #fff;
-        border: 1px solid var(--accent);
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 1rem;
-        font-family: inherit;
-      }
-      .contact input::placeholder,
-      .contact textarea::placeholder {
-        color: rgba(255, 255, 255, 0.6);
-      }
-      .contact button[type="submit"] {
-        align-self: flex-end;
-        background: var(--accent);
-        color: #fff;
-        padding: 12px 24px;
-        border-radius: 50px;
-        font-weight: 600;
-        transition: transform 0.3s, box-shadow 0.3s;
-      }
-      .contact button[type="submit"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      }
-      .contact .form-status {
-        margin-top: var(--gap);
-        color: #0f0;
-        text-align: center;
-      }
-
+      
       /* ======================= 11 • RÉSERVATION ======================= */
       .reservation {
         padding: 96px var(--gap);
@@ -1029,7 +970,6 @@
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#reservation">Réserver</a></li>
-            <li><a href="#contact">Contact</a></li>
             <li>
               <a href="#reservation" class="btn-nav">
                 <span>↳ Planifier mon appel</span>
@@ -1050,7 +990,6 @@
             <li><a href="#accueil">Accueil</a></li>
             <li><a href="#projets">Projets</a></li>
             <li><a href="#reservation">Réserver</a></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
       </aside>
@@ -1217,30 +1156,6 @@
           </div>
         </details>
       </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="contact">
-        <h2>Contactez-nous</h2>
-        <form id="contactForm" action="https://formspree.io/f/xblkpvaz" method="POST">
-          <label>
-            Nom complet
-            <input type="text" name="name" required placeholder="Votre nom" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" required placeholder="votre@email.com" />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="4" required placeholder="Décrivez votre projet..."></textarea>
-          </label>
-          <button type="submit">Envoyer le message</button>
-        </form>
-        <p class="form-status" hidden>
-          ✅ Message envoyé ! Nous vous répondrons rapidement.
-        </p>
-      </section>
-
       <!-- RÉSERVATION -->
       <section id="reservation" class="reservation">
         <h2>Réservez votre démonstration</h2>
@@ -1298,7 +1213,6 @@
             <li><a href="#projets">Nos réalisations</a></li>
             <li><a href="#testimonials">Témoignages</a></li>
             <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-section">
@@ -1526,7 +1440,6 @@
         }
       }
 
-      setupForm("contactForm", "#contact .form-status");
       setupForm("reservationForm", "#reservation .form-status");
 
       // Modal project slides
