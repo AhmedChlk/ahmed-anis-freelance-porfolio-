@@ -58,6 +58,7 @@
         border: none;
         background: none;
         cursor: pointer;
+        font-family: inherit;
       }
       img {
         display: block;
@@ -91,6 +92,7 @@
         z-index: 10;
         width: 100%;
         background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
       }
       .nav-container {
         max-width: 1200px;
@@ -101,8 +103,28 @@
         align-items: center;
         justify-content: space-between;
       }
-      .brand img {
-        height: 48px;
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.5rem;
+      }
+      .brand-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--accent-grad);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+      }
+      .nav-links {
+        position: relative;
       }
       .nav-links ul {
         display: flex;
@@ -112,6 +134,7 @@
       .nav-links a {
         font-family: var(--font-display);
         font-weight: 500;
+        color: #fff;
         padding: 8px;
         transition: color 0.25s var(--e), transform 0.25s var(--e);
       }
@@ -134,6 +157,7 @@
         border-radius: 24px;
         font-weight: 600;
         overflow: hidden;
+        color: #fff;
       }
       .btn-nav::before {
         content: "";
@@ -142,6 +166,10 @@
         background: var(--accent-grad);
         opacity: 0;
         transition: opacity 0.35s var(--e);
+      }
+      .btn-nav span {
+        position: relative;
+        z-index: 1;
       }
       .btn-nav:hover::before {
         opacity: 1;
@@ -154,12 +182,14 @@
         display: none;
         flex-direction: column;
         gap: 5px;
+        padding: 8px;
       }
       .hamburger span {
         width: 24px;
         height: 2px;
-        background: var(--text-dark);
+        background: #fff;
         border-radius: 1px;
+        transition: all 0.3s ease;
       }
       .scrim {
         position: fixed;
@@ -180,11 +210,24 @@
         transition: transform 0.35s var(--e);
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
       }
+      .drawer-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 24px;
+        color: var(--text-dark);
+      }
       .drawer-nav ul {
         display: flex;
         flex-direction: column;
         gap: 20px;
         list-style: none;
+        margin-top: 40px;
+      }
+      .drawer-nav a {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-dark);
       }
       .drawer--open {
         transform: translateY(0);
@@ -199,13 +242,12 @@
         position: relative;
         height: 100vh;
         overflow: hidden;
-      }
-      .hero-video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url('https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080');
+        background-size: cover;
+        background-position: center;
       }
       .hero::after {
         content: "";
@@ -221,9 +263,6 @@
       .hero-content {
         position: relative;
         z-index: 2;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         text-align: center;
         padding: 0 var(--gap);
         max-width: 900px;
@@ -233,13 +272,19 @@
         font-size: clamp(2.5rem, 6vw, 5rem);
         color: #fff;
         margin-bottom: 16px;
+        font-weight: 700;
       }
       .hero-content p {
         color: rgba(255, 255, 255, 0.9);
         font-size: 1.125rem;
         margin-bottom: 24px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
       }
       .btn-primary {
+        display: inline-block;
         background: var(--accent-grad);
         color: #fff;
         padding: 14px 48px;
@@ -252,197 +297,181 @@
         transform: scale(1.05);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
       }
-      @keyframes heroPulse {
-        0% {
-          transform: scale(1);
-          box-shadow: none;
-        }
-        50% {
-          transform: scale(1.06);
-          box-shadow: 0 0 32px rgba(0, 0, 0, 0.35);
-        }
-        100% {
-          transform: scale(1);
-          box-shadow: none;
-        }
-      }
-      .hero .btn-primary.pulse {
-        animation: heroPulse 0.9s 2s backwards;
+
+      /* ======================= 4 • PROJETS ======================= */
+      .projects {
+        padding: 96px var(--gap);
+        background: #111;
+        position: relative;
       }
 
-     /* ======================= 4 • PROJETS (portrait) ======================= */
-.projects {
-  padding: 96px var(--gap);
-  background: #111;
-  position: relative;
-}
+      .projects header {
+        z-index: 2;
+        position: relative;
+        margin-bottom: 48px;
+        text-align: center;
+        max-width: 1000px;
+        margin-inline: auto;
+      }
 
-.projects header {
-  z-index: 2;
-  position: relative;
-  margin-bottom: 48px;
-  text-align: center;
-  max-width: 1000px;
-  margin-inline: auto;
-}
+      .projects header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: #fff;
+      }
 
-.projects header h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  color: #fff;
-}
+      .projects header p {
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 8px;
+        font-size: 1.125rem;
+      }
 
-.projects header p {
-  color: rgba(255, 255, 255, 0.7);
-  margin-top: 8px;
-}
+      .projects-track {
+        display: flex;
+        gap: var(--gap);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-inline: 0;
+        z-index: 1;
+      }
 
-/* rail des cartes : même max-width que la grille d’expertise */
-.projects-track {
-  display: flex;
-  gap: var(--gap);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-inline: 0;
-  z-index: 1;
-}
+      .projects-track::-webkit-scrollbar {
+        display: none;
+      }
 
-.projects-track::-webkit-scrollbar {
-  display: none;
-}
+      .projects-track .card {
+        --card-width: 260px;
+        flex: 0 0 var(--card-width);
+        aspect-ratio: 3/4;
+        position: relative;
+        border-radius: var(--r);
+        background-image: var(--img);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+        scroll-snap-align: center;
+        transition: transform 0.3s var(--e), box-shadow 0.3s var(--e);
+      }
 
-.projects-track .card {
-  --card-width: 260px;
-  flex: 0 0 var(--card-width);
-  aspect-ratio: 3/4;
-  position: relative;
-  border-radius: var(--r);
-  background-image: var(--img);
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  scroll-snap-align: center;
-  transition: transform 0.3s var(--e), box-shadow 0.3s var(--e);
-}
+      .projects-track .card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+      }
 
-.projects-track .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
-}
+      .projects-track .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.15) 0%,
+          rgba(0, 0, 0, 0.05) 40%,
+          rgba(0, 0, 0, 0.15) 100%
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
 
-.projects-track .card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.05) 40%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
-  z-index: 0;
-  pointer-events: none;
-}
+      .projects-track .card-content {
+        position: absolute;
+        bottom: var(--gap);
+        left: var(--gap);
+        right: var(--gap);
+        z-index: 1;
+        color: #fff;
+      }
 
-.projects-track .card-content {
-  position: absolute;
-  bottom: var(--gap);
-  left: var(--gap);
-  right: var(--gap);
-  z-index: 1;
-  color: #fff;
-}
+      .projects-track .card-content h3 {
+        margin-bottom: 0.5em;
+        font-family: var(--font-display);
+        font-weight: 600;
+      }
 
-.projects-track .card-content h3 {
-  margin-bottom: 0.5em;
-}
+      .projects-track .card-content p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        line-height: 1.4;
+      }
 
-.projects-track .card-content p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
+      .projects-track .card-expand {
+        position: absolute;
+        bottom: 0.75rem;
+        right: 1rem;
+        width: 32px;
+        height: 32px;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;     
+        font-size: 1.25rem;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.4);
+        text-decoration: none;
+        z-index: 2;
+        transition: background 0.2s;
+      }
 
-/* positionnement du bouton “+” */
-.projects-track .card-expand {
-  position: absolute;
-  bottom: 0.75rem;
-  right: 1rem;
-  width: 32px;
-  height: 32px;
-  border: 2px solid #fff;
-  border-radius: 50%;
+      .projects-track .card-expand:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 0;     
-  font-size: 1.25rem;
-  border: 2px solid #fff;
-  color: #fff;
-  background: rgba(0, 0, 0, 0.4);
-  text-decoration: none;
-  z-index: 2;
-  transition: background 0.2s;
-}
+      /* ======================= 5 • TÉMOIGNAGES ======================= */
+      .testimonials {
+        padding: 96px var(--gap);
+        background: #000;
+        color: #fff;
+        text-align: center;
+      }
 
-.projects-track .card-expand:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-/* ======================= 5 • TÉMOIGNAGES ======================= */
-.testimonials {
-  padding: 96px var(--gap);
-  background: #000;
-  color: #fff;
-  text-align: center;
-}
+      .testimonials h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 40px;
+        max-width: 1000px;
+        margin-inline: auto;
+      }
 
-.testimonials h2 {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  margin-bottom: 40px;
-  max-width: 1000px;
-  margin-inline: auto;
-}
+      .testimonials-track {
+        display: flex;
+        gap: var(--gap);
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-inline: 0;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding-bottom: 8px;
+      }
 
-/* rail des témoignages : même max-width que la grille d’expertise */
-.testimonials-track {
-  display: flex;
-  gap: var(--gap);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-inline: 0;     /* on gère le padding sur la section */
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 8px;
-}
+      .testimonials-track::-webkit-scrollbar {
+        display: none;
+      }
 
-.testimonials-track::-webkit-scrollbar {
-  display: none;
-}
+      .testimonials-track figure {
+        flex: 0 0 280px;
+        scroll-snap-align: center;
+        padding: 32px;
+        border-radius: var(--r);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
 
-.testimonials-track figure {
-  flex: 0 0 280px;
-  scroll-snap-align: center;
-  padding: 32px;
-  border-radius: var(--r);
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-}
+      .testimonials blockquote {
+        font-size: 1.125rem;
+        font-weight: 500;
+        margin-bottom: 16px;
+        line-height: 1.4;
+      }
 
-.testimonials blockquote {
-  font-size: 1.125rem;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
+      .testimonials figcaption {
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.65);
+      }
 
-.testimonials figcaption {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-      /* ===== 6 • EXPERTISE ============================================== */
+      /* ======================= 6 • EXPERTISE ======================= */
       .expertise {
         padding: 96px var(--gap);
         background: var(--bg-light);
@@ -459,6 +488,7 @@
         gap: var(--gap);
         max-width: 1000px;
         margin-inline: auto;
+        list-style: none;
       }
       .exp-grid li {
         background: #fff;
@@ -469,16 +499,18 @@
         flex-direction: column;
         gap: 12px;
         align-items: start;
+        text-align: left;
       }
       .exp-grid h3 {
         font-size: 1.25rem;
         font-family: var(--font-display);
+        margin-bottom: 8px;
       }
       .exp-icon {
         font-size: 2rem;
       }
 
-      /* ===== 7 • PROCESSUS ============================================== */
+      /* ======================= 7 • PROCESSUS ======================= */
       .process {
         padding: 96px var(--gap);
         background: #000;
@@ -496,11 +528,11 @@
         justify-content: center;
         gap: var(--gap);
         counter-reset: step;
+        list-style: none;
       }
       .process li {
         flex: 1 1 200px;
         max-width: 220px;
-        list-style: none;
         font-weight: 600;
         position: relative;
         padding-top: 56px;
@@ -522,10 +554,10 @@
         font-size: 1.125rem;
       }
 
-      /* ===== 8 • WHY ==================================================== */
+      /* ======================= 8 • WHY ======================= */
       .why {
         padding: 96px var(--gap);
-        background: #000;
+        background: #111;
         color: #fff;
         text-align: center;
       }
@@ -541,6 +573,10 @@
         max-width: 1000px;
         margin-inline: auto;
         text-align: left;
+        list-style: none;
+      }
+      .why-grid li {
+        padding: 20px;
       }
       .why-grid h3 {
         font-family: var(--font-display);
@@ -551,7 +587,7 @@
         color: var(--accent);
       }
 
-      /* ===== 9 • FAQ ==================================================== */
+      /* ======================= 9 • FAQ ======================= */
       .faq {
         padding: 96px var(--gap);
         background: var(--bg-light);
@@ -590,7 +626,7 @@
       .faq details[open] summary::after {
         transform: rotate(270deg);
       }
-      .faq p {
+      .faq .faq-answer {
         padding: 0 20px 20px;
         color: var(--text-dark);
       }
@@ -598,26 +634,71 @@
         transform: translateY(-4px);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
       }
-      @media (prefers-color-scheme: dark) {
-        .faq {
-          background: #111;
-        }
-        .faq details {
-          background: #1a1a1a;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
-        }
-        .faq summary {
-          color: #fff;
-        }
-        .faq p {
-          color: #d1d1d1;
-        }
-      }
 
-      /* ===== 10 • RÉSERVATION (multi-étapes) ============================ */
-      .reservation {
+      /* ======================= 10 • CONTACT ======================= */
+      .contact {
         padding: 96px var(--gap);
         background: #000;
+        color: #fff;
+        text-align: center;
+      }
+      .contact h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 32px;
+      }
+      .contact form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap);
+        max-width: 500px;
+        margin: auto;
+      }
+      .contact label {
+        color: #fff;
+        font-weight: 600;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .contact input,
+      .contact textarea {
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        border: 1px solid var(--accent);
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+      }
+      .contact input::placeholder,
+      .contact textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .contact button[type="submit"] {
+        align-self: flex-end;
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .contact button[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+      .contact .form-status {
+        margin-top: var(--gap);
+        color: #0f0;
+        text-align: center;
+      }
+
+      /* ======================= 11 • RÉSERVATION ======================= */
+      .reservation {
+        padding: 96px var(--gap);
+        background: #111;
         color: #fff;
         text-align: center;
       }
@@ -626,129 +707,55 @@
         font-size: clamp(2rem, 5vw, 3rem);
         margin-bottom: 32px;
       }
-      #demoForm {
-        max-width: 600px;
-        margin: 0 auto;
-        position: relative;
-      }
-      .form-step {
-        display: none;
-        animation: fadeIn 0.45s forwards;
-      }
-      .form-step--current {
+      .reservation form {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: var(--gap);
+        max-width: 500px;
+        margin: auto;
       }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      label {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+      .reservation label {
+        color: #fff;
         font-weight: 600;
         text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
-      input,
-      select,
-      textarea {
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        border-radius: 8px;
+      .reservation input,
+      .reservation textarea {
+        background: rgba(0, 0, 0, 0.7);
         color: #fff;
+        border: 1px solid var(--accent);
+        padding: 12px;
+        border-radius: 8px;
         font-size: 1rem;
+        font-family: inherit;
       }
-      input:invalid,
-      select:invalid,
-      textarea:invalid {
-        border-color: #ff453a;
+      .reservation input::placeholder,
+      .reservation textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
       }
-      textarea {
-        resize: vertical;
-      }
-      .btn-next,
-      .btn-prev,
-      .btn-submit {
+      .reservation button[type="submit"] {
         align-self: flex-end;
-        padding: 10px 32px;
+        background: var(--accent);
+        color: #fff;
+        padding: 12px 24px;
         border-radius: 50px;
         font-weight: 600;
-        background: var(--accent-grad);
-        color: #fff;
-        transition: transform 0.3s var(--e-snappy), box-shadow 0.3s;
+        transition: transform 0.3s, box-shadow 0.3s;
       }
-      .btn-prev {
-        background: rgba(255, 255, 255, 0.25);
-        margin-right: auto;
-      }
-      .btn-next:hover,
-      .btn-prev:hover,
-      .btn-submit:hover {
+      .reservation button[type="submit"]:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       }
-      .form-progress {
-        position: fixed;
-        top: 24px;
-        right: 24px;
-        width: 60px;
-        height: 60px;
-      }
-      .form-progress svg {
-        transform: rotate(-90deg);
-      }
-      .form-progress circle {
-        fill: none;
-        stroke-width: 12;
-        stroke-linecap: round;
-      }
-      .form-progress circle:nth-child(1) {
-        stroke: rgba(255, 255, 255, 0.2);
-      }
-      .progress {
-        stroke: url(#ringGradient);
-        stroke-dasharray: 339;
-        stroke-dashoffset: 339;
-        transition: stroke-dashoffset 0.6s var(--e-snappy);
-        animation: rotateRing 8s linear infinite;
-      }
-      @keyframes rotateRing {
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      .form-progress__label {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.875rem;
-        font-weight: 600;
-      }
-      .form-success {
-        display: none;
-        padding: 64px 0;
-      }
-      .form--complete .form-step,
-      .form--complete .form-progress {
-        display: none;
-      }
-      .form--complete .form-success {
-        display: block;
-        animation: fadeIn 0.6s;
+      .reservation .form-status {
+        margin-top: var(--gap);
+        color: #0f0;
+        text-align: center;
       }
 
-      /* ===== 11 • CTA FLOTTANT ========================================= */
+      /* ======================= 12 • CTA FLOTTANT ======================= */
       .btn-float {
         position: fixed;
         bottom: 32px;
@@ -761,11 +768,10 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         transition: transform 0.4s var(--e), opacity 0.4s;
         overflow: hidden;
+        z-index: 50;
       }
-      @media (hover: hover) {
-        .btn-float:hover {
-          transform: translateY(-4px) scale(1.02);
-        }
+      .btn-float:hover {
+        transform: translateY(-4px) scale(1.02);
       }
       .btn-float::after {
         content: "";
@@ -778,7 +784,7 @@
         );
         opacity: 0;
         transform: scale(0);
-        transition: transform 0.6s, var(--e), opacity 0.6s var(--e);
+        transition: transform 0.6s var(--e), opacity 0.6s var(--e);
       }
       .btn-float:active::after {
         opacity: 1;
@@ -786,13 +792,159 @@
         transition: none;
       }
 
-      /* ===== 12 • FOOTER =============================================== */
+      /* ======================= 13 • FOOTER ======================= */
       .site-footer {
-        padding: 24px var(--gap);
+        padding: 48px var(--gap) 24px;
         text-align: center;
+        background: #000;
+        color: #fff;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+      .footer-section h3 {
+        font-family: var(--font-display);
+        margin-bottom: 1rem;
+        color: var(--accent);
+      }
+      .footer-section ul {
+        list-style: none;
+      }
+      .footer-section li {
+        margin-bottom: 0.5rem;
+      }
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.3s;
+      }
+      .footer-section a:hover {
+        color: var(--accent);
+      }
+      .footer-bottom {
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.875rem;
       }
 
-      /* ===== 13 • RESPONSIVE =========================================== */
+      /* ======================= 14 • MODAL ======================= */
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        z-index: 100;
+      }
+      .hidden {
+        display: none;
+      }
+      .modal-window {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        max-height: 85vh;
+        background: #111;
+        border-radius: var(--r);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+       
+       /* AJOUT : Rendre le conteneur Flexbox */
+       display: flex;
+       flex-direction: column;
+      }
+      .modal-content {
+       /* MODIFICATION : Remplacer height par flex-grow */
+       flex-grow: 1;
+       min-height: 0;
+        overflow-y: auto;
+        padding: 1.5rem;
+      }
+      .modal-slide {
+        display: none;
+      }
+      .modal-slide.active {
+        display: block;
+      }
+      .modal-slide__img {
+        width: 100%;
+        max-height: 50vh;
+        object-fit: contain;
+        border-radius: var(--r);
+        margin: 1rem auto;
+      }
+      .modal-slide__desc {
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.6;
+        color: #ddd;
+      }
+      .modal-slide h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #fff;
+        font-family: var(--font-display);
+      }
+      .modal-slide h4 {
+        margin: 1rem 0 0.5rem;
+        font-size: 1.125rem;
+        color: var(--accent);
+        font-family: var(--font-display);
+      }
+      .modal-slide ul {
+        margin: 0.5rem 0;
+        padding-left: 1.2rem;
+        color: #ddd;
+      }
+      .modal-slide p + h4 {
+        margin-top: 1rem;
+      }
+      .modal-close,
+      .modal-prev,
+      .modal-next {
+        position: absolute;
+        background: rgba(0,0,0,0.4);
+        border: none;
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        transition: background 0.2s;
+      }
+      .modal-close:hover,
+      .modal-prev:hover,
+      .modal-next:hover {
+        background: rgba(0,0,0,0.6);
+      }
+      .modal-close {
+        top: 0.75rem;
+        right: 0.75rem;
+      }
+      .modal-prev {
+        top: 50%;
+        left: 0.5rem;
+        transform: translateY(-50%);
+      }
+      .modal-next {
+        top: 50%;
+        right: 0.5rem;
+        transform: translateY(-50%);
+      }
+
+      /* ======================= 15 • RESPONSIVE ======================= */
       @media (max-width: 767px) {
         .nav-links {
           display: none;
@@ -809,6 +961,16 @@
         .testimonials-track {
           scroll-padding-inline: var(--gap);
         }
+        .btn-float {
+          bottom: 16px;
+          right: 16px;
+          padding: 12px 24px;
+          font-size: 0.875rem;
+        }
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: left;
+        }
       }
       @media (min-width: 768px) {
         .scrim,
@@ -817,7 +979,7 @@
         }
       }
 
-      /* ===== 14 • DARK MODE ============================================ */
+      /* ======================= 16 • DARK MODE ======================= */
       @media (prefers-color-scheme: dark) {
         body {
           background: #000;
@@ -827,10 +989,6 @@
           background: rgba(28, 28, 30, 0.45);
           border-color: rgba(255, 255, 255, 0.2);
         }
-        .projects,
-        .why {
-          background: #111;
-        }
         .expertise,
         .faq {
           background: #111;
@@ -839,168 +997,20 @@
         .exp-grid li {
           background: #1a1a1a;
         }
+        .faq details {
+          background: #1a1a1a;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+        }
+        .faq summary {
+          color: #fff;
+        }
+        .faq .faq-answer {
+          color: #d1d1d1;
+        }
         .hamburger span {
           background: #fff;
         }
       }
-    /* ===================== Modal Overlay ===================== */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 100;
-}
-.hidden {
-  display: none;
-}
-
-/* ===================== Fenêtre non-scrollable ===================== */
-.modal-window {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  max-height: 85vh;
-  background: #111;
-  border-radius: var(--r);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  overflow: hidden; /* on cache tout hors de la fenêtre */
-}
-
-/* ===================== Contenu déroulant ===================== */
-.modal-content {
-  height: 100%;
-  overflow-y: auto;
-  padding: 1.5rem;
-}
-
-/* — Overlay — */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 100;
-}
-.hidden {
-  display: none;
-}
-
-/* — Fenêtre non-scrollable — */
-.modal-window {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  max-height: 85vh;
-  background: #111;
-  border-radius: var(--r);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-  overflow: hidden;
-}
-
-/* — Contenu déroulant — */
-.modal-content {
-  height: 100%;
-  overflow-y: auto;
-  padding: 1.5rem;
-}
-
-/* — Slides — */
-.modal-slide {
-  display: none;
-}
-.modal-slide.active {
-  display: block;
-}
-
-/* — Image avec hauteur max pour laisser place à la description — */
-.modal-slide__img {
-  width: 100%;
-  max-height: 50vh;
-  object-fit: contain;
-  border-radius: var(--r);
-  margin: 1rem auto;
-}
-
-/* — Description sous l’image — */
-.modal-slide__desc {
-  margin: 0.5rem 0 1.5rem;
-  line-height: 1.6;
-  color: #ddd;
-}
-
-/* — Titres / sous-titres / listes — */
-.modal-slide h3 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #fff;
-}
-.modal-slide h4 {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.125rem;
-  color: var(--accent);
-}
-.modal-slide ul {
-  margin: 0.5rem 0;
-  padding-left: 1.2rem;
-  color: #ddd;
-}
-.modal-slide p + h4 {
-  margin-top: 1rem;
-}
-
-/* — Boutons Close / Prev / Next — */
-.modal-close,
-.modal-prev,
-.modal-next {
-  position: absolute;
-  background: rgba(0,0,0,0.4);
-  border: none;
-  color: #fff;
-  width: 32px;
-  height: 32px;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.2s;
-}
-.modal-close:hover,
-.modal-prev:hover,
-.modal-next:hover {
-  background: rgba(0,0,0,0.6);
-}
-
-/* Close en haut à droite */
-.modal-close {
-  top: 0.75rem;
-  right: 0.75rem;
-}
-
-/* Prev à mi-hauteur, à gauche */
-.modal-prev {
-  top: 50%;
-  left: 0.5rem;
-  transform: translateY(-50%);
-}
-
-/* Next à mi-hauteur, à droite */
-.modal-next {
-  top: 50%;
-  right: 0.5rem;
-  transform: translateY(-50%);
-}
-
-
     </style>
   </head>
 
@@ -1008,10 +1018,11 @@
     <a class="skip-link" href="#main">Aller au contenu principal</a>
 
     <!-- HEADER -->
-    <header class="site-header glass">
+    <header class="site-header">
       <div class="nav-container">
         <a href="#accueil" class="brand">
-          <img src="assets/logo.png" alt="Logo de la marque" />
+          <div class="brand-icon">⚡</div>
+          <span>AutoFlow</span>
         </a>
         <nav class="nav-links" aria-label="Navigation principale">
           <ul>
@@ -1020,9 +1031,9 @@
             <li><a href="#reservation">Réserver</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
-              <a href="#reservation" class="btn-nav ghost-cta"
-                >↳ Planifier mon appel</a
-              >
+              <a href="#reservation" class="btn-nav">
+                <span>↳ Planifier mon appel</span>
+              </a>
             </li>
           </ul>
           <span class="nav-underline"></span>
@@ -1049,23 +1060,10 @@
     <main id="main">
       <!-- HERO -->
       <section id="accueil" class="hero">
-        <video
-          class="hero-video"
-          autoplay
-          muted
-          loop
-          playsinline
-          poster="https://images.pexels.com/photos/1103970/pexels-photo-1103970.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=1080"
-        >
-          <source
-            src="https://player.vimeo.com/external/208171217.hd.mp4?s=a3f7b5e29c4ab5b478b60effa4a4cd45ad25f12e&amp;profile_id=174"
-            type="video/mp4"
-          />
-        </video>
         <div class="hero-content">
           <h1>Tout devient automatique, sauf vos idées.</h1>
           <p>
-            Concentrez-vous sur ce qui fait grandir votre marque — on s’occupe
+            Concentrez-vous sur ce qui fait grandir votre marque — on s'occupe
             du reste.
           </p>
           <a href="#reservation" class="btn-primary">Planifier mon appel ↗︎</a>
@@ -1079,7 +1077,7 @@
           <p>Découvrez comment nous transformons les workflows.</p>
         </header>
         <div class="projects-track">
-          <article class="card" style="--img: url('assets/project_leboncoin.png')">
+          <article class="card" style="--img: url('https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800')">
             <div class="card-content">
               <h3>Surveillez LeBonCoin en temps réel</h3>
               <p>Recevez instantanément les annonces ciblées.</p>
@@ -1087,10 +1085,18 @@
             <button class="card-expand" aria-label="Voir le projet">+</button>
           </article>
 
-          <article class="card" style="--img: url('assets/project_telegram.png')">
+          <article class="card" style="--img: url('https://images.pexels.com/photos/355948/pexels-photo-355948.jpeg?auto=compress&cs=tinysrgb&w=800')">
             <div class="card-content">
               <h3>Promotions en message privé</h3>
               <p>Userbot Telegram sans spam, toujours pertinent.</p>
+            </div>
+            <button class="card-expand" aria-label="Voir le projet">+</button>
+          </article>
+
+          <article class="card" style="--img: url('https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800')">
+            <div class="card-content">
+              <h3>Dashboard Analytics</h3>
+              <p>Reporting automatisé multi-sources en temps réel.</p>
             </div>
             <button class="card-expand" aria-label="Voir le projet">+</button>
           </article>
@@ -1103,19 +1109,19 @@
         <div class="testimonials-track">
           <figure>
             <blockquote>
-              “Nos reportings prennent 5 min au lieu de 3 h.”
+              "Nos reportings prennent 5 min au lieu de 3 h."
             </blockquote>
             <figcaption>Sarah B. — CFO PME Retail</figcaption>
           </figure>
           <figure>
             <blockquote>
-              “+42 % de leads en 30 jours grâce aux alertes Telegram.”
+              "+42 % de leads en 30 jours grâce aux alertes Telegram."
             </blockquote>
             <figcaption>Marc D. — Fondateur e-commerce</figcaption>
           </figure>
           <figure>
             <blockquote>
-              “Intégration… tellement fluide que personne n’a rien remarqué !”
+              "Intégration… tellement fluide que personne n'a rien remarqué !"
             </blockquote>
             <figcaption>Julie R. — Dir. Ops</figcaption>
           </figure>
@@ -1174,11 +1180,11 @@
           </li>
           <li>
             <h3>ROI mesurable</h3>
-            <p>Dashboards live pour suivre l’impact.</p>
+            <p>Dashboards live pour suivre l'impact.</p>
           </li>
           <li>
             <h3>Intégration invisible</h3>
-            <p>Aucune courbe d’apprentissage.</p>
+            <p>Aucune courbe d'apprentissage.</p>
           </li>
         </ul>
       </section>
@@ -1188,364 +1194,413 @@
         <h2>FAQ express</h2>
         <details open>
           <summary>Combien de temps pour un projet type ?</summary>
-          <p>Entre 5 et 15 jours selon la complexité.</p>
+          <div class="faq-answer">
+            <p>Entre 5 et 15 jours selon la complexité.</p>
+          </div>
         </details>
         <details>
           <summary>Faut-il héberger quelque chose ?</summary>
-          <p>Non, nos scripts tournent dans votre cloud ou le nôtre.</p>
+          <div class="faq-answer">
+            <p>Non, nos scripts tournent dans votre cloud ou le nôtre.</p>
+          </div>
         </details>
         <details>
-          <summary>Que se passe-t-il si j’ai besoin d’aide ?</summary>
-          <p>Support humain 24 h / 24, réponse en –2 h ouvrées.</p>
+          <summary>Que se passe-t-il si j'ai besoin d'aide ?</summary>
+          <div class="faq-answer">
+            <p>Support humain 24 h / 24, réponse en –2 h ouvrées.</p>
+          </div>
         </details>
         <details>
           <summary>Quel est le coût moyen ?</summary>
-          <p>Projet pilote dès 1 900 €, ROI habituel &lt; 2 mois.</p>
+          <div class="faq-answer">
+            <p>Projet pilote dès 1 900 €, ROI habituel &lt; 2 mois.</p>
+          </div>
         </details>
       </section>
 
-      <!-- FORMULAIRE -->
+      <!-- CONTACT -->
+      <section id="contact" class="contact">
+        <h2>Contactez-nous</h2>
+        <form id="contactForm" action="https://formspree.io/f/xblkpvaz" method="POST">
+          <label>
+            Nom complet
+            <input type="text" name="name" required placeholder="Votre nom" />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="votre@email.com" />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows="4" required placeholder="Décrivez votre projet..."></textarea>
+          </label>
+          <button type="submit">Envoyer le message</button>
+        </form>
+        <p class="form-status" hidden>
+          ✅ Message envoyé ! Nous vous répondrons rapidement.
+        </p>
+      </section>
+
+      <!-- RÉSERVATION -->
       <section id="reservation" class="reservation">
         <h2>Réservez votre démonstration</h2>
-
-        <form id="demoForm" novalidate>
-          <div class="form-step form-step--current" data-step="1">
-            <label>Votre nom <input type="text" name="name" required /></label>
-            <label
-              >Votre e-mail <input type="email" name="email" required
-            /></label>
-            <button type="button" class="btn-next">Étape suivante →</button>
-          </div>
-
-          <div class="form-step" data-step="2">
-            <label
-              >Sujet principal
-              <select name="subject" required>
-                <option value="">Choisissez…</option>
-                <option>Automatisation e-commerce</option>
-                <option>Reporting automatique</option>
-                <option>Scraping & alertes</option>
-              </select>
-            </label>
-            <label
-              >Budget estimé
-              <input type="number" name="budget" placeholder="€" required
-            /></label>
-            <button type="button" class="btn-prev">← Retour</button>
-            <button type="button" class="btn-next">Étape suivante →</button>
-          </div>
-
-          <div class="form-step" data-step="3">
-            <label
-              >Message <textarea name="message" rows="4" required></textarea>
-            </label>
-            <button type="button" class="btn-prev">← Retour</button>
-            <button type="submit" class="btn-submit">Envoyer la demande</button>
-          </div>
-
-          <div class="form-progress" aria-live="polite">
-            <svg viewBox="0 0 120 120">
-              <defs>
-                <linearGradient
-                  id="ringGradient"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop offset="0%" stop-color="#0A84FF" />
-                  <stop offset="100%" stop-color="#44C3FF" />
-                </linearGradient>
-              </defs>
-              <circle cx="60" cy="60" r="54" />
-              <circle class="progress" cx="60" cy="60" r="54" />
-            </svg>
-            <span class="form-progress__label">1 / 3</span>
-          </div>
+        <form id="reservationForm" action="https://formspree.io/f/xblkpvaz" method="POST">
+          <label>
+            Entreprise
+            <input type="text" name="company" required placeholder="Nom de votre entreprise" />
+          </label>
+          <label>
+            Email professionnel
+            <input type="email" name="email" required placeholder="votre@entreprise.com" />
+          </label>
+          <label>
+            Téléphone
+            <input type="tel" name="phone" placeholder="+33 X XX XX XX XX" />
+          </label>
+          <label>
+            Secteur d'activité
+            <input type="text" name="sector" placeholder="E-commerce, SaaS, Consulting..." />
+          </label>
+          <label>
+            Besoins spécifiques
+            <textarea name="needs" rows="4" placeholder="Décrivez vos défis d'automatisation..."></textarea>
+          </label>
+          <button type="submit">Planifier la démo</button>
         </form>
-
-        <div class="form-success">
-          <h3>Merci !</h3>
-          <p>
-            Nous vous contacterons sous 24 h pour planifier votre démonstration.
-          </p>
-        </div>
+        <p class="form-status" hidden>
+          ✅ Merci ! Nous vous recontacterons sous 24 h pour planifier votre démo.
+        </p>
       </section>
     </main>
- <!-- CTA FLOTTANT -->
-    <a href="#reservation" class="btn-float" aria-label="Planifier mon appel"
-      >Planifier mon appel ↗︎</a
-    >
+
+    <!-- CTA FLOTTANT -->
+    <a href="#reservation" class="btn-float" aria-label="Planifier mon appel">Planifier mon appel ↗︎</a>
 
     <!-- FOOTER -->
-    <footer id="contact" class="site-footer glass">
-      <p>Contactez-nous pour libérer votre temps !</p>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>AutoFlow</h3>
+          <p>Automatisation invisible qui libère votre temps et amplifie vos résultats.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Services</h3>
+          <ul>
+            <li><a href="#expertise">Automation de workflows</a></li>
+            <li><a href="#expertise">Web scraping éthique</a></li>
+            <li><a href="#expertise">Intégrations API</a></li>
+            <li><a href="#expertise">Reporting dynamique</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Entreprise</h3>
+          <ul>
+            <li><a href="#projets">Nos réalisations</a></li>
+            <li><a href="#testimonials">Témoignages</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul>
+            <li>Email: hello@autoflow.fr</li>
+            <li>Téléphone: +33 1 23 45 67 89</li>
+            <li>LinkedIn: /company/autoflow</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 AutoFlow. Tous droits réservés.</p>
+      </div>
     </footer>
-<!-- =====================================
-     MODAL DÉTAIL PROJETS
-     ===================================== -->
-<div id="projectModal" class="modal hidden">
-  <div class="modal-window">
-    <!-- Bouton Fermer -->
-    <button class="modal-close" aria-label="Fermer">×</button>
-    <!-- Flèches Prev/Next -->
-    <button class="modal-prev" aria-label="Précédent">‹</button>
-    <button class="modal-next" aria-label="Suivant">›</button>
 
-    <!-- Contenu déroulant -->
-    <div class="modal-content">
-      <!-- Slide 0 : LeBonCoin -->
-      <article class="modal-slide" data-index="0">
-        <!-- 1. TITRE -->
-        <h3>Surveillez LeBonCoin en temps réel</h3>
-        <!-- 2. IMAGE (hauteur limitée) -->
-        <img
-          src="assets/project_leboncoin.png"
-          alt="Dashboard LeBonCoin"
-          class="modal-slide__img"
-        />
-        <!-- 3. DESCRIPTION -->
-        <p class="modal-slide__desc">
-          Finis les refresh manuels ! Vous recevez directement dans Telegram
-          toutes les nouvelles annonces correspondant à vos filtres (prix,
-          catégorie, zone géographique).
-        </p>
-        <!-- 4A. FONCTIONNALITÉS -->
-        <h4>Fonctionnalités clés :</h4>
-        <ul>
-          <li>Alertes instantanées sur chaque nouvelle annonce</li>
-          <li>Filtres avancés par mot-clé et localisation</li>
-          <li>Tableau de bord web pour historiser et trier</li>
-        </ul>
-        <!-- 4B. TECH STACK -->
-        <h4>Tech stack :</h4>
-        <p>Python (BeautifulSoup, Requests), Flask, Telegram Bot API, MongoDB</p>
-      </article>
+    <!-- MODAL DÉTAIL PROJETS -->
+    <div id="projectModal" class="modal hidden">
+      <div class="modal-window">
+        <button class="modal-close" aria-label="Fermer">×</button>
+        <button class="modal-prev" aria-label="Précédent">‹</button>
+        <button class="modal-next" aria-label="Suivant">›</button>
 
-      <!-- Slide 1 : Telegram Promotions -->
-      <article class="modal-slide" data-index="1">
-        <!-- 1. TITRE -->
-        <h3>Promotions en message privé</h3>
-        <!-- 2. IMAGE (hauteur limitée) -->
-        <img
-          src="assets/project_telegram.png"
-          alt="Bot Telegram promotions"
-          class="modal-slide__img"
-        />
-        <!-- 3. DESCRIPTION -->
-        <p class="modal-slide__desc">
-          Un userbot Telegram 100 % sur mesure qui récupère tous vos flux
-          promo (RSS, API e-commerce) et vous envoie les meilleures offres
-          en DM, sans spam.
-        </p>
-        <!-- 4A. FONCTIONNALITÉS -->
-        <h4>Fonctionnalités clés :</h4>
-        <ul>
-          <li>Envoi programmé selon vos plages horaires</li>
-          <li>Ségrégation par catégorie de vente</li>
-          <li>Commandes “/pause” et “/reprendre” intégrées</li>
-        </ul>
-        <!-- 4B. TECH STACK -->
-        <h4>Tech stack :</h4>
-        <p>Python (Aiogram), PostgreSQL, cron, React pour interface</p>
-      </article>
+        <div class="modal-content">
+          <!-- Slide 0 : LeBonCoin -->
+          <article class="modal-slide" data-index="0">
+            <h3>Surveillez LeBonCoin en temps réel</h3>
+            <img src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dashboard LeBonCoin" class="modal-slide__img" />
+            <p class="modal-slide__desc">
+              Finis les refresh manuels ! Vous recevez directement dans Telegram
+              toutes les nouvelles annonces correspondant à vos filtres (prix,
+              catégorie, zone géographique).
+            </p>
+            <h4>Fonctionnalités clés :</h4>
+            <ul>
+              <li>Alertes instantanées sur chaque nouvelle annonce</li>
+              <li>Filtres avancés par mot-clé et localisation</li>
+              <li>Tableau de bord web pour historiser et trier</li>
+            </ul>
+            <h4>Tech stack :</h4>
+            <p>Python (BeautifulSoup, Requests), Flask, Telegram Bot API, MongoDB</p>
+          </article>
 
-      <!-- … ajoute d’autres <article> pour chaque projet … -->
+          <!-- Slide 1 : Telegram Promotions -->
+          <article class="modal-slide" data-index="1">
+            <h3>Promotions en message privé</h3>
+            <img src="https://images.pexels.com/photos/355948/pexels-photo-355948.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Bot Telegram promotions" class="modal-slide__img" />
+            <p class="modal-slide__desc">
+              Un userbot Telegram 100 % sur mesure qui récupère tous vos flux
+              promo (RSS, API e-commerce) et vous envoie les meilleures offres
+              en DM, sans spam.
+            </p>
+            <h4>Fonctionnalités clés :</h4>
+            <ul>
+              <li>Envoi programmé selon vos plages horaires</li>
+              <li>Ségrégation par catégorie de vente</li>
+              <li>Commandes "/pause" et "/reprendre" intégrées</li>
+            </ul>
+            <h4>Tech stack :</h4>
+            <p>Python (Aiogram), PostgreSQL, cron, React pour interface</p>
+          </article>
+
+          <!-- Slide 2 : Dashboard Analytics -->
+          <article class="modal-slide" data-index="2">
+            <h3>Dashboard Analytics</h3>
+            <img src="https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dashboard Analytics" class="modal-slide__img" />
+            <p class="modal-slide__desc">
+              Un tableau de bord unifié qui agrège toutes vos données marketing,
+              ventes et opérationnelles en temps réel. Plus besoin de jongler
+              entre 10 outils différents.
+            </p>
+            <h4>Fonctionnalités clés :</h4>
+            <ul>
+              <li>Connexion automatique à +50 sources de données</li>
+              <li>Rapports PDF générés automatiquement</li>
+              <li>Alertes intelligentes sur les KPI critiques</li>
+            </ul>
+            <h4>Tech stack :</h4>
+            <p>React, Node.js, PostgreSQL, Chart.js, API REST</p>
+          </article>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-
-
 
     <script>
-  /* -------- Navigation drawer -------- */
-  const html = document.documentElement,
-    ham = document.querySelector(".hamburger"),
-    scrim = document.querySelector(".scrim"),
-    drawer = document.querySelector(".mobile-drawer");
+      // Navigation drawer
+      const html = document.documentElement;
+      const ham = document.querySelector(".hamburger");
+      const scrim = document.querySelector(".scrim");
+      const drawer = document.querySelector(".mobile-drawer");
 
-  function drawerOpen(open) {
-    drawer.classList.toggle("drawer--open", open);
-    scrim.toggleAttribute("hidden", !open);
-    scrim.classList.toggle("scrim--show", open);
-    html.style.overflow = open ? "hidden" : "";
-    ham.setAttribute("aria-expanded", open);
-    if (open) drawer.querySelector("a")?.focus();
-  }
-  function toggleDrawer() {
-    drawerOpen(!drawer.classList.contains("drawer--open"));
-  }
+      function drawerOpen(open) {
+        if (!drawer) return;
+        drawer.classList.toggle("drawer--open", open);
+        scrim?.toggleAttribute("hidden", !open);
+        scrim?.classList.toggle("scrim--show", open);
+        html.style.overflow = open ? "hidden" : "";
+        ham?.setAttribute("aria-expanded", open.toString());
+        if (open) drawer.querySelector("a")?.focus();
+      }
 
-  ham?.addEventListener("click", toggleDrawer);
-  scrim?.addEventListener("click", toggleDrawer);
-  document.querySelector(".drawer-close")?.addEventListener("click", toggleDrawer);
-  document.addEventListener("keydown", (e) => e.key === "Escape" && drawerOpen(false));
+      function toggleDrawer() {
+        const isOpen = drawer?.classList.contains("drawer--open");
+        drawerOpen(!isOpen);
+      }
 
-  /* -------- Nav underline + scroll spy -------- */
-  const underline = document.querySelector(".nav-underline"),
-    links = [...document.querySelectorAll(".nav-links a")],
-    targets = links.map((a) => document.querySelector(a.getAttribute("href")));
-  links.forEach((a) =>
-    a.addEventListener("mouseenter", (e) => {
-      underline.style.left = e.target.offsetLeft + "px";
-      underline.style.width = e.target.offsetWidth + "px";
-    })
-  );
-  document.querySelector(".nav-links ul")?.addEventListener("mouseleave", () => (underline.style.width = 0));
-  new IntersectionObserver(
-    (entries) => {
-      entries.forEach((en) => {
-        if (en.isIntersecting) {
-          const link = links.find((l) => l.getAttribute("href") === "#" + en.target.id);
-          if (link) {
-            underline.style.left = link.offsetLeft + "px";
-            underline.style.width = link.offsetWidth + "px";
+      ham?.addEventListener("click", toggleDrawer);
+      scrim?.addEventListener("click", toggleDrawer);
+      document.querySelector(".drawer-close")?.addEventListener("click", toggleDrawer);
+      
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape") drawerOpen(false);
+      });
+
+      // Nav underline + scroll spy
+      const underline = document.querySelector(".nav-underline");
+      const links = [...document.querySelectorAll(".nav-links a[href^='#']")];
+      const targets = links.map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+
+      links.forEach(link =>
+        link.addEventListener("mouseenter", e => {
+          if (underline) {
+            underline.style.left = `${e.target.offsetLeft}px`;
+            underline.style.width = `${e.target.offsetWidth}px`;
           }
+        })
+      );
+
+      document.querySelector(".nav-links ul")?.addEventListener("mouseleave", () => {
+        if (underline) underline.style.width = "0";
+      });
+
+      // Scroll spy
+      if (targets.length > 0) {
+        const observer = new IntersectionObserver(
+          entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const link = links.find(l => l.getAttribute("href") === `#${entry.target.id}`);
+                if (link && underline) {
+                  underline.style.left = `${link.offsetLeft}px`;
+                  underline.style.width = `${link.offsetWidth}px`;
+                }
+              }
+            });
+          },
+          { threshold: 0.6, rootMargin: "-64px 0px -40% 0px" }
+        );
+        targets.forEach(target => observer.observe(target));
+      }
+
+      // Testimonials auto-slider
+      const testimonialsTrack = document.querySelector(".testimonials-track");
+      if (testimonialsTrack && testimonialsTrack.children.length > 1) {
+        let idx = 0;
+        setInterval(() => {
+          idx = (idx + 1) % testimonialsTrack.children.length;
+          const cardWidth = testimonialsTrack.firstElementChild?.offsetWidth || 280;
+          testimonialsTrack.scrollTo({
+            left: idx * (cardWidth + 24),
+            behavior: "smooth"
+          });
+        }, 5000);
+      }
+
+      // Floating CTA visibility
+      const floatBtn = document.querySelector(".btn-float");
+      const sectionRes = document.querySelector("#reservation");
+
+      if (floatBtn && sectionRes) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            floatBtn.style.display = entry.isIntersecting ? "none" : "inline-flex";
+          },
+          { threshold: 0.4 }
+        );
+        observer.observe(sectionRes);
+      }
+
+      // Form handlers
+      function setupForm(formId, statusSelector) {
+        const form = document.getElementById(formId);
+        const status = document.querySelector(statusSelector);
+        
+        if (form && status) {
+          form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn?.textContent;
+            
+            if (submitBtn) {
+              submitBtn.textContent = "Envoi en cours...";
+              submitBtn.disabled = true;
+            }
+            
+            fetch(this.action, {
+              method: "POST",
+              headers: { "Accept": "application/json" },
+              body: new FormData(this)
+            })
+            .then(res => {
+              if (res.ok) {
+                this.reset();
+                status.hidden = false;
+                setTimeout(() => {
+                  status.hidden = true;
+                }, 5000);
+              } else {
+                return res.json().then(data => {
+                  alert(data.error || "Une erreur est survenue ; merci de réessayer.");
+                });
+              }
+            })
+            .catch(() => {
+              alert("Impossible d'envoyer le message. Vérifiez votre connexion.");
+            })
+            .finally(() => {
+              if (submitBtn) {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+              }
+            });
+          });
+        }
+      }
+
+      setupForm("contactForm", "#contact .form-status");
+      setupForm("reservationForm", "#reservation .form-status");
+
+      // Modal project slides
+      const modal = document.getElementById("projectModal");
+      const slides = modal ? [...modal.querySelectorAll(".modal-slide")] : [];
+      const btnClose = modal?.querySelector(".modal-close");
+      const btnPrev = modal?.querySelector(".modal-prev");
+      const btnNext = modal?.querySelector(".modal-next");
+      let currentIdx = 0;
+
+      document.querySelectorAll(".card-expand").forEach((btn, i) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          if (modal && slides.length > 0) {
+            currentIdx = i % slides.length;
+            showSlide(currentIdx);
+            modal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+          }
+        });
+      });
+
+      function showSlide(i) {
+        if (slides.length === 0) return;
+        slides.forEach(s => s.classList.remove("active"));
+        slides[i]?.classList.add("active");
+        modal?.querySelector(".modal-content")?.scrollTo(0, 0);
+      }
+
+      btnPrev?.addEventListener("click", () => {
+        currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+        showSlide(currentIdx);
+      });
+
+      btnNext?.addEventListener("click", () => {
+        currentIdx = (currentIdx + 1) % slides.length;
+        showSlide(currentIdx);
+      });
+
+      btnClose?.addEventListener("click", closeModal);
+
+      function closeModal() {
+        if (modal) {
+          modal.classList.add("hidden");
+          document.body.style.overflow = "";
+        }
+      }
+
+      document.addEventListener("keydown", e => {
+        if (e.key === "Escape" && modal && !modal.classList.contains("hidden")) {
+          closeModal();
         }
       });
-    },
-    { threshold: 0.6, rootMargin: "-64px 0px -40% 0px" }
-  ).observe(...targets);
 
-  /* -------- Card depth-tilt -------- */
-  document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("mousemove", (e) => {
-      const r = card.getBoundingClientRect(),
-        mx = (e.clientX - r.left) / r.width - 0.5,
-        my = (e.clientY - r.top) / r.height - 0.5;
-      card.style.setProperty("--mx", mx);
-      card.style.setProperty("--my", my);
-    });
-    card.addEventListener("mouseleave", () => {
-      // On supprime uniquement nos variables de tilt
-      card.style.removeProperty("--mx");
-      card.style.removeProperty("--my");
-    });
-  });
-
-  /* -------- Testimonials auto-slider -------- */
-  const track = document.querySelector(".testimonials-track");
-  if (track && track.children.length > 1) {
-    let i = 0;
-    setInterval(() => {
-      i = (i + 1) % track.children.length;
-      track.scrollTo({
-        left: i * (track.firstElementChild.offsetWidth + 24),
-        behavior: "smooth",
+      // Close modal when clicking outside
+      modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
       });
-    }, 5000);
-  }
 
-  /* -------- Floating CTA visibility -------- */
-  const floatBtn = document.querySelector(".btn-float"),
-    formSection = document.querySelector("#reservation");
-  new IntersectionObserver(
-    (entries) => {
-      floatBtn.style.display = entries[0].isIntersecting ? "none" : "inline-flex";
-    },
-    { threshold: 0.4 }
-  ).observe(formSection);
-
-  /* -------- Multi-step form -------- */
-  const form = document.getElementById("demoForm");
-  if (form) {
-    const steps = [...form.querySelectorAll(".form-step")],
-      progress = form.querySelector(".progress"),
-      label = form.querySelector(".form-progress__label");
-    let idx = 0;
-    form.addEventListener("click", (e) => {
-      if (e.target.matches(".btn-next")) changeStep(1);
-      if (e.target.matches(".btn-prev")) changeStep(-1);
-    });
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      completeForm();
-    });
-    function changeStep(dir) {
-      if (![...steps[idx].querySelectorAll("input,select,textarea")].every((f) => f.reportValidity()))
-        return;
-      steps[idx].classList.remove("form-step--current");
-      idx += dir;
-      steps[idx].classList.add("form-step--current");
-      updateProgress();
-    }
-    function updateProgress() {
-      const total = steps.length,
-        pct = ((idx + 1) / total) * 100;
-      progress.style.strokeDashoffset = 339 - 339 * (pct / 100);
-      label.textContent = `${idx + 1} / ${total}`;
-    }
-    function completeForm() {
-      form.classList.add("form--complete");
-      form.querySelector(".form-success").hidden = false;
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        import(
-          "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
-        ).then((m) =>
-          m.default({ particleCount: 120, spread: 90, origin: { y: 0.7 } })
-        );
-      }
-    }
-  }
-
-  /* Affiche le progress-ring seulement si #reservation visible */
-  document.querySelector(".reservation") &&
-    new IntersectionObserver(
-      (e) => document.querySelector(".reservation").classList.toggle("in-view", e[0].isIntersecting),
-      { threshold: 0 }
-    ).observe(document.querySelector(".reservation"));
-
-  /* Hero pulse */
-  document.querySelector(".hero .btn-primary")?.classList.add("pulse");
-  const modal     = document.getElementById('projectModal');
-  const slides    = [...modal.querySelectorAll('.modal-slide')];
-  const btnClose  = modal.querySelector('.modal-close');
-  const btnPrev   = modal.querySelector('.modal-prev');
-  const btnNext   = modal.querySelector('.modal-next');
-  let currentIdx  = 0;
-
-  // Ouvre le modal au clic sur chaque “+”
-  document.querySelectorAll('.card-expand').forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      currentIdx = i;
-      showSlide(currentIdx);
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  function showSlide(idx) {
-    slides.forEach(s => s.classList.remove('active'));
-    slides[idx].classList.add('active');
-    // remet le scroll en haut à chaque slide
-    modal.querySelector('.modal-content').scrollTop = 0;
-  }
-
-  // Navigation circulaire
-  btnPrev.addEventListener('click', () => {
-    currentIdx = (currentIdx - 1 + slides.length) % slides.length;
-    showSlide(currentIdx);
-  });
-  btnNext.addEventListener('click', () => {
-    currentIdx = (currentIdx + 1) % slides.length;
-    showSlide(currentIdx);
-  });
-
-  // Fermeture
-  btnClose.addEventListener('click', closeModal);
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeModal();
-    }
-  });
-  function closeModal() {
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-</script>
-
-
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
