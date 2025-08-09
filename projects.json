@@ -1,53 +1,53 @@
 [
   {
-    "id": "leboncoin-bot",
+    "id": "lbc-bot",
     "title": "Bot Telegram — Scraping & Analyse d’Annonces",
-    "blurb": "Prix, marques, villes, filtres avancés. Graphiques texte et images, exports CSV/JSON.",
-    "cover": "https://images.unsplash.com/photo-1551281044-8b59a5a0b299?q=80&w=1400&auto=format&fit=crop",
-    "demo": {
-      "type": "video",
-      "src": "https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-1591/1080p.mp4",
-      "poster": "https://images.unsplash.com/photo-1551281044-8b59a5a0b299?q=80&w=1400&auto=format&fit=crop"
-    },
-    "stack": ["Python", "Telegram Bot", "Matplotlib", "Pandas"],
+    "subtitle": "Prix, marques, villes, filtres avancés. Graphiques texte & images, exports CSV/JSON.",
+    "thumb": "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
+    "media": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop" }
+    ],
+    "desc": "Stats prix (min/max/moyenne/médiane) et top marques. Répartition par villes, filtres dynamiques (prix, mots-clés…). Graphiques PNG envoyés dans Telegram + exports CSV/JSON.",
+    "stack": ["Python","Telegram Bot","Matplotlib","Pandas"],
     "bullets": [
-      "Stats prix (min/max/moyenne/médiane) et top marques",
-      "Répartition par villes, filtres dynamiques (prix, mots-clés…)",
-      "Graphiques PNG envoyés dans Telegram + exports CSV/JSON"
-    ]
+      "Alertes Telegram instantanées",
+      "Filtres avancés (prix, mots-clés, zones)",
+      "Exports CSV/JSON + graphiques PNG"
+    ],
+    "prefill": "Je veux surveiller des annonces (ex: Leboncoin) et recevoir des alertes Telegram + stats."
   },
   {
     "id": "userbot-dm",
     "title": "Userbot Telegram — DMs ciblés",
-    "blurb": "Récupère des utilisateurs depuis les commentaires, greeting, redirection vers votre canal.",
-    "cover": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1400&auto=format&fit=crop",
-    "demo": {
-      "type": "video",
-      "src": "https://cdn.coverr.co/videos/coverr-smartphone-typing-6972/1080p.mp4",
-      "poster": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1400&auto=format&fit=crop"
-    },
-    "stack": ["Python (Aiogram)", "PostgreSQL"],
+    "subtitle": "Récupère des utilisateurs depuis les commentaires, greeting, redirection vers votre canal.",
+    "thumb": "https://images.unsplash.com/photo-1529336953121-a0fc9a3d8c8e?q=80&w=1200&auto=format&fit=crop",
+    "media": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop" }
+    ],
+    "desc": "On lui donne un canal cible d’où récupérer les profils (ex: commentaires). Il envoie une accroche, puis à la réponse il redirige proprement vers votre canal destination. Limites anti-spam incluses.",
+    "stack": ["Python (Aiogram)","PostgreSQL","Job scheduler"],
     "bullets": [
-      "DM d’accroche automatique, réponses scénarisées",
-      "Redirection vers votre canal, commandes /pause /reprendre",
-      "Statistiques, anti-spam, quotas"
-    ]
+      "Greeting d’accroche + relance douce",
+      "Commandes /pause /reprendre",
+      "Quota & logs pour éviter le spam"
+    ],
+    "prefill": "Bot qui DM des prospects depuis un canal cible et les redirige vers mon canal."
   },
   {
-    "id": "telegram-poster",
+    "id": "tg-posts",
     "title": "Générateur de posts Telegram",
-    "blurb": "Automatise vos posts à partir de sources (RSS/API/Sheets).",
-    "cover": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=1400&auto=format&fit=crop",
-    "demo": {
-      "type": "video",
-      "src": "https://cdn.coverr.co/videos/coverr-working-at-the-office-1936/1080p.mp4",
-      "poster": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=1400&auto=format&fit=crop"
-    },
-    "stack": ["Python", "Scheduler", "APIs"],
+    "subtitle": "Automatise vos posts à partir de sources (RSS/API/Sheets).",
+    "thumb": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop",
+    "media": [
+      { "type": "image", "src": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" }
+    ],
+    "desc": "Récupère des sources (RSS, API, Google Sheets), génère un post formaté et le publie automatiquement à l’heure souhaitée. Options de résumé IA.",
+    "stack": ["Python","Scheduler","OpenAI (optionnel)"],
     "bullets": [
-      "Mises en page prêtes à l’emploi",
-      "Programmation et relances automatiques",
-      "Relecture humaine optionnelle"
-    ]
+      "Programmation horaire",
+      "Templates de post",
+      "Sources multiples (RSS/API/Sheets)"
+    ],
+    "prefill": "Générer et publier automatiquement des posts Telegram depuis mes sources."
   }
 ]
