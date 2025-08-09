@@ -1,341 +1,376 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Bots, scrapers et automatisations sur mesure. Dites-nous votre cas, on revient sous 24 h avec un plan simple et un premier pas concret." />
   <meta name="theme-color" content="#0A84FF" />
-  <title>AutoFlow · Bots, scrapers et automatisations sur mesure</title>
+  <title>AutoFlow · Bots, scrapers et automatisations</title>
 
-  <!-- Meta / Open Graph -->
-  <meta name="description" content="Nous concevons des bots, scrapers et automatisations qui travaillent pour vous. Parlez-nous de votre projet, on s'occupe du reste." />
+  <!-- Favicon & App Icon (logo SVG encodé) -->
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="%231a73ff"/>
+        <stop offset="1" stop-color="%237fb3ff"/>
+      </linearGradient>
+      <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+        <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".3"/>
+      </filter>
+    </defs>
+    <rect rx="14" ry="14" width="64" height="64" fill="url(%23g)"/>
+    <!-- lettre A stylisée + éclair -->
+    <path d="M20 48l12-32 12 32h-6l-2-6H28l-2 6h-6zm12-12l-3.2-9.2L26 36h6z" fill="#fff" filter="url(%23s)"/>
+    <path d="M46 12l-6 9h4l-2 7 6-9h-4l2-7z" fill="#fff" opacity=".95"/>
+  </svg>' />
+
+  <!-- OpenGraph minimal -->
   <meta property="og:title" content="AutoFlow · Bots, scrapers et automatisations" />
-  <meta property="og:description" content="Parlez-nous de votre projet, on s'occupe du reste." />
+  <meta property="og:description" content="Expliquez votre cas, on vous répond sous 24 h avec un plan d'action et un chiffrage." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.pexels.com/photos/2058128/pexels-photo-2058128.jpeg?auto=compress&cs=tinysrgb&w=1200" />
-  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Favicon (SVG data URL) -->
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%230A84FF"/><stop offset="1" stop-color="%23A8C7FF"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><path d="M34 6 14 33h12l-2 25 20-27H32l2-25z" fill="white"/></svg>'>
-
-  <!-- Fonts (performantes) -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Perf pré-connexions (images + vidéos placeholders) -->
-  <link rel="preconnect" href="https://images.pexels.com" crossorigin>
-  <link rel="preconnect" href="https://commondatastorage.googleapis.com" crossorigin>
-  <link rel="preconnect" href="https://samplelib.com" crossorigin>
+  <!-- Police (Inter, lisible) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      /* Couleurs */
-      --bg:#0b0e14; --bg-soft:#0e121a; --elev:#111725;
-      --text:#f3f6ff; --muted:#a9b4c6; --hair:rgba(255,255,255,.10);
-      --accent:#0A84FF; --accent-2:#66A8FF;
-      --grad: linear-gradient(135deg, var(--accent), var(--accent-2));
-
-      /* Rythme */
-      --r:20px; --gap:clamp(14px,3vw,22px);
-
-      /* Ombres premium */
+      --accent-h: 220;
+      --accent: hsl(var(--accent-h) 100% 56%);
+      --accent-2: hsl(var(--accent-h) 95% 70%);
+      --bg: #0b0f16; --bg-2:#0f141d; --card:#0e131b;
+      --hair: rgba(255,255,255,.10);
+      --text:#eaf1ff; --muted:#a9b4c6;
+      --r: 18px; --gap: clamp(14px, 3vw, 24px);
       --shadow-1: 0 8px 22px rgba(0,0,0,.28);
-      --shadow-2: 0 16px 36px rgba(0,0,0,.40);
-      --shadow-3: 0 24px 60px rgba(0,0,0,.55);
+      --shadow-2: 0 16px 36px rgba(0,0,0,.36);
     }
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
-    img,video{display:block;max-width:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
     a{color:inherit;text-decoration:none}
-    section{padding:90px 0;scroll-margin-top:84px}
+    img,video{display:block;max-width:100%}
     .container{max-width:1120px;margin:0 auto;padding:0 var(--gap)}
-    .title{font:800 clamp(28px,5vw,48px)/1.1 Manrope,Inter,sans-serif;letter-spacing:.2px;margin:0 0 10px}
-    .sub{color:var(--muted);max-width:720px;margin:0 auto}
+    section{padding:92px 0;scroll-margin-top:86px}
+    h1,h2{letter-spacing:.2px;margin:0 0 10px}
+    .sub{color:var(--muted);max-width:720px;margin:0 auto 6px;text-wrap:balance}
 
     /* Header */
-    .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,14,20,.85), rgba(11,14,20,.55));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .badge{width:40px;height:40px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 6px 18px rgba(10,132,255,.35)}
-    .brand span{font:800 20px/1 Manrope}
-    .navlinks{display:flex;gap:18px;align-items:center}
-    .link{position:relative;padding:8px 10px;border-radius:10px;color:#dfe7f6}
-    .link::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;border-radius:2px;background:var(--grad);transform:scaleX(0);transition:transform .22s}
-    .link:hover::after,.link[aria-current="page"]::after{transform:scaleX(1)}
-    .pill{padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
+    .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,15,22,.92), rgba(11,15,22,.6));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:10px}
+    .badge{width:40px;height:40px;border-radius:12px;box-shadow:0 6px 18px rgba(29,118,255,.35);overflow:hidden}
+    .badge svg{width:40px;height:40px}
+    .brand-name{font-weight:800;font-size:20px}
+    .links{display:flex;gap:18px;align-items:center;position:relative}
+    .links a{padding:10px 8px;color:#dfe7f6;font-weight:600;border-radius:10px}
+    .links a[aria-current="page"]{color:white}
+    /* underline slider */
+    .underline{position:absolute;bottom:6px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:left .25s,width .25s;pointer-events:none}
+
+    .cta-pill{padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--hair);font-weight:700}
+    .cta-pill:hover{background:rgba(255,255,255,.12)}
 
     /* Hero */
-    .hero{position:relative;min-height:86vh;display:grid;place-items:center;overflow:hidden}
+    .hero{position:relative;min-height:84vh;display:grid;place-items:center;overflow:hidden}
     .hero-media{position:absolute;inset:0;z-index:-2}
-    .hero-media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(1.03)}
-    .hero::after{content:"";position:absolute;inset:0;background:
-      linear-gradient(180deg, rgba(7,10,16,.15) 0%, rgba(7,10,16,.50) 50%, rgba(7,10,16,.86) 100%);
-      z-index:-1}
-    .hero h1{font:800 clamp(34px,6vw,62px)/1.05 Manrope;margin:0 0 10px;text-align:center}
-    .hero p{color:#d6deee;text-align:center;max-width:780px;margin:0 auto 24px}
-    .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer;transition:transform .12s, box-shadow .12s, background .2s}
-    .btn svg{flex:0 0 auto}
-    .btn-primary{background:var(--grad);color:#fff;box-shadow:var(--shadow-1)}
+    .hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
+    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,9,13,.35), rgba(6,9,13,.7) 55%, rgba(6,9,13,.92));z-index:-1}
+    .hero h1{font-weight:800;font-size:clamp(32px,6vw,64px);text-align:center}
+    .hero p{text-align:center;color:#d7e2f5;max-width:820px;margin:8px auto 20px}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;border:none;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer;transition:transform .12s, box-shadow .12s}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;box-shadow:var(--shadow-1)}
     .btn-primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-2)}
     .btn-ghost{background:rgba(255,255,255,.08);color:#eef3ff;border:1px solid var(--hair)}
     .btn-ghost:hover{transform:translateY(-1px)}
-    .btn-quiet{background:rgba(255,255,255,.06);border:1px solid var(--hair);color:#fff}
 
     /* Projects */
-    .projects{background:var(--bg-soft)}
+    .projects{background:var(--bg-2)}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .card{position:relative;border-radius:22px;overflow:hidden;background:#0f141d;border:1px solid var(--hair);box-shadow:var(--shadow-1);transition:transform .2s, box-shadow .25s}
-    .card:focus-visible{outline:2px solid var(--accent)}
-    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
-    .thumb{aspect-ratio:16/10;overflow:hidden;position:relative}
-    .thumb img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .45s}
-    .card:hover .thumb img{transform:scale(1.07)}
-    .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.78) 100%)}
-    .card-body{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.55)}
-    .card h3{margin:0 0 6px;font:800 20px/1.25 Manrope}
-    .card p{margin:0;color:#e8eefc;opacity:.95}
-    .chip{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.50);border:1px solid rgba(255,255,255,.28);color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
+    .card{position:relative;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--hair);box-shadow:var(--shadow-1);cursor:pointer}
+    .card-media{aspect-ratio:4/3;overflow:hidden;position:relative}
+    .card-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .5s}
+    .card:hover .card-media img{transform:scale(1.08)}
+    /* scrim pour lisibilité */
+    .card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,.15) 55%, rgba(0,0,0,.0));}
+    .pill{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.52);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
+    .card-body{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.45)}
+    .card h3{margin:0 0 6px;font:800 20px/1.2 Inter}
+    .card p{margin:0;color:#d8dee8}
 
-    /* Expertise (plus léger) */
-    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .exp{background:linear-gradient(180deg,#111826,#0f1520);border:1px solid var(--hair);border-radius:22px;padding:20px;box-shadow:var(--shadow-1)}
-    .exp-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-    .exp-icon{width:34px;height:34px;border-radius:12px;border:1px solid var(--hair);background:rgba(255,255,255,.06);display:grid;place-items:center}
-    .exp h4{margin:0;font:800 18px/1.3 Manrope}
-    .exp p{margin:6px 0 10px;color:#c7d1e3}
-    .exp ul{margin:0;padding:0 0 0 18px;color:#c7d1e3}
-    .more{margin-top:10px}
-    .more summary{cursor:pointer;color:#cfe0ff}
-    .more p{margin:8px 0 0}
+    /* Expertise */
+    .expertise .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .exp{background:linear-gradient(180deg,#0f141e,#0c121a);border:1px solid var(--hair);border-radius:22px;padding:22px;box-shadow:var(--shadow-1);position:relative}
+    .exp-head{display:flex;align-items:center;gap:10px}
+    .exp-ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid var(--hair)}
+    .exp h3{margin:8px 0 6px;font:800 18px/1.3 Inter}
+    .exp p{margin:0 0 8px;color:#c8d2e1}
+    .exp ul{margin:8px 0 0 18px;color:#c8d2e1}
+    /* bloc Voir plus local */
+    .more{max-height:0;overflow:hidden;transition:max-height .3s ease}
+    .exp[data-open="1"] .more{max-height:220px}
+    .exp .more-btn{display:flex;align-items:center;justify-content:center;margin-top:12px;border:1px solid var(--hair);border-radius:14px;padding:10px 12px;background:rgba(255,255,255,.04);font-weight:700}
+    .exp .more-btn[aria-expanded="true"]{background:rgba(255,255,255,.1)}
 
     /* FAQ */
     .faq .items{max-width:880px;margin:0 auto}
-    details{background:#101623;border:1px solid var(--hair);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-1);margin-bottom:12px}
-    summary{cursor:pointer;font:800 18px/1.3 Manrope;list-style:none;display:flex;align-items:center;gap:10px}
+    details{background:#0e131b;border:1px solid var(--hair);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-1);margin-bottom:12px}
+    summary{cursor:pointer;font-weight:800;list-style:none;display:flex;align-items:center;gap:10px}
     summary::-webkit-details-marker{display:none}
     .answer{color:#cbd6e6;margin:8px 4px 4px}
 
     /* Contact */
-    .contact .form{max-width:980px;margin:0 auto;background:#0f141d;border:1px solid var(--hair);border-radius:26px;padding:22px;box-shadow:var(--shadow-2)}
-    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .contact .wrap{max-width:980px;margin:0 auto;background:#0e131b;border:1px solid var(--hair);border-radius:28px;padding:24px;box-shadow:var(--shadow-2)}
+    .grid-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
     .field{display:flex;flex-direction:column;gap:8px;position:relative}
     .field label{font-weight:700}
-    .input, textarea, select{width:100%;background:#0a0f16;color:#eef3ff;border:1px solid #1b2737;border-radius:14px;padding:14px 14px 14px 44px;font:500 16px/1.5 Inter}
-    .input::placeholder, textarea::placeholder{color:#74829b}
-    .input:focus, textarea:focus, select:focus{outline:2px solid var(--accent);box-shadow:0 0 0 6px rgba(10,132,255,.15)}
-    .adorn{position:absolute;left:12px;top:42px;opacity:.75}
-    .full{grid-column:1/-1}
-    .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+    .ad{position:absolute;left:12px;top:42px;opacity:.7}
+    input,select,textarea{width:100%;background:#0a1016;color:#eaf1ff;border:1px solid #1d2a3a;border-radius:14px;padding:14px 14px 14px 38px}
+    input::placeholder,textarea::placeholder{color:#6e7b90}
+    input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);box-shadow:0 0 0 6px rgba(66,136,255,.14)}
+    .full{grid-column:1 / -1}
+    .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:10px}
     .status{margin-top:10px;color:#9fe3b2;display:none}
     .status.error{color:#ff9f9f}
 
-    /* Modal (dialog) */
-    dialog#projectModal{border:1px solid var(--hair);border-radius:18px;padding:0;max-width:980px;width:calc(100% - 24px);background:#0f141d;color:var(--text);box-shadow:var(--shadow-3)}
-    .m-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair)}
-    .m-title{font:800 18px/1.2 Manrope}
-    .m-actions{margin-left:auto;display:flex;gap:6px}
-    .iconbtn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
-    .m-body{padding:14px;max-height:70vh;overflow:auto}
-    .m-video{width:100%;max-height:50vh;object-fit:cover;border-radius:12px}
-    .stack{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-    .tag{padding:6px 10px;border:1px solid var(--hair);border-radius:999px;background:rgba(255,255,255,.06)}
-    .m-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);padding:16px;z-index:100}
+    .modal[aria-hidden="false"]{display:grid}
+    .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;max-width:1020px;width:100%;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2)}
+    .mhead{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair)}
+    .mtitle{font:800 18px/1.2 Inter}
+    .mnav{margin-left:auto;display:flex;gap:8px}
+    .icon-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
+    .mbody{padding:14px;overflow:auto}
+    .mvideo{width:100%;max-height:52vh;border-radius:12px;background:#000}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06)}
+    .mcta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
 
     /* Footer */
-    footer{background:#0a0f16;border-top:1px solid var(--hair);padding:38px 0;color:#c6d0df}
+    footer{background:#0a0f16;border-top:1px solid var(--hair);padding:40px 0;color:#c6d0df}
     .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-    .foot h5{margin:0 0 8px;font:800 16px/1.3 Manrope;color:#dfe7f6}
-    .foot small{grid-column:1/-1;opacity:.7;margin-top:16px;display:block;text-align:center}
+    .foot h5{margin:0 0 8px;font:800 16px/1.3 Inter}
+    .foot ul{margin:0;padding-left:18px}
+    .foot small{grid-column:1 / -1;opacity:.7;margin-top:16px;display:block;text-align:center}
 
     /* Responsive */
-    @media (max-width:1024px){
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .grid3{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:980px){
+      .cards{grid-template-columns:1fr 1fr}
+      .expertise .grid{grid-template-columns:1fr 1fr}
+      .grid-form{grid-template-columns:1fr}
     }
     @media (max-width:740px){
       section{padding:68px 0}
-      .cards,.grid3,.grid2{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .expertise .grid{grid-template-columns:1fr}
     }
 
-    /* Accessibilité visuelle & scrollbars */
     a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
-    *::-webkit-scrollbar{height:12px;width:12px}
-    *::-webkit-scrollbar-thumb{background:rgba(255,255,255,.10);border:3px solid transparent;border-radius:20px;background-clip:padding-box}
+    .skip{position:absolute;left:-9999px}
+    .skip:focus{left:10px;top:10px;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:10px}
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Aller au contenu</a>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#accueil">
         <span class="badge" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M13.5 2 5 13h6l-1 9 8.5-11h-6L13.5 2z"/></svg>
+          <!-- même SVG que le favicon pour cohérence -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo AutoFlow">
+            <defs>
+              <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#1a73ff"/><stop offset="1" stop-color="#7fb3ff"/>
+              </linearGradient>
+            </defs>
+            <rect rx="14" ry="14" width="64" height="64" fill="url(#g2)"/>
+            <path d="M20 48l12-32 12 32h-6l-2-6H28l-2 6h-6zm12-12l-3.2-9.2L26 36h6z" fill="#fff"/>
+            <path d="M46 12l-6 9h4l-2 7 6-9h-4l2-7z" fill="#fff" opacity=".95"/>
+          </svg>
         </span>
-        <span>AutoFlow</span>
+        <span class="brand-name">AutoFlow</span>
       </a>
-      <nav class="navlinks" aria-label="Navigation principale">
-        <a class="link" href="#accueil">Accueil</a>
-        <a class="link" href="#projets">Projets</a>
-        <a class="link" href="#expertise">Expertise</a>
-        <a class="link" href="#faq">FAQ</a>
-        <a class="link pill" href="#contact">Parler à un humain</a>
+      <nav class="links" aria-label="Navigation">
+        <a href="#accueil">Accueil</a>
+        <a href="#projets">Projets</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="cta-pill">Contact direct</a>
+        <span class="underline" aria-hidden="true"></span>
       </nav>
     </div>
   </header>
 
-  <main id="accueil" class="hero">
-    <div class="hero-media">
-      <img src="https://images.pexels.com/photos/2058128/pexels-photo-2058128.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="">
-    </div>
-    <div class="container">
-      <h1>Tout devient automatique, sauf vos idées</h1>
-      <p>Nous créons des bots, scrapers et automatisations sur mesure qui travaillent pour vous. Parlez-nous de votre cas, on revient avec un plan simple et un premier pas concret.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="#contact">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-          Parler de mon projet
-        </a>
-        <a class="btn btn-ghost" href="#projets">Voir des exemples</a>
+  <main id="main">
+    <!-- Hero -->
+    <section id="accueil" class="hero">
+      <div class="hero-media">
+        <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="">
       </div>
-    </div>
+      <div class="container">
+        <h1>Faites travailler des bots, gagnez des heures chaque semaine.</h1>
+        <p>Nous concevons des scrapers, bots et automatisations sur mesure qui tournent pour vous. Dites-nous votre cas, nous revenons sous 24 h avec un plan simple et un premier pas concret.</p>
+        <div class="actions">
+          <a href="#contact" class="btn btn-primary">Parler de mon projet</a>
+          <a href="#projets" class="btn btn-ghost">Voir des exemples</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projets -->
+    <section id="projets" class="projects">
+      <div class="container">
+        <h2 style="text-align:center;font-weight:800;font-size:clamp(28px,5vw,44px);">Exemples de réalisations</h2>
+        <p class="sub">Démos internes prêtes à adapter à votre contexte.</p>
+
+        <div id="cards" class="cards" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Expertise -->
+    <section id="expertise" class="expertise">
+      <div class="container">
+        <h2 style="text-align:center;font-weight:800;font-size:clamp(28px,5vw,44px);">Ce que nous savons faire</h2>
+        <p class="sub">Des briques techniques fiables, assemblées pour votre besoin.</p>
+
+        <div class="grid" id="expertiseGrid">
+          <article class="exp" data-exp="scraping">
+            <div class="exp-head">
+              <div class="exp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M3 4h18v2H3zm0 7h18v2H3zm0 7h18v2H3z"/></svg></div>
+              <h3>Web scraping</h3>
+            </div>
+            <p>Surveillez le marché sans effort. Le bot collecte, nettoie et alerte.</p>
+            <ul>
+              <li>Collecte multi-sites robuste, supervision</li>
+              <li>Filtres, déduplication, exports simples</li>
+            </ul>
+            <div class="more">
+              <ul>
+                <li>Dashboards et alertes utiles</li>
+                <li>Intégration à vos outils</li>
+              </ul>
+            </div>
+            <button class="more-btn" data-toggle="more" aria-expanded="false">Voir plus</button>
+          </article>
+
+          <article class="exp" data-exp="bots">
+            <div class="exp-head">
+              <div class="exp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5z"/></svg></div>
+              <h3>Bots et agents</h3>
+            </div>
+            <p>Chatbots, modération, assistants métier qui répondent et exécutent.</p>
+            <ul>
+              <li>DM ciblés, commandes, suivi</li>
+              <li>Hébergé chez vous ou géré</li>
+            </ul>
+            <div class="more">
+              <ul>
+                <li>Monitoring et quotas anti-spam</li>
+                <li>Workflows adaptés à vos process</li>
+              </ul>
+            </div>
+            <button class="more-btn" data-toggle="more" aria-expanded="false">Voir plus</button>
+          </article>
+
+          <article class="exp" data-exp="ia">
+            <div class="exp-head">
+              <div class="exp-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/></svg></div>
+              <h3>Applications IA</h3>
+            </div>
+            <p>Résumé, classement, extraction d'entités, recherche dans vos documents.</p>
+            <ul>
+              <li>RAG, API et intégration</li>
+              <li>Sur votre cloud ou le nôtre</li>
+            </ul>
+            <div class="more">
+              <ul>
+                <li>Prompts testés et mesurés</li>
+              </ul>
+            </div>
+            <button class="more-btn" data-toggle="more" aria-expanded="false">Voir plus</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2 style="text-align:center;font-weight:800;font-size:clamp(28px,5vw,44px);">FAQ</h2>
+        <div class="items">
+          <details>
+            <summary>Combien de temps pour un projet type ?</summary>
+            <div class="answer">La plupart se livrent en 5 à 15 jours ouvrés.</div>
+          </details>
+          <details>
+            <summary>Qui gère l'hébergement ?</summary>
+            <div class="answer">Nous pouvons déployer chez vous ou gérer pour vous, selon vos contraintes.</div>
+          </details>
+          <details>
+            <summary>Et si j'ai besoin d'aide après ?</summary>
+            <div class="answer">Nous assurons support et évolutions, avec un point de contact unique.</div>
+          </details>
+          <details>
+            <summary>Combien ça coûte ?</summary>
+            <div class="answer">Un pilote démarre souvent autour de 1 900 €, selon complexité et intégrations.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 style="text-align:center;font-weight:800;font-size:clamp(28px,5vw,44px);">Parlez-nous de votre projet</h2>
+        <p class="sub">Décrivez ce que vous voulez automatiser. Nous répondons sous 24 h avec un plan clair. Si besoin, on cale un appel de 30 min.</p>
+
+        <form id="leadForm" class="wrap" action="https://formspree.io/f/xblkpvaz" method="POST" novalidate>
+          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+          <div class="grid-form">
+            <div class="field">
+              <label for="name">Prénom</label>
+              <span class="ad"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5z"/></svg></span>
+              <input id="name" name="name" required placeholder="Votre prénom" autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <span class="ad"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M4 4h16v16H4zm8 7L4 6v12l8-7 8 7V6z"/></svg></span>
+              <input id="email" name="email" type="email" required placeholder="vous@exemple.com" autocomplete="email" inputmode="email">
+            </div>
+            <div class="field">
+              <label for="phone">Téléphone (optionnel)</label>
+              <span class="ad"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A19 19 0 0 1 3 7a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.2 2.5.57 3.6a1 1 0 0 1-.24 1z"/></svg></span>
+              <input id="phone" name="phone" type="tel" inputmode="tel" pattern="[\d\s()+\-\.]{7,}" placeholder="+33 X XX XX XX XX" autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="pref">Comment préférez-vous échanger ?</label>
+              <span class="ad"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M4 4h6v6H4zm0 10h6v6H4zm10-10h6v6h-6zm0 10h6v6h-6z"/></svg></span>
+              <select id="pref" name="preference">
+                <option>Appel visio 30 min</option>
+                <option>Appel téléphonique</option>
+                <option>Email uniquement</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="needs">Que voulez-vous automatiser ?</label>
+              <span class="ad" style="top:46px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M3 4h18v2H3zm0 6h12v2H3zm0 6h18v2H3z"/></svg></span>
+              <textarea id="needs" name="needs" rows="5" placeholder="Ex : surveiller des annonces et envoyer des alertes Telegram ; bot qui répond aux messages et redirige vers mon canal ; tableau de bord ventes…"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <a class="btn btn-ghost" id="mailtoBtn" href="#" rel="nofollow">Planifier par email</a>
+            <button class="btn btn-primary" type="submit">Envoyer ma demande (réponse < 24 h)</button>
+          </div>
+          <p class="status" role="status" aria-live="polite">Merci ! Nous revenons vers vous sous 24 h.</p>
+        </form>
+      </div>
+    </section>
   </main>
-
-  <!-- Projects -->
-  <section id="projets" class="projects">
-    <div class="container">
-      <h2 class="title" style="text-align:center">Exemples de réalisations</h2>
-      <p class="sub" style="text-align:center">Démos internes prêtes à adapter à votre contexte.</p>
-
-      <div id="cards" class="cards" aria-live="polite"></div>
-    </div>
-  </section>
-
-  <!-- Expertise -->
-  <section id="expertise">
-    <div class="container">
-      <h2 class="title" style="text-align:center">Ce que nous savons faire</h2>
-      <p class="sub" style="text-align:center">Des briques techniques fiables, assemblées sur mesure.</p>
-
-      <div class="grid3" style="margin-top:24px">
-        <div class="exp">
-          <div class="exp-head">
-            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/></svg></div>
-            <h4>Web scraping</h4>
-          </div>
-          <p>Surveillez le marché sans effort. Le bot collecte, nettoie et vous montre ce qui compte.</p>
-          <ul>
-            <li>Collecte multi-sites avec supervision</li>
-            <li>Tableaux de bord, alertes et exports simples</li>
-          </ul>
-          <details class="more"><summary>Voir plus</summary>
-            <p>Anti-blocage, planification, normalisation des données, filtres avancés et exports JSON, CSV ou base de données.</p>
-          </details>
-        </div>
-
-        <div class="exp">
-          <div class="exp-head">
-            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5z"/></svg></div>
-            <h4>Bots et agents</h4>
-          </div>
-          <p>Chatbots, modération, assistants qui répondent et exécutent vos workflows.</p>
-          <ul>
-            <li>DM ciblés, commandes, suivi et statistiques</li>
-            <li>Anti-spam, quotas, hébergement chez vous ou géré</li>
-          </ul>
-          <details class="more"><summary>Voir plus</summary>
-            <p>Telegram, WhatsApp, Slack ou web. Journalisation, alertes, supervision, règles métier et escalade humaine.</p>
-          </details>
-        </div>
-
-        <div class="exp">
-          <div class="exp-head">
-            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5z"/></svg></div>
-            <h4>Applications IA</h4>
-          </div>
-          <p>Résumé, classement, extraction d’entités ou assistant RAG sur vos documents.</p>
-          <ul>
-            <li>Déploiement sur votre cloud ou le nôtre</li>
-            <li>Prompts testés et mesurés</li>
-          </ul>
-          <details class="more"><summary>Voir plus</summary>
-            <p>API, connecteurs, ingestion documentaire, évaluation, boucles de feedback et gouvernance des accès.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="faq">
-    <div class="container">
-      <h2 class="title" style="text-align:center">FAQ</h2>
-      <div class="items">
-        <details open><summary>Combien de temps pour un projet type ?</summary>
-          <div class="answer">La plupart des projets se livrent en 5 à 15 jours ouvrés.</div>
-        </details>
-        <details><summary>Qui gère l’hébergement ?</summary>
-          <div class="answer">Au choix. Nous déployons dans votre environnement ou nous opérons pour vous.</div>
-        </details>
-        <details><summary>Et si j’ai besoin d’aide après ?</summary>
-          <div class="answer">Support humain sur demande, petites évolutions et monitoring.</div>
-        </details>
-        <details><summary>Combien ça coûte ?</summary>
-          <div class="answer">On propose un cadrage simple, puis un budget fixe ou au temps passé selon le cas.</div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="title" style="text-align:center">Parlez-nous de votre projet</h2>
-      <p class="sub" style="text-align:center">Dites ce que vous voulez automatiser. On répond avec un plan d’action (souvent le jour même) et on cale un appel si besoin.</p>
-
-      <form id="leadForm" class="form" action="https://formspree.io/f/xblkpvaz" method="POST" novalidate>
-        <!-- honeypot -->
-        <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
-
-        <div class="grid2">
-          <div class="field">
-            <label for="name">Prénom</label>
-            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.33 0-8 2.17-8 5v1h16v-1c0-2.83-3.67-5-8-5Z"/></svg></span>
-            <input id="name" name="name" class="input" placeholder="Votre prénom" required>
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4Zm8 7L4 6v12l8-7 8 7V6l-8 5Z"/></svg></span>
-            <input id="email" name="email" class="input" type="email" inputmode="email" autocomplete="email" required placeholder="vous@exemple.com">
-          </div>
-          <div class="field">
-            <label for="phone">Téléphone (optionnel)</label>
-            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A19 19 0 0 1 3 7a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.2 2.5.57 3.6a1 1 0 0 1-.24 1l-2.23 2.2z"/></svg></span>
-            <input id="phone" name="phone" class="input" type="tel" inputmode="tel" pattern="[\d\s()+\-\.]{7,}" placeholder="+33 X XX XX XX XX">
-          </div>
-          <div class="field">
-            <label for="pref">Comment préférez-vous échanger ?</label>
-            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"/></svg></span>
-            <select id="pref" name="preference" class="input">
-              <option>Appel visio 30 min</option>
-              <option>Email</option>
-              <option>WhatsApp</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="msg">Que voulez-vous automatiser ?</label>
-            <span class="adorn" style="top:46px"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/></svg></span>
-            <textarea id="msg" name="message" rows="5" placeholder="Ex : surveiller des annonces et envoyer des alertes Telegram ; bot qui répond aux messages et redirige vers mon canal ; tableau de bord ventes..."></textarea>
-          </div>
-          <input type="hidden" name="project" id="projectField" />
-        </div>
-
-        <div class="form-actions">
-          <button type="button" id="btnMailTo" class="btn btn-quiet">Planifier par email</button>
-          <button class="btn btn-primary" type="submit">Envoyer ma demande (réponse &lt; 24 h)</button>
-        </div>
-        <p class="status" role="status" aria-live="polite">Merci ! Nous revenons vers vous sous 24 h.</p>
-      </form>
-    </div>
-  </section>
 
   <!-- Footer -->
   <footer>
@@ -372,184 +407,240 @@
     </div>
   </footer>
 
-  <!-- Modal dialog (projet) -->
-  <dialog id="projectModal" aria-labelledby="modalTitle">
-    <div class="m-head">
-      <div id="modalTitle" class="m-title">Projet</div>
-      <div class="m-actions">
-        <button class="iconbtn" id="prevBtn" aria-label="Précédent">‹</button>
-        <button class="iconbtn" id="nextBtn" aria-label="Suivant">›</button>
-        <button class="iconbtn" id="closeBtn" aria-label="Fermer">✕</button>
+  <!-- Modal -->
+  <div class="modal" id="modal" aria-hidden="true" aria-labelledby="mTitle">
+    <div class="win" role="dialog" aria-modal="true">
+      <div class="mhead">
+        <div class="mtitle" id="mTitle">Projet</div>
+        <div class="mnav">
+          <button class="icon-btn" data-act="prev" aria-label="Précédent">‹</button>
+          <button class="icon-btn" data-act="next" aria-label="Suivant">›</button>
+          <button class="icon-btn" data-act="close" aria-label="Fermer">✕</button>
+        </div>
       </div>
+      <div class="mbody" id="mBody"></div>
     </div>
-    <div class="m-body">
-      <video id="mVideo" class="m-video" controls playsinline preload="metadata" poster="">
-        <source id="mSrc" src="" type="video/mp4">
-      </video>
-      <p id="mDesc" style="margin:12px 0 6px"></p>
-      <div id="mStack" class="stack"></div>
-      <h4 style="margin:10px 0 6px;font:800 16px/1.3 Manrope">Fonctionnalités clés</h4>
-      <ul id="mPoints" style="margin-left:18px;display:grid;gap:6px"></ul>
-      <div class="m-cta">
-        <button class="btn btn-quiet" id="ctaDiscuss">Discuter de ce projet</button>
-        <button class="btn btn-primary" id="ctaAdapt">Adapter à mon cas</button>
-      </div>
-    </div>
-  </dialog>
+  </div>
 
   <script>
-    // Liens actifs au scroll
-    const navLinks = [...document.querySelectorAll('.navlinks .link')];
-    const watch = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    /* ========= Nav underline slider + scroll-spy (stable) ========= */
+    const nav = document.querySelector('.links');
+    const underline = nav.querySelector('.underline');
+    const navLinks = [...nav.querySelectorAll('a[href^="#"]')].filter(a => a.getAttribute('href') !== '#contact'); // garder contact hors spy
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    function moveUnderline(el){
+      const r = el.getBoundingClientRect();
+      const nr = nav.getBoundingClientRect();
+      underline.style.left = (r.left - nr.left + 8) + 'px';
+      underline.style.width = (r.width - 16) + 'px';
+    }
+    function setActive(el){
+      navLinks.forEach(a => a.removeAttribute('aria-current'));
+      el.setAttribute('aria-current','page'); moveUnderline(el);
+    }
+    // init underline on first link
+    setTimeout(()=>{ setActive(navLinks[0]); }, 0);
+
     if('IntersectionObserver' in window){
-      const io = new IntersectionObserver(entries=>{
+      const spy = new IntersectionObserver(entries=>{
         entries.forEach(e=>{
           if(e.isIntersecting){
-            navLinks.forEach(x=>x.removeAttribute('aria-current'));
-            const l = navLinks.find(x => x.getAttribute('href') === '#' + e.target.id);
-            l?.setAttribute('aria-current','page');
+            const link = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
+            if(link) setActive(link);
           }
         });
-      }, {threshold:.6, rootMargin:"-70px 0px -40% 0px"});
-      watch.forEach(s=>io.observe(s));
+      }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
+      sections.forEach(s=> spy.observe(s));
+    }else{
+      addEventListener('scroll', ()=>{
+        let best = sections[0];
+        const y = scrollY + 100;
+        sections.forEach(s=>{ if(s.offsetTop <= y) best = s; });
+        const link = navLinks.find(l => l.getAttribute('href') === '#' + best.id);
+        if(link) setActive(link);
+      }, {passive:true});
     }
 
-    // Charger projets depuis projects.json
+    // anchor smooth + focus
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        const target = document.querySelector(id);
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+        history.pushState(null,"",id);
+        target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); setTimeout(()=>target.removeAttribute('tabindex'), 600);
+      });
+    });
+
+    /* ========= Projects from JSON =========
+       Schema attendu (projects.json, à la racine du site) :
+       [
+         {
+           "title": "Bot Telegram · Scraping & analyse d’annonces",
+           "thumb": "https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=960",
+           "video": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+           "poster": "https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",
+           "desc": "Prix, villes, marques. Graphiques texte et images, exports CSV/JSON.",
+           "stack": ["Python","Telegram Bot","Matplotlib","Pandas"],
+           "points": ["Alertes Telegram instantanées","Filtres avancés","Exports CSV/JSON + graphiques PNG"]
+         }
+       ]
+    ============================================================ */
+    const FALLBACK = [
+      {
+        title:"Bot Telegram · Scraping & analyse d’annonces",
+        thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",
+        video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        poster:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",
+        desc:"Prix, villes, marques. Graphiques texte et images, exports CSV/JSON.",
+        stack:["Python","Telegram Bot","Matplotlib","Pandas"],
+        points:["Alertes Telegram instantanées","Filtres avancés","Exports CSV/JSON + graphiques PNG"]
+      },
+      {
+        title:"Userbot Telegram · DMs ciblés",
+        thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",
+        video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+        poster:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1280",
+        desc:"Récupère des utilisateurs depuis les commentaires, greeting et redirection vers votre canal.",
+        stack:["Python","Aiogram","PostgreSQL","cron"],
+        points:["Envoi programmé","Commandes /pause /reprendre","Filtrage par mots-clés"]
+      },
+      {
+        title:"Générateur de posts Telegram",
+        thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",
+        video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        poster:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1280",
+        desc:"Automatise vos posts à partir de sources (RSS, API ou Sheets).",
+        stack:["Python","FastAPI","Scheduler","Telegram API"],
+        points:["Programmation des publications","Templates prêts à l’emploi","Logs et reprise sur erreur"]
+      }
+    ];
+
     const cardsEl = document.getElementById('cards');
-    let PROJECTS = [], current = 0;
+    let PROJECTS = [];
+    fetch('projects.json',{cache:'no-store'})
+      .then(r => r.ok ? r.json() : FALLBACK)
+      .then(data => { PROJECTS = Array.isArray(data) && data.length ? data : FALLBACK; renderCards(); })
+      .catch(()=> { PROJECTS = FALLBACK; renderCards(); });
 
-    fetch('projects.json', {cache:'no-store'})
-      .then(r=>r.json())
-      .then(list=>{
-        PROJECTS = list;
-        renderCards(list);
-      })
-      .catch(()=>{ cardsEl.innerHTML = '<p style="color:#ffd7d7">Impossible de charger les projets.</p>'; });
-
-    function renderCards(list){
-      cardsEl.innerHTML = list.map((p,idx)=>`
-        <article class="card" data-idx="${idx}" tabindex="0" role="button" aria-label="Détails du projet: ${p.title}">
-          <div class="chip">Détails</div>
-          <div class="thumb">
-            <img src="${p.thumb}" alt="">
+    function renderCards(){
+      cardsEl.innerHTML = PROJECTS.map((p,i)=>`
+        <article class="card" data-id="${i}" tabindex="0" aria-label="Voir le projet ${p.title}">
+          <div class="pill">Détails</div>
+          <div class="card-media">
+            <img src="${p.thumb}" alt="" loading="lazy" decoding="async">
           </div>
           <div class="card-body">
             <h3>${p.title}</h3>
-            <p>${p.subtitle}</p>
+            <p>${p.desc}</p>
           </div>
         </article>
       `).join('');
+      // open modal on click/enter
       cardsEl.querySelectorAll('.card').forEach(card=>{
-        card.addEventListener('click', onOpen);
-        card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); onOpen.call(card,e); }});
+        card.addEventListener('click', ()=> openModal(+card.dataset.id));
+        card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(+card.dataset.id); }});
       });
     }
 
-    // Modal logic (accessible dialog)
-    const dlg = document.getElementById('projectModal');
-    const mTitle = document.getElementById('modalTitle');
-    const mVideo = document.getElementById('mVideo');
-    const mSrc = document.getElementById('mSrc');
-    const mDesc = document.getElementById('mDesc');
-    const mStack = document.getElementById('mStack');
-    const mPoints = document.getElementById('mPoints');
-    const btnPrev = document.getElementById('prevBtn');
-    const btnNext = document.getElementById('nextBtn');
-    const btnClose = document.getElementById('closeBtn');
-    const ctaDiscuss = document.getElementById('ctaDiscuss');
-    const ctaAdapt = document.getElementById('ctaAdapt');
-    let lastFocus = null;
+    /* ========= Modal vidéo ========= */
+    const modal = document.getElementById('modal');
+    const mBody = document.getElementById('mBody');
+    const mTitle = document.getElementById('mTitle');
+    let current = 0, lastFocus = null;
 
-    function renderModal(i){
-      const p = PROJECTS[i];
-      if(!p) return;
-      mTitle.textContent = p.title;
-      mSrc.src = p.video;
-      mVideo.poster = p.poster || p.thumb;
-      mVideo.load();
-      mDesc.textContent = p.desc;
-      mStack.innerHTML = p.stack.map(s=>`<span class="tag">${s}</span>`).join('');
-      mPoints.innerHTML = p.points.map(pt=>`<li>${pt}</li>`).join('');
-      // Préremplissage CTA
-      ctaDiscuss.onclick = ()=> fillAndGo(p, 'Je veux discuter de ce projet');
-      ctaAdapt.onclick = ()=> fillAndGo(p, 'J’aimerais adapter ce projet à mon cas');
-    }
-
-    function onOpen(e){
-      current = +this.dataset.idx;
-      renderModal(current);
+    function openModal(i){
+      current = i; renderModal();
       lastFocus = document.activeElement;
-      if(typeof dlg.showModal === 'function'){ dlg.showModal(); } else { dlg.setAttribute('open',''); }
-      document.documentElement.style.overflow = 'hidden';
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
     }
-    function onClose(){
-      dlg.close();
-      document.documentElement.style.overflow = '';
-      lastFocus?.focus();
-      mVideo.pause();
+    function closeModal(){
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      lastFocus && lastFocus.focus();
+      // stop video
+      const v = mBody.querySelector('video'); if(v){ v.pause(); v.src=''; }
     }
-    btnPrev.addEventListener('click', ()=>{ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(current); });
-    btnNext.addEventListener('click', ()=>{ current = (current+1)%PROJECTS.length; renderModal(current); });
-    btnClose.addEventListener('click', onClose);
-    dlg.addEventListener('click', e=>{ if(e.target === dlg) onClose(); });
+    function renderModal(){
+      const p = PROJECTS[current];
+      mTitle.textContent = p.title;
+      mBody.innerHTML = `
+        <video class="mvideo" controls preload="metadata" poster="${p.poster}">
+          <source src="${p.video}" type="video/mp4">
+          Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+        <p style="margin:10px 0 6px">${p.desc}</p>
+        <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
+        <h4 style="margin:10px 0 6px">Fonctionnalités clés</h4>
+        <ul style="margin-left:18px">${(p.points||[]).map(pt=>`<li>${pt}</li>`).join('')}</ul>
+        <div class="mcta">
+          <a class="btn btn-ghost" href="#contact">Discuter de ce projet</a>
+          <a class="btn btn-primary" href="#contact">Adapter à mon cas</a>
+        </div>
+      `;
+    }
+    modal.addEventListener('click', e=>{
+      const act = e.target.dataset.act;
+      if(e.target === modal || act === 'close'){ closeModal(); }
+      if(act === 'prev'){ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
+      if(act === 'next'){ current = (current+1)%PROJECTS.length; renderModal(); }
+    });
     document.addEventListener('keydown', e=>{
-      if(!dlg.open) return;
-      if(e.key === 'Escape') onClose();
-      if(e.key === 'ArrowRight') btnNext.click();
-      if(e.key === 'ArrowLeft') btnPrev.click();
+      if(modal.getAttribute('aria-hidden')==='true') return;
+      if(e.key==='Escape') closeModal();
+      if(e.key==='ArrowRight') { current = (current+1)%PROJECTS.length; renderModal(); }
+      if(e.key==='ArrowLeft') { current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
     });
 
-    // CTA -> contact + préremplissage
-    function fillAndGo(p, lead){
-      const field = document.getElementById('projectField');
-      const msg = document.getElementById('msg');
-      field.value = p.title;
-      const line = `Projet choisi: ${p.title}. ${lead}.`;
-      msg.value = msg.value ? `${msg.value}\n\n${line}` : line;
-      onClose();
-      document.querySelector('#contact').scrollIntoView({behavior:'smooth', block:'start'});
-      setTimeout(()=> document.getElementById('name').focus(), 400);
-    }
+    /* ========= Expertise: Voir plus local ========= */
+    document.getElementById('expertiseGrid').addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-toggle="more"]');
+      if(!btn) return;
+      const card = btn.closest('.exp');
+      const open = card.getAttribute('data-open') === '1';
+      card.setAttribute('data-open', open ? '0' : '1');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
 
-    // Form validation + submit async Formspree
+    /* ========= Form: validation + mailto ========= */
     const form = document.getElementById('leadForm');
     const status = form.querySelector('.status');
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
-      status.classList.remove('error');
-      status.textContent = 'Envoi en cours...';
-      status.style.display = 'block';
+      status.classList.remove('error'); status.textContent = 'Envoi en cours...'; status.style.display = 'block';
 
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       if(!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        status.textContent = 'Merci de vérifier votre prénom et votre email.';
-        status.classList.add('error');
-        return;
+        status.textContent = 'Merci de vérifier Prénom et Email.'; status.classList.add('error'); return;
       }
       if(form.website.value){ status.textContent = 'OK.'; return; } // honeypot
 
       try{
-        const res = await fetch(form.action, { method:"POST", headers:{Accept:"application/json"}, body:new FormData(form) });
+        const res = await fetch(form.action,{method:"POST",headers:{Accept:"application/json"},body:new FormData(form)});
         if(res.ok){
-          form.reset();
-          status.classList.remove('error');
-          status.textContent = 'Merci ! Nous vous répondons sous 24 h.';
-          setTimeout(()=> status.style.display='none', 4500);
+          form.reset(); status.classList.remove('error');
+          status.textContent = '✅ Merci ! Nous vous répondons sous 24 h.';
+          setTimeout(()=> status.style.display='none', 4600);
         }else{
-          throw new Error();
+          status.textContent = '❌ Erreur côté serveur. Réessayez.'; status.classList.add('error');
         }
-      }catch{
-        status.textContent = 'Erreur côté réseau. Merci de réessayer.';
-        status.classList.add('error');
+      }catch(_){
+        status.textContent = '❌ Impossible d’envoyer. Vérifiez votre connexion.'; status.classList.add('error');
       }
     });
 
-    // “Planifier par email” — ouvre un mailto prérempli
-    document.getElementById('btnMailTo').addEventListener('click', ()=>{
-      const subject = encodeURIComponent('AutoFlow · Projet à automatiser');
+    // mailto prérempli
+    const mailto = document.getElementById('mailtoBtn');
+    mailto.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const subject = encodeURIComponent('Projet d’automatisation — prise de contact');
       const body = encodeURIComponent(
-        `Bonjour,\n\nVoici mon besoin:\n${document.getElementById('msg').value || ''}\n\nPrénom: ${document.getElementById('name').value || ''}\nTéléphone: ${document.getElementById('phone').value || ''}\nPréférence: ${document.getElementById('pref').value}\n`
+        `Prénom: ${form.name.value || ''}\nEmail: ${form.email.value || ''}\nTéléphone: ${form.phone.value || ''}\nPréférence: ${form.pref.value || ''}\n\nBesoin:\n${form.needs.value || ''}\n`
       );
       window.location.href = `mailto:hello@autoflow.fr?subject=${subject}&body=${body}`;
     });
