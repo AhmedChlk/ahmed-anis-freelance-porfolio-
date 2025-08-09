@@ -1,424 +1,356 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Bots, scrapers et automatisations sur mesure qui travaillent pour vous — pendant que vous vous concentrez sur la croissance." />
   <meta name="theme-color" content="#0A84FF" />
-  <title>AutoFlow — Bots, Scraping & Automatisation</title>
+  <title>AutoFlow · Bots, scrapers et automatisations sur mesure</title>
 
-  <!-- Fonts & favicon -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="%230A84FF"/><stop offset="1" stop-color="%2387B7FF"/></linearGradient></defs><rect rx="14" width="64" height="64" fill="url(%23g)"/><path d="M36 6 14 35h14l-2 23 22-29H34l2-23z" fill="white"/></svg>'>
+  <!-- Meta / Open Graph -->
+  <meta name="description" content="Nous concevons des bots, scrapers et automatisations qui travaillent pour vous. Parlez-nous de votre projet, on s'occupe du reste." />
+  <meta property="og:title" content="AutoFlow · Bots, scrapers et automatisations" />
+  <meta property="og:description" content="Parlez-nous de votre projet, on s'occupe du reste." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.pexels.com/photos/2058128/pexels-photo-2058128.jpeg?auto=compress&cs=tinysrgb&w=1200" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- minimal SEO -->
-  <meta property="og:title" content="AutoFlow — Bots, Scraping & Automatisation">
-  <meta property="og:description" content="On conçoit des bots, scrapers et automatisations sur mesure qui travaillent pour vous.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?q=80&w=1200&auto=format&fit=crop">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"AutoFlow","url":"https://autoflow.fr","logo":"https://autoflow.fr/logo.png","sameAs":["https://www.linkedin.com/company/autoflow"]}
-  </script>
+  <!-- Favicon (SVG data URL) -->
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%230A84FF"/><stop offset="1" stop-color="%23A8C7FF"/></linearGradient></defs><rect width="64" height="64" rx="14" fill="url(%23g)"/><path d="M34 6 14 33h12l-2 25 20-27H32l2-25z" fill="white"/></svg>'>
+
+  <!-- Fonts (performantes) -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Perf pré-connexions (images + vidéos placeholders) -->
+  <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+  <link rel="preconnect" href="https://commondatastorage.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://samplelib.com" crossorigin>
 
   <style>
     :root{
-      --accent-h:214;
-      --accent:hsl(var(--accent-h) 100% 57%);
-      --accent-2:hsl(var(--accent-h) 100% 74%);
-      --accent-grad:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);
-      --bg:#0b0d12; --bg-soft:#0f1218; --elev:#10151f;
-      --text:#e9edf6; --muted:#9aa4b2; --hair:rgba(255,255,255,.09);
-      --r:20px; --gap:clamp(14px,3vw,24px);
-      --shadow-1:0 8px 22px rgba(0,0,0,.28);
-      --shadow-2:0 16px 36px rgba(0,0,0,.36);
-      --shadow-3:0 24px 60px rgba(0,0,0,.48);
+      /* Couleurs */
+      --bg:#0b0e14; --bg-soft:#0e121a; --elev:#111725;
+      --text:#f3f6ff; --muted:#a9b4c6; --hair:rgba(255,255,255,.10);
+      --accent:#0A84FF; --accent-2:#66A8FF;
+      --grad: linear-gradient(135deg, var(--accent), var(--accent-2));
+
+      /* Rythme */
+      --r:20px; --gap:clamp(14px,3vw,22px);
+
+      /* Ombres premium */
+      --shadow-1: 0 8px 22px rgba(0,0,0,.28);
+      --shadow-2: 0 16px 36px rgba(0,0,0,.40);
+      --shadow-3: 0 24px 60px rgba(0,0,0,.55);
     }
     *,*::before,*::after{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.55 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-    img{display:block;max-width:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.6 Inter,system-ui,sans-serif;overflow-x:hidden}
+    img,video{display:block;max-width:100%}
     a{color:inherit;text-decoration:none}
+    section{padding:90px 0;scroll-margin-top:84px}
     .container{max-width:1120px;margin:0 auto;padding:0 var(--gap)}
-    section{padding:92px 0;scroll-margin-top:84px}
+    .title{font:800 clamp(28px,5vw,48px)/1.1 Manrope,Inter,sans-serif;letter-spacing:.2px;margin:0 0 10px}
+    .sub{color:var(--muted);max-width:720px;margin:0 auto}
 
     /* Header */
-    .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(10,12,18,.82), rgba(10,12,18,.42));backdrop-filter:blur(10px);transition:all .25s}
-    .site-header.compact{background:linear-gradient(180deg, rgba(10,12,18,.9), rgba(10,12,18,.6))}
-    .nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+    .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,14,20,.85), rgba(11,14,20,.55));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand-badge{width:40px;height:40px;border-radius:12px;background:var(--accent-grad);display:grid;place-items:center;box-shadow:0 6px 18px rgba(29,118,255,.35)}
-    .brand-badge svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
-    .brand-name{font:800 20px/1 Inter}
-    .nav-links{display:flex;gap:18px;align-items:center}
+    .badge{width:40px;height:40px;border-radius:12px;background:var(--grad);display:grid;place-items:center;box-shadow:0 6px 18px rgba(10,132,255,.35)}
+    .brand span{font:800 20px/1 Manrope}
+    .navlinks{display:flex;gap:18px;align-items:center}
     .link{position:relative;padding:8px 10px;border-radius:10px;color:#dfe7f6}
-    .link::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;border-radius:2px;background:var(--accent-grad);transform:scaleX(0);transform-origin:50% 100%;transition:transform .22s}
+    .link::after{content:"";position:absolute;left:10px;right:10px;bottom:6px;height:2px;border-radius:2px;background:var(--grad);transform:scaleX(0);transition:transform .22s}
     .link:hover::after,.link[aria-current="page"]::after{transform:scaleX(1)}
-    .pill{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--hair)}
-    .pill--accent{background:rgba(66,136,255,.12);border-color:rgba(66,136,255,.35)}
-    .hamburger{display:none;background:none;border:none;padding:10px}
-    .hamburger span{display:block;width:22px;height:2px;background:#dfe7f6;margin:5px 0;border-radius:2px}
+    .pill{padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06)}
 
     /* Hero */
     .hero{position:relative;min-height:86vh;display:grid;place-items:center;overflow:hidden}
     .hero-media{position:absolute;inset:0;z-index:-2}
-    .hero-media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(1.06)}
-    .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(6,8,12,.25), rgba(6,8,12,.55) 55%, rgba(6,8,12,.86));z-index:-1}
-    .hero h1{font:800 clamp(32px,6vw,64px)/1.05 Inter;text-align:center;margin:0 0 12px}
-    .hero p{color:#d4deed;text-align:center;max-width:760px;margin:0 auto 22px}
+    .hero-media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.08) saturate(1.03)}
+    .hero::after{content:"";position:absolute;inset:0;background:
+      linear-gradient(180deg, rgba(7,10,16,.15) 0%, rgba(7,10,16,.50) 50%, rgba(7,10,16,.86) 100%);
+      z-index:-1}
+    .hero h1{font:800 clamp(34px,6vw,62px)/1.05 Manrope;margin:0 0 10px;text-align:center}
+    .hero p{color:#d6deee;text-align:center;max-width:780px;margin:0 auto 24px}
     .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .btn{position:relative;display:inline-flex;gap:10px;align-items:center;justify-content:center;border:none;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer;transition:transform .12s, box-shadow .12s;user-select:none}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:none;border-radius:14px;padding:14px 18px;font-weight:700;cursor:pointer;transition:transform .12s, box-shadow .12s, background .2s}
     .btn svg{flex:0 0 auto}
-    .btn-primary{background:var(--accent-grad);color:white;box-shadow:var(--shadow-1)}
+    .btn-primary{background:var(--grad);color:#fff;box-shadow:var(--shadow-1)}
     .btn-primary:hover{transform:translateY(-1px);box-shadow:var(--shadow-2)}
     .btn-ghost{background:rgba(255,255,255,.08);color:#eef3ff;border:1px solid var(--hair)}
     .btn-ghost:hover{transform:translateY(-1px)}
-    .cta-float{position:fixed;right:22px;bottom:22px;z-index:40;display:none}
-    .cta-float .btn{background:linear-gradient(180deg, rgba(255,255,255,.86), rgba(255,255,255,.78));color:#153056;border:1px solid rgba(255,255,255,.6);backdrop-filter:blur(6px)}
-    .back-top{position:fixed;right:26px;bottom:86px;display:none;z-index:40}
-    .back-top button{width:44px;height:44px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--hair);color:#fff}
-
-    .section-head{text-align:center;margin-bottom:36px}
-    .k-title{font:800 clamp(28px,5vw,46px)/1.12 Inter;letter-spacing:.2px;margin:0 0 8px}
-    .k-sub{color:var(--muted);max-width:700px;margin:0 auto}
+    .btn-quiet{background:rgba(255,255,255,.06);border:1px solid var(--hair);color:#fff}
 
     /* Projects */
     .projects{background:var(--bg-soft)}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .card{position:relative;border-radius:22px;overflow:hidden;background:#0e131b;border:1px solid var(--hair);box-shadow:var(--shadow-1);transform-style:preserve-3d;transition:box-shadow .25s, transform .25s;cursor:pointer}
-    .card:hover{box-shadow:var(--shadow-2)}
-    .card-media{aspect-ratio:4/3;overflow:hidden}
-    .card-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .5s}
-    .card:hover .card-media img{transform:scale(1.08)}
-    .card::before{content:"";position:absolute;inset:-10% -40% auto -40%;height:60%;background:linear-gradient(100deg, rgba(255,255,255,.12), rgba(255,255,255,0) 45%);transform:translateX(-60%) rotate(8deg);transition:transform .6s;filter:blur(6px);pointer-events:none}
-    .card:hover::before{transform:translateX(40%) rotate(8deg)}
-    .card-body{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.45)}
-    .badge{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.28);color:#fff;padding:6px 10px;border-radius:999px;font-weight:800}
-    .card h3{margin:0 0 6px;font:800 20px/1.25 Inter}
-    .card p{margin:0;color:#d8dee8}
+    .card{position:relative;border-radius:22px;overflow:hidden;background:#0f141d;border:1px solid var(--hair);box-shadow:var(--shadow-1);transition:transform .2s, box-shadow .25s}
     .card:focus-visible{outline:2px solid var(--accent)}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+    .thumb{aspect-ratio:16/10;overflow:hidden;position:relative}
+    .thumb img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .45s}
+    .card:hover .thumb img{transform:scale(1.07)}
+    .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.78) 100%)}
+    .card-body{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.55)}
+    .card h3{margin:0 0 6px;font:800 20px/1.25 Manrope}
+    .card p{margin:0;color:#e8eefc;opacity:.95}
+    .chip{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.50);border:1px solid rgba(255,255,255,.28);color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
 
-    /* Expertise / Benefits / FAQ */
-    .expertise .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    .exp-card{background:linear-gradient(180deg, #0f141e, #0d121a);border:1px solid var(--hair);border-radius:22px;padding:22px;box-shadow:var(--shadow-1)}
-    .exp-head{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-    .exp-ic{width:36px;height:36px;border-radius:12px;background:rgba(255,255,255,.06);display:grid;place-items:center;border:1px solid var(--hair)}
-    .exp-title{font:800 18px/1.2 Inter}
-    .exp-list{margin:12px 0 0 0;padding:0 0 0 18px;color:#c8d2e1}
-    .row-1{grid-column:1 / -1}
+    /* Expertise (plus léger) */
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .exp{background:linear-gradient(180deg,#111826,#0f1520);border:1px solid var(--hair);border-radius:22px;padding:20px;box-shadow:var(--shadow-1)}
+    .exp-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+    .exp-icon{width:34px;height:34px;border-radius:12px;border:1px solid var(--hair);background:rgba(255,255,255,.06);display:grid;place-items:center}
+    .exp h4{margin:0;font:800 18px/1.3 Manrope}
+    .exp p{margin:6px 0 10px;color:#c7d1e3}
+    .exp ul{margin:0;padding:0 0 0 18px;color:#c7d1e3}
+    .more{margin-top:10px}
+    .more summary{cursor:pointer;color:#cfe0ff}
+    .more p{margin:8px 0 0}
 
-    .benefits .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-    .benefit{background:linear-gradient(180deg,#0f141e,#0d121a);border:1px solid var(--hair);border-radius:22px;padding:22px;box-shadow:var(--shadow-1)}
-    .benefit h4{margin:10px 0 6px;font:800 18px/1.35 Inter}
-    .benefit p{margin:0;color:#c9d3e2}
-
+    /* FAQ */
     .faq .items{max-width:880px;margin:0 auto}
-    details{background:#0e131b;border:1px solid var(--hair);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-1);margin-bottom:12px}
-    summary{cursor:pointer;font:800 18px/1.2 Inter;list-style:none;display:flex;align-items:center;gap:10px}
+    details{background:#101623;border:1px solid var(--hair);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-1);margin-bottom:12px}
+    summary{cursor:pointer;font:800 18px/1.3 Manrope;list-style:none;display:flex;align-items:center;gap:10px}
     summary::-webkit-details-marker{display:none}
-    details[open]{box-shadow:var(--shadow-2)}
     .answer{color:#cbd6e6;margin:8px 4px 4px}
 
     /* Contact */
-    .contact .form-wrap{max-width:980px;margin:0 auto;background:#0e131b;border:1px solid var(--hair);border-radius:28px;padding:24px;box-shadow:var(--shadow-2)}
-    .grid-form{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .contact .form{max-width:980px;margin:0 auto;background:#0f141d;border:1px solid var(--hair);border-radius:26px;padding:22px;box-shadow:var(--shadow-2)}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .field{display:flex;flex-direction:column;gap:8px;position:relative}
     .field label{font-weight:700}
-    .adorn{position:absolute;left:12px;top:42px;opacity:.7}
-    input,textarea,select{width:100%;background:#0a0f16;color:#eaf1ff;border:1px solid #1d2a3a;border-radius:14px;padding:14px 14px 14px 38px;font-family:inherit}
-    input::placeholder,textarea::placeholder{color:#6e7b90}
-    input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);box-shadow:0 0 0 6px rgba(66,136,255,.14)}
-    .full{grid-column:1 / -1}
-    .form-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;margin-top:10px}
-    .hint{color:#9aa4b2;margin:6px 0 0}
+    .input, textarea, select{width:100%;background:#0a0f16;color:#eef3ff;border:1px solid #1b2737;border-radius:14px;padding:14px 14px 14px 44px;font:500 16px/1.5 Inter}
+    .input::placeholder, textarea::placeholder{color:#74829b}
+    .input:focus, textarea:focus, select:focus{outline:2px solid var(--accent);box-shadow:0 0 0 6px rgba(10,132,255,.15)}
+    .adorn{position:absolute;left:12px;top:42px;opacity:.75}
+    .full{grid-column:1/-1}
+    .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
     .status{margin-top:10px;color:#9fe3b2;display:none}
     .status.error{color:#ff9f9f}
 
-    /* Modal */
-    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);padding:16px;z-index:100}
-    .modal[aria-hidden="false"]{display:grid}
-    .modal-win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;max-width:980px;width:100%;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-3)}
-    .modal-head{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--hair)}
-    .modal-title{font:800 18px/1.2 Inter}
-    .modal-actions{margin-left:auto;display:flex;gap:6px}
-    .icon-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
-    .modal-body{padding:14px;overflow:auto}
-    .modal-media{width:100%;max-height:52vh;border-radius:12px;background:#0a0f16;display:grid;place-items:center;overflow:hidden}
-    .modal-media img,.modal-media video{width:100%;height:100%;object-fit:cover}
-    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
-    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06)}
-    .modal-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    /* Modal (dialog) */
+    dialog#projectModal{border:1px solid var(--hair);border-radius:18px;padding:0;max-width:980px;width:calc(100% - 24px);background:#0f141d;color:var(--text);box-shadow:var(--shadow-3)}
+    .m-head{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair)}
+    .m-title{font:800 18px/1.2 Manrope}
+    .m-actions{margin-left:auto;display:flex;gap:6px}
+    .iconbtn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
+    .m-body{padding:14px;max-height:70vh;overflow:auto}
+    .m-video{width:100%;max-height:50vh;object-fit:cover;border-radius:12px}
+    .stack{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+    .tag{padding:6px 10px;border:1px solid var(--hair);border-radius:999px;background:rgba(255,255,255,.06)}
+    .m-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 
     /* Footer */
-    footer{background:#0a0f16;border-top:1px solid var(--hair);padding:40px 0;color:#c6d0df}
+    footer{background:#0a0f16;border-top:1px solid var(--hair);padding:38px 0;color:#c6d0df}
     .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-    .foot h5{margin:0 0 8px;font:800 16px/1.3 Inter;color:#dfe7f6}
-    .foot ul{margin:0;padding-left:18px}
-    .foot small{grid-column:1 / -1;opacity:.7;margin-top:16px;display:block;text-align:center}
+    .foot h5{margin:0 0 8px;font:800 16px/1.3 Manrope;color:#dfe7f6}
+    .foot small{grid-column:1/-1;opacity:.7;margin-top:16px;display:block;text-align:center}
 
     /* Responsive */
-    @media (max-width:980px){
-      .cards{grid-template-columns:1fr 1fr}
-      .expertise .grid{grid-template-columns:1fr 1fr}
-      .benefits .grid{grid-template-columns:1fr 1fr}
-      .grid-form{grid-template-columns:1fr}
+    @media (max-width:1024px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .grid3{grid-template-columns:repeat(2,1fr)}
     }
     @media (max-width:740px){
-      .nav-links{display:none}
-      .hamburger{display:block}
       section{padding:68px 0}
-      .cards{grid-template-columns:1fr}
-      .expertise .grid,.benefits .grid{grid-template-columns:1fr}
-      .card::before{display:none}
-      .cta-float{right:16px;bottom:16px}
-      .back-top{right:16px;bottom:76px}
+      .cards,.grid3,.grid2{grid-template-columns:1fr}
     }
 
+    /* Accessibilité visuelle & scrollbars */
     a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
-    .skip{position:absolute;left:-9999px}
-    .skip:focus{left:10px;top:10px;z-index:1000;background:#000;color:#fff;padding:8px 10px;border-radius:10px}
+    *::-webkit-scrollbar{height:12px;width:12px}
+    *::-webkit-scrollbar-thumb{background:rgba(255,255,255,.10);border:3px solid transparent;border-radius:20px;background-clip:padding-box}
   </style>
 </head>
 <body>
-  <a class="skip" href="#main">Aller au contenu</a>
-
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#accueil">
-        <span class="brand-badge" aria-hidden="true">
+        <span class="badge" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M13.5 2 5 13h6l-1 9 8.5-11h-6L13.5 2z"/></svg>
         </span>
-        <span class="brand-name">AutoFlow</span>
+        <span>AutoFlow</span>
       </a>
-      <nav aria-label="Navigation principale" class="nav-links">
+      <nav class="navlinks" aria-label="Navigation principale">
         <a class="link" href="#accueil">Accueil</a>
         <a class="link" href="#projets">Projets</a>
         <a class="link" href="#expertise">Expertise</a>
         <a class="link" href="#faq">FAQ</a>
-        <a class="link pill pill--accent" href="#contact">Parler à un humain</a>
+        <a class="link pill" href="#contact">Parler à un humain</a>
       </nav>
-      <button class="hamburger" aria-label="Menu mobile" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <main id="main">
-    <!-- Hero -->
-    <section id="accueil" class="hero">
-      <div class="hero-media">
-        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1920&auto=format&fit=crop" alt="">
+  <main id="accueil" class="hero">
+    <div class="hero-media">
+      <img src="https://images.pexels.com/photos/2058128/pexels-photo-2058128.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="">
+    </div>
+    <div class="container">
+      <h1>Tout devient automatique, sauf vos idées</h1>
+      <p>Nous créons des bots, scrapers et automatisations sur mesure qui travaillent pour vous. Parlez-nous de votre cas, on revient avec un plan simple et un premier pas concret.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#contact">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          Parler de mon projet
+        </a>
+        <a class="btn btn-ghost" href="#projets">Voir des exemples</a>
       </div>
-      <div class="container">
-        <h1>Tout devient automatique, sauf vos idées.</h1>
-        <p>On conçoit des bots, scrapers et automatisations sur mesure qui travaillent pour vous — pendant que vous vous concentrez sur la croissance.</p>
-        <div class="actions">
-          <a href="#contact" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-            Parler de mon projet
-          </a>
-          <a href="#projets" class="btn btn-ghost">Voir des exemples</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects (JSON-driven) -->
-    <section id="projets" class="projects">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="k-title">Nos dernières réalisations</h2>
-          <p class="k-sub">Démos internes — prêtes à adapter à votre cas.</p>
-        </div>
-        <div class="cards" id="cards"></div>
-      </div>
-    </section>
-
-    <!-- Expertise -->
-    <section id="expertise" class="expertise">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="k-title">Notre expertise</h2>
-          <p class="k-sub">Des briques techniques robustes, assemblées sur mesure.</p>
-        </div>
-
-        <div class="grid">
-          <div class="exp-card">
-            <div class="exp-head">
-              <div class="exp-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/></svg></div>
-              <div class="exp-title">Web scraping</div>
-            </div>
-            <p>Le pilotage automatique de votre veille : un bot collecte, nettoie et vous montre uniquement ce qui compte.</p>
-            <ul class="exp-list">
-              <li>Collecte multi-sites fiable (anti-blocage, planification)</li>
-              <li>Tableaux de bord, alertes et exports simples</li>
-            </ul>
-          </div>
-
-          <div class="exp-card">
-            <div class="exp-head">
-              <div class="exp-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5z"/></svg></div>
-              <div class="exp-title">Bots & agents</div>
-            </div>
-            <p>Chatbots, bots de modération, assistants qui répondent et exécutent vos workflows.</p>
-            <ul class="exp-list">
-              <li>DM ciblés, commandes, suivi et statistiques</li>
-              <li>Anti-spam, quotas, hébergé chez vous ou géré</li>
-            </ul>
-          </div>
-
-          <div class="exp-card">
-            <div class="exp-head">
-              <div class="exp-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5z"/></svg></div>
-              <div class="exp-title">Applications IA</div>
-            </div>
-            <p>Résumé/classement, extraction d’entités, RAG sur vos documents, API.</p>
-            <ul class="exp-list">
-              <li>Sur votre cloud ou le nôtre</li>
-              <li>Prompts testés et mesurés</li>
-            </ul>
-          </div>
-
-          <div class="exp-card row-1">
-            <div class="exp-head">
-              <div class="exp-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M21 12l-2 2-3-3 2-2-2-2-2 2-3-3 2-2-2-2-3 3-2-2L3 5l2 2-3 3 2 2 3-3 3 3-2 2 2 2 2-2 3 3 2-2-3-3 2-2 3 3 2-2z"/></svg></div>
-              <div class="exp-title">Solutions sur mesure</div>
-            </div>
-            <p>Applis web & mobile clés en main, branchées à vos outils (Google Sheets, Notion, Slack, CRM…). On livre, on forme, vous gardez la main.</p>
-            <ul class="exp-list">
-              <li>Intégration douce à vos habitudes</li>
-              <li>Transfert & formation inclus</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Benefits -->
-    <section class="benefits">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="k-title">Ce que vous gagnez</h2>
-        </div>
-        <div class="grid">
-          <div class="benefit">
-            <h4>Des heures gagnées</h4>
-            <p>Libérez des heures chaque semaine — sans effort supplémentaire.</p>
-          </div>
-          <div class="benefit">
-            <h4>Moins de tâches répétitives</h4>
-            <p>On standardise, on automatise, vous respirez.</p>
-          </div>
-          <div class="benefit">
-            <h4>Impact mesurable</h4>
-            <p>Dashboards clairs et alertes utiles sur vos KPI.</p>
-          </div>
-          <div class="benefit">
-            <h4>Intégration sans friction</h4>
-            <p>On branche tout à vos outils, sans changer vos habitudes.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="k-title">FAQ</h2>
-        </div>
-        <div class="items">
-          <details open>
-            <summary>Combien de temps pour un projet type ?</summary>
-            <div class="answer">La plupart des projets se livrent en 5 à 15 jours ouvrés.</div>
-          </details>
-          <details>
-            <summary>Qui s’occupe de l’hébergement ?</summary>
-            <div class="answer">On peut déployer chez vous (cloud) ou gérer pour vous — on choisit la solution la plus simple.</div>
-          </details>
-          <details>
-            <summary>Et si j’ai besoin d’aide après ?</summary>
-            <div class="answer">On assure le suivi, la petite maintenance et les évolutions.</div>
-          </details>
-          <details>
-            <summary>Combien ça coûte ?</summary>
-            <div class="answer">On part souvent d’un pilote simple puis on étend. Parlons-en 15 min pour chiffrer honnêtement.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="k-title">Parlez-nous de votre projet</h2>
-          <p class="k-sub">Dites-nous ce que vous voulez automatiser. On vous répond avec un mini plan d’action (souvent le jour même) — et on cale un appel si besoin.</p>
-        </div>
-
-        <form id="contactForm" class="form-wrap" action="https://formspree.io/f/xblkpvaz" method="POST" novalidate>
-          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
-          <div class="grid-form">
-            <div class="field">
-              <label for="fname">Prénom</label>
-              <span class="adorn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4 0-8 2-8 5v2h16v-2c0-3-4-5-8-5z"/></svg></span>
-              <input id="fname" name="first_name" required placeholder="Votre prénom" autocomplete="given-name">
-            </div>
-            <div class="field">
-              <label for="email">Email</label>
-              <span class="adorn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M4 4h16v16H4V4zm8 7L4 6v12l8-7 8 7V6l-8 5z"/></svg></span>
-              <input id="email" name="email" type="email" required placeholder="vous@exemple.com" autocomplete="email">
-            </div>
-            <div class="field">
-              <label for="phone">Téléphone (optionnel)</label>
-              <span class="adorn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A19 19 0 0 1 3 7a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.2 2.5.57 3.6a1 1 0 0 1-.24 1l-2.23 2.2z"/></svg></span>
-              <input id="phone" name="phone" type="tel" inputmode="tel" pattern="[\d\s()+\-\.]{7,}" placeholder="+33 X XX XX XX XX" autocomplete="tel">
-            </div>
-            <div class="field">
-              <label for="pref">Comment préférez-vous échanger ?</label>
-              <span class="adorn"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M4 4h16v16H4V4zm3 4h10v2H7V8zm0 4h10v2H7v-2zm0 4h6v2H7v-2z"/></svg></span>
-              <select id="pref" name="preference">
-                <option>Appel visio 30 min</option>
-                <option>Appel téléphonique</option>
-                <option>Réponse détaillée par email</option>
-                <option>WhatsApp/Telegram</option>
-              </select>
-            </div>
-            <div class="field full">
-              <label for="needs">Que voulez-vous automatiser ?</label>
-              <span class="adorn" style="top:46px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#9aa4b2"><path d="M3 4h18v2H3V4zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/></svg></span>
-              <textarea id="needs" name="needs" rows="5" placeholder="Ex. : surveiller des annonces et envoyer des alertes Telegram ; bot qui répond aux messages et redirige vers mon canal ; tableau de bord ventes..."></textarea>
-              <p class="hint">Rassurez-vous : on répond rapidement (souvent &lt; 24 h).</p>
-            </div>
-          </div>
-          <div class="form-actions">
-            <button class="btn btn-ghost" type="button" id="mailtoBtn">Planifier par email</button>
-            <button class="btn btn-primary" type="submit">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
-              Envoyer ma demande (réponse &lt; 24 h)
-            </button>
-          </div>
-          <p class="status" role="status" aria-live="polite">Merci ! Nous revenons vers vous sous 24 h.</p>
-        </form>
-      </div>
-    </section>
+    </div>
   </main>
 
-  <!-- Float CTA + Back to top -->
-  <div class="back-top"><button aria-label="Retour en haut">↑</button></div>
-  <div class="cta-float"><a class="btn" href="#contact">Parler de mon projet →</a></div>
+  <!-- Projects -->
+  <section id="projets" class="projects">
+    <div class="container">
+      <h2 class="title" style="text-align:center">Exemples de réalisations</h2>
+      <p class="sub" style="text-align:center">Démos internes prêtes à adapter à votre contexte.</p>
 
+      <div id="cards" class="cards" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section id="expertise">
+    <div class="container">
+      <h2 class="title" style="text-align:center">Ce que nous savons faire</h2>
+      <p class="sub" style="text-align:center">Des briques techniques fiables, assemblées sur mesure.</p>
+
+      <div class="grid3" style="margin-top:24px">
+        <div class="exp">
+          <div class="exp-head">
+            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/></svg></div>
+            <h4>Web scraping</h4>
+          </div>
+          <p>Surveillez le marché sans effort. Le bot collecte, nettoie et vous montre ce qui compte.</p>
+          <ul>
+            <li>Collecte multi-sites avec supervision</li>
+            <li>Tableaux de bord, alertes et exports simples</li>
+          </ul>
+          <details class="more"><summary>Voir plus</summary>
+            <p>Anti-blocage, planification, normalisation des données, filtres avancés et exports JSON, CSV ou base de données.</p>
+          </details>
+        </div>
+
+        <div class="exp">
+          <div class="exp-head">
+            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a5 5 0 0 0-5 5v3H5a2 2 0 0 0-2 2v7h18v-7a2 2 0 0 0-2-2h-2V7a5 5 0 0 0-5-5z"/></svg></div>
+            <h4>Bots et agents</h4>
+          </div>
+          <p>Chatbots, modération, assistants qui répondent et exécutent vos workflows.</p>
+          <ul>
+            <li>DM ciblés, commandes, suivi et statistiques</li>
+            <li>Anti-spam, quotas, hébergement chez vous ou géré</li>
+          </ul>
+          <details class="more"><summary>Voir plus</summary>
+            <p>Telegram, WhatsApp, Slack ou web. Journalisation, alertes, supervision, règles métier et escalade humaine.</p>
+          </details>
+        </div>
+
+        <div class="exp">
+          <div class="exp-head">
+            <div class="exp-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#dfe7f6"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5z"/></svg></div>
+            <h4>Applications IA</h4>
+          </div>
+          <p>Résumé, classement, extraction d’entités ou assistant RAG sur vos documents.</p>
+          <ul>
+            <li>Déploiement sur votre cloud ou le nôtre</li>
+            <li>Prompts testés et mesurés</li>
+          </ul>
+          <details class="more"><summary>Voir plus</summary>
+            <p>API, connecteurs, ingestion documentaire, évaluation, boucles de feedback et gouvernance des accès.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="title" style="text-align:center">FAQ</h2>
+      <div class="items">
+        <details open><summary>Combien de temps pour un projet type ?</summary>
+          <div class="answer">La plupart des projets se livrent en 5 à 15 jours ouvrés.</div>
+        </details>
+        <details><summary>Qui gère l’hébergement ?</summary>
+          <div class="answer">Au choix. Nous déployons dans votre environnement ou nous opérons pour vous.</div>
+        </details>
+        <details><summary>Et si j’ai besoin d’aide après ?</summary>
+          <div class="answer">Support humain sur demande, petites évolutions et monitoring.</div>
+        </details>
+        <details><summary>Combien ça coûte ?</summary>
+          <div class="answer">On propose un cadrage simple, puis un budget fixe ou au temps passé selon le cas.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="title" style="text-align:center">Parlez-nous de votre projet</h2>
+      <p class="sub" style="text-align:center">Dites ce que vous voulez automatiser. On répond avec un plan d’action (souvent le jour même) et on cale un appel si besoin.</p>
+
+      <form id="leadForm" class="form" action="https://formspree.io/f/xblkpvaz" method="POST" novalidate>
+        <!-- honeypot -->
+        <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+
+        <div class="grid2">
+          <div class="field">
+            <label for="name">Prénom</label>
+            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.33 0-8 2.17-8 5v1h16v-1c0-2.83-3.67-5-8-5Z"/></svg></span>
+            <input id="name" name="name" class="input" placeholder="Votre prénom" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M4 4h16v16H4V4Zm8 7L4 6v12l8-7 8 7V6l-8 5Z"/></svg></span>
+            <input id="email" name="email" class="input" type="email" inputmode="email" autocomplete="email" required placeholder="vous@exemple.com">
+          </div>
+          <div class="field">
+            <label for="phone">Téléphone (optionnel)</label>
+            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V21a1 1 0 0 1-1 1A19 19 0 0 1 3 7a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.28.2 2.5.57 3.6a1 1 0 0 1-.24 1l-2.23 2.2z"/></svg></span>
+            <input id="phone" name="phone" class="input" type="tel" inputmode="tel" pattern="[\d\s()+\-\.]{7,}" placeholder="+33 X XX XX XX XX">
+          </div>
+          <div class="field">
+            <label for="pref">Comment préférez-vous échanger ?</label>
+            <span class="adorn"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"/></svg></span>
+            <select id="pref" name="preference" class="input">
+              <option>Appel visio 30 min</option>
+              <option>Email</option>
+              <option>WhatsApp</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="msg">Que voulez-vous automatiser ?</label>
+            <span class="adorn" style="top:46px"><svg width="18" height="18" fill="#8ea2bd" viewBox="0 0 24 24"><path d="M3 4h18v2H3V4zm0 6h12v2H3v-2zm0 6h18v2H3v-2z"/></svg></span>
+            <textarea id="msg" name="message" rows="5" placeholder="Ex : surveiller des annonces et envoyer des alertes Telegram ; bot qui répond aux messages et redirige vers mon canal ; tableau de bord ventes..."></textarea>
+          </div>
+          <input type="hidden" name="project" id="projectField" />
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnMailTo" class="btn btn-quiet">Planifier par email</button>
+          <button class="btn btn-primary" type="submit">Envoyer ma demande (réponse &lt; 24 h)</button>
+        </div>
+        <p class="status" role="status" aria-live="polite">Merci ! Nous revenons vers vous sous 24 h.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <div class="container foot">
       <div>
         <h5>AutoFlow</h5>
-        <p>Bots, scrapers et automatisations qui libèrent votre temps et amplifient vos résultats.</p>
+        <p>Automatisations invisibles qui libèrent votre temps et amplifient vos résultats.</p>
       </div>
       <div>
         <h5>Services</h5>
         <ul>
-          <li><a href="#expertise">Web scraping</a></li>
-          <li><a href="#expertise">Bots & agents</a></li>
-          <li><a href="#expertise">Applications IA</a></li>
-          <li><a href="#expertise">Solutions sur mesure</a></li>
+          <li>Web scraping</li>
+          <li>Bots et agents</li>
+          <li>Applications IA</li>
+          <li>Solutions sur mesure</li>
         </ul>
       </div>
       <div>
@@ -432,7 +364,7 @@
         <h5>Contact</h5>
         <ul>
           <li>Email : hello@autoflow.fr</li>
-          <li>Telegram : @autoflow</li>
+          <li>Téléphone : +33 1 23 45 67 89</li>
           <li>LinkedIn : /company/autoflow</li>
         </ul>
       </div>
@@ -440,67 +372,66 @@
     </div>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="modal" aria-hidden="true" aria-labelledby="mTitle">
-    <div class="modal-win" role="dialog" aria-modal="true">
-      <div class="modal-head">
-        <div class="modal-title" id="mTitle">Projet</div>
-        <div class="modal-actions">
-          <button class="icon-btn" id="mPrev" aria-label="Précédent">‹</button>
-          <button class="icon-btn" id="mNext" aria-label="Suivant">›</button>
-          <button class="icon-btn" id="mClose" aria-label="Fermer">✕</button>
-        </div>
+  <!-- Modal dialog (projet) -->
+  <dialog id="projectModal" aria-labelledby="modalTitle">
+    <div class="m-head">
+      <div id="modalTitle" class="m-title">Projet</div>
+      <div class="m-actions">
+        <button class="iconbtn" id="prevBtn" aria-label="Précédent">‹</button>
+        <button class="iconbtn" id="nextBtn" aria-label="Suivant">›</button>
+        <button class="iconbtn" id="closeBtn" aria-label="Fermer">✕</button>
       </div>
-      <div class="modal-body" id="mBody"></div>
     </div>
-  </div>
+    <div class="m-body">
+      <video id="mVideo" class="m-video" controls playsinline preload="metadata" poster="">
+        <source id="mSrc" src="" type="video/mp4">
+      </video>
+      <p id="mDesc" style="margin:12px 0 6px"></p>
+      <div id="mStack" class="stack"></div>
+      <h4 style="margin:10px 0 6px;font:800 16px/1.3 Manrope">Fonctionnalités clés</h4>
+      <ul id="mPoints" style="margin-left:18px;display:grid;gap:6px"></ul>
+      <div class="m-cta">
+        <button class="btn btn-quiet" id="ctaDiscuss">Discuter de ce projet</button>
+        <button class="btn btn-primary" id="ctaAdapt">Adapter à mon cas</button>
+      </div>
+    </div>
+  </dialog>
 
   <script>
-    // shrink header
-    const header = document.querySelector('.site-header');
-    addEventListener('scroll', ()=> header.classList.toggle('compact', scrollY > 12), {passive:true});
-
-    // active link spy
-    const links = [...document.querySelectorAll('.nav-links .link')];
-    const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    // Liens actifs au scroll
+    const navLinks = [...document.querySelectorAll('.navlinks .link')];
+    const watch = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     if('IntersectionObserver' in window){
-      const spy = new IntersectionObserver(entries=>{
+      const io = new IntersectionObserver(entries=>{
         entries.forEach(e=>{
           if(e.isIntersecting){
-            const l = links.find(x => x.getAttribute('href') === '#' + e.target.id);
-            links.forEach(x => x.removeAttribute('aria-current'));
+            navLinks.forEach(x=>x.removeAttribute('aria-current'));
+            const l = navLinks.find(x => x.getAttribute('href') === '#' + e.target.id);
             l?.setAttribute('aria-current','page');
           }
-        })
+        });
       }, {threshold:.6, rootMargin:"-70px 0px -40% 0px"});
-      sections.forEach(s=>spy.observe(s));
+      watch.forEach(s=>io.observe(s));
     }
 
-    // back to top / float CTA
-    const backTop = document.querySelector('.back-top');
-    const ctaFloat = document.querySelector('.cta-float');
-    addEventListener('scroll', ()=>{
-      const show = scrollY > 600;
-      backTop.style.display = show ? 'block' : 'none';
-      ctaFloat.style.display = show ? 'block' : 'none';
-    }, {passive:true});
-    backTop.querySelector('button').addEventListener('click', ()=> scrollTo({top:0, behavior:'smooth'}));
-
-    // cards from JSON
-    let PROJECTS = [];
+    // Charger projets depuis projects.json
     const cardsEl = document.getElementById('cards');
+    let PROJECTS = [], current = 0;
 
-    function fallbackImg(e){
-      e.target.src = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop';
-      e.target.onerror = null;
-    }
+    fetch('projects.json', {cache:'no-store'})
+      .then(r=>r.json())
+      .then(list=>{
+        PROJECTS = list;
+        renderCards(list);
+      })
+      .catch(()=>{ cardsEl.innerHTML = '<p style="color:#ffd7d7">Impossible de charger les projets.</p>'; });
 
-    function renderCards(){
-      cardsEl.innerHTML = PROJECTS.map((p,idx)=>`
-        <article class="card" data-id="${idx}" tabindex="0">
-          <div class="badge">Détails</div>
-          <div class="card-media">
-            <img alt="" loading="lazy" decoding="async" src="${p.thumb}" onerror="(${fallbackImg})(event)">
+    function renderCards(list){
+      cardsEl.innerHTML = list.map((p,idx)=>`
+        <article class="card" data-idx="${idx}" tabindex="0" role="button" aria-label="Détails du projet: ${p.title}">
+          <div class="chip">Détails</div>
+          <div class="thumb">
+            <img src="${p.thumb}" alt="">
           </div>
           <div class="card-body">
             <h3>${p.title}</h3>
@@ -509,157 +440,119 @@
         </article>
       `).join('');
       cardsEl.querySelectorAll('.card').forEach(card=>{
-        card.addEventListener('click', ()=> openModal(+card.dataset.id));
-        card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(+card.dataset.id); }});
+        card.addEventListener('click', onOpen);
+        card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); onOpen.call(card,e); }});
       });
     }
 
-    // modal
-    const modal = document.getElementById('modal');
-    const mBody = document.getElementById('mBody');
-    const mTitle = document.getElementById('mTitle');
-    const btnPrev = document.getElementById('mPrev');
-    const btnNext = document.getElementById('mNext');
-    const btnClose = document.getElementById('mClose');
-    let current = 0, lastFocus = null;
+    // Modal logic (accessible dialog)
+    const dlg = document.getElementById('projectModal');
+    const mTitle = document.getElementById('modalTitle');
+    const mVideo = document.getElementById('mVideo');
+    const mSrc = document.getElementById('mSrc');
+    const mDesc = document.getElementById('mDesc');
+    const mStack = document.getElementById('mStack');
+    const mPoints = document.getElementById('mPoints');
+    const btnPrev = document.getElementById('prevBtn');
+    const btnNext = document.getElementById('nextBtn');
+    const btnClose = document.getElementById('closeBtn');
+    const ctaDiscuss = document.getElementById('ctaDiscuss');
+    const ctaAdapt = document.getElementById('ctaAdapt');
+    let lastFocus = null;
 
-    function openModal(i){
-      current = i; renderModal();
-      lastFocus = document.activeElement;
-      modal.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-      mBody.scrollTop = 0;
-      // focus first control
-      btnClose.focus();
-    }
-    function closeModal(){
-      modal.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-      lastFocus?.focus();
-    }
-    function renderModal(){
-      const p = PROJECTS[current];
+    function renderModal(i){
+      const p = PROJECTS[i];
+      if(!p) return;
       mTitle.textContent = p.title;
-      const media = (p.media && p.media.length) ? p.media[0] : null;
-      const mediaHTML = media
-        ? (media.type === 'image'
-            ? `<img class="modal-media" alt="${p.title}" src="${media.src}" onerror="(${fallbackImg})(event)">`
-            : `<div class="modal-media"><video controls preload="none" playsinline poster="${p.thumb}"><source src="${media.src}" type="video/mp4"></video></div>`)
-        : `<img class="modal-media" alt="${p.title}" src="${p.thumb}" onerror="(${fallbackImg})(event)">`;
-
-      mBody.innerHTML = `
-        ${mediaHTML}
-        <p style="margin:12px 0 6px">${p.desc}</p>
-        <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
-        ${p.bullets?.length ? `<h4 style="margin:10px 0 6px">Fonctionnalités clés</h4>
-          <ul style="margin-left:18px">${p.bullets.map(pt=>`<li>${pt}</li>`).join('')}</ul>` : ``}
-        <div class="modal-ctas">
-          <a href="#contact" class="btn btn-ghost" id="discussBtn">Discuter de ce projet</a>
-          <a href="#contact" class="btn btn-primary" id="adaptBtn">Adapter à mon cas</a>
-        </div>
-      `;
-      // CTAs prefill
-      mBody.querySelector('#discussBtn').addEventListener('click', ()=> prefillAndScroll(p, false));
-      mBody.querySelector('#adaptBtn').addEventListener('click', ()=> prefillAndScroll(p, true));
+      mSrc.src = p.video;
+      mVideo.poster = p.poster || p.thumb;
+      mVideo.load();
+      mDesc.textContent = p.desc;
+      mStack.innerHTML = p.stack.map(s=>`<span class="tag">${s}</span>`).join('');
+      mPoints.innerHTML = p.points.map(pt=>`<li>${pt}</li>`).join('');
+      // Préremplissage CTA
+      ctaDiscuss.onclick = ()=> fillAndGo(p, 'Je veux discuter de ce projet');
+      ctaAdapt.onclick = ()=> fillAndGo(p, 'J’aimerais adapter ce projet à mon cas');
     }
-    btnPrev.addEventListener('click', ()=>{ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); });
-    btnNext.addEventListener('click', ()=>{ current = (current+1)%PROJECTS.length; renderModal(); });
-    btnClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+
+    function onOpen(e){
+      current = +this.dataset.idx;
+      renderModal(current);
+      lastFocus = document.activeElement;
+      if(typeof dlg.showModal === 'function'){ dlg.showModal(); } else { dlg.setAttribute('open',''); }
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function onClose(){
+      dlg.close();
+      document.documentElement.style.overflow = '';
+      lastFocus?.focus();
+      mVideo.pause();
+    }
+    btnPrev.addEventListener('click', ()=>{ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(current); });
+    btnNext.addEventListener('click', ()=>{ current = (current+1)%PROJECTS.length; renderModal(current); });
+    btnClose.addEventListener('click', onClose);
+    dlg.addEventListener('click', e=>{ if(e.target === dlg) onClose(); });
     document.addEventListener('keydown', e=>{
-      if(modal.getAttribute('aria-hidden')==='true') return;
-      if(e.key==='Escape') closeModal();
-      if(e.key==='ArrowRight') btnNext.click();
-      if(e.key==='ArrowLeft') btnPrev.click();
+      if(!dlg.open) return;
+      if(e.key === 'Escape') onClose();
+      if(e.key === 'ArrowRight') btnNext.click();
+      if(e.key === 'ArrowLeft') btnPrev.click();
     });
 
-    function prefillAndScroll(p, adapt){
-      const txt = document.getElementById('needs');
-      const base = adapt
-        ? `Je veux "${p.title}" adapté à mon cas. ${p.prefill||''}`
-        : `Je veux discuter de "${p.title}". ${p.prefill||''}`;
-      txt.value = base.trim();
+    // CTA -> contact + préremplissage
+    function fillAndGo(p, lead){
+      const field = document.getElementById('projectField');
+      const msg = document.getElementById('msg');
+      field.value = p.title;
+      const line = `Projet choisi: ${p.title}. ${lead}.`;
+      msg.value = msg.value ? `${msg.value}\n\n${line}` : line;
+      onClose();
       document.querySelector('#contact').scrollIntoView({behavior:'smooth', block:'start'});
-      setTimeout(()=> txt.focus(), 350);
+      setTimeout(()=> document.getElementById('name').focus(), 400);
     }
 
-    // contact form (async)
-    const form = document.getElementById('contactForm');
+    // Form validation + submit async Formspree
+    const form = document.getElementById('leadForm');
     const status = form.querySelector('.status');
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
       status.classList.remove('error');
-      status.textContent = 'Envoi en cours…';
+      status.textContent = 'Envoi en cours...';
       status.style.display = 'block';
 
+      const name = form.name.value.trim();
       const email = form.email.value.trim();
-      const name = form.first_name.value.trim();
       if(!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
         status.textContent = 'Merci de vérifier votre prénom et votre email.';
         status.classList.add('error');
         return;
       }
-      if(form.website.value){ status.textContent = 'OK.'; return; }
+      if(form.website.value){ status.textContent = 'OK.'; return; } // honeypot
 
       try{
         const res = await fetch(form.action, { method:"POST", headers:{Accept:"application/json"}, body:new FormData(form) });
         if(res.ok){
           form.reset();
           status.classList.remove('error');
-          status.textContent = '✅ Merci ! On revient vers vous sous 24 h.';
+          status.textContent = 'Merci ! Nous vous répondons sous 24 h.';
           setTimeout(()=> status.style.display='none', 4500);
         }else{
-          status.textContent = '❌ Une erreur est survenue ; merci de réessayer.';
-          status.classList.add('error');
+          throw new Error();
         }
-      }catch(_){
-        status.textContent = '❌ Impossible d’envoyer. Vérifiez votre connexion.';
+      }catch{
+        status.textContent = 'Erreur côté réseau. Merci de réessayer.';
         status.classList.add('error');
       }
     });
 
-    // mailto button
-    document.getElementById('mailtoBtn').addEventListener('click', ()=>{
-      const subject = encodeURIComponent('Projet d’automatisation');
+    // “Planifier par email” — ouvre un mailto prérempli
+    document.getElementById('btnMailTo').addEventListener('click', ()=>{
+      const subject = encodeURIComponent('AutoFlow · Projet à automatiser');
       const body = encodeURIComponent(
-        `Prénom: ${form.first_name.value}\nEmail: ${form.email.value}\nTéléphone: ${form.phone.value}\nPréférence: ${form.preference?.value||''}\n\nBesoin:\n${form.needs.value}\n`
+        `Bonjour,\n\nVoici mon besoin:\n${document.getElementById('msg').value || ''}\n\nPrénom: ${document.getElementById('name').value || ''}\nTéléphone: ${document.getElementById('phone').value || ''}\nPréférence: ${document.getElementById('pref').value}\n`
       );
-      location.href = `mailto:hello@autoflow.fr?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:hello@autoflow.fr?subject=${subject}&body=${body}`;
     });
-
-    // smooth anchors + focus
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', (e)=>{
-        const id = a.getAttribute('href');
-        const target = document.querySelector(id);
-        if(!target) return;
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth', block:'start'});
-        history.pushState(null, "", id);
-        target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); setTimeout(()=>target.removeAttribute('tabindex'), 600);
-      });
-    });
-
-    // load JSON
-    (async function(){
-      try{
-        const res = await fetch('projects.json', {cache:'no-store'});
-        PROJECTS = await res.json();
-      }catch{
-        // fallback demo data
-        PROJECTS = [{
-          "title":"Bot Telegram — Scraping & Analyse d’Annonces",
-          "subtitle":"Prix, marques, villes, filtres avancés. Graphiques texte & images, exports CSV/JSON.",
-          "thumb":"https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop",
-          "media":[{"type":"image","src":"https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1600&auto=format&fit=crop"}],
-          "desc":"Stats prix (min/max/moyenne/médiane) et top marques. Répartition par villes, filtres dynamiques (prix, mots-clés…). Graphiques PNG envoyés dans Telegram + exports CSV/JSON.",
-          "stack":["Python","Telegram Bot","Matplotlib","Pandas"],
-          "bullets":["Alertes Telegram instantanées","Filtres avancés","Exports CSV/JSON"],
-          "prefill":"Surveiller des annonces (ex: Leboncoin) + alertes Telegram et statistiques."
-        }];
-      }
-      renderCards();
-    })();
   </script>
 </body>
 </html>
