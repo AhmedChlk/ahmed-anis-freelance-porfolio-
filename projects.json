@@ -1,0 +1,53 @@
+[
+  {
+    "id": "leboncoin-bot",
+    "title": "Bot Telegram — Scraping & Analyse d’Annonces",
+    "blurb": "Prix, marques, villes, filtres avancés. Graphiques texte et images, exports CSV/JSON.",
+    "cover": "https://images.unsplash.com/photo-1551281044-8b59a5a0b299?q=80&w=1400&auto=format&fit=crop",
+    "demo": {
+      "type": "video",
+      "src": "https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-1591/1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1551281044-8b59a5a0b299?q=80&w=1400&auto=format&fit=crop"
+    },
+    "stack": ["Python", "Telegram Bot", "Matplotlib", "Pandas"],
+    "bullets": [
+      "Stats prix (min/max/moyenne/médiane) et top marques",
+      "Répartition par villes, filtres dynamiques (prix, mots-clés…)",
+      "Graphiques PNG envoyés dans Telegram + exports CSV/JSON"
+    ]
+  },
+  {
+    "id": "userbot-dm",
+    "title": "Userbot Telegram — DMs ciblés",
+    "blurb": "Récupère des utilisateurs depuis les commentaires, greeting, redirection vers votre canal.",
+    "cover": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1400&auto=format&fit=crop",
+    "demo": {
+      "type": "video",
+      "src": "https://cdn.coverr.co/videos/coverr-smartphone-typing-6972/1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1400&auto=format&fit=crop"
+    },
+    "stack": ["Python (Aiogram)", "PostgreSQL"],
+    "bullets": [
+      "DM d’accroche automatique, réponses scénarisées",
+      "Redirection vers votre canal, commandes /pause /reprendre",
+      "Statistiques, anti-spam, quotas"
+    ]
+  },
+  {
+    "id": "telegram-poster",
+    "title": "Générateur de posts Telegram",
+    "blurb": "Automatise vos posts à partir de sources (RSS/API/Sheets).",
+    "cover": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=1400&auto=format&fit=crop",
+    "demo": {
+      "type": "video",
+      "src": "https://cdn.coverr.co/videos/coverr-working-at-the-office-1936/1080p.mp4",
+      "poster": "https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=1400&auto=format&fit=crop"
+    },
+    "stack": ["Python", "Scheduler", "APIs"],
+    "bullets": [
+      "Mises en page prêtes à l’emploi",
+      "Programmation et relances automatiques",
+      "Relecture humaine optionnelle"
+    ]
+  }
+]
