@@ -26,7 +26,7 @@
       --header-h-desktop:72px; --header-h-mobile:64px;
     }
     *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:auto} /* on gère l'animation de scroll en JS pour un rendu homogène */
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
     a{color:inherit;text-decoration:none}
@@ -39,7 +39,7 @@
 
     /* Skip link */
     .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip:focus{left:12px;top:12px;width:auto;height:auto;background:#111;color:#fff;padding:10px 12px;border-radius:10px;z-index:10000}
+    .skip:focus{left:12px;top:12px;width:auto;height:auto;padding:10px 12px;border-radius:10px;background:#111;color:#fff;outline:2px solid var(--accent);z-index:10000}
 
     /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,15,22,.92),rgba(11,15,22,.6));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0)}
@@ -61,7 +61,7 @@
       .nav{height:var(--header-h-mobile)}
       .menu-btn{display:inline-flex}
       .underline{display:none}
-      /* FULLSCREEN overlay menu (sous le header) */
+      /* FULLSCREEN overlay menu */
       .links{
         position:fixed;
         top:var(--header-h-mobile); left:0; right:0; bottom:0;
@@ -120,8 +120,8 @@
     .exp p{margin:0;color:#c8d2e1}
     .exp ul{margin:6px 0 0 18px;color:#c8d2e1;padding:0}
     .exp li{margin:6px 0}
-    .more{max-height:0;overflow:hidden;transition:max-height .28s ease;margin-top:2px}
-    .exp[data-open="1"] .more{max-height:220px}
+    .more{max-height:0;opacity:0;overflow:hidden;transition:max-height .32s ease, opacity .24s ease;margin-top:2px}
+    .exp[data-open="1"] .more{max-height:900px;opacity:1}
     .exp .more-btn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;border:1px solid var(--hair);border-radius:14px;padding:10px 12px;background:rgba(255,255,255,.04);font-weight:700;color:#e7eeff;align-self:flex-start}
     .exp .more-btn:hover{background:rgba(255,255,255,.10)}
     @media (max-width:980px){.expertise .grid{grid-template-columns:1fr 1fr}}
@@ -156,15 +156,15 @@
     @media (max-width:900px){.foot{grid-template-columns:1fr 1fr}}
     @media (max-width:560px){.foot{grid-template-columns:1fr}}
 
-    /* Modales (projets & booking) */
+    /* Modales */
     .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.64);padding:16px;z-index:9999;overscroll-behavior:contain;touch-action:none}
     .modal[aria-hidden="false"]{display:grid}
-    .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;width:min(100%,1020px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2)}
+    .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;width:min(100%,1020px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2);will-change:transform}
     .mhead{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair)}
     .mtitle{font:800 18px/1.2 Inter}
     .mnav{margin-left:auto;display:flex;gap:8px}
     .icon-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
-    .mbody{padding:14px;overflow:auto; -webkit-overflow-scrolling:touch; touch-action:pan-y;}
+    .mbody{padding:14px;overflow:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}
     .mvideo{width:100%;max-height:52vh;border-radius:12px;background:#000}
     @media (max-width:600px){.win{width:100%;height:100%;max-height:none;border-radius:0}.mvideo{max-height:40vh}}
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
@@ -238,6 +238,7 @@
         <p class="sub">Focus bénéfices : moins de clics, plus de résultats mesurés.</p>
 
         <div class="grid" id="expertiseGrid">
+          <!-- SCRAPING -->
           <article class="exp" data-exp="scraping" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -246,21 +247,20 @@
               <h3>Web scraping — propre & robuste</h3>
             </div>
             <p>Données fiables, prêtes à l’emploi, sans copier-coller.</p>
-            <ul>
-              <li>Déduplication, nettoyage, règles métier</li>
-              <li>Exports CSV/JSON + alertes utiles</li>
-              <li>Supervision simple et traçable</li>
-            </ul>
-            <div class="more">
+            <div class="more" id="scraping-more">
               <ul>
+                <li>Déduplication, nettoyage, règles métier</li>
+                <li>Exports CSV/JSON + alertes utiles</li>
+                <li>Supervision simple et traçable</li>
                 <li>Anti-blocage (rotations IP/UA)</li>
                 <li>Dashboards sur vos KPIs</li>
                 <li>Intégrations : Sheets, Notion, DB, API</li>
               </ul>
             </div>
-            <button class="more-btn" data-toggle="more" aria-expanded="false"><span>Voir plus</span></button>
+            <button class="more-btn" data-toggle="more" aria-expanded="false" aria-controls="scraping-more"><span>Voir plus</span></button>
           </article>
 
+          <!-- BOTS -->
           <article class="exp" data-exp="bots" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -269,21 +269,20 @@
               <h3>Bots & agents — répondent et exécutent</h3>
             </div>
             <p>Qualification, messages ciblés, commandes et suivi.</p>
-            <ul>
-              <li>Scénarios + quotas anti-spam</li>
-              <li>Hébergement chez vous ou géré</li>
-              <li>Stats, logs et monitoring</li>
-            </ul>
-            <div class="more">
+            <div class="more" id="bots-more">
               <ul>
+                <li>Scénarios + quotas anti-spam</li>
+                <li>Hébergement chez vous ou géré</li>
+                <li>Stats, logs et monitoring</li>
                 <li>Permissions admin, listes d’exclusion</li>
                 <li>Connexion à vos systèmes (CRM, API)</li>
                 <li>Relances et rapports automatiques</li>
               </ul>
             </div>
-            <button class="more-btn" data-toggle="more" aria-expanded="false"><span>Voir plus</span></button>
+            <button class="more-btn" data-toggle="more" aria-expanded="false" aria-controls="bots-more"><span>Voir plus</span></button>
           </article>
 
+          <!-- IA -->
           <article class="exp" data-exp="ia" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -292,19 +291,17 @@
               <h3>Applications IA — trouvez, résumez, décidez</h3>
             </div>
             <p>RAG sur vos docs, extraction d’entités, recherche rapide.</p>
-            <ul>
-              <li>Classement & résumés fiables</li>
-              <li>API prête à brancher</li>
-              <li>Déploiement cloud ou on-prem</li>
-            </ul>
-            <div class="more">
+            <div class="more" id="ia-more">
               <ul>
+                <li>Classement & résumés fiables</li>
+                <li>API prête à brancher</li>
+                <li>Déploiement cloud ou on-prem</li>
                 <li>Évaluations et garde-fous</li>
                 <li>Intégration à vos outils métier</li>
                 <li>Journalisation et traçabilité</li>
               </ul>
             </div>
-            <button class="more-btn" data-toggle="more" aria-expanded="false"><span>Voir plus</span></button>
+            <button class="more-btn" data-toggle="more" aria-expanded="false" aria-controls="ia-more"><span>Voir plus</span></button>
           </article>
         </div>
       </div>
@@ -340,7 +337,6 @@
             <div class="card">
               <h3>Envoyer un email</h3>
               <form id="contactForm" novalidate>
-                <!-- honeypot officiel -->
                 <input type="text" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
                 <div class="field">
                   <label for="name">Prénom</label>
@@ -435,23 +431,48 @@
 /* ========= Constantes ========= */
 const CONTACT_EMAIL = 'cofreelance.anisahmed@gmail.com';
 const BOOKING_URL   = 'https://cal.com/anis-8dk0do/discutons-de-votre-projet';
-const WEB3FORMS_KEY = '8ac89881-c275-4a06-b633-a6ef7618fcd5'; // clé publique
+const WEB3FORMS_KEY = '8ac89881-c275-4a06-b633-a6ef7618fcd5';
 
-/* ========= Body lock (modales & menu) ========= */
+/* ========= Body lock ========= */
+let __savedScroll = 0;
 function lockBody(lock){
   if(lock){
-    const top = -window.scrollY;
-    document.body.dataset.scrollY = String(-top);
+    __savedScroll = window.scrollY;
     document.body.style.position = 'fixed';
-    document.body.style.top = top + 'px';
+    document.body.style.top = `-${__savedScroll}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
     document.body.style.width = '100%';
   }else{
-    const y = parseInt(document.body.dataset.scrollY||'0',10);
     document.body.style.position = '';
     document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
     document.body.style.width = '';
-    window.scrollTo(0, -y);
+    window.scrollTo(0, __savedScroll);
   }
+}
+
+/* ========= Smooth scroll animé (anchors) ========= */
+function easeInOutCubic(t){ return t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+function animatedScrollTo(target, extraOffset=10){
+  if(!target) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    target.scrollIntoView({block:'start'});
+    return;
+  }
+  const headerH = window.matchMedia('(max-width: 860px)').matches ? 64 : 72;
+  const startY = window.scrollY;
+  const targetY = target.getBoundingClientRect().top + startY - (headerH + extraOffset);
+  const dist = targetY - startY;
+  const duration = Math.min(900, Math.max(450, Math.abs(dist)/1.8));
+  const start = performance.now();
+  function step(now){
+    const p = Math.min((now - start) / duration, 1);
+    window.scrollTo(0, startY + dist * easeInOutCubic(p));
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
 /* ========= Burger ========= */
@@ -464,16 +485,7 @@ menuBtn.addEventListener('click', ()=>{
 });
 document.getElementById('siteLinks').addEventListener('click', e=>{
   if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open');
-    menuBtn.setAttribute('aria-expanded','false');
-    lockBody(false);
-  }
-});
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open');
-    menuBtn.setAttribute('aria-expanded','false');
-    lockBody(false);
+    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
   }
 });
 
@@ -514,16 +526,22 @@ if('IntersectionObserver' in window){
   }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
   sections.forEach(s=> spy.observe(s));
 }
-/* Anchor focus */
+/* Anchor click + fermeture menu + animation */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href'); const target = document.querySelector(id);
     if(!target) return;
     e.preventDefault();
-    target.scrollIntoView({behavior:'smooth',block:'start'});
+    if(bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false); }
+    animatedScrollTo(target, 10);
     history.pushState(null,"",id);
     target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); setTimeout(()=>target.removeAttribute('tabindex'), 600);
   });
+});
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
+    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
+  }
 });
 
 /* ========= Loader robuste (projects + faq) ========= */
@@ -573,6 +591,7 @@ function renderCards(){
 const modal = document.getElementById('modal');
 const mBody = document.getElementById('mBody');
 const mTitle = document.getElementById('mTitle');
+const winEl = modal.querySelector('.win');
 let current = 0, lastFocus = null;
 
 function mimeFrom(url){
@@ -587,6 +606,8 @@ function openModal(i){
   lastFocus = document.activeElement;
   modal.setAttribute('aria-hidden','false');
   lockBody(true);
+  winEl.style.transition = 'none';
+  winEl.style.transform = 'translateX(0)'; // reset
   setTimeout(()=>{ modal.querySelector('[data-act="close"]').focus(); }, 50);
 }
 function closeModal(){
@@ -606,28 +627,26 @@ function renderModal(){
     <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
     <div class="mcta" style="margin-top:10px">
       <a class="btn btn-primary js-go-contact" href="#">Adapter à mon projet</a>
-      <a class="btn btn-ghost" href="${p.video}" target="_blank" rel="noopener noreferrer">Ouvrir la vidéo</a>
     </div>`;
 }
 modal.addEventListener('click', e=>{
   const act = e.target.dataset.act;
   if(act === 'close'){ closeModal(); }
-  if(act === 'prev'){ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
-  if(act === 'next'){ current = (current+1)%PROJECTS.length; renderModal(); }
+  if(act === 'prev'){ slideTo(-1); }
+  if(act === 'next'){ slideTo(1); }
   const go = e.target.closest('.js-go-contact');
   if (go){
     e.preventDefault();
     closeModal();
     const contact = document.getElementById('contact');
-    contact.scrollIntoView({behavior:'smooth', block:'start'});
-    contact.setAttribute('tabindex','-1'); setTimeout(()=> contact.removeAttribute('tabindex'), 800);
+    animatedScrollTo(contact, 10);
   }
 });
 document.addEventListener('keydown', e=>{
   if(modal.getAttribute('aria-hidden')==='true') return;
   if(e.key==='Escape') closeModal();
-  if(e.key==='ArrowRight'){ current=(current+1)%PROJECTS.length; renderModal(); }
-  if(e.key==='ArrowLeft'){ current=(current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
+  if(e.key==='ArrowRight'){ slideTo(1); }
+  if(e.key==='ArrowLeft'){ slideTo(-1); }
 });
 /* Backdrop click safe */
 function backdropClickSafe(modalEl, closeFn){
@@ -637,6 +656,89 @@ function backdropClickSafe(modalEl, closeFn){
   modalEl.addEventListener('click', (e)=>{ if(e.target === modalEl && !startedInside) closeFn(); });
 }
 backdropClickSafe(modal, closeModal);
+
+/* ========= Swipe + animation slide ========= */
+(function(){
+  const area = modal; // toute la modale capte le geste
+  if(!area) return;
+
+  const THRESH = 70;               // distance minimale
+  const CANCEL_AT = 0.35;          // proportion d'écran si vitesse faible
+  const MAX_FOLLOW = 0.9;          // limite du drag visuel (% de la largeur)
+  let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null, startTime=0;
+
+  function start(e){
+    const t = e.touches ? e.touches[0] : e;
+    startX=t.clientX; startY=t.clientY; dx=0; active=true; horizontal=false;
+    startTime = performance.now();
+    if(e.pointerId!=null){ pid=e.pointerId; try{area.setPointerCapture(pid);}catch{} }
+    winEl.style.transition='none';
+  }
+  function move(e){
+    if(!active) return;
+    const t = e.touches ? e.touches[0] : e;
+    dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){ horizontal = true; }
+    if(horizontal){
+      if(e.cancelable) e.preventDefault();
+      const vw = area.clientWidth;
+      const follow = Math.max(-vw*MAX_FOLLOW, Math.min(vw*MAX_FOLLOW, dx));
+      winEl.style.transform = `translateX(${follow}px)`;
+    }
+  }
+  function end(){
+    if(!active) return;
+    const elapsed = Math.max(1, performance.now() - startTime);
+    const velocity = Math.abs(dx) / elapsed; // px/ms
+    const vw = area.clientWidth;
+    let commit = Math.abs(dx) > THRESH || (Math.abs(dx) > vw*CANCEL_AT && velocity > 0.2);
+    if(horizontal && commit){
+      const dir = dx < 0 ? 1 : -1;
+      slideTo(dir);
+    }else{
+      // revient au centre
+      winEl.style.transition='transform .28s ease';
+      winEl.style.transform='translateX(0)';
+    }
+    active=false; dx=0; horizontal=false; if(pid!=null){ try{area.releasePointerCapture(pid);}catch{} pid=null; }
+  }
+
+  function addListeners(){
+    if(window.PointerEvent){
+      area.addEventListener('pointerdown', start, {passive:true});
+      area.addEventListener('pointermove',  move); // not passive
+      area.addEventListener('pointerup',    end);
+      area.addEventListener('pointercancel',end);
+    }else{
+      area.addEventListener('touchstart', start, {passive:true});
+      area.addEventListener('touchmove',  move,  {passive:false});
+      area.addEventListener('touchend',   end);
+      area.addEventListener('touchcancel',end);
+    }
+  }
+  addListeners();
+})();
+
+function slideTo(dir){
+  // dir: 1 -> suivant, -1 -> précédent
+  const outX = dir > 0 ? -120 : 120; // sort à gauche si on va au suivant
+  winEl.style.transition='transform .28s ease';
+  winEl.style.transform=`translateX(${outX}%)`;
+  const handle = ()=>{
+    winEl.removeEventListener('transitionend', handle);
+    current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
+    renderModal();
+    // place hors écran opposé puis slide in
+    winEl.style.transition='none';
+    winEl.style.transform=`translateX(${(-outX)}%)`;
+    requestAnimationFrame(()=>{
+      winEl.style.transition='transform .28s ease';
+      winEl.style.transform='translateX(0)';
+    });
+  };
+  winEl.addEventListener('transitionend', handle);
+}
 
 /* ========= Booking (Cal.com) ========= */
 const bookingModal = document.getElementById('bookingModal');
@@ -688,50 +790,26 @@ loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(items=>{
     </details>`).join('');
 });
 
-/* ========= Swipe tactile amélioré ========= */
-(function(){
-  const area = document.getElementById('mBody');
-  if(!area) return;
+/* ========= "Voir plus / Voir moins" fiable (click + clavier) ========= */
+const grid = document.getElementById('expertiseGrid');
+function toggleMore(btn){
+  const card = btn.closest('.exp');
+  const more = document.getElementById(btn.getAttribute('aria-controls')) || card.querySelector('.more');
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', (!open).toString());
+  btn.querySelector('span').textContent = open ? 'Voir plus' : 'Voir moins';
+  card.setAttribute('data-open', open ? '0' : '1');
+}
+grid.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-toggle="more"]');
+  if(btn){ e.preventDefault(); toggleMore(btn); }
+});
+grid.addEventListener('keydown', (e)=>{
+  const btn = e.target.closest('[data-toggle="more"]');
+  if(btn && (e.key==='Enter'|| e.key===' ')){ e.preventDefault(); toggleMore(btn); }
+});
 
-  const THRESH = 60;
-  let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null;
-
-  function start(e){
-    const t = e.touches ? e.touches[0] : e;
-    startX=t.clientX; startY=t.clientY; dx=0; active=true; horizontal=false;
-    if(e.pointerId!=null){ pid=e.pointerId; area.setPointerCapture(pid); }
-  }
-  function move(e){
-    if(!active) return;
-    const t = e.touches ? e.touches[0] : e;
-    dx = t.clientX - startX;
-    const dy = t.clientY - startY;
-    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){ horizontal = true; }
-    if(horizontal && e.cancelable) e.preventDefault();
-  }
-  function end(){
-    if(!active) return;
-    if(Math.abs(dx) > THRESH){
-      current = dx < 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
-      renderModal();
-    }
-    active=false; dx=0; horizontal=false; if(pid!=null){ try{area.releasePointerCapture(pid);}catch{} pid=null; }
-  }
-
-  if(window.PointerEvent){
-    area.addEventListener('pointerdown', start, {passive:true});
-    area.addEventListener('pointermove',  move);
-    area.addEventListener('pointerup',    end);
-    area.addEventListener('pointercancel',end);
-  }else{
-    area.addEventListener('touchstart', start, {passive:true});
-    area.addEventListener('touchmove',  move,  {passive:false});
-    area.addEventListener('touchend',   end);
-    area.addEventListener('touchcancel',end);
-  }
-})();
-
-/* ========= Formulaire Web3Forms (statique) ========= */
+/* ========= Formulaire Web3Forms ========= */
 const form   = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 const sendBtn= document.getElementById('sendBtn');
