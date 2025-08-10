@@ -1,44 +1,58 @@
-[
-  {
-    "title": "Bot Telegram · Scraping & analyse d’annonces",
-    "subtitle": "Prix, villes, marques. Graphiques texte et images, exports CSV/JSON.",
-    "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    "desc": "Stats prix (min, max, moyenne, médiane) et top marques. Répartition par villes, filtres dynamiques (prix, mots-clés). Graphiques PNG envoyés dans Telegram.",
-    "points": [
-      "Alertes Telegram instantanées",
-      "Filtres avancés (prix, mots-clés, zones)",
-      "Exports CSV/JSON + graphiques PNG"
-    ],
-    "stack": ["Python", "Telegram Bot", "Matplotlib", "Pandas"]
-  },
-  {
-    "title": "Userbot Telegram · DMs ciblés",
-    "subtitle": "Récupère des utilisateurs depuis les commentaires, greeting, redirection vers votre canal.",
-    "thumb": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "poster": "https://images.pexels.com/photos/4068374/pexels-photo-4068374.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "video": "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
-    "desc": "Le bot repère les bons profils, envoie un message d’accroche et redirige vers votre canal ou une page. Commandes pause/reprise, listes d’exclusion, quotas.",
-    "points": [
-      "Ciblage depuis commentaires",
-      "Messages d’accueil et redirection",
-      "Commandes admin et statistiques"
-    ],
-    "stack": ["Python (Aiogram)", "PostgreSQL", "Scheduler", "API Telegram"]
-  },
-  {
-    "title": "Générateur de posts Telegram",
-    "subtitle": "Automatise vos posts à partir de sources (RSS, API ou Sheets).",
-    "thumb": "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "poster": "https://images.pexels.com/photos/6802042/pexels-photo-6802042.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-    "desc": "Agrégation de contenus, templates prêts à poster, planification et suivi des performances.",
-    "points": [
-      "Connexion à RSS, API, Google Sheets",
-      "Templates éditables et planification",
-      "Statistiques et optimisation simple"
-    ],
-    "stack": ["Python", "Scheduler", "Templates", "Telegram API"]
-  }
-]
+{
+  "projects": [
+    {
+      "title": "Bot Telegram · Scraping & analyse d’annonces",
+      "subtitle": "Prix, villes, marques. Graphiques et exports prêts à l’emploi.",
+      "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "desc": "Stats prix (min, max, moyenne, médiane), top marques, répartition par villes. Filtres dynamiques et graphiques PNG envoyés dans Telegram.",
+      "points": [
+        "Alertes Telegram instantanées",
+        "Filtres avancés (prix, mots-clés, zones)",
+        "Exports CSV/JSON + graphiques PNG"
+      ],
+      "stack": ["Python", "Telegram Bot", "Matplotlib", "Pandas"],
+      "metrics": [
+        "−30 à −50 % de temps de veille marché",
+        "Erreurs manuelles réduites (données dédupliquées)"
+      ]
+    },
+    {
+      "title": "Userbot Telegram · DMs ciblés",
+      "subtitle": "Récupère des profils depuis les commentaires. Message d’accueil et redirection.",
+      "thumb": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "poster": "https://images.pexels.com/photos/4068374/pexels-photo-4068374.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "video": "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
+      "desc": "Ciblage propre, DM d’introduction et redirection vers votre canal ou une page. Commandes pause/reprise, listes d’exclusion, quotas anti-spam.",
+      "points": [
+        "Ciblage depuis commentaires",
+        "Messages d’accueil et redirection",
+        "Commandes admin et statistiques"
+      ],
+      "stack": ["Python (Aiogram)", "PostgreSQL", "Scheduler", "API Telegram"],
+      "metrics": [
+        "Flux entrants plus réguliers (DM qualifiés)",
+        "Respect des limites pour éviter le blocage"
+      ]
+    },
+    {
+      "title": "Générateur de posts Telegram",
+      "subtitle": "Automatise vos posts à partir de RSS, API ou Sheets.",
+      "thumb": "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "poster": "https://images.pexels.com/photos/6802042/pexels-photo-6802042.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+      "desc": "Agrégation de contenus, templates prêts à poster, planification et suivi des performances.",
+      "points": [
+        "Connexion à RSS, API, Google Sheets",
+        "Templates éditables et planification",
+        "Statistiques et optimisation simple"
+      ],
+      "stack": ["Python", "Scheduler", "Templates", "Telegram API"],
+      "metrics": [
+        "Régularité de publication sans charge mentale",
+        "Gain de temps sur la mise en forme"
+      ]
+    }
+  ]
+}

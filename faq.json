@@ -1,7 +1,46 @@
 [
-  { "q": "Délais typiques ?", "a": "Un pilote se livre en 5 à 15 jours ouvrés selon la complexité." },
-  { "q": "Hébergement ?", "a": "Au choix : chez vous (Docker/VM) ou hébergé/monitoré par nous." },
-  { "q": "Après livraison ?", "a": "Support, évolutions et point de contact unique." },
-  { "q": "Budget ?", "a": "Un pilote démarre vers 1 900 € (variable selon périmètre et intégrations)." },
-  { "q": "Facturation ?", "a": "Au forfait pour le MVP, puis T&M ou packs d’heures pour l’évolution." }
+  {
+    "q": "Comment démarre un projet ?",
+    "a": "On fixe l’objectif métier, les sources de données et l’output attendu. Vous recevez sous 24 h un plan d’action et un premier livrable prioritaire (MVP) entre 5 et 15 jours ouvrés selon la complexité."
+  },
+  {
+    "q": "Où s’exécute l’automatisation (hébergement) ?",
+    "a": "Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès au code et aux secrets. Un runbook décrit les étapes de déploiement et de reprise."
+  },
+  {
+    "q": "Quid des données et du RGPD ?",
+    "a": "Nous collectons le minimum nécessaire, chiffrons les secrets, limitons les journaux aux métadonnées utiles et respectons vos politiques internes. DPA et clauses de confidentialité possibles."
+  },
+  {
+    "q": "Le scraping est-il légal ?",
+    "a": "Nous ciblons des données publiques, respectons le rythme des sites et filtrons les champs sensibles. Vous validez les sources autorisées. En cas de doute juridique, nous adaptons la scope ou stoppons la source."
+  },
+  {
+    "q": "Comment évitez-vous le spam sur Telegram ?",
+    "a": "Quotas, fenêtres horaires, pauses, listes d’exclusion et messages d’introduction sobres. Un humain peut valider les actions sensibles. Les logs permettent d’enquêter et d’ajuster finement."
+  },
+  {
+    "q": "RAG : comment garantir la fiabilité ?",
+    "a": "Sources citées, seuils de similarité, reformulation neutre, récupération multi-documents et filtres par typologie. Nous journalisons les preuves et mesurons la couverture du corpus."
+  },
+  {
+    "q": "Maintenance et évolutions ?",
+    "a": "Nous livrons un runbook, une checklist de santé et un plan de mises à jour. Les améliorations se font par petites itérations, guidées par vos métriques (temps, erreurs, latence, taux de réponse)."
+  },
+  {
+    "q": "Et si cela tombe en panne ?",
+    "a": "Auto-retry et files d’attente limitent les pertes. En cas d’échec répété, bascule en mode dégradé et alerte. Un bouton d’arrêt d’urgence est prévu, avec reprise contrôlée."
+  },
+  {
+    "q": "Je n’ai pas de cahier des charges détaillé.",
+    "a": "Pas grave. Nous partons de vos objectifs et de 2–3 exemples concrets. Un prototype rapide valide le flux, puis on élargit par étapes. Vous gardez la main à chaque jalon."
+  },
+  {
+    "q": "Avec quels outils vous vous branchez ?",
+    "a": "Google Sheets, Notion, CRM, bases SQL/NoSQL, APIs et webhooks. Les intégrations critiques sont encapsulées pour simplifier la maintenance et les changements futurs."
+  },
+  {
+    "q": "Comment mesurez-vous le ROI ?",
+    "a": "Avant/après sur des indicateurs simples : temps de traitement, erreurs, délais, taux de réponse, volume traité. Un mini-dashboard partageable rend les résultats visibles."
+  }
 ]

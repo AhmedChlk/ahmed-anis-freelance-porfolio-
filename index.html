@@ -1,9 +1,10 @@
+<!-- (fichier: index.html) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Des bots qui travaillent pour vous 24/7 : scraping fiable, agents Telegram et applis IA. Dites-nous votre cas : réponse sous 24 h avec plan d’action et premier livrable." />
+  <meta name="description" content="Automatisations qui libèrent du temps : scraping fiable, agents Telegram, workflows n8n et IA (RAG). Plan d’action sous 24 h et premier livrable. Gains mesurés : moins d’erreurs, visibilité claire, exécution 24/7." />
   <meta name="theme-color" content="#0A84FF" />
   <title>AutoFlow · Bots, scrapers et automatisations</title>
 
@@ -148,6 +149,11 @@
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
     .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06)}
     .mcta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .mbody{
+  -webkit-overflow-scrolling: touch; /* inertie iOS */
+  touch-action: pan-y;               /* on autorise le scroll vertical, on gère l'horizontal en JS */
+}
+.win{ -webkit-overflow-scrolling: touch; }
   </style>
 </head>
 <body>
@@ -191,9 +197,9 @@
       </div>
       <div class="container">
         <h1>Des bots qui travaillent pour vous, 24/7.</h1>
-        <p>Scraping propre, agents Telegram et applis IA branchées à vos outils. Dites-nous votre besoin : on revient sous 24 h avec un plan clair et un premier pas concret.</p>
+        <p>Scraping fiable, agents Telegram, workflows n8n et IA (RAG). Plan d’action sous 24&nbsp;h et premier livrable rapide. Gains typiques : moins d’erreurs et −30 à −50&nbsp;% de temps de traitement.</p>
         <div class="actions">
-          <a href="#contact" class="btn btn-primary">Parler de mon projet</a>
+          <a href="#contact" class="btn btn-primary">Obtenir mon plan sous 24&nbsp;h</a>
           <a href="#projets" class="btn btn-ghost">Voir des exemples</a>
         </div>
       </div>
@@ -203,7 +209,7 @@
     <section id="projets" class="projects" aria-label="Projets">
       <div class="container">
         <h2>Exemples de réalisations</h2>
-        <p class="sub">Démos internes prêtes à adapter à votre contexte.</p>
+        <p class="sub">Démos internes prêtes à adapter. Mesures d’impact et livrables inclus.</p>
         <div id="cards" class="cards" aria-live="polite"></div>
       </div>
     </section>
@@ -212,7 +218,7 @@
     <section id="expertise" class="expertise" aria-label="Expertise">
       <div class="container">
         <h2>Ce qu’on automatise pour vous</h2>
-        <p class="sub">Focus sur l’impact : moins de clics, plus de résultats.</p>
+        <p class="sub">Focus bénéfices : moins de clics, plus de résultats mesurés.</p>
 
         <div class="grid" id="expertiseGrid">
           <article class="exp" data-exp="scraping" data-open="0">
@@ -222,16 +228,16 @@
               </div>
               <h3>Web scraping — propre & robuste</h3>
             </div>
-            <p>Collecte multi-sites, données nettoyées, alertes utiles.</p>
+            <p>Données fiables, prêtes à l’emploi, sans copier-coller.</p>
             <ul>
-              <li>Déduplication & filtres par règles</li>
-              <li>Exports CSV/JSON + alertes</li>
-              <li>Supervision simple</li>
+              <li>Déduplication, nettoyage, règles métier</li>
+              <li>Exports CSV/JSON + alertes utiles</li>
+              <li>Supervision simple et traçable</li>
             </ul>
             <div class="more">
               <ul>
-                <li>Anti-blocage (rotations IP / UA)</li>
-                <li>Dashboards adaptés à vos KPIs</li>
+                <li>Anti-blocage (rotations IP/UA)</li>
+                <li>Dashboards sur vos KPIs</li>
                 <li>Intégrations : Sheets, Notion, DB, API</li>
               </ul>
             </div>
@@ -245,11 +251,11 @@
               </div>
               <h3>Bots & agents — répondent et exécutent</h3>
             </div>
-            <p>Qualification, DM ciblés, commandes et suivi.</p>
+            <p>Qualification, messages ciblés, commandes et suivi.</p>
             <ul>
               <li>Scénarios + quotas anti-spam</li>
               <li>Hébergement chez vous ou géré</li>
-              <li>Stats & monitoring</li>
+              <li>Stats, logs et monitoring</li>
             </ul>
             <div class="more">
               <ul>
@@ -276,7 +282,7 @@
             </ul>
             <div class="more">
               <ul>
-                <li>Évaluations & garde-fous</li>
+                <li>Évaluations et garde-fous</li>
                 <li>Intégration à vos outils métier</li>
                 <li>Journalisation et traçabilité</li>
               </ul>
@@ -291,7 +297,7 @@
     <section id="faq" class="faq" aria-label="FAQ">
       <div class="container">
         <h2>FAQ</h2>
-        <p class="sub">La FAQ se charge depuis <code>faq.json</code> si présent à la racine, sinon fallback interne.</p>
+        <p class="sub">Réponses claires aux objections fréquentes pour décider sereinement.</p>
         <div class="items" id="faqItems" aria-live="polite"></div>
       </div>
     </section>
@@ -300,14 +306,14 @@
     <section id="contact" class="contact" aria-label="Contact">
       <div class="container">
         <h2>Parlez-nous de votre projet</h2>
-        <p class="sub">Choisissez : un appel de 30 min, ou un email via le formulaire ci-dessous.</p>
+        <p class="sub">Choisissez : un appel de 30&nbsp;min ou un email via le formulaire. Réponse sous 24&nbsp;h.</p>
 
         <div class="wrap">
           <div class="grid">
             <!-- Call -->
             <div class="card">
               <h3>Réserver un appel (30 min)</h3>
-              <p>On clarifie le besoin et vous repartez avec un plan d’action clair.</p>
+              <p>On clarifie votre besoin et vous repartez avec un plan d’action concret et priorisé.</p>
               <div class="actions" style="margin-top:8px">
                 <a href="#" class="btn btn-primary" id="bookCall">Réserver un appel</a>
               </div>
@@ -336,7 +342,7 @@
                   <button class="btn btn-primary" type="submit" id="sendBtn">Envoyer</button>
                 </div>
                 <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-                <small style="display:block;opacity:.7;margin-top:6px">💡 Si l’envoi échoue (réseau), on vous propose automatiquement un email « mailto ».</small>
+                <small style="display:block;opacity:.7;margin-top:6px">✅ Réponse sous 24&nbsp;h • Aucun spam • 100&nbsp;% gratuit au départ. En cas d’échec réseau, on ouvre automatiquement un email «&nbsp;mailto&nbsp;».</small>
               </form>
             </div>
           </div>
@@ -351,7 +357,7 @@
     <div class="container foot">
       <div>
         <h5>AutoFlow</h5>
-        <p>Automatisations invisibles qui libèrent votre temps et amplifient votre impact.</p>
+        <p>Automatisations invisibles qui libèrent votre temps, fiabilisent vos flux et donnent de la visibilité sur votre pipeline.</p>
       </div>
       <div>
         <h5>Services</h5>
@@ -375,7 +381,7 @@
           <li>Email : cofreelance.anisahmed@gmail.com</li>
         </ul>
       </div>
-      <small>© 2025 AutoFlow. Tous droits réservés.</small>
+      <small>© 2025 AutoFlow. Sources impact : études McKinsey & Deloitte. Tous droits réservés.</small>
     </div>
   </footer>
 
@@ -477,9 +483,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* ========= Projects (fallback) ========= */
 const FALLBACK = [
-  {title:"Bot Telegram · Scraping & analyse d’annonces",thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Prix, villes, marques. Graphiques texte et images, exports CSV/JSON.",stack:["Python","Telegram Bot","Matplotlib","Pandas"]},
-  {title:"Userbot Telegram · DMs ciblés",thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",poster:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Ciblage dans commentaires. Messages d’accueil. Quotas anti-spam.",stack:["Python","PostgreSQL","Scheduler","Telegram API"]},
-  {title:"Générateur de posts Telegram",thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Automatise vos posts depuis RSS/API/Sheets. Programmation & templates.",stack:["Python","FastAPI","Scheduler","Telegram API"]}
+  {title:"Bot Telegram · Scraping & analyse d’annonces",thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Tableaux clairs, alertes instantanées, exports prêts pour Excel. −30 à −50 % de temps de suivi.",stack:["Python","Telegram Bot","Matplotlib","Pandas"]},
+  {title:"Userbot Telegram · DMs ciblés",thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",poster:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Ciblage propre, messages d’accueil, redirection et quotas anti-spam.",stack:["Python","PostgreSQL","Scheduler","Telegram API"]},
+  {title:"Générateur de posts Telegram",thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Agrégation RSS/API/Sheets, templates et planification. Publication sans friction.",stack:["Python","FastAPI","Scheduler","Telegram API"]}
 ];
 const cardsEl = document.getElementById('cards');
 let PROJECTS = [];
@@ -660,10 +666,11 @@ document.getElementById('expertiseGrid').addEventListener('click', (e)=>{
 
 /* ========= FAQ (fallback) ========= */
 const FAQ_FALLBACK = [
-  { q: 'Délais typiques ?', a: 'Un pilote se livre en 5 à 15 jours ouvrés selon la complexité.' },
-  { q: 'Hébergement ?', a: 'Au choix : chez vous (Docker/VM) ou hébergé/monitoré par nous.' },
-  { q: 'Après livraison ?', a: 'Support, évolutions et point de contact unique.' },
-  { q: 'Budget ?', a: 'Un pilote démarre vers 1 900 € (variables : périmètre, intégrations).' }
+  { q: 'Combien de temps pour un pilote ?', a: 'Selon la complexité, 5 à 15 jours ouvrés pour un MVP utilisable. On vise un premier résultat rapide, mesurable et réutilisable.' },
+  { q: 'Hébergement ?', a: 'Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès et la propriété du code livré.' },
+  { q: 'Données et RGPD ?', a: 'Nous limitons les données collectées au strict nécessaire, chiffrons les secrets et journalisons les accès. Contrat de traitement et DPA possibles.' },
+  { q: 'Scraping légal ?', a: 'Nous ne collectons que des données publiques, respectons le rythme des sites et filtrons ce qui est sensible. Vous décidez des sources autorisées.' },
+  { q: 'Après livraison ?', a: 'Runbook, monitoring et support. Corrections, évolutions et améliorations itératives selon vos priorités.' }
 ];
 const faqWrap = document.getElementById('faqItems');
 fetch('faq.json', {cache:'no-store'})
@@ -683,6 +690,62 @@ fetch('faq.json', {cache:'no-store'})
         <div class="answer">${i.a}</div>
       </details>`).join('');
   });
+
+  /* ========= Swipe tactile pour naviguer entre projets ========= */
+/* Balayez horizontalement dans la modale pour Suivant/Précédent. 
+   Tolérant : on ne déclenche que si le mouvement horizontal domine. */
+(function(){
+  const area = document.getElementById('mBody'); // zone de swipe (conserve le scroll vertical)
+  if(!area) return;
+
+  const THRESH = 60; // distance en px pour valider un swipe
+  let startX = 0, startY = 0, dx = 0, active = false, horizontal = false;
+
+  function start(e){
+    const t = e.touches ? e.touches[0] : e;
+    startX = t.clientX; startY = t.clientY;
+    dx = 0; active = true; horizontal = false;
+  }
+  function move(e){
+    if(!active) return;
+    const t = e.touches ? e.touches[0] : e;
+    dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+
+    // On ne bloque le scroll que si on détecte clairement un geste horizontal
+    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){
+      horizontal = true;
+    }
+    if(horizontal && e.cancelable) e.preventDefault(); // empêche le scroll pendant le swipe horizontal
+  }
+  function end(){
+    if(!active) return;
+    active = false;
+
+    if(Math.abs(dx) > THRESH){
+      if(dx < 0){ // vers la gauche -> projet suivant
+        current = (current + 1) % PROJECTS.length;
+      }else{      // vers la droite -> projet précédent
+        current = (current - 1 + PROJECTS.length) % PROJECTS.length;
+      }
+      renderModal();
+    }
+    dx = 0;
+  }
+
+  // Pointer Events si dispo, sinon fallback Touch Events (iOS anciens)
+  if(window.PointerEvent){
+    area.addEventListener('pointerdown', start, {passive:true});
+    area.addEventListener('pointermove',  move);
+    area.addEventListener('pointerup',    end);
+    area.addEventListener('pointercancel',end);
+  }else{
+    area.addEventListener('touchstart', start, {passive:true});
+    area.addEventListener('touchmove',  move,  {passive:false});
+    area.addEventListener('touchend',   end);
+    area.addEventListener('touchcancel',end);
+  }
+})();
   </script>
 </body>
 </html>
