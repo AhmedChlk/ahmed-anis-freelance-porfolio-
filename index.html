@@ -26,7 +26,7 @@
       --header-h-desktop:72px; --header-h-mobile:64px;
     }
     *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:auto} /* on gère l'animation de scroll en JS pour un rendu homogène */
+    html{scroll-behavior:auto}
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
     body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
     a{color:inherit;text-decoration:none}
@@ -37,11 +37,9 @@
     h2{font-weight:800;font-size:clamp(28px,5vw,44px);text-align:center}
     .sub{color:var(--muted);max-width:840px;margin:4px auto 10px;text-align:center;text-wrap:balance}
 
-    /* Skip link */
     .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
     .skip:focus{left:12px;top:12px;width:auto;height:auto;padding:10px 12px;border-radius:10px;background:#111;color:#fff;outline:2px solid var(--accent);z-index:10000}
 
-    /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,15,22,.92),rgba(11,15,22,.6));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0)}
     .nav{height:var(--header-h-desktop);display:flex;align-items:center;justify-content:space-between}
     .brand{display:flex;align-items:center;gap:10px}
@@ -55,33 +53,23 @@
     .cta-pill:hover{background:rgba(255,255,255,.12)}
     .menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
     .menu-btn svg{width:20px;height:20px}
-
     @media (max-width:860px){
       section{scroll-margin-top:calc(var(--header-h-mobile) + 10px)}
       .nav{height:var(--header-h-mobile)}
       .menu-btn{display:inline-flex}
       .underline{display:none}
-      /* FULLSCREEN overlay menu */
       .links{
-        position:fixed;
-        top:var(--header-h-mobile); left:0; right:0; bottom:0;
+        position:fixed; top:var(--header-h-mobile); left:0; right:0; bottom:0;
         min-height:calc(100svh - var(--header-h-mobile));
-        flex-direction:column; gap:6px;
-        padding:16px 12px env(safe-area-inset-bottom,12px);
-        background:rgba(11,15,22,.98);
-        backdrop-filter:blur(10px);
-        border-bottom:1px solid var(--hair);
-        transform:translateY(-120%);
-        transition:transform .25s ease;
-        overflow:auto;
-        z-index:60;
+        flex-direction:column; gap:6px; padding:16px 12px env(safe-area-inset-bottom,12px);
+        background:rgba(11,15,22,.98); backdrop-filter:blur(10px); border-bottom:1px solid var(--hair);
+        transform:translateY(-120%); transition:transform .25s ease; overflow:auto; z-index:60;
       }
       body.menu-open .links{transform:translateY(0)}
       .links a{padding:14px 14px;width:100%;text-align:center}
       .links .cta-pill{width:100%}
     }
 
-    /* Hero */
     .hero{position:relative;min-height:min(84svh,84vh);display:grid;place-items:center;overflow:hidden}
     .hero-media{position:absolute;inset:0;z-index:-2}
     .hero-media img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.05)}
@@ -96,7 +84,6 @@
     .btn-ghost:hover{transform:translateY(-1px)}
     @media (max-width:540px){.actions .btn{width:100%}.hero{min-height:min(72svh,72vh)}}
 
-    /* Projects */
     .projects{background:var(--bg-2)}
     .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
     .card{position:relative;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--hair);box-shadow:var(--shadow-1);cursor:pointer}
@@ -111,7 +98,6 @@
     @media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
     @media (max-width:740px){.cards{grid-template-columns:1fr}}
 
-    /* Expertise */
     .expertise .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
     .exp{display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#0f141e,#0c121a);border:1px solid var(--hair);border-radius:22px;padding:22px;box-shadow:var(--shadow-1)}
     .exp-head{display:flex;align-items:center;gap:10px}
@@ -127,14 +113,12 @@
     @media (max-width:980px){.expertise .grid{grid-template-columns:1fr 1fr}}
     @media (max-width:740px){.expertise .grid{grid-template-columns:1fr}}
 
-    /* FAQ */
     .faq .items{max-width:880px;margin:0 auto}
     details{background:#0e131b;border:1px solid var(--hair);border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-1);margin-bottom:12px}
     summary{cursor:pointer;font-weight:800;list-style:none;display:flex;align-items:center;gap:10px}
     summary::-webkit-details-marker{display:none}
     .answer{color:#cbd6e6;margin:8px 4px 4px}
 
-    /* Contact */
     .contact .wrap{max-width:1040px;margin:0 auto;background:#0e131b;border:1px solid var(--hair);border-radius:28px;padding:24px;box-shadow:var(--shadow-2)}
     .contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
     @media (max-width:900px){.contact .grid{grid-template-columns:1fr}}
@@ -147,16 +131,12 @@
     .status{margin-top:8px;color:#9fe3b2;display:none}
     .status.error{color:#ff9f9f}
 
-    /* Footer */
     footer{background:#0a0f16;border-top:1px solid var(--hair);padding:40px 0;color:#c6d0df}
     .foot{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
     .foot h5{margin:0 0 8px;font:800 16px/1.3 Inter}
     .foot ul{margin:0;padding-left:18px}
     .foot small{grid-column:1 / -1;opacity:.7;margin-top:16px;display:block;text-align:center}
-    @media (max-width:900px){.foot{grid-template-columns:1fr 1fr}}
-    @media (max-width:560px){.foot{grid-template-columns:1fr}}
 
-    /* Modales */
     .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.64);padding:16px;z-index:9999;overscroll-behavior:contain;touch-action:none}
     .modal[aria-hidden="false"]{display:grid}
     .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;width:min(100%,1020px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2);will-change:transform}
@@ -175,7 +155,6 @@
 <body>
   <a class="skip" href="#main">Aller au contenu</a>
 
-  <!-- Header -->
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="#accueil" aria-label="Retour à l’accueil">
@@ -206,11 +185,9 @@
   </header>
 
   <main id="main">
-    <!-- Hero -->
     <section id="accueil" class="hero" aria-label="Accueil">
       <div class="hero-media" aria-hidden="true">
-        <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
-             alt="" loading="eager" decoding="async" sizes="100vw">
+        <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="" loading="eager" decoding="async" sizes="100vw">
       </div>
       <div class="container">
         <h1>Des bots qui travaillent pour vous, 24/7.</h1>
@@ -222,7 +199,6 @@
       </div>
     </section>
 
-    <!-- Projets -->
     <section id="projets" class="projects" aria-label="Projets">
       <div class="container">
         <h2>Exemples de réalisations</h2>
@@ -231,14 +207,12 @@
       </div>
     </section>
 
-    <!-- Expertise -->
     <section id="expertise" class="expertise" aria-label="Expertise">
       <div class="container">
         <h2>Ce qu’on automatise pour vous</h2>
         <p class="sub">Focus bénéfices : moins de clics, plus de résultats mesurés.</p>
 
         <div class="grid" id="expertiseGrid">
-          <!-- SCRAPING -->
           <article class="exp" data-exp="scraping" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -260,7 +234,6 @@
             <button class="more-btn" data-toggle="more" aria-expanded="false" aria-controls="scraping-more"><span>Voir plus</span></button>
           </article>
 
-          <!-- BOTS -->
           <article class="exp" data-exp="bots" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -282,7 +255,6 @@
             <button class="more-btn" data-toggle="more" aria-expanded="false" aria-controls="bots-more"><span>Voir plus</span></button>
           </article>
 
-          <!-- IA -->
           <article class="exp" data-exp="ia" data-open="0">
             <div class="exp-head">
               <div class="exp-ic" aria-hidden="true">
@@ -307,7 +279,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section id="faq" class="faq" aria-label="FAQ">
       <div class="container">
         <h2>FAQ</h2>
@@ -316,7 +287,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="contact" aria-label="Contact">
       <div class="container">
         <h2>Parlez-nous de votre projet</h2>
@@ -324,7 +294,6 @@
 
         <div class="wrap">
           <div class="grid">
-            <!-- Call -->
             <div class="card">
               <h3>Réserver un appel (30 min)</h3>
               <p>On clarifie votre besoin et vous repartez avec un plan d’action concret et priorisé.</p>
@@ -333,7 +302,6 @@
               </div>
             </div>
 
-            <!-- Email form -->
             <div class="card">
               <h3>Envoyer un email</h3>
               <form id="contactForm" novalidate>
@@ -365,7 +333,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container foot">
       <div>
@@ -453,13 +420,12 @@ function lockBody(lock){
   }
 }
 
-/* ========= Smooth scroll animé (anchors) ========= */
+/* ========= Smooth scroll (anchors) ========= */
 function easeInOutCubic(t){ return t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
 function animatedScrollTo(target, extraOffset=10){
   if(!target) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    target.scrollIntoView({block:'start'});
-    return;
+    target.scrollIntoView({block:'start'}); return;
   }
   const headerH = window.matchMedia('(max-width: 860px)').matches ? 64 : 72;
   const startY = window.scrollY;
@@ -467,68 +433,29 @@ function animatedScrollTo(target, extraOffset=10){
   const dist = targetY - startY;
   const duration = Math.min(900, Math.max(450, Math.abs(dist)/1.8));
   const start = performance.now();
-  function step(now){
-    const p = Math.min((now - start) / duration, 1);
-    window.scrollTo(0, startY + dist * easeInOutCubic(p));
-    if(p < 1) requestAnimationFrame(step);
-  }
+  function step(now){ const p = Math.min((now - start) / duration, 1); window.scrollTo(0, startY + dist * easeInOutCubic(p)); if(p < 1) requestAnimationFrame(step); }
   requestAnimationFrame(step);
 }
 
 /* ========= Burger ========= */
 const menuBtn = document.getElementById('menuBtn');
 const bodyEl  = document.body;
-menuBtn.addEventListener('click', ()=>{
-  const open = bodyEl.classList.toggle('menu-open');
-  menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  lockBody(open);
-});
-document.getElementById('siteLinks').addEventListener('click', e=>{
-  if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
-  }
-});
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
-  }
-});
+menuBtn.addEventListener('click', ()=>{ const open = bodyEl.classList.toggle('menu-open'); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); lockBody(open); });
+document.getElementById('siteLinks').addEventListener('click', e=>{ if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false); }});
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);} });
 
 /* ========= Nav underline + spy ========= */
 const nav = document.querySelector('.links');
 const underline = nav.querySelector('.underline');
 const navLinks = [...nav.querySelectorAll('a[href^="#"]')].filter(a => a.getAttribute('href') !== '#contact');
 const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-function moveUnderline(el){
-  if (window.matchMedia('(max-width: 860px)').matches) return;
-  const r = el.getBoundingClientRect(), nr = nav.getBoundingClientRect();
-  underline.style.left = (r.left - nr.left + 8) + 'px';
-  underline.style.width = (r.width - 16) + 'px';
-}
-function setActive(el){
-  navLinks.forEach(a => a.removeAttribute('aria-current'));
-  el.setAttribute('aria-current','page'); moveUnderline(el);
-}
+function moveUnderline(el){ if (window.matchMedia('(max-width: 860px)').matches) return; const r = el.getBoundingClientRect(), nr = nav.getBoundingClientRect(); underline.style.left = (r.left - nr.left + 8) + 'px'; underline.style.width = (r.width - 16) + 'px'; }
+function setActive(el){ navLinks.forEach(a => a.removeAttribute('aria-current')); el.setAttribute('aria-current','page'); moveUnderline(el); }
 window.addEventListener('load', ()=>{ if(navLinks[0]) setActive(navLinks[0]); });
-if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(()=>{
-    const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0];
-    current && moveUnderline(current);
-  });
-}
-addEventListener('resize', ()=>{
-  const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0];
-  if(current) moveUnderline(current);
-});
+if (document.fonts && document.fonts.ready) { document.fonts.ready.then(()=>{ const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0]; current && moveUnderline(current); }); }
+addEventListener('resize', ()=>{ const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0]; if(current) moveUnderline(current); });
 if('IntersectionObserver' in window){
-  const spy = new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const link = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
-        if(link) setActive(link);
-      }
-    });
-  }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
+  const spy = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ const link = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id); if(link) setActive(link); } }); }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
   sections.forEach(s=> spy.observe(s));
 }
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
@@ -543,7 +470,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ========= Loader robuste (projects + faq) ========= */
+/* ========= Loader (projects + faq) ========= */
 async function loadJSON(urls, fallback){
   for (const url of urls){
     try{
@@ -555,18 +482,8 @@ async function loadJSON(urls, fallback){
   }
   return fallback;
 }
-function normalizeProjects(d){
-  if (Array.isArray(d)) return d;
-  if (d && Array.isArray(d.projects)) return d.projects;
-  if (d && Array.isArray(d.data)) return d.data;
-  return null;
-}
-function normalizeFaq(d){
-  if (Array.isArray(d)) return d;
-  if (d && Array.isArray(d.faq)) return d.faq;
-  if (d && Array.isArray(d.items)) return d.items;
-  return null;
-}
+function normalizeProjects(d){ if (Array.isArray(d)) return d; if (d && Array.isArray(d.projects)) return d.projects; if (d && Array.isArray(d.data)) return d.data; return null; }
+function normalizeFaq(d){ if (Array.isArray(d)) return d; if (d && Array.isArray(d.faq)) return d.faq; if (d && Array.isArray(d.items)) return d.items; return null; }
 
 /* ========= Projets ========= */
 const PROJECTS_FALLBACK = [
@@ -606,12 +523,7 @@ const mTitle = document.getElementById('mTitle');
 const winEl = modal.querySelector('.win');
 let current = 0, lastFocus = null;
 
-function mimeFrom(url){
-  const ext = (url.split('.').pop()||'').toLowerCase();
-  if (ext === 'webm') return 'video/webm';
-  if (ext === 'mkv')  return 'video/x-matroska';
-  return 'video/mp4';
-}
+function mimeFrom(url){ const ext = (url.split('.').pop()||'').toLowerCase(); if (ext === 'webm') return 'video/webm'; if (ext === 'mkv')  return 'video/x-matroska'; return 'video/mp4'; }
 
 function openModal(i){
   current = i; renderModal();
@@ -620,7 +532,7 @@ function openModal(i){
   lockBody(true);
   winEl.style.transition = 'none';
   winEl.style.transform = 'translateX(0)';
-  setTimeout(()=>{ modal.querySelector('[data-act="close"]').focus(); }, 50);
+  setTimeout(()=>{ const c = modal.querySelector('[data-act="close"]'); c && c.focus(); }, 50);
 }
 function closeModal(){
   modal.setAttribute('aria-hidden','true');
@@ -629,31 +541,27 @@ function closeModal(){
   const v = mBody.querySelector('video'); if(v){ v.pause(); v.src=''; }
 }
 
-/* --- Mailto template pour le bouton "Adapter à mon projet" --- */
-function buildMailto(p){
-  const subject = encodeURIComponent(`AutoFlow · Adapter le projet ${p.title}`);
-  const points = (p.points||[]).map(s=>`- ${s}`).join('\n');
-  const body = encodeURIComponent(
-`Bonjour,
+/* ---- Template pour pré-remplir le formulaire ---- */
+function buildContactTemplate(p){
+  const bullets = (p.points||[]).map(s=>`- ${s}`).join('\n') || '- (à préciser)';
+  return `Bonjour,
 
 Je souhaite adapter ce projet à mon besoin.
 
-Projet : ${p.title}
-Objectif principal :
-Budget/délai souhaités :
+Projet sélectionné : ${p.title}
+Objectif principal : …
+Budget/délai souhaités : …
 
 Données (sources, fréquence) :
--
+…
 
 Fonctionnalités envisagées :
-${points || '- (à préciser)'}
+${bullets}
 
 Contexte / contraintes :
--
+…
 
-Merci !`
-  );
-  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+Merci !`;
 }
 
 function renderModal(){
@@ -666,31 +574,43 @@ function renderModal(){
     <p style="margin:10px 0 6px">${p.desc}</p>
     <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
     <div class="mcta" style="margin-top:10px">
-      <a class="btn btn-primary js-go-mail" href="#">Adapter à mon projet</a>
+      <a class="btn btn-primary js-go-contact" href="#contact">Adapter à mon projet</a>
     </div>`;
 
-  // Démarre la vidéo (si l’autoplay est bloqué, on reste en controls)
   const v = mBody.querySelector('video');
-  if (v){
-    v.muted = true; // requis pour iOS
-    v.play().catch(()=>{ /* ignore si l’autoplay est bloqué */ });
-  }
+  if (v){ v.muted = true; v.play().catch(()=>{}); }
 }
 
-modal.addEventListener('click', e=>{
-  const act = e.target.dataset.act;
-  if(act === 'close'){ closeModal(); }
-  if(act === 'prev'){ slideTo(-1); }
-  if(act === 'next'){ slideTo(1); }
+/* --- Navigation modale: boutons directs --- */
+const prevBtn  = modal.querySelector('[data-act="prev"]');
+const nextBtn  = modal.querySelector('[data-act="next"]');
+const closeBtn = modal.querySelector('[data-act="close"]');
 
-  const toMail = e.target.closest('.js-go-mail');
-  if (toMail){
+prevBtn.addEventListener('click',  (e)=>{ e.preventDefault(); e.stopPropagation(); slideTo(-1); });
+nextBtn.addEventListener('click',  (e)=>{ e.preventDefault(); e.stopPropagation(); slideTo(1); });
+closeBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); closeModal(); });
+
+/* --- Délégation: bouton "Adapter à mon projet" -> pré-remplit le formulaire --- */
+modal.addEventListener('click', e=>{
+  const go = e.target.closest('.js-go-contact');
+  if (go){
     e.preventDefault();
     const p = PROJECTS[current];
-    const mailto = buildMailto(p);
+    const contact = document.getElementById('contact');
     closeModal();
-    // lance le client mail
-    setTimeout(()=>{ window.location.href = mailto; }, 10);
+    animatedScrollTo(contact, 10);
+    // Préremplir après le scroll
+    setTimeout(()=>{
+      const form = document.getElementById('contactForm');
+      if(!form) return;
+      const msg = form.querySelector('#message');
+      if(!msg) return;
+      const tpl = buildContactTemplate(p);
+      msg.value = msg.value.trim() ? (msg.value.trim() + '\n\n' + tpl) : tpl;
+      msg.focus();
+      // curseur à la fin
+      msg.setSelectionRange(msg.value.length, msg.value.length);
+    }, 320);
   }
 });
 
@@ -715,12 +635,16 @@ backdropClickSafe(modal, closeModal);
   const area = modal;
   if(!area) return;
 
-  const THRESH = 70;
-  const CANCEL_AT = 0.35;
-  const MAX_FOLLOW = 0.9;
+  const THRESH = 70, CANCEL_AT = 0.35, MAX_FOLLOW = 0.9;
   let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null, startTime=0;
 
+  function shouldIgnoreStart(target){
+    return !!target.closest('.mnav, .mcta, button, a, input, textarea, select');
+  }
+
   function start(e){
+    const target = e.target || (e.touches && e.touches[0]?.target);
+    if (shouldIgnoreStart(target)) return;
     const t = e.touches ? e.touches[0] : e;
     startX=t.clientX; startY=t.clientY; dx=0; active=true; horizontal=false;
     startTime = performance.now();
@@ -770,11 +694,17 @@ backdropClickSafe(modal, closeModal);
 })();
 
 function slideTo(dir){
+  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (noMotion){
+    current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
+    renderModal();
+    return;
+  }
   const outX = dir > 0 ? -120 : 120;
   winEl.style.transition='transform .28s ease';
   winEl.style.transform=`translateX(${outX}%)`;
+
   const handle = ()=>{
-    winEl.removeEventListener('transitionend', handle);
     current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
     renderModal();
     winEl.style.transition='none';
@@ -784,7 +714,11 @@ function slideTo(dir){
       winEl.style.transform='translateX(0)';
     });
   };
-  winEl.addEventListener('transitionend', handle);
+
+  let done = false;
+  const once = ()=>{ if(done) return; done = true; winEl.removeEventListener('transitionend', once); handle(); };
+  winEl.addEventListener('transitionend', once, {once:true});
+  setTimeout(once, 360);
 }
 
 /* ========= Booking (Cal.com) ========= */
@@ -809,17 +743,11 @@ function closeBooking(){
   lockBody(false);
   bookingModal.querySelector('iframe').src='';
 }
-document.addEventListener('click', (e)=>{
-  if(e.target.matches('#bookCall')){ e.preventDefault(); openBooking(); }
-  if(e.target.closest('#bookingModal [data-act="close"]')){ closeBooking(); }
-});
-document.addEventListener('keydown', (e)=>{
-  if(bookingModal.getAttribute('aria-hidden')==='true') return;
-  if(e.key==='Escape') closeBooking();
-});
+document.addEventListener('click', (e)=>{ if(e.target.matches('#bookCall')){ e.preventDefault(); openBooking(); } if(e.target.closest('#bookingModal [data-act="close"]')){ closeBooking(); }});
+document.addEventListener('keydown', (e)=>{ if(bookingModal.getAttribute('aria-hidden')==='true') return; if(e.key==='Escape') closeBooking(); });
 backdropClickSafe(bookingModal, closeBooking);
 
-/* ========= FAQ (fallback + html/json) ========= */
+/* ========= FAQ ========= */
 const FAQ_FALLBACK = [
   { q: 'Combien de temps pour un pilote ?', a: 'Selon la complexité, 5 à 15 jours ouvrés pour un MVP utilisable. On vise un premier résultat rapide, mesurable et réutilisable.' },
   { q: 'Hébergement ?', a: 'Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès et la propriété du code livré.' },
@@ -837,7 +765,7 @@ loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(raw=>{
     </details>`).join('');
 });
 
-/* ========= "Voir plus / Voir moins" (click + clavier) ========= */
+/* ========= "Voir plus / Voir moins" ========= */
 const grid = document.getElementById('expertiseGrid');
 function toggleMore(btn){
   const card = btn.closest('.exp');
@@ -847,29 +775,18 @@ function toggleMore(btn){
   btn.querySelector('span').textContent = open ? 'Voir plus' : 'Voir moins';
   card.setAttribute('data-open', open ? '0' : '1');
 }
-grid.addEventListener('click', (e)=>{
-  const btn = e.target.closest('[data-toggle="more"]');
-  if(btn){ e.preventDefault(); toggleMore(btn); }
-});
-grid.addEventListener('keydown', (e)=>{
-  const btn = e.target.closest('[data-toggle="more"]');
-  if(btn && (e.key==='Enter'|| e.key===' ')){ e.preventDefault(); toggleMore(btn); }
-});
+grid.addEventListener('click', (e)=>{ const btn = e.target.closest('[data-toggle="more"]'); if(btn){ e.preventDefault(); toggleMore(btn); }});
+grid.addEventListener('keydown', (e)=>{ const btn = e.target.closest('[data-toggle="more"]'); if(btn && (e.key==='Enter'|| e.key===' ')){ e.preventDefault(); toggleMore(btn); }});
 
 /* ========= Formulaire Web3Forms ========= */
 const form   = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 const sendBtn= document.getElementById('sendBtn');
 
-function showStatus(msg, ok=true){
-  status.textContent = msg;
-  status.classList.toggle('error', !ok);
-  status.style.display = 'block';
-}
+function showStatus(msg, ok=true){ status.textContent = msg; status.classList.toggle('error', !ok); status.style.display = 'block'; }
 
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
-
   function markInvalid(el){ el.setAttribute('aria-invalid','true'); el.focus(); }
   form.name?.removeAttribute('aria-invalid'); form.email?.removeAttribute('aria-invalid');
 
@@ -881,7 +798,6 @@ form?.addEventListener('submit', async (e)=>{
   if(!name || name.length < 2){ markInvalid(form.name); showStatus('Merci d’indiquer votre prénom (≥ 2 caractères).',false); return; }
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ markInvalid(form.email); showStatus('Email invalide.',false); return; }
 
-  // UI état
   sendBtn.disabled = true; sendBtn.textContent = 'Envoi…';
   showStatus('Envoi en cours…', true);
 
@@ -894,16 +810,13 @@ form?.addEventListener('submit', async (e)=>{
     reply_to: email
   };
 
-  // Timeout 10s
   const ac = new AbortController();
   const t  = setTimeout(()=> ac.abort(), 10000);
 
   try{
     const res = await fetch('https://api.web3forms.com/submit', {
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify(payload),
-      signal: ac.signal
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(payload), signal: ac.signal
     });
     clearTimeout(t);
     const data = await res.json();
