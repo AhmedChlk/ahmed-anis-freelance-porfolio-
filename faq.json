@@ -1,0 +1,7 @@
+[
+  { "q": "Délais typiques ?", "a": "Un pilote se livre en 5 à 15 jours ouvrés selon la complexité." },
+  { "q": "Hébergement ?", "a": "Au choix : chez vous (Docker/VM) ou hébergé/monitoré par nous." },
+  { "q": "Après livraison ?", "a": "Support, évolutions et point de contact unique." },
+  { "q": "Budget ?", "a": "Un pilote démarre vers 1 900 € (variable selon périmètre et intégrations)." },
+  { "q": "Facturation ?", "a": "Au forfait pour le MVP, puis T&M ou packs d’heures pour l’évolution." }
+]
