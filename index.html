@@ -1,4 +1,3 @@
-<!-- (fichier: index.html) -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,6 +37,10 @@
     h2{font-weight:800;font-size:clamp(28px,5vw,44px);text-align:center}
     .sub{color:var(--muted);max-width:840px;margin:4px auto 10px;text-align:center;text-wrap:balance}
 
+    /* Skip link */
+    .skip{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip:focus{left:12px;top:12px;width:auto;height:auto;background:#111;color:#fff;padding:10px 12px;border-radius:10px;z-index:10000}
+
     /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,rgba(11,15,22,.92),rgba(11,15,22,.6));backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06);padding-top:env(safe-area-inset-top,0)}
     .nav{height:var(--header-h-desktop);display:flex;align-items:center;justify-content:space-between}
@@ -52,14 +55,30 @@
     .cta-pill:hover{background:rgba(255,255,255,.12)}
     .menu-btn{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
     .menu-btn svg{width:20px;height:20px}
+
     @media (max-width:860px){
       section{scroll-margin-top:calc(var(--header-h-mobile) + 10px)}
       .nav{height:var(--header-h-mobile)}
       .menu-btn{display:inline-flex}
       .underline{display:none}
-      .links{position:fixed;inset:var(--header-h-mobile) 0 auto 0;flex-direction:column;gap:2px;padding:12px 12px env(safe-area-inset-bottom,12px);background:#0b0f16;border-bottom:1px solid var(--hair);transform:translateY(-120%);transition:transform .25s ease}
+      /* FULLSCREEN overlay menu (sous le header) */
+      .links{
+        position:fixed;
+        top:var(--header-h-mobile); left:0; right:0; bottom:0;
+        min-height:calc(100svh - var(--header-h-mobile));
+        flex-direction:column; gap:6px;
+        padding:16px 12px env(safe-area-inset-bottom,12px);
+        background:rgba(11,15,22,.98);
+        backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--hair);
+        transform:translateY(-120%);
+        transition:transform .25s ease;
+        overflow:auto;
+        z-index:60;
+      }
       body.menu-open .links{transform:translateY(0)}
-      .links a{padding:12px 14px}
+      .links a{padding:14px 14px;width:100%;text-align:center}
+      .links .cta-pill{width:100%}
     }
 
     /* Hero */
@@ -134,26 +153,23 @@
     .foot h5{margin:0 0 8px;font:800 16px/1.3 Inter}
     .foot ul{margin:0;padding-left:18px}
     .foot small{grid-column:1 / -1;opacity:.7;margin-top:16px;display:block;text-align:center}
+    @media (max-width:900px){.foot{grid-template-columns:1fr 1fr}}
+    @media (max-width:560px){.foot{grid-template-columns:1fr}}
 
     /* Modales (projets & booking) */
-    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.64);padding:16px;z-index:9999}
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.64);padding:16px;z-index:9999;overscroll-behavior:contain;touch-action:none}
     .modal[aria-hidden="false"]{display:grid}
     .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;width:min(100%,1020px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2)}
     .mhead{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--hair)}
     .mtitle{font:800 18px/1.2 Inter}
     .mnav{margin-left:auto;display:flex;gap:8px}
     .icon-btn{width:36px;height:36px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06);color:#fff}
-    .mbody{padding:14px;overflow:auto}
+    .mbody{padding:14px;overflow:auto; -webkit-overflow-scrolling:touch; touch-action:pan-y;}
     .mvideo{width:100%;max-height:52vh;border-radius:12px;background:#000}
     @media (max-width:600px){.win{width:100%;height:100%;max-height:none;border-radius:0}.mvideo{max-height:40vh}}
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
     .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06)}
     .mcta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
-    .mbody{
-  -webkit-overflow-scrolling: touch; /* inertie iOS */
-  touch-action: pan-y;               /* on autorise le scroll vertical, on gère l'horizontal en JS */
-}
-.win{ -webkit-overflow-scrolling: touch; }
   </style>
 </head>
 <body>
@@ -193,7 +209,8 @@
     <!-- Hero -->
     <section id="accueil" class="hero" aria-label="Accueil">
       <div class="hero-media" aria-hidden="true">
-        <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="" loading="eager" decoding="async">
+        <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080"
+             alt="" loading="eager" decoding="async" sizes="100vw">
       </div>
       <div class="container">
         <h1>Des bots qui travaillent pour vous, 24/7.</h1>
@@ -323,8 +340,8 @@
             <div class="card">
               <h3>Envoyer un email</h3>
               <form id="contactForm" novalidate>
-                <!-- honeypot -->
-                <input type="text" name="website" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
+                <!-- honeypot officiel -->
+                <input type="text" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
                 <div class="field">
                   <label for="name">Prénom</label>
                   <input id="name" name="name" required placeholder="Votre prénom" autocomplete="given-name">
@@ -342,7 +359,7 @@
                   <button class="btn btn-primary" type="submit" id="sendBtn">Envoyer</button>
                 </div>
                 <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-                <small style="display:block;opacity:.7;margin-top:6px">✅ Réponse sous 24&nbsp;h • Aucun spam • 100&nbsp;% gratuit au départ. En cas d’échec réseau, on ouvre automatiquement un email «&nbsp;mailto&nbsp;».</small>
+                <small style="display:block;opacity:.7;margin-top:6px">Réponse sous 24&nbsp;h.</small>
               </form>
             </div>
           </div>
@@ -418,7 +435,24 @@
 /* ========= Constantes ========= */
 const CONTACT_EMAIL = 'cofreelance.anisahmed@gmail.com';
 const BOOKING_URL   = 'https://cal.com/anis-8dk0do/discutons-de-votre-projet';
-const WEB3FORMS_KEY = '8ac89881-c275-4a06-b633-a6ef7618fcd5'; // ta clé publique
+const WEB3FORMS_KEY = '8ac89881-c275-4a06-b633-a6ef7618fcd5'; // clé publique
+
+/* ========= Body lock (modales & menu) ========= */
+function lockBody(lock){
+  if(lock){
+    const top = -window.scrollY;
+    document.body.dataset.scrollY = String(-top);
+    document.body.style.position = 'fixed';
+    document.body.style.top = top + 'px';
+    document.body.style.width = '100%';
+  }else{
+    const y = parseInt(document.body.dataset.scrollY||'0',10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, -y);
+  }
+}
 
 /* ========= Burger ========= */
 const menuBtn = document.getElementById('menuBtn');
@@ -426,15 +460,20 @@ const bodyEl  = document.body;
 menuBtn.addEventListener('click', ()=>{
   const open = bodyEl.classList.toggle('menu-open');
   menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  lockBody(open);
 });
 document.getElementById('siteLinks').addEventListener('click', e=>{
   if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false');
+    bodyEl.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded','false');
+    lockBody(false);
   }
 });
 document.addEventListener('keydown', (e)=>{
   if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false');
+    bodyEl.classList.remove('menu-open');
+    menuBtn.setAttribute('aria-expanded','false');
+    lockBody(false);
   }
 });
 
@@ -454,6 +493,12 @@ function setActive(el){
   el.setAttribute('aria-current','page'); moveUnderline(el);
 }
 window.addEventListener('load', ()=>{ if(navLinks[0]) setActive(navLinks[0]); });
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(()=>{
+    const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0];
+    current && moveUnderline(current);
+  });
+}
 addEventListener('resize', ()=>{
   const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0];
   if(current) moveUnderline(current);
@@ -481,24 +526,40 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ========= Projects (fallback) ========= */
-const FALLBACK = [
+/* ========= Loader robuste (projects + faq) ========= */
+async function loadJSON(urls, fallback){
+  for (const url of urls){
+    try{
+      const r = await fetch(url, {cache:'no-store'});
+      if(!r.ok) continue;
+      try { return await r.json(); }
+      catch { const t = await r.text(); return JSON.parse(t); }
+    }catch{}
+  }
+  return fallback;
+}
+
+/* Projets */
+const PROJECTS_FALLBACK = [
   {title:"Bot Telegram · Scraping & analyse d’annonces",thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Tableaux clairs, alertes instantanées, exports prêts pour Excel. −30 à −50 % de temps de suivi.",stack:["Python","Telegram Bot","Matplotlib","Pandas"]},
   {title:"Userbot Telegram · DMs ciblés",thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",poster:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Ciblage propre, messages d’accueil, redirection et quotas anti-spam.",stack:["Python","PostgreSQL","Scheduler","Telegram API"]},
   {title:"Générateur de posts Telegram",thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Agrégation RSS/API/Sheets, templates et planification. Publication sans friction.",stack:["Python","FastAPI","Scheduler","Telegram API"]}
 ];
-const cardsEl = document.getElementById('cards');
 let PROJECTS = [];
-fetch('projects.json',{cache:'no-store'})
-  .then(r => r.ok ? r.json() : FALLBACK)
-  .then(data => { PROJECTS = Array.isArray(data) && data.length ? data : FALLBACK; renderCards(); })
-  .catch(()=> { PROJECTS = FALLBACK; renderCards(); });
+const cardsEl = document.getElementById('cards');
+
+loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(data=>{
+  PROJECTS = Array.isArray(data) && data.length ? data : PROJECTS_FALLBACK;
+  renderCards();
+});
 
 function renderCards(){
   cardsEl.innerHTML = PROJECTS.map((p,i)=>`
     <article class="card" data-id="${i}" tabindex="0" aria-label="Voir le projet ${p.title}">
       <div class="pill">Détails</div>
-      <div class="card-media"><img src="${p.thumb}" alt="" loading="lazy" decoding="async"></div>
+      <div class="card-media">
+        <img src="${p.thumb}" alt="" loading="lazy" decoding="async" width="800" height="600">
+      </div>
       <div class="card-body"><h3>${p.title}</h3><p>${p.desc}</p></div>
     </article>
   `).join('');
@@ -513,16 +574,24 @@ const modal = document.getElementById('modal');
 const mBody = document.getElementById('mBody');
 const mTitle = document.getElementById('mTitle');
 let current = 0, lastFocus = null;
+
+function mimeFrom(url){
+  const ext = (url.split('.').pop()||'').toLowerCase();
+  if (ext === 'webm') return 'video/webm';
+  if (ext === 'mkv')  return 'video/x-matroska';
+  return 'video/mp4';
+}
+
 function openModal(i){
   current = i; renderModal();
   lastFocus = document.activeElement;
   modal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
+  lockBody(true);
   setTimeout(()=>{ modal.querySelector('[data-act="close"]').focus(); }, 50);
 }
 function closeModal(){
   modal.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
+  lockBody(false);
   lastFocus && lastFocus.focus();
   const v = mBody.querySelector('video'); if(v){ v.pause(); v.src=''; }
 }
@@ -530,19 +599,19 @@ function renderModal(){
   const p = PROJECTS[current];
   mTitle.textContent = p.title;
   mBody.innerHTML = `
-    <video class="mvideo" controls preload="metadata" poster="${p.poster}">
-      <source src="${p.video}" type="video/mp4">
-      Votre navigateur ne supporte pas la vidéo HTML5.
+    <video class="mvideo" controls preload="metadata" poster="${p.poster}" width="1280" height="720">
+      <source src="${p.video}" type="${mimeFrom(p.video)}">
     </video>
     <p style="margin:10px 0 6px">${p.desc}</p>
     <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
     <div class="mcta" style="margin-top:10px">
       <a class="btn btn-primary js-go-contact" href="#">Adapter à mon projet</a>
+      <a class="btn btn-ghost" href="${p.video}" target="_blank" rel="noopener noreferrer">Ouvrir la vidéo</a>
     </div>`;
 }
 modal.addEventListener('click', e=>{
   const act = e.target.dataset.act;
-  if(e.target === modal || act === 'close'){ closeModal(); }
+  if(act === 'close'){ closeModal(); }
   if(act === 'prev'){ current = (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
   if(act === 'next'){ current = (current+1)%PROJECTS.length; renderModal(); }
   const go = e.target.closest('.js-go-contact');
@@ -560,6 +629,14 @@ document.addEventListener('keydown', e=>{
   if(e.key==='ArrowRight'){ current=(current+1)%PROJECTS.length; renderModal(); }
   if(e.key==='ArrowLeft'){ current=(current-1+PROJECTS.length)%PROJECTS.length; renderModal(); }
 });
+/* Backdrop click safe */
+function backdropClickSafe(modalEl, closeFn){
+  let startedInside = false;
+  modalEl.querySelector('.win').addEventListener('mousedown', ()=> startedInside = true);
+  modalEl.addEventListener('mousedown', ()=> startedInside = false);
+  modalEl.addEventListener('click', (e)=>{ if(e.target === modalEl && !startedInside) closeFn(); });
+}
+backdropClickSafe(modal, closeModal);
 
 /* ========= Booking (Cal.com) ========= */
 const bookingModal = document.getElementById('bookingModal');
@@ -575,22 +652,84 @@ function openBooking(){
   frame.src = BOOKING_URL + qs;
   document.getElementById('bookingNewTab').href = BOOKING_URL;
   bookingModal.setAttribute('aria-hidden','false');
-  document.body.style.overflow = 'hidden';
+  lockBody(true);
   setTimeout(()=> bookingModal.querySelector('[data-act="close"]').focus(), 50);
 }
 function closeBooking(){
   bookingModal.setAttribute('aria-hidden','true');
-  document.body.style.overflow = '';
+  lockBody(false);
   bookingModal.querySelector('iframe').src='';
 }
 document.addEventListener('click', (e)=>{
   if(e.target.matches('#bookCall')){ e.preventDefault(); openBooking(); }
-  if(e.target.closest('#bookingModal [data-act="close"]') || e.target === bookingModal){ closeBooking(); }
+  if(e.target.closest('#bookingModal [data-act="close"]')){ closeBooking(); }
 });
 document.addEventListener('keydown', (e)=>{
   if(bookingModal.getAttribute('aria-hidden')==='true') return;
   if(e.key==='Escape') closeBooking();
 });
+backdropClickSafe(bookingModal, closeBooking);
+
+/* ========= FAQ (fallback + html/json) ========= */
+const FAQ_FALLBACK = [
+  { q: 'Combien de temps pour un pilote ?', a: 'Selon la complexité, 5 à 15 jours ouvrés pour un MVP utilisable. On vise un premier résultat rapide, mesurable et réutilisable.' },
+  { q: 'Hébergement ?', a: 'Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès et la propriété du code livré.' },
+  { q: 'Données et RGPD ?', a: 'Nous limitons les données collectées au strict nécessaire, chiffrons les secrets et journalisons les accès. Contrat de traitement et DPA possibles.' },
+  { q: 'Scraping légal ?', a: 'Nous ne collectons que des données publiques, respectons le rythme des sites et filtrons ce qui est sensible. Vous décidez des sources autorisées.' },
+  { q: 'Après livraison ?', a: 'Runbook, monitoring et support. Corrections, évolutions et améliorations itératives selon vos priorités.' }
+];
+const faqWrap = document.getElementById('faqItems');
+loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(items=>{
+  const data = Array.isArray(items) && items.length ? items : FAQ_FALLBACK;
+  faqWrap.innerHTML = data.map(i => `
+    <details>
+      <summary>${i.q}</summary>
+      <div class="answer">${i.a}</div>
+    </details>`).join('');
+});
+
+/* ========= Swipe tactile amélioré ========= */
+(function(){
+  const area = document.getElementById('mBody');
+  if(!area) return;
+
+  const THRESH = 60;
+  let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null;
+
+  function start(e){
+    const t = e.touches ? e.touches[0] : e;
+    startX=t.clientX; startY=t.clientY; dx=0; active=true; horizontal=false;
+    if(e.pointerId!=null){ pid=e.pointerId; area.setPointerCapture(pid); }
+  }
+  function move(e){
+    if(!active) return;
+    const t = e.touches ? e.touches[0] : e;
+    dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){ horizontal = true; }
+    if(horizontal && e.cancelable) e.preventDefault();
+  }
+  function end(){
+    if(!active) return;
+    if(Math.abs(dx) > THRESH){
+      current = dx < 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
+      renderModal();
+    }
+    active=false; dx=0; horizontal=false; if(pid!=null){ try{area.releasePointerCapture(pid);}catch{} pid=null; }
+  }
+
+  if(window.PointerEvent){
+    area.addEventListener('pointerdown', start, {passive:true});
+    area.addEventListener('pointermove',  move);
+    area.addEventListener('pointerup',    end);
+    area.addEventListener('pointercancel',end);
+  }else{
+    area.addEventListener('touchstart', start, {passive:true});
+    area.addEventListener('touchmove',  move,  {passive:false});
+    area.addEventListener('touchend',   end);
+    area.addEventListener('touchcancel',end);
+  }
+})();
 
 /* ========= Formulaire Web3Forms (statique) ========= */
 const form   = document.getElementById('contactForm');
@@ -606,16 +745,16 @@ function showStatus(msg, ok=true){
 form?.addEventListener('submit', async (e)=>{
   e.preventDefault();
 
-  // honeypot
-  const hp = (form.website?.value || '').trim();
+  function markInvalid(el){ el.setAttribute('aria-invalid','true'); el.focus(); }
+  form.name?.removeAttribute('aria-invalid'); form.email?.removeAttribute('aria-invalid');
+
+  const hp = (form.botcheck?.value || '').trim();
   if(hp){ showStatus('Merci !', true); return; }
 
   const name  = form.name.value.trim();
   const email = form.email.value.trim();
-  if(!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    showStatus('Merci de vérifier Prénom et Email.',false);
-    return;
-  }
+  if(!name || name.length < 2){ markInvalid(form.name); showStatus('Merci d’indiquer votre prénom (≥ 2 caractères).',false); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ markInvalid(form.email); showStatus('Email invalide.',false); return; }
 
   // UI état
   sendBtn.disabled = true; sendBtn.textContent = 'Envoi…';
@@ -630,122 +769,34 @@ form?.addEventListener('submit', async (e)=>{
     reply_to: email
   };
 
+  // Timeout 10s
+  const ac = new AbortController();
+  const t  = setTimeout(()=> ac.abort(), 10000);
+
   try{
     const res = await fetch('https://api.web3forms.com/submit', {
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
+      signal: ac.signal
     });
+    clearTimeout(t);
     const data = await res.json();
-    if(!res.ok || data.success === false) throw new Error('web3forms');
+    if(!res.ok || data.success === false) throw new Error(data.message || 'web3forms');
 
     form.reset();
     sendBtn.disabled=false; sendBtn.textContent='Envoyer';
     showStatus('✅ Merci ! Message envoyé.', true);
     setTimeout(()=> status.style.display='none', 5200);
   }catch(err){
-    // Fallback mailto
+    clearTimeout(t);
     const subject = encodeURIComponent('AutoFlow · Message depuis le site (fallback)');
     const body = encodeURIComponent(`Prénom: ${name}\nEmail: ${email}\n\nMessage:\n${form.message.value || ''}\n\nURL: ${location.href}`);
-    showStatus('Impossible d’envoyer via Web3Forms. Ouverture de votre client mail…', false);
+    showStatus('Échec d’envoi (réseau/bloqueur). Ouverture de votre client mail…', false);
     setTimeout(()=>{ window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`; }, 500);
     sendBtn.disabled=false; sendBtn.textContent='Envoyer';
   }
 });
-
-/* ========= Expertise: Voir +/− ========= */
-document.getElementById('expertiseGrid').addEventListener('click', (e)=>{
-  const btn = e.target.closest('[data-toggle="more"]');
-  if(!btn) return;
-  const card = btn.closest('.exp');
-  const open = card.getAttribute('data-open') === '1';
-  card.setAttribute('data-open', open ? '0' : '1');
-  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  btn.querySelector('span').textContent = open ? 'Voir plus' : 'Voir moins';
-});
-
-/* ========= FAQ (fallback) ========= */
-const FAQ_FALLBACK = [
-  { q: 'Combien de temps pour un pilote ?', a: 'Selon la complexité, 5 à 15 jours ouvrés pour un MVP utilisable. On vise un premier résultat rapide, mesurable et réutilisable.' },
-  { q: 'Hébergement ?', a: 'Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès et la propriété du code livré.' },
-  { q: 'Données et RGPD ?', a: 'Nous limitons les données collectées au strict nécessaire, chiffrons les secrets et journalisons les accès. Contrat de traitement et DPA possibles.' },
-  { q: 'Scraping légal ?', a: 'Nous ne collectons que des données publiques, respectons le rythme des sites et filtrons ce qui est sensible. Vous décidez des sources autorisées.' },
-  { q: 'Après livraison ?', a: 'Runbook, monitoring et support. Corrections, évolutions et améliorations itératives selon vos priorités.' }
-];
-const faqWrap = document.getElementById('faqItems');
-fetch('faq.json', {cache:'no-store'})
-  .then(r => r.ok ? r.json() : FAQ_FALLBACK)
-  .then(items => {
-    const data = Array.isArray(items) && items.length ? items : FAQ_FALLBACK;
-    faqWrap.innerHTML = data.map(i => `
-      <details>
-        <summary>${i.q}</summary>
-        <div class="answer">${i.a}</div>
-      </details>`).join('');
-  })
-  .catch(() => {
-    faqWrap.innerHTML = FAQ_FALLBACK.map(i => `
-      <details>
-        <summary>${i.q}</summary>
-        <div class="answer">${i.a}</div>
-      </details>`).join('');
-  });
-
-  /* ========= Swipe tactile pour naviguer entre projets ========= */
-/* Balayez horizontalement dans la modale pour Suivant/Précédent. 
-   Tolérant : on ne déclenche que si le mouvement horizontal domine. */
-(function(){
-  const area = document.getElementById('mBody'); // zone de swipe (conserve le scroll vertical)
-  if(!area) return;
-
-  const THRESH = 60; // distance en px pour valider un swipe
-  let startX = 0, startY = 0, dx = 0, active = false, horizontal = false;
-
-  function start(e){
-    const t = e.touches ? e.touches[0] : e;
-    startX = t.clientX; startY = t.clientY;
-    dx = 0; active = true; horizontal = false;
-  }
-  function move(e){
-    if(!active) return;
-    const t = e.touches ? e.touches[0] : e;
-    dx = t.clientX - startX;
-    const dy = t.clientY - startY;
-
-    // On ne bloque le scroll que si on détecte clairement un geste horizontal
-    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){
-      horizontal = true;
-    }
-    if(horizontal && e.cancelable) e.preventDefault(); // empêche le scroll pendant le swipe horizontal
-  }
-  function end(){
-    if(!active) return;
-    active = false;
-
-    if(Math.abs(dx) > THRESH){
-      if(dx < 0){ // vers la gauche -> projet suivant
-        current = (current + 1) % PROJECTS.length;
-      }else{      // vers la droite -> projet précédent
-        current = (current - 1 + PROJECTS.length) % PROJECTS.length;
-      }
-      renderModal();
-    }
-    dx = 0;
-  }
-
-  // Pointer Events si dispo, sinon fallback Touch Events (iOS anciens)
-  if(window.PointerEvent){
-    area.addEventListener('pointerdown', start, {passive:true});
-    area.addEventListener('pointermove',  move);
-    area.addEventListener('pointerup',    end);
-    area.addEventListener('pointercancel',end);
-  }else{
-    area.addEventListener('touchstart', start, {passive:true});
-    area.addEventListener('touchmove',  move,  {passive:false});
-    area.addEventListener('touchend',   end);
-    area.addEventListener('touchcancel',end);
-  }
-})();
   </script>
 </body>
 </html>
