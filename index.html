@@ -427,7 +427,7 @@
     </div>
   </div>
 
-  <script>
+<script>
 /* ========= Constantes ========= */
 const CONTACT_EMAIL = 'cofreelance.anisahmed@gmail.com';
 const BOOKING_URL   = 'https://cal.com/anis-8dk0do/discutons-de-votre-projet';
@@ -488,6 +488,11 @@ document.getElementById('siteLinks').addEventListener('click', e=>{
     bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
   }
 });
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
+    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
+  }
+});
 
 /* ========= Nav underline + spy ========= */
 const nav = document.querySelector('.links');
@@ -526,7 +531,6 @@ if('IntersectionObserver' in window){
   }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
   sections.forEach(s=> spy.observe(s));
 }
-/* Anchor click + fermeture menu + animation */
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href'); const target = document.querySelector(id);
@@ -537,11 +541,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
     history.pushState(null,"",id);
     target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); setTimeout(()=>target.removeAttribute('tabindex'), 600);
   });
-});
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){
-    bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);
-  }
 });
 
 /* ========= Loader robuste (projects + faq) ========= */
@@ -556,18 +555,31 @@ async function loadJSON(urls, fallback){
   }
   return fallback;
 }
+function normalizeProjects(d){
+  if (Array.isArray(d)) return d;
+  if (d && Array.isArray(d.projects)) return d.projects;
+  if (d && Array.isArray(d.data)) return d.data;
+  return null;
+}
+function normalizeFaq(d){
+  if (Array.isArray(d)) return d;
+  if (d && Array.isArray(d.faq)) return d.faq;
+  if (d && Array.isArray(d.items)) return d.items;
+  return null;
+}
 
-/* Projets */
+/* ========= Projets ========= */
 const PROJECTS_FALLBACK = [
-  {title:"Bot Telegram · Scraping & analyse d’annonces",thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Tableaux clairs, alertes instantanées, exports prêts pour Excel. −30 à −50 % de temps de suivi.",stack:["Python","Telegram Bot","Matplotlib","Pandas"]},
-  {title:"Userbot Telegram · DMs ciblés",thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",poster:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Ciblage propre, messages d’accueil, redirection et quotas anti-spam.",stack:["Python","PostgreSQL","Scheduler","Telegram API"]},
-  {title:"Générateur de posts Telegram",thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",poster:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1280",desc:"Agrégation RSS/API/Sheets, templates et planification. Publication sans friction.",stack:["Python","FastAPI","Scheduler","Telegram API"]}
+  {title:"Bot Telegram · Scraping & analyse d’annonces",thumb:"https://images.pexels.com/photos/3184466/pexels-photo-3184466.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",desc:"Tableaux clairs, alertes instantanées, exports prêts pour Excel. −30 à −50 % de temps de suivi.",stack:["Python","Telegram Bot","Matplotlib","Pandas"]},
+  {title:"Userbot Telegram · DMs ciblés",thumb:"https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",desc:"Ciblage propre, messages d’accueil, redirection et quotas anti-spam.",stack:["Python","PostgreSQL","Scheduler","Telegram API"]},
+  {title:"Générateur de posts Telegram",thumb:"https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=960",video:"https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",desc:"Agrégation RSS/API/Sheets, templates et planification. Publication sans friction.",stack:["Python","FastAPI","Scheduler","Telegram API"]}
 ];
 let PROJECTS = [];
 const cardsEl = document.getElementById('cards');
 
-loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(data=>{
-  PROJECTS = Array.isArray(data) && data.length ? data : PROJECTS_FALLBACK;
+loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(raw=>{
+  const arr = normalizeProjects(raw);
+  PROJECTS = (arr && arr.length) ? arr : PROJECTS_FALLBACK;
   renderCards();
 });
 
@@ -607,7 +619,7 @@ function openModal(i){
   modal.setAttribute('aria-hidden','false');
   lockBody(true);
   winEl.style.transition = 'none';
-  winEl.style.transform = 'translateX(0)'; // reset
+  winEl.style.transform = 'translateX(0)';
   setTimeout(()=>{ modal.querySelector('[data-act="close"]').focus(); }, 50);
 }
 function closeModal(){
@@ -616,38 +628,79 @@ function closeModal(){
   lastFocus && lastFocus.focus();
   const v = mBody.querySelector('video'); if(v){ v.pause(); v.src=''; }
 }
+
+/* --- Mailto template pour le bouton "Adapter à mon projet" --- */
+function buildMailto(p){
+  const subject = encodeURIComponent(`AutoFlow · Adapter le projet ${p.title}`);
+  const points = (p.points||[]).map(s=>`- ${s}`).join('\n');
+  const body = encodeURIComponent(
+`Bonjour,
+
+Je souhaite adapter ce projet à mon besoin.
+
+Projet : ${p.title}
+Objectif principal :
+Budget/délai souhaités :
+
+Données (sources, fréquence) :
+-
+
+Fonctionnalités envisagées :
+${points || '- (à préciser)'}
+
+Contexte / contraintes :
+-
+
+Merci !`
+  );
+  return `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
 function renderModal(){
   const p = PROJECTS[current];
   mTitle.textContent = p.title;
   mBody.innerHTML = `
-    <video class="mvideo" controls preload="metadata" poster="${p.poster}" width="1280" height="720">
+    <video class="mvideo" controls autoplay muted playsinline preload="auto" width="1280" height="720">
       <source src="${p.video}" type="${mimeFrom(p.video)}">
     </video>
     <p style="margin:10px 0 6px">${p.desc}</p>
     <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
     <div class="mcta" style="margin-top:10px">
-      <a class="btn btn-primary js-go-contact" href="#">Adapter à mon projet</a>
+      <a class="btn btn-primary js-go-mail" href="#">Adapter à mon projet</a>
     </div>`;
+
+  // Démarre la vidéo (si l’autoplay est bloqué, on reste en controls)
+  const v = mBody.querySelector('video');
+  if (v){
+    v.muted = true; // requis pour iOS
+    v.play().catch(()=>{ /* ignore si l’autoplay est bloqué */ });
+  }
 }
+
 modal.addEventListener('click', e=>{
   const act = e.target.dataset.act;
   if(act === 'close'){ closeModal(); }
   if(act === 'prev'){ slideTo(-1); }
   if(act === 'next'){ slideTo(1); }
-  const go = e.target.closest('.js-go-contact');
-  if (go){
+
+  const toMail = e.target.closest('.js-go-mail');
+  if (toMail){
     e.preventDefault();
+    const p = PROJECTS[current];
+    const mailto = buildMailto(p);
     closeModal();
-    const contact = document.getElementById('contact');
-    animatedScrollTo(contact, 10);
+    // lance le client mail
+    setTimeout(()=>{ window.location.href = mailto; }, 10);
   }
 });
+
 document.addEventListener('keydown', e=>{
   if(modal.getAttribute('aria-hidden')==='true') return;
   if(e.key==='Escape') closeModal();
   if(e.key==='ArrowRight'){ slideTo(1); }
   if(e.key==='ArrowLeft'){ slideTo(-1); }
 });
+
 /* Backdrop click safe */
 function backdropClickSafe(modalEl, closeFn){
   let startedInside = false;
@@ -659,12 +712,12 @@ backdropClickSafe(modal, closeModal);
 
 /* ========= Swipe + animation slide ========= */
 (function(){
-  const area = modal; // toute la modale capte le geste
+  const area = modal;
   if(!area) return;
 
-  const THRESH = 70;               // distance minimale
-  const CANCEL_AT = 0.35;          // proportion d'écran si vitesse faible
-  const MAX_FOLLOW = 0.9;          // limite du drag visuel (% de la largeur)
+  const THRESH = 70;
+  const CANCEL_AT = 0.35;
+  const MAX_FOLLOW = 0.9;
   let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null, startTime=0;
 
   function start(e){
@@ -690,46 +743,40 @@ backdropClickSafe(modal, closeModal);
   function end(){
     if(!active) return;
     const elapsed = Math.max(1, performance.now() - startTime);
-    const velocity = Math.abs(dx) / elapsed; // px/ms
+    const velocity = Math.abs(dx) / elapsed;
     const vw = area.clientWidth;
     let commit = Math.abs(dx) > THRESH || (Math.abs(dx) > vw*CANCEL_AT && velocity > 0.2);
     if(horizontal && commit){
       const dir = dx < 0 ? 1 : -1;
       slideTo(dir);
     }else{
-      // revient au centre
       winEl.style.transition='transform .28s ease';
       winEl.style.transform='translateX(0)';
     }
     active=false; dx=0; horizontal=false; if(pid!=null){ try{area.releasePointerCapture(pid);}catch{} pid=null; }
   }
 
-  function addListeners(){
-    if(window.PointerEvent){
-      area.addEventListener('pointerdown', start, {passive:true});
-      area.addEventListener('pointermove',  move); // not passive
-      area.addEventListener('pointerup',    end);
-      area.addEventListener('pointercancel',end);
-    }else{
-      area.addEventListener('touchstart', start, {passive:true});
-      area.addEventListener('touchmove',  move,  {passive:false});
-      area.addEventListener('touchend',   end);
-      area.addEventListener('touchcancel',end);
-    }
+  if(window.PointerEvent){
+    area.addEventListener('pointerdown', start, {passive:true});
+    area.addEventListener('pointermove',  move);
+    area.addEventListener('pointerup',    end);
+    area.addEventListener('pointercancel',end);
+  }else{
+    area.addEventListener('touchstart', start, {passive:true});
+    area.addEventListener('touchmove',  move,  {passive:false});
+    area.addEventListener('touchend',   end);
+    area.addEventListener('touchcancel',end);
   }
-  addListeners();
 })();
 
 function slideTo(dir){
-  // dir: 1 -> suivant, -1 -> précédent
-  const outX = dir > 0 ? -120 : 120; // sort à gauche si on va au suivant
+  const outX = dir > 0 ? -120 : 120;
   winEl.style.transition='transform .28s ease';
   winEl.style.transform=`translateX(${outX}%)`;
   const handle = ()=>{
     winEl.removeEventListener('transitionend', handle);
     current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
     renderModal();
-    // place hors écran opposé puis slide in
     winEl.style.transition='none';
     winEl.style.transform=`translateX(${(-outX)}%)`;
     requestAnimationFrame(()=>{
@@ -781,8 +828,8 @@ const FAQ_FALLBACK = [
   { q: 'Après livraison ?', a: 'Runbook, monitoring et support. Corrections, évolutions et améliorations itératives selon vos priorités.' }
 ];
 const faqWrap = document.getElementById('faqItems');
-loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(items=>{
-  const data = Array.isArray(items) && items.length ? items : FAQ_FALLBACK;
+loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(raw=>{
+  const data = normalizeFaq(raw) || FAQ_FALLBACK;
   faqWrap.innerHTML = data.map(i => `
     <details>
       <summary>${i.q}</summary>
@@ -790,7 +837,7 @@ loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(items=>{
     </details>`).join('');
 });
 
-/* ========= "Voir plus / Voir moins" fiable (click + clavier) ========= */
+/* ========= "Voir plus / Voir moins" (click + clavier) ========= */
 const grid = document.getElementById('expertiseGrid');
 function toggleMore(btn){
   const card = btn.closest('.exp');
@@ -875,6 +922,7 @@ form?.addEventListener('submit', async (e)=>{
     sendBtn.disabled=false; sendBtn.textContent='Envoyer';
   }
 });
-  </script>
+</script>
+
 </body>
 </html>

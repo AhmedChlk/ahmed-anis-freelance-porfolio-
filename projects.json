@@ -5,7 +5,7 @@
       "subtitle": "Prix, villes, marques. Graphiques et exports prêts à l’emploi.",
       "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "video": "assets/video_leboncoin.mp4",
       "desc": "Stats prix (min, max, moyenne, médiane), top marques, répartition par villes. Filtres dynamiques et graphiques PNG envoyés dans Telegram.",
       "points": [
         "Alertes Telegram instantanées",
