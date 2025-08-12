@@ -1,39 +1,39 @@
 [
   {
     "q": "Comment démarre un projet ?",
-    "a": "On fixe l’objectif métier, les sources de données et l’output attendu. Vous recevez sous 24 h un plan d’action et un premier livrable prioritaire (MVP) entre 5 et 15 jours ouvrés selon la complexité."
+    "a": "On clarifie l’objectif métier, les sources de données et l’output attendu. Vous recevez un plan d’action et un premier périmètre prioritaire (MVP) pour valider le flux, puis on étend par étapes."
   },
   {
     "q": "Où s’exécute l’automatisation (hébergement) ?",
-    "a": "Au choix : chez vous (Docker/VM) ou géré par nous. Dans tous les cas, vous gardez l’accès au code et aux secrets. Un runbook décrit les étapes de déploiement et de reprise."
+    "a": "Au choix : chez vous (Docker/VM) ou géré. Dans tous les cas, vous gardez l’accès au code, aux secrets et aux journaux essentiels. Un runbook décrit déploiement et reprise."
   },
   {
-    "q": "Quid des données et du RGPD ?",
-    "a": "Nous collectons le minimum nécessaire, chiffrons les secrets, limitons les journaux aux métadonnées utiles et respectons vos politiques internes. DPA et clauses de confidentialité possibles."
+    "q": "Données et RGPD ?",
+    "a": "Collecte minimale, secrets chiffrés, journaux limités aux métadonnées utiles. On s’aligne sur vos politiques internes. DPA et clauses de confidentialité possibles."
   },
   {
     "q": "Le scraping est-il légal ?",
-    "a": "Nous ciblons des données publiques, respectons le rythme des sites et filtrons les champs sensibles. Vous validez les sources autorisées. En cas de doute juridique, nous adaptons la scope ou stoppons la source."
+    "a": "On travaille sur des données publiques et respecte le rythme/les conditions d’usage des sites. Vous validez les sources autorisées. En cas de doute juridique, on ajuste le périmètre ou on coupe la source."
   },
   {
     "q": "Comment évitez-vous le spam sur Telegram ?",
-    "a": "Quotas, fenêtres horaires, pauses, listes d’exclusion et messages d’introduction sobres. Un humain peut valider les actions sensibles. Les logs permettent d’enquêter et d’ajuster finement."
+    "a": "Quotas, fenêtres horaires, pauses, listes d’exclusion et messages d’introduction sobres. Possibilité de validation humaine sur les actions sensibles. Les logs aident à enquêter et affiner."
   },
   {
-    "q": "RAG : comment garantir la fiabilité ?",
-    "a": "Sources citées, seuils de similarité, reformulation neutre, récupération multi-documents et filtres par typologie. Nous journalisons les preuves et mesurons la couverture du corpus."
+    "q": "RAG : comment assurer la qualité des réponses ?",
+    "a": "Sources citées, seuils de similarité, récupération multi-documents et filtres par typologie. Journalisation des preuves et suivi de la couverture du corpus. Ajustements continus si besoin."
   },
   {
     "q": "Maintenance et évolutions ?",
-    "a": "Nous livrons un runbook, une checklist de santé et un plan de mises à jour. Les améliorations se font par petites itérations, guidées par vos métriques (temps, erreurs, latence, taux de réponse)."
+    "a": "On livre un runbook, une checklist de santé et un plan d’évolutions. Les améliorations se font par petites itérations, guidées par des indicateurs convenus avec vous."
   },
   {
     "q": "Et si cela tombe en panne ?",
-    "a": "Auto-retry et files d’attente limitent les pertes. En cas d’échec répété, bascule en mode dégradé et alerte. Un bouton d’arrêt d’urgence est prévu, avec reprise contrôlée."
+    "a": "Relance automatique et files d’attente pour limiter les pertes. En cas d’échecs répétés : mode dégradé et alerte. Un bouton d’arrêt d’urgence est prévu, avec reprise contrôlée."
   },
   {
     "q": "Je n’ai pas de cahier des charges détaillé.",
-    "a": "Pas grave. Nous partons de vos objectifs et de 2–3 exemples concrets. Un prototype rapide valide le flux, puis on élargit par étapes. Vous gardez la main à chaque jalon."
+    "a": "Pas de souci. On part de vos objectifs et de quelques exemples concrets. Un prototype valide le flux, puis on enrichit progressivement."
   },
   {
     "q": "Avec quels outils vous vous branchez ?",
@@ -41,6 +41,6 @@
   },
   {
     "q": "Comment mesurez-vous le ROI ?",
-    "a": "Avant/après sur des indicateurs simples : temps de traitement, erreurs, délais, taux de réponse, volume traité. Un mini-dashboard partageable rend les résultats visibles."
+    "a": "Avant/après sur des indicateurs définis ensemble (temps de traitement, erreurs, délais, taux de réponse, volume traité, etc.). Un tableau de bord partageable rend les résultats lisibles."
   }
 ]
