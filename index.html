@@ -560,16 +560,75 @@ function closeModal(){
 function renderModal(){
   const p = PROJECTS[current];
   mTitle.textContent = p.title;
-  mBody.innerHTML = `
-    <video class="mvideo" controls autoplay muted playsinline preload="auto" width="1280" height="720">
-      <source src="${p.video}" type="${mimeFrom(p.video)}">
-    </video>
-    <p style="margin:10px 0 6px">${p.desc}</p>
-    <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
-    <div class="mcta"><a class="btn btn-primary js-go-contact" href="#contact">Adapter à mon projet</a></div>
+
+  const hasVideo = !!p.video;
+  const poster = p.poster || p.thumb || "";
+
+  const mediaHTML = hasVideo
+    ? `
+      <video class="mvideo" controls autoplay muted playsinline preload="metadata" ${poster ? `poster="${poster}"` : ""}>
+        <source src="${p.video}" type="${mimeFrom(p.video)}">
+      </video>
+    `
+    : (poster
+        ? `<img class="mimage" src="${poster}" alt="${p.title || 'aperçu'}" loading="lazy">`
+        : ""
+      );
+
+  const subtitleHTML = p.subtitle
+    ? `<p class="msubtitle" style="margin:4px 0 10px;opacity:.85">${p.subtitle}</p>`
+    : "";
+
+  const descHTML = p.desc
+    ? `<p class="mdesc" style="margin:10px 0 10px">${p.desc}</p>`
+    : "";
+
+  const pointsHTML = Array.isArray(p.points) && p.points.length
+    ? `
+      <div class="msection">
+        <h4 class="msec-title">Points clés</h4>
+        <ul style="margin:0; padding-left:18px">
+          ${p.points.map(it => `<li>${it}</li>`).join("")}
+        </ul>
+      </div>
+    `
+    : "";
+
+  const metricsHTML = Array.isArray(p.metrics) && p.metrics.length
+    ? `
+      <div class="msection">
+        <h4 class="msec-title">Impact / métriques</h4>
+        <ul style="margin:0; padding-left:18px">
+          ${p.metrics.map(it => `<li>${it}</li>`).join("")}
+        </ul>
+      </div>
+    `
+    : "";
+
+  const stackHTML = Array.isArray(p.stack) && p.stack.length
+    ? `<div class="chips">${p.stack.map(s => `<span class="chip">${s}</span>`).join("")}</div>`
+    : "";
+
+  const ctaHTML = `
+    <div class="mcta">
+      <a class="btn btn-primary js-go-contact" href="#contact">Adapter à mon projet</a>
+    </div>
   `;
-  const v = mBody.querySelector('video'); v?.play().catch(()=>{});
+
+  mBody.innerHTML = `
+    ${subtitleHTML}
+    ${mediaHTML}
+    ${descHTML}
+    ${pointsHTML}
+    ${metricsHTML}
+    ${stackHTML}
+    ${ctaHTML}
+  `;
+
+  const v = mBody.querySelector('video');
+  v?.play?.().catch(()=>{});
 }
+
 modal.querySelector('[data-act="prev"]').addEventListener('click', ()=>slideTo(-1));
 modal.querySelector('[data-act="next"]').addEventListener('click', ()=>slideTo(1));
 modal.querySelector('[data-act="close"]').addEventListener('click', closeModal);

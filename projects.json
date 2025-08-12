@@ -1,41 +1,44 @@
 {
   "projects": [
     {
-      "title": "Bot Telegram · Scraping & analyse d’annonces",
-      "subtitle": "Prix, villes, marques. Graphiques et exports prêts à l’emploi.",
-      "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "video": "assets/video_leboncoin.mp4",
-      "desc": "Stats prix (min, max, moyenne, médiane), top marques, répartition par villes. Filtres dynamiques et graphiques PNG envoyés dans Telegram.",
-      "points": [
-        "Alertes Telegram instantanées",
-        "Filtres avancés (prix, mots-clés, zones)",
-        "Exports CSV/JSON + graphiques PNG"
-      ],
-      "stack": ["Python", "Telegram Bot", "Matplotlib", "Pandas"],
-      "metrics": [
-        "−30 à −50 % de temps de veille marché",
-        "Erreurs manuelles réduites (données dédupliquées)"
-      ]
-    },
-    {
-      "title": "Userbot Telegram · DMs ciblés",
-      "subtitle": "Récupère des profils depuis les commentaires. Message d’accueil et redirection.",
-      "thumb": "https://images.pexels.com/photos/3861964/pexels-photo-3861964.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "poster": "https://images.pexels.com/photos/4068374/pexels-photo-4068374.jpeg?auto=compress&cs=tinysrgb&w=1200",
-      "video": "https://samplelib.com/lib/preview/mp4/sample-10s.mp4",
-      "desc": "Ciblage propre, DM d’introduction et redirection vers votre canal ou une page. Commandes pause/reprise, listes d’exclusion, quotas anti-spam.",
-      "points": [
-        "Ciblage depuis commentaires",
-        "Messages d’accueil et redirection",
-        "Commandes admin et statistiques"
-      ],
-      "stack": ["Python (Aiogram)", "PostgreSQL", "Scheduler", "API Telegram"],
-      "metrics": [
-        "Flux entrants plus réguliers (DM qualifiés)",
-        "Respect des limites pour éviter le blocage"
-      ]
-    },
+  "title": "Scraping & analyse d’annonces Et analyse d'anonces Leboncoin",
+  "subtitle": "Scrape, filtre et visualise des annonces (Leboncoin) directement depuis un bot Telegram.",
+  "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "video": "assets/video_leboncoin.mp4",
+  "desc": "Tableaux clairs, graphiques PNG et exports. Filtres par prix, mots-clés et villes. Alertes utiles directement dans Telegram.",
+  "points": [
+    "Recherche ciblée (URL ou requête)",
+    "Statistiques prix (min/max/médiane) & top marques",
+    "Répartition géographique par villes",
+    "Graphiques texte (ASCII) + images PNG",
+    "Exports CSV/JSON & filtrage avancé",
+    "Commandes simples (/search, /stats, /chart…)",
+    "Déduplication & nettoyage automatiques"
+  ],
+  "stack": ["Python", "Telegram Bot", "Pandas", "Matplotlib"]
+},{
+  "title": "Userbot Telegram · DMs ciblés",
+  "subtitle": "Repère des profils pertinents (commentaires & groupes) et initie la conversation proprement.",
+  "thumb": "https://images.pexels.com/photos/5077048/pexels-photo-5077048.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "poster": "https://images.pexels.com/photos/6078120/pexels-photo-6078120.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "video": "assets/video_userbot.mp4",
+  "desc": "Ciblage soigné depuis les commentaires et groupes publics, message initial, redirection vers votre canal ou page. Temporisation, journaux et comportements prudents intégrés.",
+  "points": [
+    "Ciblage depuis les commentaires du groupe lié à une chaîne",
+    "État persistant & anti-doublon (state.json)",
+    "Temporisation & quotas pour éviter les flags",
+    "Simulations humaines (lecture, réactions, mini-réponses)",
+    "Gestion FloodWait/PeerFlood avec pauses de sécurité",
+    "Rejoint les canaux privés via liens d’invitation",
+    "Support proxy (HTTP/SOCKS) pour plus de discrétion"
+  ],
+  "stack": ["Python (Telethon)", "Telegram API", "Scheduler", "Proxy (SOCKS/HTTP)"],
+  "metrics": [
+    "Flux entrants plus réguliers et traçables",
+    "Comportement prudent pour limiter les risques de blocage"
+  ]
+},
     {
       "title": "Générateur de posts Telegram",
       "subtitle": "Automatise vos posts à partir de RSS, API ou Sheets.",
