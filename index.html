@@ -141,14 +141,15 @@
 
     /* Contact */
     .contact .wrap{max-width:1040px;margin:0 auto;background:#0e131b;border:1px solid var(--hair);border-radius:28px;padding:24px;box-shadow:var(--shadow-2)}
-    .contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    @media (max-width:900px){.contact .grid{grid-template-columns:1fr}}
+    .contact .grid{display:grid;grid-template-columns: min(720px, 100%);justify-content: center;gap:22px;}
     .contact .card{border:1px solid var(--hair);border-radius:22px;background:#0b1016;padding:20px}
     .contact .card h3{margin:0 0 10px;font:800 20px/1.3 Inter}
     .field{display:flex;flex-direction:column;gap:8px;margin:8px 0}
     .field input,.field textarea{width:100%;background:#0a1016;color:#eaf1ff;border:1px solid #1d2a3a;border-radius:12px;padding:12px}
     .field input:focus,.field textarea:focus{outline:2px solid var(--accent);box-shadow:0 0 0 6px rgba(66,136,255,.14)}
     .field textarea{min-height:110px;resize:vertical}
+    .check{display:inline-flex;align-items:center;gap:10px;user-select:none}
+    .check input{accent-color:hsl(220 100% 56%);width:18px;height:18px}
     .status{margin-top:8px;color:#9fe3b2;display:none}
     .status.error{color:#ff9f9f}
 
@@ -161,7 +162,7 @@
     .foot ul{margin:0;padding-left:18px}
     .foot small{grid-column:1 / -1;opacity:.7;margin-top:16px;display:block;text-align:center}
 
-    /* Modals */
+    /* Modals (projets) */
     .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.64);padding:16px;z-index:9999;overscroll-behavior:contain;touch-action:none}
     .modal[aria-hidden="false"]{display:grid}
     .win{background:#0e131b;border:1px solid var(--hair);border-radius:18px;width:min(100%,1020px);max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-2);will-change:transform}
@@ -175,6 +176,17 @@
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
     .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--hair);background:rgba(255,255,255,.06)}
     .mcta{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}
+.filter{
+  padding:8px 12px;border-radius:999px;border:1px solid var(--hair);
+  background:rgba(255,255,255,.06);color:#eaf1ff;font-weight:700;
+}
+.filter[aria-pressed="true"]{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#fff;border-color:transparent;
+}
+
   </style>
 </head>
 <body>
@@ -215,10 +227,10 @@
         <img src="https://images.pexels.com/photos/374720/pexels-photo-374720.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080" alt="" loading="eager" decoding="async" sizes="100vw">
       </div>
       <div class="container">
-        <h1>Des bots qui travaillent pour vous, 24/7.</h1>
-        <p>Scraping fiable, agents Telegram, workflows n8n et IA (RAG). Plan d’action sous 24&nbsp;h et premier livrable rapide. Gains typiques : moins d’erreurs et −30 à −50&nbsp;% de temps de traitement.</p>
+        <h1>Donnez vie à vos idées. Nous automatisons, vous vous concentrez sur l’essentiel</h1>
+        <p>Scraping fiable, agents Telegram et workflows n8n reliés à vos outils. Code propre, documenté et maintenable.</p>
         <div class="actions">
-          <a href="#contact" class="btn btn-primary">Obtenir mon plan sous 24&nbsp;h</a>
+          <a href="#contact" class="btn btn-primary">Transformer mon idée</a>
           <a href="#projets" class="btn btn-ghost">Voir des exemples</a>
         </div>
       </div>
@@ -226,8 +238,9 @@
 
     <section id="projets" class="projects" aria-label="Projets">
       <div class="container">
-        <h2>Exemples de réalisations</h2>
-        <p class="sub">Démos internes prêtes à adapter. Mesures d’impact et livrables inclus.</p>
+        <h2>Projets en action, adaptables à votre contexte<</h2>
+        <p class="sub">Des projets concrets, prêts à brancher ou à adapter à votre contexte.</p>
+        <div id="filters" class="filters" aria-label="Filtres"></div>
         <div id="cards" class="cards" aria-live="polite"></div>
       </div>
     </section>
@@ -315,21 +328,20 @@
     <section id="contact" class="contact" aria-label="Contact">
       <div class="container">
         <h2>Parlez-nous de votre projet</h2>
-        <p class="sub">Choisissez : un appel de 30&nbsp;min ou un email via le formulaire. Réponse sous 24&nbsp;h.</p>
+        <p class="sub">Choisissez : un appel pour cadrer votre besoin ou un échanger par email.</p>
 
         <div class="wrap">
           <div class="grid">
             <div class="card">
-              <h3>Réserver un appel (30 min)</h3>
-              <p>On clarifie votre besoin et vous repartez avec un plan d’action concret et priorisé.</p>
-              <div class="actions" style="margin-top:8px">
-                <a href="#" class="btn btn-primary" id="bookCall">Réserver un appel</a>
-              </div>
-            </div>
-
-            <div class="card">
               <h3>Envoyer un email</h3>
-              <form id="contactForm" novalidate>
+              <!-- FORMULAIRE avec checkbox "appel" + fallback HTML -->
+              <form id="contactForm" novalidate
+                    action="https://api.web3forms.com/submit" method="POST">
+                <!-- fallback Web3Forms -->
+                <input type="hidden" name="access_key" value="8ac89881-c275-4a06-b633-a6ef7618fcd5">
+                <input type="hidden" name="subject" value="AutoFlow · Nouveau message depuis le site">
+                <input type="hidden" name="from_name" value="AutoFlow Site">
+                <!-- honeypot -->
                 <input type="text" name="botcheck" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px">
                 <div class="field">
                   <label for="name">Prénom</label>
@@ -343,12 +355,22 @@
                   <label for="message">Message</label>
                   <textarea id="message" name="message" placeholder="Quelques lignes : objectif, outils, délai…"></textarea>
                 </div>
+
+                <!-- ✅ Checkbox appel -->
+                <div class="field">
+                  <label class="check" for="wantsCall">
+                    <input type="checkbox" id="wantsCall" name="wants_call" value="Oui">
+                    <span>Je souhaite Réserver un appel</span>
+                  </label>
+                </div>
+
                 <div class="actions" style="display:flex;gap:10px;justify-content:flex-end;margin-top:8px">
                   <button class="btn btn-ghost" type="reset">Effacer</button>
                   <button class="btn btn-primary" type="submit" id="sendBtn">Envoyer</button>
                 </div>
                 <p id="formStatus" class="status" role="status" aria-live="polite"></p>
-                <small style="display:block;opacity:.7;margin-top:6px">Réponse sous 24&nbsp;h.</small>
+                <small style="display:block;opacity:.7;margin-top:6px">Vous aurez un retour rapidement.</small>
+                <noscript><small style="display:block;margin-top:6px;opacity:.8">JS désactivé : envoi direct via Web3Forms.</small></noscript>
               </form>
             </div>
           </div>
@@ -405,27 +427,12 @@
     </div>
   </div>
 
-  <!-- Booking Modal -->
-  <div class="modal" id="bookingModal" aria-hidden="true" aria-labelledby="bTitle">
-    <div class="win" role="dialog" aria-modal="true">
-      <div class="mhead">
-        <div class="mtitle" id="bTitle">Réserver un appel</div>
-        <div class="mnav"><button class="icon-btn" data-act="close" aria-label="Fermer">✕</button></div>
-      </div>
-      <div class="mbody">
-        <iframe title="Calendrier de réservation" style="width:100%;height:72vh;border:0;border-radius:12px;background:#0b0f16" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="mcta"><a class="btn btn-ghost" href="#" target="_blank" rel="nofollow noopener" id="bookingNewTab">Ouvrir dans un nouvel onglet</a></div>
-      </div>
-    </div>
-  </div>
-
 <script>
 /* ========= Constantes ========= */
 const CONTACT_EMAIL = 'cofreelance.anisahmed@gmail.com';
-const BOOKING_URL   = 'https://cal.com/anis-8dk0do/discutons-de-votre-projet';
 const WEB3FORMS_KEY = '8ac89881-c275-4a06-b633-a6ef7618fcd5';
 
-/* ========= Body lock ========= */
+/* ========= Body lock (modales & menu) ========= */
 let __savedScroll = 0;
 function lockBody(lock){
   if(lock){
@@ -445,7 +452,14 @@ function lockBody(lock){
   }
 }
 
-/* ========= Smooth scroll (anchors) ========= */
+/* ========= Burger ========= */
+const menuBtn = document.getElementById('menuBtn');
+const bodyEl  = document.body;
+menuBtn.addEventListener('click', ()=>{ const open = bodyEl.classList.toggle('menu-open'); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); lockBody(open); });
+document.getElementById('siteLinks').addEventListener('click', e=>{ if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false); }});
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);} });
+
+/* ========= Smooth scroll ========= */
 function easeInOutCubic(t){ return t<0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
 function animatedScrollTo(target, extraOffset=10){
   if(!target) return;
@@ -461,28 +475,6 @@ function animatedScrollTo(target, extraOffset=10){
   function step(now){ const p = Math.min((now - start) / duration, 1); window.scrollTo(0, startY + dist * easeInOutCubic(p)); if(p < 1) requestAnimationFrame(step); }
   requestAnimationFrame(step);
 }
-
-/* ========= Burger ========= */
-const menuBtn = document.getElementById('menuBtn');
-const bodyEl  = document.body;
-menuBtn.addEventListener('click', ()=>{ const open = bodyEl.classList.toggle('menu-open'); menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false'); lockBody(open); });
-document.getElementById('siteLinks').addEventListener('click', e=>{ if(e.target.tagName === 'A' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false); }});
-document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && bodyEl.classList.contains('menu-open')){ bodyEl.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false'); lockBody(false);} });
-
-/* ========= Nav underline + spy ========= */
-const nav = document.querySelector('.links');
-const underline = nav.querySelector('.underline');
-const navLinks = [...nav.querySelectorAll('a[href^="#"]')].filter(a => a.getAttribute('href') !== '#contact');
-const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-function moveUnderline(el){ if (window.matchMedia('(max-width: 860px)').matches) return; const r = el.getBoundingClientRect(), nr = nav.getBoundingClientRect(); underline.style.left = (r.left - nr.left + 8) + 'px'; underline.style.width = (r.width - 16) + 'px'; }
-function setActive(el){ navLinks.forEach(a => a.removeAttribute('aria-current')); el.setAttribute('aria-current','page'); moveUnderline(el); }
-window.addEventListener('load', ()=>{ if(navLinks[0]) setActive(navLinks[0]); });
-if (document.fonts && document.fonts.ready) { document.fonts.ready.then(()=>{ const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0]; current && moveUnderline(current); }); }
-addEventListener('resize', ()=>{ const current = document.querySelector('.links a[aria-current="page"]') || navLinks[0]; if(current) moveUnderline(current); });
-if('IntersectionObserver' in window){
-  const spy = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting){ const link = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id); if(link) setActive(link); } }); }, {threshold:.55, rootMargin:"-64px 0px -35% 0px"});
-  sections.forEach(s=> spy.observe(s));
-}
 document.querySelectorAll('a[href^="#"]').forEach(a=>{
   a.addEventListener('click', e=>{
     const id = a.getAttribute('href'); const target = document.querySelector(id);
@@ -495,7 +487,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-/* ========= Loader (projects + faq) ========= */
+/* ========= Chargement projets & FAQ (inchangé) ========= */
 async function loadJSON(urls, fallback){
   for (const url of urls){
     try{
@@ -525,39 +517,39 @@ loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(raw=>{
   renderCards();
 });
 
+function cardTemplate(p,i){
+  return `<article class="card" data-id="${i}" tabindex="0" aria-label="Voir le projet ${p.title}">
+    <div class="pill">Détails</div>
+    <div class="card-media"><img src="${p.thumb}" alt="" loading="lazy" decoding="async" width="800" height="600"></div>
+    <div class="card-body"><h3>${p.title}</h3><p>${p.desc}</p></div>
+  </article>`;
+}
 function renderCards(){
-  cardsEl.innerHTML = PROJECTS.map((p,i)=>`
-    <article class="card" data-id="${i}" tabindex="0" aria-label="Voir le projet ${p.title}">
-      <div class="pill">Détails</div>
-      <div class="card-media">
-        <img src="${p.thumb}" alt="" loading="lazy" decoding="async" width="800" height="600">
-      </div>
-      <div class="card-body"><h3>${p.title}</h3><p>${p.desc}</p></div>
-    </article>
-  `).join('');
-  cardsEl.querySelectorAll('.card').forEach(card=>{
-    card.addEventListener('click', ()=> openModal(+card.dataset.id));
-    card.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' ') { e.preventDefault(); openModal(+card.dataset.id); }});
+  cardsEl.innerHTML = PROJECTS.map(cardTemplate).join('');
+  cardsEl.querySelectorAll('.card').forEach(c=>{
+    c.addEventListener('click', ()=>openModal(+c.dataset.id));
+    c.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(+c.dataset.id); }});
   });
 }
 
-/* ========= Modal projets ========= */
+/* ========= Modale projets ========= */
 const modal = document.getElementById('modal');
 const mBody = document.getElementById('mBody');
 const mTitle = document.getElementById('mTitle');
 const winEl = modal.querySelector('.win');
 let current = 0, lastFocus = null;
 
-function mimeFrom(url){ const ext = (url.split('.').pop()||'').toLowerCase(); if (ext === 'webm') return 'video/webm'; if (ext === 'mkv')  return 'video/x-matroska'; return 'video/mp4'; }
+function mimeFrom(url){ const ext=(url.split('.').pop()||'').toLowerCase(); if(ext==='webm')return'video/webm'; if(ext==='mkv')return'video/x-matroska'; return'video/mp4'; }
 
 function openModal(i){
-  current = i; renderModal();
+  current = i;
+  renderModal();
   lastFocus = document.activeElement;
   modal.setAttribute('aria-hidden','false');
   lockBody(true);
-  winEl.style.transition = 'none';
-  winEl.style.transform = 'translateX(0)';
-  setTimeout(()=>{ const c = modal.querySelector('[data-act="close"]'); c && c.focus(); }, 50);
+  winEl.style.transition='none';
+  winEl.style.transform='translateX(0)';
+  setTimeout(()=>{ modal.querySelector('[data-act="close"]').focus(); }, 50);
 }
 function closeModal(){
   modal.setAttribute('aria-hidden','true');
@@ -565,30 +557,6 @@ function closeModal(){
   lastFocus && lastFocus.focus();
   const v = mBody.querySelector('video'); if(v){ v.pause(); v.src=''; }
 }
-
-/* ---- Template pour pré-remplir le formulaire ---- */
-function buildContactTemplate(p){
-  const bullets = (p.points||[]).map(s=>`- ${s}`).join('\n') || '- (à préciser)';
-  return `Bonjour,
-
-Je souhaite adapter ce projet à mon besoin.
-
-Projet sélectionné : ${p.title}
-Objectif principal : …
-Budget/délai souhaités : …
-
-Données (sources, fréquence) :
-…
-
-Fonctionnalités envisagées :
-${bullets}
-
-Contexte / contraintes :
-…
-
-Merci !`;
-}
-
 function renderModal(){
   const p = PROJECTS[current];
   mTitle.textContent = p.title;
@@ -598,176 +566,90 @@ function renderModal(){
     </video>
     <p style="margin:10px 0 6px">${p.desc}</p>
     <div class="chips">${(p.stack||[]).map(s=>`<span class="chip">${s}</span>`).join('')}</div>
-    <div class="mcta" style="margin-top:10px">
-      <a class="btn btn-primary js-go-contact" href="#contact">Adapter à mon projet</a>
-    </div>`;
-  const v = mBody.querySelector('video');
-  if (v){ v.muted = true; v.play().catch(()=>{}); }
+    <div class="mcta"><a class="btn btn-primary js-go-contact" href="#contact">Adapter à mon projet</a></div>
+  `;
+  const v = mBody.querySelector('video'); v?.play().catch(()=>{});
 }
-
-/* --- Navigation modale: boutons directs --- */
-const prevBtn  = modal.querySelector('[data-act="prev"]');
-const nextBtn  = modal.querySelector('[data-act="next"]');
-const closeBtn = modal.querySelector('[data-act="close"]');
-
-prevBtn.addEventListener('click',  (e)=>{ e.preventDefault(); e.stopPropagation(); slideTo(-1); });
-nextBtn.addEventListener('click',  (e)=>{ e.preventDefault(); e.stopPropagation(); slideTo(1); });
-closeBtn.addEventListener('click', (e)=>{ e.preventDefault(); e.stopPropagation(); closeModal(); });
-
-/* --- Délégation: bouton "Adapter à mon projet" -> pré-remplit le formulaire --- */
-modal.addEventListener('click', e=>{
-  const go = e.target.closest('.js-go-contact');
-  if (go){
-    e.preventDefault();
-    const p = PROJECTS[current];
-    const contact = document.getElementById('contact');
-    closeModal();
-    animatedScrollTo(contact, 10);
-    setTimeout(()=>{
-      const form = document.getElementById('contactForm');
-      if(!form) return;
-      const msg = form.querySelector('#message');
-      if(!msg) return;
-      const tpl = buildContactTemplate(p);
-      msg.value = msg.value.trim() ? (msg.value.trim() + '\n\n' + tpl) : tpl;
-      msg.focus();
-      msg.setSelectionRange(msg.value.length, msg.value.length);
-    }, 320);
-  }
-});
-
-document.addEventListener('keydown', e=>{
-  if(modal.getAttribute('aria-hidden')==='true') return;
-  if(e.key==='Escape') closeModal();
-  if(e.key==='ArrowRight'){ slideTo(1); }
-  if(e.key==='ArrowLeft'){ slideTo(-1); }
-});
-
-/* Backdrop click safe */
-function backdropClickSafe(modalEl, closeFn){
-  let startedInside = false;
-  modalEl.querySelector('.win').addEventListener('mousedown', ()=> startedInside = true);
-  modalEl.addEventListener('mousedown', ()=> startedInside = false);
-  modalEl.addEventListener('click', (e)=>{ if(e.target === modalEl && !startedInside) closeFn(); });
-}
-backdropClickSafe(modal, closeModal);
-
-/* ========= Swipe + animation slide ========= */
-(function(){
-  const area = modal;
-  if(!area) return;
-
-  const THRESH = 70, CANCEL_AT = 0.35, MAX_FOLLOW = 0.9;
-  let startX=0, startY=0, dx=0, active=false, horizontal=false, pid=null, startTime=0;
-
-  function shouldIgnoreStart(target){
-    return !!target.closest('.mnav, .mcta, button, a, input, textarea, select');
-  }
-
-  function start(e){
-    const target = e.target || (e.touches && e.touches[0]?.target);
-    if (shouldIgnoreStart(target)) return;
-    const t = e.touches ? e.touches[0] : e;
-    startX=t.clientX; startY=t.clientY; dx=0; active=true; horizontal=false;
-    startTime = performance.now();
-    if(e.pointerId!=null){ pid=e.pointerId; try{area.setPointerCapture(pid);}catch{} }
-    winEl.style.transition='none';
-  }
-  function move(e){
-    if(!active) return;
-    const t = e.touches ? e.touches[0] : e;
-    dx = t.clientX - startX;
-    const dy = t.clientY - startY;
-    if(!horizontal && Math.abs(dx) > Math.abs(dy) * 1.15 && Math.abs(dx) > 12){ horizontal = true; }
-    if(horizontal){
-      if(e.cancelable) e.preventDefault();
-      const vw = area.clientWidth;
-      const follow = Math.max(-vw*MAX_FOLLOW, Math.min(vw*MAX_FOLLOW, dx));
-      winEl.style.transform = `translateX(${follow}px)`;
-    }
-  }
-  function end(){
-    if(!active) return;
-    const elapsed = Math.max(1, performance.now() - startTime);
-    const velocity = Math.abs(dx) / elapsed;
-    const vw = area.clientWidth;
-    let commit = Math.abs(dx) > THRESH || (Math.abs(dx) > vw*CANCEL_AT && velocity > 0.2);
-    if(horizontal && commit){
-      const dir = dx < 0 ? 1 : -1;
-      slideTo(dir);
-    }else{
-      winEl.style.transition='transform .28s ease';
-      winEl.style.transform='translateX(0)';
-    }
-    active=false; dx=0; horizontal=false; if(pid!=null){ try{area.releasePointerCapture(pid);}catch{} pid=null; }
-  }
-
-  if(window.PointerEvent){
-    area.addEventListener('pointerdown', start, {passive:true});
-    area.addEventListener('pointermove',  move);
-    area.addEventListener('pointerup',    end);
-    area.addEventListener('pointercancel',end);
-  }else{
-    area.addEventListener('touchstart', start, {passive:true});
-    area.addEventListener('touchmove',  move,  {passive:false});
-    area.addEventListener('touchend',   end);
-    area.addEventListener('touchcancel',end);
-  }
-})();
+modal.querySelector('[data-act="prev"]').addEventListener('click', ()=>slideTo(-1));
+modal.querySelector('[data-act="next"]').addEventListener('click', ()=>slideTo(1));
+modal.querySelector('[data-act="close"]').addEventListener('click', closeModal);
+document.addEventListener('keydown', e=>{ if(modal.getAttribute('aria-hidden')==='true') return; if(e.key==='Escape') closeModal(); if(e.key==='ArrowRight') slideTo(1); if(e.key==='ArrowLeft') slideTo(-1); });
+(function backdropClickSafe(modalEl, closeFn){
+  let inside=false; modalEl.querySelector('.win').addEventListener('mousedown', ()=>inside=true);
+  modalEl.addEventListener('mousedown', ()=>inside=false);
+  modalEl.addEventListener('click', e=>{ if(e.target===modalEl && !inside) closeFn(); });
+})(modal, closeModal);
 
 function slideTo(dir){
-  const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (noMotion){
-    current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
-    renderModal();
-    return;
-  }
-  const outX = dir > 0 ? -120 : 120;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){ current = dir>0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); return; }
+  const outX = dir>0 ? -120 : 120;
   winEl.style.transition='transform .28s ease';
   winEl.style.transform=`translateX(${outX}%)`;
-
-  const handle = ()=>{
-    current = dir > 0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length;
-    renderModal();
-    winEl.style.transition='none';
-    winEl.style.transform=`translateX(${(-outX)}%)`;
-    requestAnimationFrame(()=>{
-      winEl.style.transition='transform .28s ease';
-      winEl.style.transform='translateX(0)';
-    });
-  };
-
-  let done = false;
-  const once = ()=>{ if(done) return; done = true; winEl.removeEventListener('transitionend', once); handle(); };
-  winEl.addEventListener('transitionend', once, {once:true});
-  setTimeout(once, 360);
+  const go=()=>{ current = dir>0 ? (current+1)%PROJECTS.length : (current-1+PROJECTS.length)%PROJECTS.length; renderModal(); winEl.style.transition='none'; winEl.style.transform=`translateX(${-outX}%)`; requestAnimationFrame(()=>{ winEl.style.transition='transform .28s ease'; winEl.style.transform='translateX(0)'; }); };
+  let done=false; const once=()=>{ if(done) return; done=true; winEl.removeEventListener('transitionend', once); go(); };
+  winEl.addEventListener('transitionend', once, {once:true}); setTimeout(once, 360);
 }
 
-/* ========= Booking (Cal.com) ========= */
-const bookingModal = document.getElementById('bookingModal');
-function openBooking(){
-  if(!BOOKING_URL){
-    const subject = encodeURIComponent('Demande de créneau (30 min)');
-    const body = encodeURIComponent('Bonjour, je souhaite réserver un appel de 30 min. Mes disponibilités : ...');
-    window.open('mailto:'+CONTACT_EMAIL+'?subject='+subject+'&body='+body, '_self');
-    return;
-  }
-  const frame = bookingModal.querySelector('iframe');
-  const qs = (BOOKING_URL.indexOf('?')>-1?'&':'?')+'hide_event_type_details=1&hide_landing_page_details=1&primary_color=1a73ff&background_color=0b0f16&text_color=eaf1ff';
-  frame.src = BOOKING_URL + qs;
-  document.getElementById('bookingNewTab').href = BOOKING_URL;
-  bookingModal.setAttribute('aria-hidden','false');
-  lockBody(true);
-  setTimeout(()=> bookingModal.querySelector('[data-act="close"]').focus(), 50);
+function buildContactTemplate(p){
+  const wantsCall =
+    document.getElementById('wantsCall')?.checked ? 'Oui' : 'Non';
+  const points =
+    (p.points || p.stack || [])
+      .slice(0, 5)
+      .map(s => `- ${s}`)
+      .join('\n') || '- (à préciser)';
+
+  return `Bonjour,
+
+Je souhaite adapter ce projet à mon besoin.
+
+Projet sélectionné : ${p.title}
+Souhaite un appel (30 min) : ${wantsCall}
+
+Objectif principal :
+…
+
+Données (sources, fréquence) :
+…
+
+Fonctionnalités envisagées :
+${points}
+
+KPIs / livrables attendus :
+- …
+
+Budget & délai souhaités :
+…
+
+Contexte / contraintes :
+…
+
+Merci !`;
 }
-function closeBooking(){
-  bookingModal.setAttribute('aria-hidden','true');
-  lockBody(false);
-  bookingModal.querySelector('iframe').src='';
-}
-document.addEventListener('click', (e)=>{ if(e.target.matches('#bookCall')){ e.preventDefault(); openBooking(); } if(e.target.closest('#bookingModal [data-act="close"]')){ closeBooking(); }});
-document.addEventListener('keydown', (e)=>{ if(bookingModal.getAttribute('aria-hidden')==='true') return; if(e.key==='Escape') closeBooking(); });
-backdropClickSafe(bookingModal, closeBooking);
+
+modal.addEventListener('click', e => {
+  const go = e.target.closest('.js-go-contact');
+  if (!go) return;
+  e.preventDefault();
+
+  const p = PROJECTS[current];
+  closeModal();  // débloque le body
+  animatedScrollTo(document.getElementById('contact'), 10);
+
+  // Préremplissage après le scroll
+  setTimeout(() => {
+    const msg = document.getElementById('message');
+    if (!msg) return;
+    const tpl = buildContactTemplate(p);
+    msg.value = msg.value.trim()
+      ? msg.value.trim() + '\n\n' + tpl
+      : tpl;
+    msg.focus();
+    msg.setSelectionRange(msg.value.length, msg.value.length);
+  }, 300);
+});
+
 
 /* ========= FAQ ========= */
 const FAQ_FALLBACK = [
@@ -780,14 +662,10 @@ const FAQ_FALLBACK = [
 const faqWrap = document.getElementById('faqItems');
 loadJSON(['faq.html','faq.json'], FAQ_FALLBACK).then(raw=>{
   const data = normalizeFaq(raw) || FAQ_FALLBACK;
-  faqWrap.innerHTML = data.map(i => `
-    <details>
-      <summary>${i.q}</summary>
-      <div class="answer">${i.a}</div>
-    </details>`).join('');
+  faqWrap.innerHTML = data.map(i => `<details><summary>${i.q}</summary><div class="answer">${i.a}</div></details>`).join('');
 });
 
-/* ========= "Voir plus / Voir moins" ========= */
+/* ========= Expertise: Voir plus ========= */
 const grid = document.getElementById('expertiseGrid');
 function toggleMore(btn){
   const card = btn.closest('.exp');
@@ -800,15 +678,18 @@ function toggleMore(btn){
 grid.addEventListener('click', (e)=>{ const btn = e.target.closest('[data-toggle="more"]'); if(btn){ e.preventDefault(); toggleMore(btn); }});
 grid.addEventListener('keydown', (e)=>{ const btn = e.target.closest('[data-toggle="more"]'); if(btn && (e.key==='Enter'|| e.key===' ')){ e.preventDefault(); toggleMore(btn); }});
 
-/* ========= Formulaire Web3Forms ========= */
+/* ========= Formulaire Web3Forms (avec checkbox appel) ========= */
 const form   = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 const sendBtn= document.getElementById('sendBtn');
+const wantsCallEl = document.getElementById('wantsCall');
 
 function showStatus(msg, ok=true){ status.textContent = msg; status.classList.toggle('error', !ok); status.style.display = 'block'; }
 
 form?.addEventListener('submit', async (e)=>{
+  // JS actif : envoi fetch + fallback mailto en cas d’échec.
   e.preventDefault();
+
   function markInvalid(el){ el.setAttribute('aria-invalid','true'); el.focus(); }
   form.name?.removeAttribute('aria-invalid'); form.email?.removeAttribute('aria-invalid');
 
@@ -820,6 +701,8 @@ form?.addEventListener('submit', async (e)=>{
   if(!name || name.length < 2){ markInvalid(form.name); showStatus('Merci d’indiquer votre prénom (≥ 2 caractères).',false); return; }
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ markInvalid(form.email); showStatus('Email invalide.',false); return; }
 
+  const wantsCall = wantsCallEl?.checked ? 'Oui' : 'Non';
+
   sendBtn.disabled = true; sendBtn.textContent = 'Envoi…';
   showStatus('Envoi en cours…', true);
 
@@ -829,7 +712,8 @@ form?.addEventListener('submit', async (e)=>{
     from_name: 'AutoFlow Site',
     name, email,
     message: form.message.value || '',
-    reply_to: email
+    reply_to: email,
+    wants_call: wantsCall
   };
 
   const ac = new AbortController();
@@ -850,13 +734,79 @@ form?.addEventListener('submit', async (e)=>{
     setTimeout(()=> status.style.display='none', 5200);
   }catch(err){
     clearTimeout(t);
+    // Fallback mailto
     const subject = encodeURIComponent('AutoFlow · Message depuis le site (fallback)');
-    const body = encodeURIComponent(`Prénom: ${name}\nEmail: ${email}\n\nMessage:\n${form.message.value || ''}\n\nURL: ${location.href}`);
+    const body = encodeURIComponent(
+`Prénom: ${name}
+Email: ${email}
+Souhaite un appel: ${wantsCall}
+
+Message:
+${form.message.value || ''}
+
+URL: ${location.href}`);
     showStatus('Échec d’envoi (réseau/bloqueur). Ouverture de votre client mail…', false);
     setTimeout(()=>{ window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`; }, 500);
     sendBtn.disabled=false; sendBtn.textContent='Envoyer';
   }
 });
+// ===== Projets (petite modif)
+function renderCards(list = PROJECTS){
+  cardsEl.innerHTML = list.map((p,i)=>`
+    <article class="card" data-id="${i}" tabindex="0" aria-label="Voir le projet ${p.title}">
+      <div class="pill">Détails</div>
+      <div class="card-media"><img src="${p.thumb}" alt="" loading="lazy" decoding="async"></div>
+      <div class="card-body"><h3>${p.title}</h3><p>${p.desc}</p></div>
+    </article>
+  `).join('');
+
+  // clic/enter pour ouvrir la modale
+  cardsEl.querySelectorAll('.card').forEach(card=>{
+    card.addEventListener('click', ()=> openModal(+card.dataset.id));
+    card.addEventListener('keydown', e=>{
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openModal(+card.dataset.id); }
+    });
+  });
+}
+
+// ===== Filtres
+const filtersEl = document.getElementById('filters');
+let currentTag = 'Tous';
+
+function getAllTags(){
+  return ['Tous', ...new Set(PROJECTS.flatMap(p => p.stack || []))];
+}
+
+function renderFilters(){
+  const tags = getAllTags();
+  filtersEl.innerHTML = tags.map(t =>
+    `<button type="button" class="filter" data-tag="${t}" aria-pressed="${t===currentTag}">${t}</button>`
+  ).join('');
+}
+
+function applyFilter(tag){
+  currentTag = tag;
+  const list = tag === 'Tous'
+    ? PROJECTS
+    : PROJECTS.filter(p => (p.stack || []).includes(tag));
+  renderCards(list);
+  renderFilters(); // met à jour l’état visuel (aria-pressed)
+}
+
+filtersEl.addEventListener('click', e=>{
+  const b = e.target.closest('[data-tag]');
+  if(!b) return;
+  applyFilter(b.dataset.tag);
+});
+
+// Après chargement des projets :
+loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(raw=>{
+  const arr = normalizeProjects(raw);
+  PROJECTS = (arr && arr.length) ? arr : PROJECTS_FALLBACK;
+  renderFilters();
+  applyFilter('Tous'); // affiche tout par défaut
+});
+
 </script>
 
 </body>
