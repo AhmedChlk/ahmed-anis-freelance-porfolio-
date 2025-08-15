@@ -3,7 +3,7 @@
     {
   "title": "Scraping & analyse d’annonces Et analyse d'anonces Leboncoin",
   "subtitle": "Scrape, filtre et visualise des annonces (Leboncoin) directement depuis un bot Telegram.",
-  "thumb": "https://images.pexels.com/photos/3771830/pexels-photo-3771830.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "thumb": "assets/project_leboncoin.png",
   "poster": "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200",
   "video": "assets/video_leboncoin.mp4",
   "desc": "Tableaux clairs, graphiques PNG et exports. Filtres par prix, mots-clés et villes. Alertes utiles directement dans Telegram.",
@@ -20,7 +20,7 @@
 },{
   "title": "Userbot Telegram · DMs ciblés",
   "subtitle": "Repère des profils pertinents (commentaires & groupes) et initie la conversation proprement.",
-  "thumb": "https://images.pexels.com/photos/5077048/pexels-photo-5077048.jpeg?auto=compress&cs=tinysrgb&w=1200",
+  "thumb": "assets/userbot_img.png",
   "poster": "https://images.pexels.com/photos/6078120/pexels-photo-6078120.jpeg?auto=compress&cs=tinysrgb&w=1200",
   "video": "assets/video_userbot.mp4",
   "desc": "Ciblage soigné depuis les commentaires et groupes publics, message initial, redirection vers votre canal ou page. Temporisation, journaux et comportements prudents intégrés.",
@@ -42,7 +42,7 @@
     {
       "title": "Générateur de posts Telegram",
       "subtitle": "Automatise vos posts à partir de RSS, API ou Sheets.",
-      "thumb": "https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "thumb": "assets/posts_telegram.png",
       "poster": "https://images.pexels.com/photos/6802042/pexels-photo-6802042.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
       "desc": "Agrégation de contenus, templates prêts à poster, planification et suivi des performances.",

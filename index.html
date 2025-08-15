@@ -25,7 +25,12 @@
       --shadow-1:0 8px 22px rgba(0,0,0,.28);
       --shadow-2:0 16px 36px rgba(0,0,0,.36);
       --header-h-desktop:72px; --header-h-mobile:64px;
-    }
+      --peek-desktop: 80px;     /* largeur visible de la prochaine card */
+      --peek-mobile:  40px;
+      --card-vert-pad: 16px;
+      --card-h-desktop: calc(100vh - var(--header-h-desktop) - var(--card-vert-pad) - env(safe-area-inset-top, 0px));
+      --card-h-mobile:  calc(100svh - var(--header-h-mobile)  - var(--card-vert-pad) - env(safe-area-inset-top, 0px));
+  }
     *,*::before,*::after{box-sizing:border-box}
     html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
     body{
@@ -100,22 +105,80 @@
       .actions .btn{width:100%}
       .hero{min-height:min(72svh,72vh)}
     }
+/* Le conteneur devient un scroller horizontal */
+.cards{
+  display:flex;
+  gap:22px;
+  overflow-x:auto;
+  overflow-y:visible;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding: 10px 0;
+  /* masque doux aux bords pour suggérer le scroll */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  scroll-padding-left: 0; /* s’aligne avec la grille existante */
+}
 
-    /* Projects */
-    .projects{background:var(--bg-2)}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-    @media (max-width:980px){.cards{grid-template-columns:1fr 1fr}}
-    @media (max-width:740px){.cards{grid-template-columns:1fr}}
-    .card{position:relative;border-radius:22px;overflow:hidden;background:var(--card);border:1px solid var(--hair);box-shadow:var(--shadow-1);cursor:pointer}
-    .card-media{aspect-ratio:4/3;overflow:hidden;position:relative}
-    .card-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .5s}
-    .card:hover .card-media img{transform:scale(1.08)}
-    .card-media::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.12) 100%)}
-    .pill{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.52);border:1px solid rgba(255,255,255,.25);color:#fff;padding:6px 10px;border-radius:999px;font-weight:700}
-    .card-body{position:absolute;left:0;right:0;bottom:0;padding:16px 18px;background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.28) 70%,rgba(0,0,0,0));color:#fff;text-shadow:0 1px 14px rgba(0,0,0,.55);backdrop-filter:saturate(115%) blur(1.5px)}
-    .card h3{margin:0 0 6px;font-weight:800;line-height:1.22;font-size:clamp(16px,4.8vw,20px)}
-    .card p{margin:0;color:#f3f7ff;font-size:clamp(13px,4.2vw,15px)}
+/* Chaque card occupe la largeur de l’écran moins le peek */
+.card{
+  flex: 0 0 calc(100% - var(--peek-desktop));
+  height: var(--card-h-desktop);      /* plein écran – navbar */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  background:#0c1118;
+  box-shadow:0 4px 20px rgba(0,0,0,.18);
+  color:#fff;
+  transition:transform .25s ease, box-shadow .25s ease;
+  cursor:pointer;
+}
+.card:hover{ transform:translateY(-4px); box-shadow:0 8px 28px rgba(0,0,0,.24); }
+
+/* L’image remplit la card */
+.card-media{ width:100%; height:100%; background:#0b0f16; }
+.card-media img{ width:100%; height:100%; object-fit:cover; transition:transform .6s ease; }
+.card:hover .card-media img{ transform:scale(1.05); }
+
+/* Dégradé depuis le bas pour la lisibilité du texte */
+.card::after{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(0deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.45) 35%, rgba(0,0,0,0) 70%);
+  pointer-events:none;
+}
+
+/* Texte en BAS par-dessus l’image */
+.card-body{
+  position:absolute; left:0; right:0; bottom:0; z-index:2;
+  padding:22px; display:flex; flex-direction:column; gap:8px;
+  text-shadow:0 1px 10px rgba(0,0,0,.45);
+  background:none;
+}
+.card-body h3{ margin:0; font-weight:800; font-size:clamp(18px, 2.1vw, 22px); line-height:1.25; color:#fff; }
+.card-body p{ margin:4px 0 0; font-size:.98rem; line-height:1.45; color:rgba(255,255,255,.9); }
+
+/* Pastille en haut */
+.pill{
+  position:absolute; top:14px; right:14px; z-index:3;
+  padding:6px 12px; border-radius:999px;
+  background:rgba(0,0,0,.6); color:#fff; font-weight:700;
+  border:1px solid rgba(255,255,255,.22);
+}
+
+/* Discret: on masque la barre de scroll (facultatif) */
+.cards::-webkit-scrollbar{ height:8px; }
+.cards::-webkit-scrollbar-thumb{ background:transparent; }
+
+/* Responsive */
+@media (max-width: 768px){
+  .card{
+    flex: 0 0 calc(100% - var(--peek-mobile));
+    height: var(--card-h-mobile);
+  }
+}
     /* Expertise */
     .expertise .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
     @media (max-width:980px){.expertise .grid{grid-template-columns:1fr 1fr}}
@@ -865,7 +928,55 @@ loadJSON(['projects.html','projects.json'], PROJECTS_FALLBACK).then(raw=>{
   PROJECTS = (arr && arr.length) ? arr : PROJECTS_FALLBACK;
   renderFilters();
   applyFilter('Tous'); // affiche tout par défaut
+
 });
+  function enableSwipe(scroller){
+  if (!scroller || scroller.dataset.swipeInit === '1') return;
+  scroller.dataset.swipeInit = '1';
+
+  let isDown = false, startX = 0, startLeft = 0, moved = false;
+
+  scroller.addEventListener('pointerdown', (e) => {
+    isDown = true; moved = false;
+    startX = e.clientX;
+    startLeft = scroller.scrollLeft;
+    scroller.setPointerCapture?.(e.pointerId);
+  });
+
+  scroller.addEventListener('pointermove', (e) => {
+    if (!isDown) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) moved = true;
+    scroller.scrollLeft = startLeft - dx;
+  });
+
+  const end = (e) => {
+    if (!isDown) return;
+    isDown = false;
+    scroller.releasePointerCapture?.(e.pointerId);
+    if (moved) {
+      // Empêche le click d’ouvrir la modale après un drag
+      scroller.classList.add('was-drag');
+      setTimeout(()=> scroller.classList.remove('was-drag'), 40);
+    }
+  };
+  scroller.addEventListener('pointerup', end);
+  scroller.addEventListener('pointercancel', end);
+
+  // Bloque le click si on vient de drag
+  scroller.addEventListener('click', (e) => {
+    if (scroller.classList.contains('was-drag')) {
+      e.preventDefault(); e.stopPropagation();
+    }
+  }, true);
+}
+
+// 👉 Appelle enableSwipe après chaque rendu des cards
+const _renderCardsOrig = renderCards;
+renderCards = function(list){
+  _renderCardsOrig(list);
+  enableSwipe(document.getElementById('cards'));
+};
 
 </script>
 
